@@ -1,0 +1,49 @@
+unit ParamMapTests;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, fpcunit, testutils, testregistry, ParamMap, StdParamTypes,
+  ParamType2;
+
+{type
+  TParamMapTest= class(TTestCase)
+  private
+    FParamMap: TVParamMap;
+    function ParamRequest(AID: TPParamID): IPParam;
+  protected
+    procedure SetUp; override;
+    procedure TearDown; override;
+  published
+    procedure TestSameParam;
+  end;}
+
+implementation
+
+{procedure TParamMapTest.SetUp;
+begin
+  FParamMap:=TVParamMap.Create(@RequestParam);
+end;
+
+procedure TParamMapTest.TearDown;
+begin
+  FParamMap.Destroy;
+end;
+
+function TParamMapTest.ParamRequest(AID: TPParamID): IPParam;
+begin
+  //Result:=ParamTypeUtil[AID.&Type].CreateValueStorage(nil);
+end;
+
+procedure TParamMapTest.TestSameParam;
+begin
+
+end; }
+
+initialization
+
+  //RegisterTest(TParamMapTest);
+end.
+

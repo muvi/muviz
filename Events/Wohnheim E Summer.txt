@@ -1,0 +1,8 @@
+1: Boot
+2: oberes Wasser
+3: mittleres Wasser
+4: unteres Wasser
+5: erster Arm
+6: Männchen Körper
+7: Palme
+8: zweiter Arm

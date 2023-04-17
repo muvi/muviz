@@ -1,0 +1,92 @@
+unit OrderedListTests;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, fpcunit, testutils, testregistry, csl, LinkedList;
+
+type
+
+  TListTest       = class (TTestCase)
+  private
+    FList: TList;
+  protected
+    procedure SetUp; override;
+    procedure TearDown; override;
+    function GetList: TList; virtual; abstract;
+  published
+    procedure TestAdd;
+    procedure TestEnumerator;
+  end;
+
+  TLinkedListTest = class (TListTest)
+  protected
+    function GetList: TList; override;
+  end;
+
+implementation
+
+{%REGION TListTest}
+
+procedure TListTest.TestAdd;
+const
+  AMax = 30;
+var
+  AObjects: array [0..AMax] of TObject;
+  I       : Integer;
+begin
+  for I:=0 to AMax do begin
+    AObjects[I]:=TObject.Create;
+    FList.Add(AObjects[I]);
+  end;
+  AssertEquals(AMax+1, FList.Count);
+end;
+
+procedure TListTest.TestEnumerator;
+const
+  AMax = 3;
+var
+  AObjects: array [0..AMax] of TObject;
+  I       : Integer;
+  AObject : TObject;
+begin
+  for I:=0 to AMax do begin
+    AObjects[I]:=TObject.Create;
+    FList.Add(AObjects[I]);
+  end;
+  AssertEquals(AMax+1, FList.Count);
+  I:=0;
+  for AObject in FList do begin
+    AssertSame(AObjects[I], AObject);
+    Inc(I);
+  end;
+  AssertEquals(AMax+1, I);
+end;
+
+procedure TListTest.SetUp;
+begin
+  FList:=GetList;
+end;
+
+procedure TListTest.TearDown;
+begin
+  //FList.Clean;
+  FList.Destroy;
+end;
+
+{%ENDREGION}
+{%REGION TLinkedListTest}
+
+function TLinkedListTest.GetList: TList;
+begin
+  Result:=TLinkedList.Create;
+end;
+
+{%ENDREGION}
+
+initialization
+  RegisterTest(TOrderedListTest);
+end.
+

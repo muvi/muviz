@@ -1,0 +1,25 @@
+unit GLPlatformContext;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  {$IFDEF LINUX}
+  GLGLXContext,    //Linux
+  {$ENDIF}
+  {$IF Defined(WIN32) or Defined(WIN64)}
+  GLWGLContext,    //Windows
+  {$ENDIF}
+  {$IFDEF DARWIN}
+  GLCarbonContext, //MacOS
+  {$ENDIF}
+  Classes, SysUtils, GLContext;
+
+type
+
+
+implementation
+
+end.
+

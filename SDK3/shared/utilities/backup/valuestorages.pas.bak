@@ -1,0 +1,193 @@
+unit ValueStorages;
+
+{$mode objfpc}{$H+}
+{$ASSERTIONS ON}
+
+interface
+
+uses
+  Classes, SysUtils, ParamType2, StdParamTypes, VisType2, MStrings,
+  AdvParamType;
+
+function CreateCallValueStorage(AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateIntegerValueStorage(AValue: TVInteger; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateIntegerValueStorage(AMin, AMax, AValue: TVInteger; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateFloatValueStorage(AValue: TVFloat; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateFloatValueStorage(AMin, AMax, AValue: TVFloat; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateColorValueStorage(AValue: TVColor; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateBooleanValueStorage(AValue: TVBoolean; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateBufferValueStorage(AValue: TVBuffer; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreateStringValueStorage(AValue: TVString; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreatePresetValueStorage(AValue: TVPreset; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreatePresetValueStorage(AValue: TVPreset; AEnvironment: IPVisualisationEnvironment; AThread: IPThread = nil): IPParamValueStorage; //inline;
+function CreatePointerValueStorage(AValue: TVPointer; AThread: IPThread = nil): IPParamValueStorage; //inline;
+
+//generates a normal String value storage
+function CreatePascalStringValueStorage(AValue: string; AThread: IPThread = nil): IPParamValueStorage;
+function _: IPParamValueStorage; //inline;
+
+function CreateDefaultValueStorage(AType: TPParamType; AThread: IPThread = nil): IPParamValueStorage;
+
+operator := (a: TVInteger): IPParamValueStorage; //inline;
+operator := (a: TVFloat): IPParamValueStorage; //inline;
+operator := (a: string): IPParamValueStorage; //inline;
+operator := (a: TVColor): IPParamValueStorage; //inline;
+operator := (a: TVBoolean): IPParamValueStorage; //inline;
+operator := (a: TVBuffer): IPParamValueStorage; //inline;
+operator := (a: TVPreset): IPParamValueStorage; //inline;
+operator := (a: TVPointer): IPParamValueStorage; //inline;
+
+implementation
+
+{%REGION Local}
+
+//Main Thread If Nil
+function mtin(AThread: IPThread): IPThread; //inline;
+begin
+  if AThread=nil
+    then Result:=VisualisationUtil.MainThread
+    else Result:=AThread;
+  Assert(Result<>nil);
+end;
+
+{%ENDREGION}
+{%REGION Create Methods}
+
+function CreateCallValueStorage(AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vCall].CreateValueStorage(mtin(AThread));
+end;
+
+function CreateIntegerValueStorage(AValue: TVInteger; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vInteger].CreateValueStorage(mtin(AThread));
+  IPInteger(Result).&Set(AValue);
+end;
+
+function CreateIntegerValueStorage(AMin, AMax, AValue: TVInteger; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=IPIntegerParamType(ParamTypeUtil[vInteger]).CreateValueStorage(AMin, AMax, mtin(AThread));
+  IPInteger(Result).&Set(AValue);
+end;
+
+function CreateFloatValueStorage(AValue: TVFloat; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vFloat].CreateValueStorage(mtin(AThread));
+  IPFloat(Result).&Set(AValue);
+end;
+
+function CreateFloatValueStorage(AMin, AMax, AValue: TVFloat; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=IPFloatParamType(ParamTypeUtil[vFloat]).CreateValueStorage(AMin, AMax, mtin(AThread));
+  IPFloat(Result).&Set(AValue);
+end;
+
+function CreateColorValueStorage(AValue: TVColor; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vColor].CreateValueStorage(mtin(AThread));
+  IPColor(Result).&Set(AValue);
+end;
+
+function CreateBooleanValueStorage(AValue: TVBoolean; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vBoolean].CreateValueStorage(mtin(AThread));
+  IPBoolean(Result).&Set(AValue);
+end;
+
+function CreateBufferValueStorage(AValue: TVBuffer; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vBuffer].CreateValueStorage(mtin(AThread));
+  IPBuffer(Result).&Set(AValue);
+end;
+
+function CreateStringValueStorage(AValue: TVString; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vString].CreateValueStorage(mtin(AThread));
+  IPString(Result).&Set(AValue);
+end;
+
+function CreatePresetValueStorage(AValue: TVPreset; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vPreset].CreateValueStorage(mtin(AThread));
+  IPPreset(Result).&Set(AValue);
+end;
+
+function CreatePresetValueStorage(AValue: TVPreset; AEnvironment: IPVisualisationEnvironment; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=IPPresetParamType(ParamTypeUtil[vPreset]).CreateValueStorage(AEnvironment, mtin(AThread));
+  IPPreset(Result).&Set(AValue);
+end;
+
+function CreatePointerValueStorage(AValue: TVPointer; AThread: IPThread = nil): IPParamValueStorage; //inline;
+begin
+  Result:=ParamTypeUtil[vPointer].CreateValueStorage(mtin(AThread));
+  IPPointer(Result).&Set(AValue);
+end;
+
+//---
+
+function CreatePascalStringValueStorage(AValue: string; AThread: IPThread = nil): IPParamValueStorage;
+begin
+  Result:=CreateStringValueStorage(AValue, AThread);
+end;
+
+function _: IPParamValueStorage; //inline;
+begin
+  Result:=CreateCallValueStorage;
+end;
+
+//---
+
+function CreateDefaultValueStorage(AType: TPParamType; AThread: IPThread = nil): IPParamValueStorage;
+begin
+  Result:=ParamTypeUtil[AType].CreateValueStorage(mtin(AThread));
+end;
+
+{%ENDREGION}
+{%REGION Operators value -> IPParamValueStorage}
+
+operator := (a: TVInteger): IPParamValueStorage; //inline;
+begin
+  Result:=CreateIntegerValueStorage(a);
+end;
+
+operator := (a: TVFloat): IPParamValueStorage; //inline;
+begin
+  Result:=CreateFloatValueStorage(a);
+end;
+
+operator := (a: string): IPParamValueStorage; //inline;
+begin
+  Result:=CreatePascalStringValueStorage(a);
+end;
+
+operator := (a: TVColor): IPParamValueStorage; //inline;
+begin
+  Result:=CreateColorValueStorage(a);
+end;
+
+operator := (a: TVBoolean): IPParamValueStorage; //inline;
+begin
+  Result:=CreateBooleanValueStorage(a);
+end;
+
+operator := (a: TVBuffer): IPParamValueStorage; //inline;
+begin
+  Result:=CreateBufferValueStorage(a);
+end;
+
+operator := (a: TVPreset): IPParamValueStorage; //inline;
+begin
+  Result:=CreatePresetValueStorage(a);
+end;
+
+operator := (a: TVPointer): IPParamValueStorage; //inline;
+begin
+  Result:=CreatePointerValueStorage(a);
+end;
+
+
+{%ENDREGION}
+
+end.
+

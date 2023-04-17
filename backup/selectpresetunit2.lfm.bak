@@ -1,0 +1,37 @@
+object SelectPresetForm2: TSelectPresetForm2
+  Left = 67
+  Height = 261
+  Top = 475
+  Width = 234
+  AlphaBlend = True
+  AlphaBlendValue = 220
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Select a preset'
+  ClientHeight = 261
+  ClientWidth = 234
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDeactivate = FormDeactivate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  LCLVersion = '1.4.4.0'
+  inline PresetLF: TPresetListFrame2
+    Height = 261
+    Width = 234
+    Align = alClient
+    ClientHeight = 261
+    ClientWidth = 234
+    inherited PresetTV: TTreeView
+      Height = 235
+      Width = 234
+      ShowLines = True
+      ShowRoot = True
+    end
+    inherited FilterEdit: TTreeFilterEdit
+      Width = 234
+    end
+  end
+end

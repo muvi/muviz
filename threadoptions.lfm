@@ -1,0 +1,88 @@
+object ThreadOptionFrame: TThreadOptionFrame
+  Left = 0
+  Height = 117
+  Top = 0
+  Width = 178
+  ClientHeight = 117
+  ClientWidth = 178
+  Constraints.MinHeight = 117
+  Constraints.MinWidth = 144
+  TabOrder = 0
+  DesignLeft = 304
+  DesignTop = 268
+  object GroupBox: TGroupBox
+    Left = 0
+    Height = 117
+    Top = 0
+    Width = 178
+    Align = alClient
+    Caption = 'Caption'
+    ClientHeight = 99
+    ClientWidth = 174
+    TabOrder = 0
+    object PriorityCB: TComboBox
+      Left = 74
+      Height = 23
+      Top = 8
+      Width = 91
+      Anchors = [akTop, akLeft, akRight]
+      ItemHeight = 15
+      ItemIndex = 3
+      Items.Strings = (
+        'Echtzeit'
+        'Sehr Hoch'
+        'Hoch'
+        'Normal'
+        'Niedrig'
+        'Sehr Niedrig'
+        'Warten'
+      )
+      Style = csDropDownList
+      TabOrder = 0
+      Text = 'Normal'
+    end
+    object PriorityLbl: TLabel
+      Left = 10
+      Height = 23
+      Top = 8
+      Width = 59
+      AutoSize = False
+      Caption = 'Priorität:'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object FPSLbl: TLabel
+      Left = 10
+      Height = 23
+      Top = 40
+      Width = 59
+      AutoSize = False
+      Caption = 'FPS:'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object DynamicCB: TCheckBox
+      Left = 10
+      Height = 19
+      Top = 72
+      Width = 155
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Dynamisch'
+      OnChange = DynamicCBChange
+      TabOrder = 1
+    end
+    object FPSEdit: TFloatSpinEdit
+      Left = 74
+      Height = 23
+      Top = 40
+      Width = 91
+      Anchors = [akTop, akLeft, akRight]
+      Increment = 1
+      MaxValue = 100
+      MinValue = 0
+      TabOrder = 2
+      Value = 1
+    end
+  end
+end

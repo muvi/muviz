@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <Title Value="Logic"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="Logic.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Logic"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3"/>
+        <CursorPos X="33" Y="16"/>
+        <UsageCount Value="30"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="serverplugintype.pas"/>
+        <UnitName Value="ServerPluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="20"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="nettype.pas"/>
+        <UnitName Value="NetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="106" Y="13"/>
+        <UsageCount Value="20"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="23" Y="5"/>
+        <UsageCount Value="30"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="authnettype.pas"/>
+        <UnitName Value="AuthNetType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="35" Y="11"/>
+        <UsageCount Value="20"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="dllstr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DllStr"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="12"/>
+        <UsageCount Value="29"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="maintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainType"/>
+        <TopLine Value="3"/>
+        <CursorPos X="64" Y="26"/>
+        <UsageCount Value="30"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="38" Y="23"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="mplugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MPluginType"/>
+        <TopLine Value="8"/>
+        <CursorPos X="114" Y="8"/>
+        <UsageCount Value="30"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="spectrumdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SpectrumData"/>
+        <TopLine Value="36"/>
+        <CursorPos X="1" Y="36"/>
+        <UsageCount Value="29"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="vpbuffers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VPBuffers"/>
+        <TopLine Value="1"/>
+        <CursorPos X="24" Y="6"/>
+        <UsageCount Value="29"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="vistype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="6"/>
+        <CursorPos X="15" Y="65"/>
+        <UsageCount Value="29"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="clientnettype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClientNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="55" Y="19"/>
+        <UsageCount Value="29"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="mnettype.pas"/>
+        <UnitName Value="MNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="49" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="viswintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisWinType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="12"/>
+        <UsageCount Value="29"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="stddllinterfaces.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdDllInterfaces"/>
+        <TopLine Value="10"/>
+        <CursorPos X="30" Y="23"/>
+        <UsageCount Value="29"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="defaultlogic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DefaultLogic"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="48"/>
+        <CursorPos X="49" Y="62"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="graphx32.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GraphX32"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="268"/>
+        <CursorPos X="3" Y="278"/>
+        <UsageCount Value="28"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="461"/>
+        <CursorPos X="3" Y="463"/>
+        <UsageCount Value="28"/>
+      </Unit18>
+    </Units>
+    <JumpHistory Count="22" HistoryIndex="21">
+      <Position1>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="17" Column="55" TopLine="9"/>
+      </Position1>
+      <Position2>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="9" Column="28" TopLine="7"/>
+      </Position2>
+      <Position3>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="17" Column="61" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="24" Column="70" TopLine="20"/>
+      </Position4>
+      <Position5>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="27" Column="63" TopLine="16"/>
+      </Position5>
+      <Position6>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="40" Column="47" TopLine="29"/>
+      </Position6>
+      <Position7>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="49" Column="213" TopLine="37"/>
+      </Position7>
+      <Position8>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="46" Column="1" TopLine="36"/>
+      </Position8>
+      <Position9>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="26" Column="1" TopLine="19"/>
+      </Position9>
+      <Position10>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="33" Column="58" TopLine="20"/>
+      </Position10>
+      <Position11>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="19" Column="27" TopLine="11"/>
+      </Position11>
+      <Position12>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="29" Column="1" TopLine="25"/>
+      </Position12>
+      <Position13>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="31" Column="18" TopLine="18"/>
+      </Position13>
+      <Position14>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="30" Column="1" TopLine="21"/>
+      </Position14>
+      <Position15>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="55" Column="1" TopLine="45"/>
+      </Position15>
+      <Position16>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="51" Column="58" TopLine="38"/>
+      </Position16>
+      <Position17>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="162" Column="1" TopLine="143"/>
+      </Position17>
+      <Position18>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="75" Column="17" TopLine="65"/>
+      </Position18>
+      <Position19>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="97" Column="17" TopLine="87"/>
+      </Position19>
+      <Position20>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="96" Column="20" TopLine="90"/>
+      </Position20>
+      <Position21>
+        <Filename Value="defaultlogic.pas"/>
+        <Caret Line="112" Column="13" TopLine="100"/>
+      </Position21>
+      <Position22>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="23" Column="38" TopLine="19"/>
+      </Position22>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

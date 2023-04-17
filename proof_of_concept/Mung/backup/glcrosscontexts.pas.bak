@@ -1,0 +1,40 @@
+unit glCrossContexts;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, LCLType;
+
+{.$I detectsys.inc}
+
+type
+  TGLCustomRenderContext = class
+  private
+  protected
+  public
+    constructor Create(ARenderDest: HWND); virtual; abstract;
+    //destructor Destroy; override;
+    procedure Activate; virtual; abstract;
+    procedure Deactivate; virtual; abstract;
+    procedure SwapBuffers; virtual; abstract;
+  end;
+
+  TGLLinuxContext = class
+  private
+  public
+    constructor Create;
+  end;
+
+
+  TGLRenderContext = TGLLinuxContext;
+
+implementation
+
+{TGLLinuxContext}
+
+
+
+end.
+

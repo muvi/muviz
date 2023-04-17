@@ -1,0 +1,98 @@
+object PicDiagForm: TPicDiagForm
+  Left = 304
+  Height = 259
+  Top = 302
+  Width = 401
+  Caption = 'Picture Diagram'
+  ClientHeight = 259
+  ClientWidth = 401
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '0.9.30'
+  object DiagImage: TImage32
+    Left = 0
+    Height = 198
+    Top = 38
+    Width = 401
+    Align = alClient
+    Bitmap.ResamplerClassName = 'TNearestResampler'
+    BitmapAlign = baTopLeft
+    Scale = 1
+    ScaleMode = smNormal
+    TabOrder = 0
+    OnMouseMove = DiagImageMouseMove
+    OnMouseLeave = DiagImageMouseLeave
+    OnResize = DiagImageResize
+  end
+  object SettingPanel: TPanel
+    Left = 0
+    Height = 38
+    Top = 0
+    Width = 401
+    Align = alTop
+    ClientHeight = 38
+    ClientWidth = 401
+    TabOrder = 1
+    Visible = False
+    object MaxEdit: TFloatSpinEdit
+      Left = 48
+      Height = 23
+      Top = 8
+      Width = 98
+      DecimalPlaces = 10
+      Increment = 1
+      MaxValue = 1E300
+      MinValue = -1E300
+      OnChange = MaxEditChange
+      TabOrder = 0
+      Value = 0
+    end
+    object MaxLbl: TLabel
+      Left = 8
+      Height = 23
+      Top = 8
+      Width = 35
+      AutoSize = False
+      Caption = 'Max:'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object MinEdit: TFloatSpinEdit
+      Left = 200
+      Height = 23
+      Top = 8
+      Width = 98
+      DecimalPlaces = 10
+      Increment = 1
+      MaxValue = 1E300
+      MinValue = -1E300
+      OnChange = MinEditChange
+      TabOrder = 1
+      Value = 0
+    end
+    object MinLbl: TLabel
+      Left = 160
+      Height = 23
+      Top = 8
+      Width = 35
+      AutoSize = False
+      Caption = 'Min:'
+      Layout = tlCenter
+      ParentColor = False
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 236
+    Width = 401
+    Panels = <>
+  end
+  object Timer: TTimer
+    Enabled = False
+    Interval = 40
+    OnTimer = TimerTimer
+    left = 8
+    top = 48
+  end
+end

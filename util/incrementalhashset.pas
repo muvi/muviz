@@ -1,0 +1,222 @@
+unit IncrementalHashSet;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, IncrementalSet, ObjectClassBasic, Enumerators, csl,
+  HashMap, AdvancedObjectClassBasic;
+
+type
+  TIncrementalHashSet              = class;
+
+  TIncrementalHashSetItemContainer = class (TAdvancedObjectContainer)
+  strict private
+    FCount: Cardinal;
+  private
+    procedure Increment; inline;
+    //returns true if the container has not been destroyed
+    function Decrement: Boolean; inline;
+  public
+    constructor Create(AOwner: TIncrementalHashSet; AObject: TObjectItem = nil; AOwnsObjects: Boolean = false);
+    destructor Destroy; override;
+    function Equals(Obj: TObject): Boolean; override;
+    function GetHashCode: PtrInt; override;
+    property Count: Cardinal read FCount;
+  end;
+
+  TIncrementalHashSetEnumerator    = class (TEnumerator)
+  strict private
+    FEnumerator: TEnumerator;
+  strict protected
+    function GetCurrent: TObject; override;
+  public
+    constructor Create(AHashMapEnumerator: TEnumerator);
+    destructor Destroy; override;
+    function MoveNext: Boolean; override;
+    function Remove: TObject; override;
+    procedure Delete; override;
+    procedure Reset; override;
+  end;
+
+  TIncrementalHashSet              = class (TIncrementalSet)
+  strict private
+    FMap        : TMap;
+    FOwnsObjects: Boolean;
+  private
+    procedure ContainerDeleted(AContainer: TIncrementalHashSetItemContainer);
+  protected
+    procedure BeforeAutomaticDeletion(Sender: TAdvancedObjectContainer); override;
+  public
+    constructor Create(AOwnsObjects: Boolean = false);
+    destructor Destroy; override;
+    function Add(AItem: TObjectItem): Boolean; override;
+    function Remove(AItem: TObjectItem): TIncrementalSetRemovalResult; override;
+    function GetEnumerator: TEnumerator; override;
+  end;
+
+implementation
+
+{%REGION TIncrementalHashSetItemContainer}
+
+constructor TIncrementalHashSetItemContainer.Create(AOwner: TIncrementalHashSet; AObject: TObjectItem = nil; AOwnsObjects: Boolean = false);
+begin
+  inherited Create(AOwner, AObject, AOwnsObjects);
+  FCount:=1;
+end;
+
+destructor TIncrementalHashSetItemContainer.Destroy;
+begin
+  TIncrementalHashSet(Owner).ContainerDeleted(Self);
+  inherited Destroy;
+end;
+
+procedure TIncrementalHashSetItemContainer.Increment; inline;
+begin
+  Inc(FCount);
+end;
+
+function TIncrementalHashSetItemContainer.Decrement: Boolean; inline;
+begin
+  Dec(FCount);
+  Result:=(FCount <> 0);
+  if not Result
+    then Destroy;
+end;
+
+function TIncrementalHashSetItemContainer.Equals(Obj: TObject): Boolean;
+var
+  AOther: TIncrementalHashSetItemContainer;
+begin
+  if not Content.Equals(Obj) then begin
+    Result:=(Obj<>nil)
+        and (Obj.InheritsFrom(TIncrementalHashSetItemContainer));
+    if Result then begin
+      AOther:=TIncrementalHashSetItemContainer(Obj);
+      Result:=(AOther.Content = nil) = (Content = nil);
+      if Result and (Content <> nil)
+        then Result:=Content.Equals(AOther.Content);
+    end;
+  end else Result:=true;
+end;
+
+function TIncrementalHashSetItemContainer.GetHashCode: PtrInt;
+begin
+  if Content<>nil
+    then Result:=Content.GetHashCode
+    else Result:=0;
+end;
+
+{%ENDREGION}
+{%REGION TIncrementalHashSetEnumerator}
+
+constructor TIncrementalHashSetEnumerator.Create(AHashMapEnumerator: TEnumerator);
+begin
+  inherited Create;
+  FEnumerator:=AHashMapEnumerator;
+end;
+
+destructor TIncrementalHashSetEnumerator.Destroy;
+begin
+  FEnumerator.Destroy;
+  inherited Destroy;
+end;
+
+function TIncrementalHashSetEnumerator.GetCurrent: TObject;
+begin
+  Result:=TIncrementalHashSetItemContainer(FEnumerator.GetCurrent).Content;
+end;
+
+function TIncrementalHashSetEnumerator.MoveNext: Boolean;
+begin
+  Result:=FEnumerator.MoveNext;
+end;
+
+function TIncrementalHashSetEnumerator.Remove: TObject;
+begin
+  Result:=FEnumerator.Remove;
+end;
+
+procedure TIncrementalHashSetEnumerator.Delete;
+begin
+  FEnumerator.Delete;
+end;
+
+procedure TIncrementalHashSetEnumerator.Reset;
+begin
+  FEnumerator.Reset;
+end;
+
+{%ENDREGION}
+{%REGION TIncrementalHashSet}
+
+constructor TIncrementalHashSet.Create(AOwnsObjects: Boolean = false);
+begin
+  inherited Create;
+  FMap:=THashMap.Create;
+  FOwnsObjects:=AOwnsObjects;
+end;
+
+destructor TIncrementalHashSet.Destroy;
+var
+  AMap: TMap;
+begin
+  AMap:=FMap;
+  FMap:=nil;
+  AMap.Clean;
+  AMap.Destroy;
+  inherited Destroy;
+end;
+
+procedure TIncrementalHashSet.ContainerDeleted(AContainer: TIncrementalHashSetItemContainer);
+var
+  AResult: TObject;
+begin
+  if FMap <> nil then begin
+    AResult:=FMap.Remove(AContainer);
+    Assert(AResult = AContainer);
+  end;
+end;
+
+procedure TIncrementalHashSet.BeforeAutomaticDeletion(Sender: TAdvancedObjectContainer);
+begin
+  Assert(Sender is TIncrementalHashSetItemContainer);
+  if Assigned(OnBeforeAutomaticDeletion)
+    then OnBeforeAutomaticDeletion(Self, TIncrementalHashSetItemContainer(Sender).Count);
+end;
+
+function TIncrementalHashSet.Add(AItem: TObjectItem): Boolean;
+var
+  AContainer: TObject;
+begin
+  AContainer:=FMap[AItem];
+  Result:=AContainer = nil;
+  if Result then begin
+    AContainer:=TIncrementalHashSetItemContainer.Create(Self, AItem, FOwnsObjects);
+    FMap.Add(AContainer, AContainer);
+  end else begin
+    TIncrementalHashSetItemContainer(AContainer).Increment
+  end;
+end;
+
+function TIncrementalHashSet.Remove(AItem: TObjectItem): TIncrementalSetRemovalResult;
+var
+  AContainer: TObject;
+begin
+  AContainer:=FMap[AItem];
+  Result.Existed:=AContainer <> nil;
+  if Result.Existed
+    then Result.ExistsNow:=TIncrementalHashSetItemContainer(AContainer).Decrement
+    else Result.ExistsNow:=false;
+end;
+
+function TIncrementalHashSet.GetEnumerator: TEnumerator;
+begin
+  Result:=TIncrementalHashSetEnumerator.Create(FMap.Enumerator);
+end;
+
+{%ENDREGION}
+
+end.
+

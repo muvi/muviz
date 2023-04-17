@@ -1,0 +1,57 @@
+library Example;
+
+{$mode objfpc}{$H+}
+
+uses
+  Classes, MainUnit, PluginType, MPluginType4, MStrings, MTypes, TagType,
+  VPBuffers, ParamType2, PresetType, VisType2, SpectrumData, StdParamTypes;
+
+const
+  REQUIRED_VERSION            = '0.4.0';
+  LIB_VERSION                 = '1.0.0';
+  LIB_NAME                    = 'Example Muvi Plugin';
+  LIB_DESCRIPTION             = 'Muvi Plugin SDK';
+
+function LibGetData(APluginSystem: IMPluginSystem): TPluginLibInfo; stdcall;
+begin
+  with Result do begin
+    Name:=LIB_NAME;
+    Description:=LIB_DESCRIPTION;
+    Version:=LIB_VERSION;
+    Supported:=(APluginSystem.Future(REQUIRED_VERSION)<>nil);
+  end;
+end;
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+begin
+  //register units
+  PluginSystem:=IMPluginSystem4(APluginSystem.Future(REQUIRED_VERSION));
+  EmptyString:=PluginSystem.GetEmptyString;
+  EmptyBuffer:=PluginSystem.GetEmptyBuffer;
+  ParamTypeUtil:=PluginSystem.GetParamTypeUtil;
+  PresetUtil:=PluginSystem.GetPresetUtil;
+  VisualisationUtil:=PresetUtil;
+  NoCanvas:=PluginSystem.GetNoCanvas;
+  AdvSpectrumData:=PluginSystem.GetSpectrumData;
+
+  Init_Plugin;
+end;
+
+procedure PluginDone; stdcall;
+begin
+  Plugin_Done;
+  //unregister units
+  AdvSpectrumData:=nil;
+  NoCanvas:=nil;
+  VisualisationUtil:=nil;
+  PresetUtil:=nil;
+  ParamTypeUtil:=nil;
+  EmptyBuffer:=nil;
+  EmptyString:=nil;
+  PluginSystem:=nil;
+end;
+
+exports
+  LibGetData, InitPlugin, PluginDone;
+end.
+

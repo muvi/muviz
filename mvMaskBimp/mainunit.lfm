@@ -1,0 +1,58 @@
+object MainForm: TMainForm
+  Left = 334
+  Height = 194
+  Top = 168
+  Width = 116
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'mvMaskBimp'
+  ClientHeight = 194
+  ClientWidth = 116
+  LCLVersion = '0.9.30.4'
+  object Image: TImage
+    Left = 16
+    Height = 80
+    Top = 8
+    Width = 80
+    Stretch = True
+  end
+  object LoadBtn: TButton
+    Left = 16
+    Height = 25
+    Top = 96
+    Width = 80
+    Caption = 'Load'
+    OnClick = LoadBtnClick
+    TabOrder = 0
+  end
+  object SaveBtn: TButton
+    Left = 16
+    Height = 25
+    Top = 128
+    Width = 80
+    Caption = 'Save'
+    OnClick = SaveBtnClick
+    TabOrder = 1
+  end
+  object ModifyBtn: TButton
+    Left = 16
+    Height = 25
+    Top = 160
+    Width = 80
+    Caption = 'Modify'
+    OnClick = ModifyBtnClick
+    TabOrder = 2
+  end
+  object OpenPictureDialog: TOpenPictureDialog
+    Title = 'Open'
+    DefaultExt = '.bmp'
+    left = 11
+    top = 104
+  end
+  object SavePictureDialog: TSavePictureDialog
+    Title = 'Save'
+    DefaultExt = '.bmp'
+    left = 11
+    top = 144
+  end
+end

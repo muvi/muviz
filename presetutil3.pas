@@ -1,0 +1,250 @@
+unit PresetUtil3;
+
+interface
+
+uses
+  SlaveControl, PresetUtil3_Configuration, VisType2, Classes, ParamPainter2,
+  PresetUtil3_Wires, AdvCoord, Graphics, CanvasGraphX32, ObjectClasses,
+  PresetUtil3_Connections, PresetUtil3_ConnectionRouter, PresetUtil3_Path,
+  PresetUtil3_ConnectedWireManager, PresetUtil3_UpdatingWire, DebugTools,
+  PresetUtil3_Paths, PresetUtil3_WiredMaster, PresetUtil3_PointingRouter,
+  SysUtils, Controls, PresetUtil3_BasePlug, MiscSlaveControls, TouchEvent,
+  LMessages;
+
+type
+  TPresetEditor = class (TWiredMaster)
+  strict private
+    FParamEdit       : TPPParam;
+    FConfig          : TPresetEditorConfiguration;
+    FParamImages     : TParamPainterImages;
+    FParamPainter    : TParamPainter;
+    FWireManager     : TWireManager;
+    FExpandedParams  : TPaths;
+    FWiredBuffer     : TBitmap;
+    FPath            : IParamPath;
+    //events
+    FOnStartRender   : TNotifyEvent;
+    FOnEndRender     : TNotifyEvent;
+    //dummys
+    FDummyConnector  : TConnector;
+    FDummyConnections: TRoutableConnections;
+    procedure WireChanged(Sender: TObject);
+    function GetMovingWires: Integer; inline;
+  strict protected
+    function GetWireManager: TWireManager; override;
+  protected
+    procedure DoResize; override;
+    procedure ParamBoundsChanged(Sender: TSlaveControl);
+    procedure NeedsPaint; override;
+    procedure Paint; override;
+    procedure Resize; override;
+    procedure DrawWires;
+    procedure StartRender; inline;
+    procedure EndRender; inline;
+    procedure MouseMove(Shift: TShiftState; X,Y: Integer); override;
+    procedure MouseDown(Button: TMouseButton; Shift:TShiftState; X,Y:Integer); override;
+  public
+    procedure Draw; override;
+    procedure Rewire(const t: Real = 1.0; const Steps: Cardinal = 1);
+  public
+    constructor Create(AOwner: TComponent);
+    destructor Destroy; override;
+    procedure AssignParam(AParam: IPParam; AParamPath: IParamPath);
+    procedure RemoveParam;
+    procedure UpdateParams;
+    property Config: TPresetEditorConfiguration read FConfig;
+    property ExpandedParams: TPaths read FExpandedParams;
+    property MovingWires: Integer read GetMovingWires;
+    property ParamImages: TParamPainterImages read FParamImages;
+    property OnStartRender: TNotifyEvent read FOnStartRender write FOnStartRender;
+    property OnEndRender: TNotifyEvent read FOnEndRender write FOnEndRender;
+  published
+    property OnMouseWheel;
+    property OnMouseWheelUp;
+    property OnMouseWheelDown;
+  end;
+
+implementation
+
+{%REGION TPresetEditor}
+
+constructor TPresetEditor.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  FWiredBuffer:=TBitmap.Create;
+  FParamEdit:=nil;
+  FExpandedParams:=TPaths.Create;
+  FConfig:=TPresetEditorConfiguration.Create;
+  FParamImages:=TParamPainterImages.Create;
+  FWireManager:=TWireManager.Create(FConfig);
+  FWireManager.OnWireChanged:=@WireChanged;
+  FParamPainter:=TParamPainter.Create(Self, FConfig, FWireManager, FParamImages);
+  FDummyConnector:=TConnector.Create;
+  FDummyConnections:=TRoutableConnections.Create(FDummyConnector);
+end;
+
+destructor TPresetEditor.Destroy;
+begin
+  //finish
+  EndRender;
+  RemoveParam;
+  //free
+  FDummyConnections.Destroy;
+  FDummyConnector.Destroy;
+  FParamPainter.Destroy;
+  FWireManager.Destroy;
+  FParamImages.Destroy;
+  FConfig.Destroy;
+  FExpandedParams.Destroy;
+  FWiredBuffer.Destroy;
+  FPath:=nil;
+  inherited Destroy;
+end;
+
+procedure TPresetEditor.AssignParam(AParam: IPParam; AParamPath: IParamPath);
+begin
+  Assert(AParam<>nil);
+  RemoveParam;
+  //TODO: give dummy router instead of nil
+  //in the current configuration, a pointer parameter will cause a crash
+  FPath:=AParamPath-1;
+  FParamEdit:=FParamPainter.NewParam(nil, FDummyConnections, nil, AParam, AParamPath, Self);
+  FParamEdit.SetBounds(5, 5, Width-10, Height-10);
+  FParamEdit.OnBoundsChanged:=@ParamBoundsChanged;
+  FParamEdit.ContextCreated;
+  StartRender;
+end;
+
+procedure TPresetEditor.RemoveParam;
+begin
+  if FParamEdit<>nil then begin
+    EndRender;
+    FParamEdit.Destroy;
+    FParamEdit:=nil;
+  end;
+end;
+
+procedure TPresetEditor.UpdateParams;
+begin
+  Assert(FParamEdit <> nil);
+  RIN_StartEvent;
+  FParamEdit.UpdateAll;
+  RIN;
+end;
+
+procedure TPresetEditor.Draw;
+begin
+  with PaintBuffer do begin
+    Canvas.Brush.Color:=Color;
+    Canvas.Pen.Color:=Color;
+    Canvas.Rectangle(0, 0, Width, Height);
+    Canvas.Pen.Color:=clWindowText;
+    //Draw bg cut rect
+    if FParamEdit <> nil then begin
+      Canvas.Brush.Color:=PARAM_BGCOLOR;
+      Canvas.Pen.Color:=PARAM_BGCOLOR;
+      DrawCutRect(Canvas, FParamEdit.Left - 3 - ScrollPos.X, FParamEdit.Top - 3 - ScrollPos.Y, FParamEdit.Width + 6 - ScrollPos.X, FParamEdit.Height + 6 - ScrollPos.Y, 4, 4);
+    end;
+  end;
+  inherited Draw;
+end;
+
+procedure TPresetEditor.DoResize;
+begin
+  if FParamEdit<>nil then begin
+    FParamEdit.Width:=Width-10;
+  end;
+end;
+
+procedure TPresetEditor.ParamBoundsChanged(Sender: TSlaveControl);
+begin
+  AbsoluteMaxScrollPos:=Point(0, FParamEdit.Height + 10);
+  Repaint(nil);
+end;
+
+procedure TPresetEditor.Rewire(const t: Real = 1.0; const Steps: Cardinal = 1);
+begin
+  FWireManager.Rewire(t, Steps);
+  if MovingWires=0 then EndRender;
+  NeedsPaint;
+end;
+
+function TPresetEditor.GetMovingWires: Integer; inline;
+begin
+  Result:=FWireManager.MovingCount;
+end;
+
+function TPresetEditor.GetWireManager: TWireManager;
+begin
+  Result:=FWireManager;
+end;
+
+procedure TPresetEditor.DrawWires;
+var
+  AItem        : TObjectListItem;
+begin
+  AItem:=FWireManager.Wires.First;
+  while AItem<>nil do begin
+    TPWContainer(AItem.Content).Draw(FWiredBuffer.Canvas, ViewRect);
+    AItem:=AItem.Next;
+  end;
+end;
+
+procedure TPresetEditor.WireChanged(Sender: TObject);
+begin
+  StartRender;
+end;
+
+procedure TPresetEditor.StartRender; inline;
+begin
+  if Assigned(FOnStartRender)
+    then FOnStartRender(Self);
+end;
+
+procedure TPresetEditor.EndRender; inline;
+begin
+  if Assigned(FOnEndRender)
+    then FOnEndRender(Self);
+end;
+
+procedure TPresetEditor.Resize;
+begin
+  inherited Resize;
+  FWiredBuffer.SetSize(Width, Height);
+end;
+
+procedure TPresetEditor.NeedsPaint;
+begin
+  FWiredBuffer.Canvas.Draw(0, 0, PaintBuffer);
+  DrawWires;
+  inherited NeedsPaint;
+end;
+
+procedure TPresetEditor.Paint;
+begin
+  Canvas.Draw(0, 0, FWiredBuffer);
+end;
+
+procedure TPresetEditor.MouseMove(Shift: TShiftState; X,Y: Integer);
+begin
+  FWireManager.OpenConnector.Position:=ScrollPos + RealPoint(X, Y);
+  inherited MouseMove(Shift, X, Y);
+end;
+
+procedure TPresetEditor.MouseDown(Button: TMouseButton; Shift:TShiftState; X,Y:Integer);
+var
+  AItem: TObjectListItem;
+begin
+  inherited MouseDown(Button, Shift, X, Y);
+  if (ControlUnderMouse = nil) or (not (ControlUnderMouse.InheritsFrom(TVPVPlug) or ControlUnderMouse.InheritsFrom(TSlaveButton))) then begin
+    AItem:=FWireManager.OpenConnector.Connections.First;
+    while AItem<>nil do begin
+      TConnection(AItem.Content).Updater.Updater.Delete;
+      AItem:=AItem.Next;
+    end;
+  end;
+end;
+
+{%ENDREGION}
+
+end.

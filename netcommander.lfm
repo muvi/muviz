@@ -1,0 +1,55 @@
+object NetForm: TNetForm
+  Left = 617
+  Height = 300
+  Top = 145
+  Width = 618
+  HorzScrollBar.Page = 617
+  VertScrollBar.Page = 299
+  ActiveControl = CommandEdit
+  Caption = 'Muvi Network Commander'
+  ClientHeight = 300
+  ClientWidth = 618
+  Color = clBlack
+  OnClose = FormClose
+  OnShow = FormShow
+  LCLVersion = '0.9.30'
+  object CommandMemo: TMemo
+    Left = 0
+    Height = 277
+    Top = 0
+    Width = 618
+    Align = alClient
+    BorderStyle = bsNone
+    Color = clBlack
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWindow
+    Font.Height = -13
+    Font.Name = 'system'
+    Font.Pitch = fpFixed
+    Lines.Strings = (
+      '---Muvi Network Commander---'
+      ''
+    )
+    OnChange = CommandMemoChange
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+    WantReturns = False
+  end
+  object CommandEdit: TEdit
+    Left = 0
+    Height = 23
+    Top = 277
+    Width = 618
+    Align = alBottom
+    Color = clBlack
+    Font.Color = clWhite
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Pitch = fpFixed
+    OnKeyPress = CommandEditKeyPress
+    ParentFont = False
+    TabOrder = 0
+  end
+end

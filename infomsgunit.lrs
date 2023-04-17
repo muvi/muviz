@@ -1,0 +1,12 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TInfoMsgForm','FORMDATA',[
+  'TPF0'#12'TInfoMsgForm'#11'InfoMsgForm'#4'Left'#3#199#1#6'Height'#2'Y'#3'Top'
+  +#3#139#0#5'Width'#3#183#1#10'AlphaBlend'#9#15'AlphaBlendValue'#3#215#0#11'Bo'
+  +'rderIcons'#11#0#11'BorderStyle'#7#6'bsNone'#7'Caption'#6#4'Info'#12'ClientH'
+  +'eight'#2'Y'#11'ClientWidth'#3#183#1#5'Color'#4'HLA'#0#9'FormStyle'#7#11'fsS'
+  +'tayOnTop'#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'#7#11'FormDestroy'#8'Pos'
+  +'ition'#7#14'poScreenCenter'#10'LCLVersion'#6#7'1.6.0.4'#0#244#11'TInfoMsgFr'
+  +'m'#11'InfoMsgFrm1'#0#241#6'TLabel'#6'MsgLbl'#10'Font.Color'#4#168#172#161#0
+  +#10'ParentFont'#8#0#0#0#0
+]);

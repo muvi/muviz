@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<!-- This document was created with Latte version 2.1 -->
+<!-- For information on Latte, see http://www.latte.org/ -->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><meta name="generator" content="Latte 2.1"><title>OpenGL Texture Tutorial</title></head>
+        <body bgcolor="#000000" link="#00FF00" text="#FFFFFF" vlink="#00FF00" background="gltexture_files/gradient.gif"><p><table width="100%"><tbody><tr><td width="50"></td> <td><font face="verdana" size="2"><font color="#FF8000"><font face="verdana" size="2"><b>OpenGL Texture Tutorial</b></font></font>
+                <br>home: <a href="http://www.geocities.com/SiliconValley/Code/1219/"><font face="verdana" size="2">http://www.geocities.com/SiliconValley/Code/1219/</font></a>
+                <br>e-mail: <a href="mailto:craterz@hotmail.com"><font face="verdana" size="2">craterz@hotmail.com</font></a>
+                                <p>
+                <a href="http://www.opengl.org/"><img src="gltexture_files/opengl.gif" border="0" align="right" height="97" width="220"></a>
+
+</p><p><font color="#FF8000"><font face="verdana" size="2"><b>Texture Mapping</b></font></font>
+
+</p><p>Gregory Pierce in an e-mail requested information on texture mapping... here ya
+go!
+
+</p><p>Nowadays, textures are pretty much standard as far as games go. OpenGL was
+designed with this in mind. Unlike the cruel and unusual DirectX API, creating
+textures is not a form of cruel and unusual punishment. The only thing you need
+be concerned with is setting up some texture parameters and environment.
+
+</p><p><font color="#FF8000"><font face="verdana" size="2"><b>Texture Names</b></font></font>
+
+</p><p>To start things off, we first need a texture name. This is essentially a number
+that OpenGL uses to index all the different textures. To get a texture name, all
+we need do is call the function glGenTextures.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">GLuint texture;
+
+// allocate a texture name
+glGenTextures( 1, &amp;texture );</font></font></pre>
+
+<p>Now that we have our texture name, we can switch between different textures we
+want using the function glBindTxeture. This essentially chooses what texture we
+are working with. At this point, you should note that there are two forms of
+textures in OpenGL, 1D and 2D. Chances are you won't be using 1D, so we'll stick
+to 2 textures. This is reflected any tiem you see GL_TEXTURE_2D. So let's select
+the texture name that we just created.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// select our current texture
+glBindTexture( GL_TEXTURE_2D, texture );</font></font></pre>
+
+<p><font color="#FF8000"><font face="verdana" size="2"><b>Texture Parameters</b></font></font>
+
+</p><p>Now we can begin to work on our current texture. First, we need to set some
+texture parameters. Second, we need to load the texture data.
+Before we start, we should set one little texture environment state. The exact
+state you want may be other than what I present here, if so consult another more
+detailed reference on the topic. GL_MODULATE simply takes the color and alpha
+data from the texture and multiplies it with the color data from glColor and/or
+the lighting system.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// select modulate to mix texture with color for shading
+glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );</font></font></pre>
+
+<p>Next, we have four texture parameters we need to setup. Here is where we can
+setup such wonderful effects like bilinear and trilinear texture filtering, and
+mipmapping. We also can setup whether the texture wraps over at the edges or is
+clamped at the ends. We'll stick to repeating because that is the most common use.
+Just read the comments for details on what each does.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// when texture area is small, bilinear filter the closest mipmap
+glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                 GL_LINEAR_MIPMAP_NEAREST );
+// when texture area is large, bilinear filter the original
+glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+// the texture wraps over at the edges (repeat)
+glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );</font></font></pre>
+
+<p>That takes care of the texture mapping environment and parameters. Now we get on
+to the actual texture data.
+
+</p><p><font color="#FF8000"><font face="verdana" size="2"><b>Texture Image and Mipmaps</b></font></font>
+
+</p><p>Since we setup the min filter to select a mipmap, we are going to have to
+create the mipmaps ourselves. Luckily someone has already put in a function
+that automatically do this for us. All we need todo is feed it some information
+on the image and the actual image data and it does all the work for us.
+
+</p><p>For the sake of simplicity, I'll use an example RAW texture file. This is
+essentially just the raw image data stored in a binary file. To keep it simple,
+let's assume a 256x256 RGB texture. You can save raw image data from a number of
+paint programs, such as Paint Shop Pro. So let's just start by loading the
+texture data.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">int width, height;
+BYTE * data;
+FILE * file;
+
+// texture data
+width = 256;
+height = 256;
+
+// allocate buffer
+data = malloc( width * height * 3 );
+
+// open and read texture data
+file = fopen( filename, "rb" );
+fread( data, width * height * 3, 1, file );
+fclose( file );</font></font></pre>
+
+<p>Now that we have loaded our texture data from the RAW file, we can call the GLU
+(OpenGL Utility) function gluBuild2DMipmaps.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// build our texture mipmaps
+gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height,
+                   GL_RGB, GL_UNSIGNED_BYTE, data );</font></font></pre>
+
+<p>And we have our loaded texture all ready to use. Just to wrap up, we need one
+more function call to tie up some loose ends.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// free buffer
+free( data );</font></font></pre>
+
+<p>Don't worry, OpenGL still has the texture. After we called gluBuild2DMipmaps,
+the image data was copied into the OpenGL system, and possibly the video card's
+texture memory.
+
+</p><p><font color="#FF8000"><font face="verdana" size="2"><b>RAW Texture Loader</b></font></font>
+
+</p><p>To summarize, here's a nice function that will load a texture.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">// load a 256x256 RGB .RAW file as a texture
+GLuint LoadTextureRAW( const char * filename, int wrap )
+{
+    GLuint texture;
+    int width, height;
+    BYTE * data;
+    FILE * file;
+
+    // open texture data
+    file = fopen( filename, "rb" );
+    if ( file == NULL ) return 0;
+
+    // allocate buffer
+    width = 256;
+    height = 256;
+    data = malloc( width * height * 3 );
+
+    // read texture data
+    fread( data, width * height * 3, 1, file );
+    fclose( file );
+
+    // allocate a texture name
+    glGenTextures( 1, &amp;texture );
+
+    // select our current texture
+    glBindTexture( GL_TEXTURE_2D, texture );
+
+    // select modulate to mix texture with color for shading
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+
+    // when texture area is small, bilinear filter the closest mipmap
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                     GL_LINEAR_MIPMAP_NEAREST );
+    // when texture area is large, bilinear filter the first mipmap
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+    // if wrap is true, the texture wraps over at the edges (repeat)
+    //       ... false, the texture ends at the edges (clamp)
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+                     wrap ? GL_REPEAT : GL_CLAMP );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+                     wrap ? GL_REPEAT : GL_CLAMP );
+
+    // build our texture mipmaps
+    gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height,
+                       GL_RGB, GL_UNSIGNED_BYTE, data );
+
+    // free buffer
+    free( data );
+
+    return texture;
+}</font></font></pre>
+
+<p>Depending on your exact needs, you may want to reimplement this to read whatever
+file format you find convenient for your needs. .RAW files are nice because
+there's no headers or compression to deal with. You could load from PCX, BMP,
+GIF, JPG, or any other file format. You just have to load the image data for
+OpenGL, and let it do the rest.
+
+</p><p>Once you are done with the texture, it would be nice to free it. This one line
+of code will do that.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">glDeleteTextures( 1, &amp;texture );</font></font></pre>
+
+<p><font color="#FF8000"><font face="verdana" size="2"><b>Enable and Select Textures</b></font></font>
+
+</p><p>Whew, now that we actually have the ability to load a texture, we can do the fun
+stuff. Firstly to turn on/off texture mapping, we just need to call glEnable or
+glDisable. This is done with the GL_TEXTURE_2D parameter to each. Simple enough.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">glEnable( GL_TEXTURE_2D );</font></font></pre>
+
+<p>You can load different textures and select one at a time just using the
+glBindTexture function just like in LoadTextureRAW above.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">glBindTexture( GL_TEXTURE_2D, texture );</font></font></pre>
+
+<p>Now for the last key to texture mapping, texture coordinates. You may be used to
+calling them U &amp; V, but in OpenGL we refer to them as S &amp; T (same difference).
+For clamped textures, S &amp; T are in the range of 0 to 1. For repeated textures,
+the range is 0 to 1 for every repeat of the texture, as is 1 to 2, 2 to 3, and
+even -1 to 0. Just feed the coordinates much like a glColor command, only use
+the glTexCoord. Just remember, any color you fed to glColor is multiplied by the
+texture data, so if your texture is dark or an unusual color, check to see what
+color you are setting to.
+
+</p><p><font face="verdana" size="2"></font></p><pre><font face="verdana" size="2"><font color="#1370E3" size="2">glBegin( GL_QUADS );
+glTexCoord2d(0.0,0.0); glVertex2d(0.0,0.0);
+glTexCoord2d(1.0,0.0); glVertex2d(1.0,0.0);
+glTexCoord2d(1.0,1.0); glVertex2d(1.0,1.0);
+glTexCoord2d(0.0,1.0); glVertex2d(0.0,1.0);
+glEnd();</font></font></pre>
+
+<p>Viola, texture mapping in a nutshell.
+
+</p><p><font color="#FF8000"><font face="verdana" size="2"><b>Texture Sample</b></font></font>
+
+</p><p>So you can get this effect with texture mapping (and much much more):<br>
+<img src="gltexture_files/gltexture.gif" height="256" width="256">
+
+</p><p>Here's the sample program that goes with that screen shot:
+<a href="http://www.nullterminator.net/gltexture.zip">gltexture.zip</a>
+                </p></font><p><font face="verdana" size="2">
+                <font color="#808080" size="1">[ powered by <a href="http://www.latte.org/">Latte</a> and
+                        <a href="http://www.python.org/">Python</a> |
+                        last updated Sat Aug 25 00:54:59 2001 PST ]</font></font></p></td> <td width="50"></td></tr></tbody></table>
+
+<noscript><img width=0 height=0 src="<!-- text below generated by server. PLEASE REMOVE --><!-- Counter/Statistics data collection code --><script language="JavaScript" src="http://l.yimg.com/d/lib/smb/js/hosting/cp/js_source/whv2_001.js"></script><script language="javascript">geovisit();</script><noscript><img src="http://visit.webhosting.yahoo.com/visit.gif?us1347792236" alt="setstats" border="0" width="1" height="1"></noscript></p></body></html>

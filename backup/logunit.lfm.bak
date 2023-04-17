@@ -1,0 +1,23 @@
+object LogForm: TLogForm
+  Left = 258
+  Height = 252
+  Top = 503
+  Width = 301
+  Caption = 'LogForm'
+  ClientHeight = 252
+  ClientWidth = 301
+  FormStyle = fsStayOnTop
+  OnHide = FormHide
+  OnShow = FormShow
+  Position = poDefaultPosOnly
+  LCLVersion = '1.2.2.0'
+  object LogLB: TListBox
+    Left = 0
+    Height = 252
+    Top = 0
+    Width = 301
+    Align = alClient
+    ItemHeight = 0
+    TabOrder = 0
+  end
+end

@@ -1,0 +1,38 @@
+unit MainUnit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Spin,
+  StdCtrls;
+
+type
+
+  { TMainForm }
+
+  TMainForm = class(TForm)
+    ALbl: TLabel;
+    BLbl: TLabel;
+    CalcBtn: TButton;
+    CLbl: TLabel;
+    ResultLbl: TLabel;
+    AEdit: TSpinEdit;
+    BEdit: TSpinEdit;
+    CEdit: TSpinEdit;
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.lfm}
+
+end.
+

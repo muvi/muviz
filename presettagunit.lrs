@@ -1,0 +1,13 @@
+LazarusResources.Add('TPresetTagEditForm','FORMDATA',[
+  'TPF0'#18'TPresetTagEditForm'#17'PresetTagEditForm'#4'Left'#3'I'#1#6'Height'#2
+  +'('#3'Top'#3#172#0#5'Width'#3'@'#1#10'AlphaBlend'#9#15'AlphaBlendValue'#3#220
+  +#0#11'BorderIcons'#11#0#11'BorderStyle'#7#6'bsNone'#12'ClientHeight'#2'('#11
+  +'ClientWidth'#3'@'#1#7'OnClose'#7#9'FormClose'#12'OnDeactivate'#7#14'FormDea'
+  +'ctivate'#10'LCLVersion'#6#7'1.6.0.4'#0#10'TTagEditor'#9'TagEditor'#4'Left'#2
+  +#0#6'Height'#2'0'#3'Top'#2#0#5'Width'#3'@'#1#8'TabOrder'#2#0#7'TabStop'#9#5
+  +'Align'#7#5'alTop'#7'BgColor'#7#8'clWindow'#11'BorderColor'#7#13'clWindowFra'
+  +'me'#10'TagBgColor'#7#9'clSkyBlue'#14'TagBorderColor'#7#6'clNavy'#7'Spacing'
+  +#2#8#9'TextColor'#7#7'clWhite'#12'SpaceAccepts'#8#9'MultiLine'#9#10'AutoHeig'
+  +'ht'#9#10'OnTagAdded'#7#17'TagEditorTagAdded'#12'OnTagRemoved'#7#19'TagEdito'
+  +'rTagRemoved'#15'OnRemoveConfirm'#7#22'TagEditorRemoveConfirm'#0#0#0
+]);

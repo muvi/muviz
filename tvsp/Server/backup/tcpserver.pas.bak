@@ -1,0 +1,82 @@
+//TODO: use a secure net instead!!!
+//this is insecure and slow...
+unit TCPServer;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  AbstractNet, TCPNet, LNet, Classes, TCPSocketProperties;
+
+type
+  TTCPSize    = LongWord;
+
+  TTCPServer  = class (TTCPNet)
+  strict private
+    procedure Accept(ASocket: TLSocket);
+    procedure Disconnect(ASocket: TLSocket);
+  strict protected
+    procedure Error(const Msg: string; ASocket: TLSocket); override;
+    procedure Connect; override;
+    function GetSocketProperties(ASocket: TASocket): TTCPSocketProperties; override;
+    function GetAttachment(ASocket: TASocket): TObject; override;
+  public
+    constructor Create(AOwner: TComponent; APort: Word);
+    procedure Send(ASocket: TASocket; AMsg: Pointer; ASize: Cardinal); override;
+  end;
+
+implementation
+
+{%REGION TTCPServer}
+
+constructor TTCPServer.Create(AOwner: TComponent; APort: Word);
+begin
+  inherited Create(AOwner, APort);
+  Net.OnAccept:=@Accept;
+  Net.OnDisconnect:=@Disconnect;
+end;
+
+procedure TTCPServer.Send(ASocket: TASocket; AMsg: Pointer; ASize: Cardinal);
+begin
+  Assert(ASocket.InheritsFrom(TLSocket));
+  inherited Send(ASocket, AMsg, ASize);
+end;
+
+procedure TTCPServer.Connect;
+begin
+  Net.Listen(Port);
+end;
+
+function TTCPServer.GetAttachment(ASocket: TASocket): TObject;
+begin
+  Result:=SocketProperties[ASocket].Attachment;
+end;
+
+procedure TTCPServer.Error(const Msg: string; ASocket: TLSocket);
+begin
+  //do nothing instead of raising an exception
+end;
+
+procedure TTCPServer.Accept(ASocket: TLSocket);
+begin
+  ASocket.UserData:=TTCPSocketProperties.Create(SocketAdded(ASocket));
+end;
+
+procedure TTCPServer.Disconnect(ASocket: TLSocket);
+begin
+  SocketProperties[ASocket].Destroy;
+end;
+
+function TTCPServer.GetSocketProperties(ASocket: TASocket): TTCPSocketProperties;
+begin
+  Assert(ASocket <> nil);
+  Assert(TLSocket(ASocket).UserData <> nil);
+  Assert(TObject(TLSocket(ASocket).UserData).InheritsFrom(TTCPSendQueue));
+  Result:=TTCPSendQueue(TLSocket(ASocket).UserData);
+end;
+
+{%ENDREGION}
+
+end.
+

@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <Title Value="Geometry"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="49">
+      <Unit0>
+        <Filename Value="Geometry.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="51"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\SDK3\template\serverplugintype.pas"/>
+        <UnitName Value="ServerPluginType"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="19"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\SDK3\template\nettype.pas"/>
+        <UnitName Value="NetType"/>
+        <CursorPos X="106" Y="13"/>
+        <UsageCount Value="19"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\SDK3\template\plugintype.pas"/>
+        <UnitName Value="PluginType"/>
+        <TopLine Value="50"/>
+        <CursorPos X="17" Y="10"/>
+        <UsageCount Value="20"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\SDK3\template\authnettype.pas"/>
+        <UnitName Value="AuthNetType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="35" Y="11"/>
+        <UsageCount Value="19"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\SDK3\template\dllstr.pas"/>
+        <UnitName Value="DllStr"/>
+        <CursorPos X="42" Y="12"/>
+        <UsageCount Value="19"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\..\SDK3\lib_shared\maintype.pas"/>
+        <UnitName Value="MainType"/>
+        <TopLine Value="4"/>
+        <CursorPos Y="20"/>
+        <UsageCount Value="20"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\..\SDK3\template\mainunit.pas"/>
+        <UnitName Value="MainUnit"/>
+        <CursorPos X="33" Y="4"/>
+        <UsageCount Value="21"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\SDK3\template\mplugintype.pas"/>
+        <UnitName Value="MPluginType"/>
+        <TopLine Value="19"/>
+        <CursorPos X="28" Y="14"/>
+        <UsageCount Value="20"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\SDK3\template\spectrumdata.pas"/>
+        <UnitName Value="SpectrumData"/>
+        <TopLine Value="36"/>
+        <CursorPos Y="36"/>
+        <UsageCount Value="19"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\SDK3\template\vpbuffers.pas"/>
+        <UnitName Value="VPBuffers"/>
+        <CursorPos X="24" Y="6"/>
+        <UsageCount Value="19"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\SDK3\template\vistype.pas"/>
+        <UnitName Value="VisType"/>
+        <TopLine Value="3"/>
+        <CursorPos X="22" Y="14"/>
+        <UsageCount Value="19"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\SDK3\template\clientnettype.pas"/>
+        <UnitName Value="ClientNetType"/>
+        <CursorPos X="55" Y="19"/>
+        <UsageCount Value="19"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\SDK3\template\mnettype.pas"/>
+        <UnitName Value="MNetType"/>
+        <CursorPos Y="9"/>
+        <UsageCount Value="9"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\..\SDK3\template\viswintype.pas"/>
+        <UnitName Value="VisWinType"/>
+        <CursorPos X="28" Y="12"/>
+        <UsageCount Value="19"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\..\SDK3\template\stddllinterfaces.pas"/>
+        <UnitName Value="StdDllInterfaces"/>
+        <TopLine Value="8"/>
+        <CursorPos X="44" Y="19"/>
+        <UsageCount Value="19"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\SDK3\template\picturetype.pas"/>
+        <UnitName Value="PictureType"/>
+        <CursorPos X="34" Y="7"/>
+        <UsageCount Value="19"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\SDK3\shared\interfaces\plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <TopLine Value="65"/>
+        <UsageCount Value="50"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\..\SDK3\shared\interfaces\mplugintype4.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MPluginType4"/>
+        <CursorPos X="43" Y="17"/>
+        <UsageCount Value="50"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\SDK3\shared\utilities\valuestorages.pas"/>
+        <UnitName Value="ValueStorages"/>
+        <TopLine Value="19"/>
+        <UsageCount Value="48"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\..\SDK3\shared\prototypes\viseventimpl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisEventImpl"/>
+        <TopLine Value="11"/>
+        <CursorPos X="17" Y="24"/>
+        <UsageCount Value="49"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\..\SDK3\shared\interfaces\canvastype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CanvasType"/>
+        <CursorPos X="3" Y="12"/>
+        <UsageCount Value="49"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\..\SDK3\shared\interfaces\mstrings.pas"/>
+        <UnitName Value="MStrings"/>
+        <TopLine Value="4"/>
+        <CursorPos X="28" Y="57"/>
+        <UsageCount Value="15"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\..\SDK3\shared\interfaces\paramtype2.pas"/>
+        <UnitName Value="ParamType2"/>
+        <CursorPos X="36" Y="8"/>
+        <UsageCount Value="9"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\..\SDK3\shared\interfaces\presettype.pas"/>
+        <UnitName Value="PresetType"/>
+        <CursorPos X="47" Y="8"/>
+        <UsageCount Value="9"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\..\SDK3\shared\interfaces\spectrumdata.pas"/>
+        <UnitName Value="SpectrumData"/>
+        <CursorPos X="40" Y="8"/>
+        <UsageCount Value="9"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\..\SDK3\shared\interfaces\stdparamtypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdParamTypes"/>
+        <TopLine Value="27"/>
+        <CursorPos X="53" Y="41"/>
+        <UsageCount Value="49"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\..\SDK3\shared\interfaces\vistype2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType2"/>
+        <TopLine Value="6"/>
+        <CursorPos X="25" Y="9"/>
+        <UsageCount Value="49"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="..\..\SDK3\shared\interfaces\mtypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MTypes"/>
+        <UsageCount Value="49"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\..\SDK3\shared\interfaces\tagtype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TagType"/>
+        <UsageCount Value="49"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\..\SDK3\shared\legacy\vpbuffers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VPBuffers"/>
+        <UsageCount Value="49"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="..\Disco\vanishunit.pas"/>
+        <UnitName Value="VanishUnit"/>
+        <TopLine Value="283"/>
+        <CursorPos X="40" Y="296"/>
+        <UsageCount Value="23"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="..\Disco\mainunit.pas"/>
+        <UnitName Value="MainUnit"/>
+        <TopLine Value="2"/>
+        <CursorPos X="8" Y="17"/>
+        <UsageCount Value="25"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+        <UsageCount Value="49"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="..\..\SDK3\shared\legacy\importtype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ImportType"/>
+        <UsageCount Value="49"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="..\..\SDK3\shared\utilities\advglfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvGlFunc"/>
+        <TopLine Value="44"/>
+        <CursorPos X="29" Y="66"/>
+        <UsageCount Value="49"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="..\..\SDK3\shared\interfaces\stdtags.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdTags"/>
+        <UsageCount Value="49"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="..\Disco\discounit.pas"/>
+        <UnitName Value="DiscoUnit"/>
+        <TopLine Value="72"/>
+        <CursorPos X="53" Y="75"/>
+        <FoldState Value=" TJj41p2 pjHkS1l1)"/>
+        <UsageCount Value="24"/>
+        <Bookmarks Count="1">
+          <Item0 Y="296" ID="5"/>
+        </Bookmarks>
+      </Unit37>
+      <Unit38>
+        <Filename Value="..\..\..\Komponenten\AdvGui\graphx32.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GraphX32"/>
+        <UsageCount Value="43"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="..\..\..\Komponenten\AdvGui\advcoord.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvCoord"/>
+        <TopLine Value="42"/>
+        <CursorPos X="3" Y="56"/>
+        <UsageCount Value="36"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="geometryunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GeometryUnit"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="123"/>
+        <CursorPos X="58" Y="139"/>
+        <FoldState Value=" TJnA1{61 pjXla1K]9l5lR1{B2]ABnK1}X1T"/>
+        <UsageCount Value="43"/>
+        <Loaded Value="True"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainUnit"/>
+        <CursorPos X="34" Y="14"/>
+        <UsageCount Value="43"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="..\..\SDK3\shared\include\libmain.inc"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="12" Y="15"/>
+        <UsageCount Value="38"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="..\..\..\Komponenten\AdvGui\advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+        <TopLine Value="646"/>
+        <CursorPos X="21" Y="661"/>
+        <UsageCount Value="36"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\packages\opengl\src\gl.pp"/>
+        <UnitName Value="GL"/>
+        <TopLine Value="1156"/>
+        <CursorPos X="3" Y="1169"/>
+        <UsageCount Value="9"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="..\..\SDK3\shared\utilities\simplevis.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SimpleVis"/>
+        <UsageCount Value="21"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="..\..\SDK3\shared\interfaces\tvspsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPSources"/>
+        <UsageCount Value="21"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="..\..\SDK3\shared\interfaces\tvspsourceutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPSourceUtil"/>
+        <UsageCount Value="21"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="..\..\SDK3\shared\utilities\visualisationutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisualisationUtils"/>
+        <UsageCount Value="21"/>
+      </Unit48>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="10" Column="50"/>
+      </Position1>
+      <Position2>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="185" Column="4" TopLine="172"/>
+      </Position2>
+      <Position3>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="10"/>
+      </Position3>
+      <Position4>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="727" TopLine="259"/>
+      </Position4>
+      <Position5>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="313" Column="52" TopLine="279"/>
+      </Position5>
+      <Position6>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="266" TopLine="248"/>
+      </Position6>
+      <Position7>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="354" TopLine="248"/>
+      </Position7>
+      <Position8>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="499" Column="19" TopLine="260"/>
+      </Position8>
+      <Position9>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="518" Column="44" TopLine="504"/>
+      </Position9>
+      <Position10>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="567" Column="18" TopLine="553"/>
+      </Position10>
+      <Position11>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="599" Column="72" TopLine="580"/>
+      </Position11>
+      <Position12>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="625" Column="19" TopLine="605"/>
+      </Position12>
+      <Position13>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="607" Column="37" TopLine="595"/>
+      </Position13>
+      <Position14>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="499" Column="29" TopLine="496"/>
+      </Position14>
+      <Position15>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="687" TopLine="675"/>
+      </Position15>
+      <Position16>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="712" TopLine="691"/>
+      </Position16>
+      <Position17>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="766" TopLine="248"/>
+      </Position17>
+      <Position18>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="875" Column="30" TopLine="861"/>
+      </Position18>
+      <Position19>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="876" Column="34" TopLine="856"/>
+      </Position19>
+      <Position20>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="125" Column="29" TopLine="110"/>
+      </Position20>
+      <Position21>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="835" Column="25" TopLine="767"/>
+      </Position21>
+      <Position22>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="863" Column="37" TopLine="850"/>
+      </Position22>
+      <Position23>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="125" Column="26" TopLine="110"/>
+      </Position23>
+      <Position24>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="947" Column="23" TopLine="921"/>
+      </Position24>
+      <Position25>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="834" TopLine="250"/>
+      </Position25>
+      <Position26>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="963" Column="19" TopLine="834"/>
+      </Position26>
+      <Position27>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="169" Column="24" TopLine="149"/>
+      </Position27>
+      <Position28>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="967" Column="28" TopLine="962"/>
+      </Position28>
+      <Position29>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="1019" Column="23" TopLine="1011"/>
+      </Position29>
+      <Position30>
+        <Filename Value="geometryunit.pas"/>
+        <Caret Line="970" TopLine="265"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir);..\..\SDK3\shared\include"/>
+      <OtherUnitFiles Value="..\..\SDK3\shared\interfaces;..\..\SDK3\shared\legacy;..\..\SDK3\shared\prototypes;..\..\SDK3\shared\utilities;..\..\..\Komponenten\AdvGui"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

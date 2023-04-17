@@ -1,0 +1,5 @@
+D:
+
+cd Eigene_Programme\Muvi\mvBimp
+
+mvBimp.exe pasnoth.mvb "D:\Icons\Plugs\Dynamic Plugging\MODs\MOD Bool.bmp" "D:\Icons\Plugs\Dynamic Plugging\MODtxt\MOD Bool new.txt"

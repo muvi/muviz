@@ -1,0 +1,41 @@
+object SelectPresetForm: TSelectPresetForm
+  Left = 48
+  Height = 240
+  Top = 111
+  Width = 200
+  ActiveControl = TreeView
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Select a Preset'
+  ClientHeight = 240
+  ClientWidth = 200
+  KeyPreview = True
+  OnDeactivate = FormDeactivate
+  OnHide = FormHide
+  OnKeyDown = FormKeyDown
+  LCLVersion = '1.6.0.4'
+  Visible = False
+  object TreeView: TTreeView
+    Left = 3
+    Height = 209
+    Top = 28
+    Width = 194
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    DefaultItemHeight = 18
+    TabOrder = 0
+    OnKeyDown = TreeViewKeyDown
+    OnMouseDown = TreeViewMouseDown
+  end
+  object FilterEdit: TTreeFilterEdit
+    Left = 3
+    Height = 23
+    Top = 3
+    Width = 194
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akTop, akLeft, akRight]
+    MaxLength = 0
+    TabOrder = 1
+    FilteredTreeview = TreeView
+  end
+end

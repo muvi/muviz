@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="7">
+      <Unit0>
+        <Filename Value="TouchExample.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TouchExample"/>
+        <UsageCount Value="21"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="fTestGesture.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="fTestGesture"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="34"/>
+        <CursorPos X="36" Y="39"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="mainunit.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="20"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="fTestGesture.dfm"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="fTestGesture.lfm"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="D7GesturesHeader.pas"/>
+        <UnitName Value="D7GesturesHeader"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="107"/>
+        <CursorPos X="3" Y="120"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <UnitName Value="MyRectangleDesigner"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="282"/>
+        <CursorPos X="1" Y="163"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit6>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="19" HistoryIndex="18">
+      <Position1>
+        <Filename Value="D7GesturesHeader.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <Caret Line="90" Column="25" TopLine="77"/>
+      </Position3>
+      <Position4>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <Caret Line="189" Column="10" TopLine="176"/>
+      </Position4>
+      <Position5>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <Caret Line="286" Column="23" TopLine="273"/>
+      </Position5>
+      <Position6>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="33" Column="27" TopLine="21"/>
+      </Position6>
+      <Position7>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="22" Column="51" TopLine="8"/>
+      </Position7>
+      <Position8>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="74" Column="54" TopLine="59"/>
+      </Position8>
+      <Position9>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="82" Column="22" TopLine="60"/>
+      </Position9>
+      <Position10>
+        <Filename Value="MyRectangleDesigner.pas"/>
+        <Caret Line="163" Column="3" TopLine="159"/>
+      </Position10>
+      <Position11>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="42" Column="15" TopLine="36"/>
+      </Position11>
+      <Position12>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="44" Column="61" TopLine="36"/>
+      </Position12>
+      <Position13>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="41" Column="3" TopLine="38"/>
+      </Position13>
+      <Position14>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="76" Column="3" TopLine="60"/>
+      </Position14>
+      <Position15>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="42" Column="35" TopLine="38"/>
+      </Position15>
+      <Position16>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="36" Column="8" TopLine="23"/>
+      </Position16>
+      <Position17>
+        <Filename Value="fTestGesture.pas"/>
+        <Caret Line="32" Column="9" TopLine="23"/>
+      </Position17>
+      <Position18>
+        <Filename Value="D7GesturesHeader.pas"/>
+        <Caret Line="171" Column="13" TopLine="157"/>
+      </Position18>
+      <Position19>
+        <Filename Value="D7GesturesHeader.pas"/>
+        <Caret Line="131" Column="33" TopLine="118"/>
+      </Position19>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="MyRectangleDesigner.pas"/>
+        <Line Value="297"/>
+      </Item1>
+    </BreakPoints>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

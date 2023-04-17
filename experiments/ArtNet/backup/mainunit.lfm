@@ -1,0 +1,81 @@
+object MainForm: TMainForm
+  Left = 1495
+  Height = 240
+  Top = 299
+  Width = 320
+  ActiveControl = Button1
+  Caption = 'MainForm'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnClose = FormClose
+  OnShow = FormShow
+  LCLVersion = '1.6.4.0'
+  Visible = False
+  object Button1: TButton
+    Left = 146
+    Height = 25
+    Top = 29
+    Width = 75
+    Caption = 'Poll'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 146
+    Height = 25
+    Top = 67
+    Width = 75
+    Caption = 'Get IP'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object ValueTB: TTrackBar
+    Left = 48
+    Height = 43
+    Top = 168
+    Width = 100
+    Max = 255
+    OnChange = ValueTBChange
+    Position = 0
+    TabOrder = 2
+  end
+  object UniverseEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 136
+    Width = 70
+    MaxValue = 32767
+    TabOrder = 3
+  end
+  object ChannelEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 178
+    Width = 70
+    MaxValue = 512
+    MinValue = 1
+    TabOrder = 4
+    Value = 1
+  end
+  object Button3: TButton
+    Left = 146
+    Height = 25
+    Top = 104
+    Width = 75
+    Caption = 'Set IP'
+    OnClick = Button3Click
+    TabOrder = 5
+  end
+  object UDP: TLUDPComponent
+    Port = 0
+    Timeout = 0
+    left = 40
+    top = 24
+  end
+  object UDPListener: TLUDPComponent
+    Port = 0
+    Timeout = 0
+    left = 40
+    top = 88
+  end
+end

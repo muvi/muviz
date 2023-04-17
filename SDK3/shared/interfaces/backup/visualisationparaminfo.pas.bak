@@ -1,0 +1,62 @@
+unit VisualisationParamInfo;
+
+{$mode objfpc}{$H+}
+{$ASSERTIONS ON}
+
+interface
+
+uses
+  Classes, SysUtils, VisType2, MStrings;
+
+const
+  GUIDVISPARAMINFO  : TGUID = '{C02AE696-542C-490A-B9F2-B02CE21963B7}';
+
+  VISINDEX_UNDEFINED: LongInt = -1;
+  VISINDEX_LAST     : LongInt = MaxInt;
+
+type
+  //usage: IParamIndexer(AParam).Index:=5
+  IVisualisationParamInfo = interface
+    ['{C02AE696-542C-490A-B9F2-B02CE21963B7}']
+    function GetIndex: LongInt; cdecl;
+    (*
+      - Sets this parameters index (the position in the GUI).
+      - There will never be any possibility to read this Index.
+      - The visualisation should also work, if this method is never called during runtime.
+      - you may (and you should) ignore this (implement as empty method) if you do not really need it
+      - the implemented index structure needs to fullfill some properties:
+        - if the function was not called, the index is UNDEFINED
+        - if the function is called, this param has exactly Index as index
+        - if there is a conflict (another parameter has the same index) the other parameters index becomes UNDEFINED
+    *)
+    procedure SetIndex(AValue: LongInt); cdecl;
+    //function GetName: IString; cdecl;
+
+    property Index: LongInt read GetIndex write SetIndex;
+    //property Name: IString read GetName;
+  end;
+
+//convinience functions for smarter code
+//only call if the params are inputs of a visualisation
+{
+function NameOf(AParam: IPParam): IString; inline;
+function ParamID(AParam: IPParam): TPParamID; inline; overload;
+}
+
+implementation
+
+{
+function NameOf(AParam: IPParam): IString; inline;
+begin
+  Assert(AParam.AttachedInterfaces[GUIDVISPARAMINFO] <> nil);
+  Result:=IVisualisationParamInfo(AParam.AttachedInterfaces[GUIDVISPARAMINFO]).Name;
+end;
+
+function ParamID(AParam: IPParam): TPParamID; inline; overload;
+begin
+  Result:=VisType2.ParamID(NameOf(AParam), AParam.&Type);
+end;
+}
+
+end.
+

@@ -1,0 +1,130 @@
+object MainForm: TMainForm
+  Left = 4
+  Height = 359
+  Top = 437
+  Width = 796
+  Caption = 'MainForm'
+  ClientHeight = 359
+  ClientWidth = 796
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poDefaultPosOnly
+  LCLVersion = '1.2.2.0'
+  object UpdateListBtn: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 216
+    Caption = 'Update List'
+    OnClick = UpdateListBtnClick
+    TabOrder = 0
+  end
+  object ListBox: TListBox
+    Left = 8
+    Height = 312
+    Top = 40
+    Width = 432
+    ItemHeight = 0
+    TabOrder = 1
+  end
+  object SendChangeBtn: TButton
+    Left = 456
+    Height = 25
+    Top = 8
+    Width = 328
+    Caption = 'Send Change'
+    OnClick = SendChangeBtnClick
+    TabOrder = 2
+  end
+  object ParamTypePC: TPageControl
+    Left = 456
+    Height = 256
+    Top = 96
+    Width = 328
+    ActivePage = IntegerTS
+    TabIndex = 1
+    TabOrder = 3
+    object CallTS: TTabSheet
+      Caption = 'Call'
+      ClientHeight = 228
+      ClientWidth = 320
+      object CallLbl: TLabel
+        Left = 0
+        Height = 228
+        Top = 0
+        Width = 320
+        Align = alClient
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Nothing to edit'
+        Font.Style = [fsItalic]
+        Layout = tlCenter
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object IntegerTS: TTabSheet
+      Caption = 'Integer'
+      ClientHeight = 228
+      ClientWidth = 320
+      object IntegerEdit: TSpinEdit
+        Left = 8
+        Height = 23
+        Top = 8
+        Width = 306
+        MaxValue = 1000
+        MinValue = -1000
+        TabOrder = 0
+      end
+    end
+  end
+  object ParamNameEdit: TLabeledEdit
+    Left = 528
+    Height = 23
+    Top = 40
+    Width = 256
+    EditLabel.AnchorSideTop.Control = ParamNameEdit
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = ParamNameEdit
+    EditLabel.AnchorSideBottom.Control = ParamNameEdit
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 453
+    EditLabel.Height = 15
+    EditLabel.Top = 44
+    EditLabel.Width = 72
+    EditLabel.Caption = 'Param Name:'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 4
+    Text = 'Param'
+  end
+  object GroupIDEdit: TLabeledEdit
+    Left = 528
+    Height = 23
+    Top = 68
+    Width = 256
+    EditLabel.AnchorSideTop.Control = GroupIDEdit
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = GroupIDEdit
+    EditLabel.AnchorSideBottom.Control = GroupIDEdit
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 475
+    EditLabel.Height = 15
+    EditLabel.Top = 72
+    EditLabel.Width = 50
+    EditLabel.Caption = 'Group ID:'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 5
+    Text = '{7F5D0129-AD4F-46D7-91F5-FADAC7C35167}'
+  end
+  object SubscibeBtn: TButton
+    Left = 232
+    Height = 25
+    Top = 8
+    Width = 208
+    Caption = 'Subscibe'
+    OnClick = SubscibeBtnClick
+    TabOrder = 6
+  end
+end

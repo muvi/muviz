@@ -1,0 +1,235 @@
+object GLVisForm: TGLVisForm
+  Left = 75
+  Height = 416
+  Top = 210
+  Width = 492
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Visualisierungsfenster'
+  ClientHeight = 416
+  ClientWidth = 492
+  Constraints.MinHeight = 30
+  Constraints.MinWidth = 100
+  KeyPreview = True
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnKeyUp = FormKeyUp
+  Position = poScreenCenter
+  ShowInTaskBar = stAlways
+  LCLVersion = '1.0.2.0'
+  object GLControl: TOpenGLControl
+    Tag = 3
+    Left = 0
+    Height = 416
+    Top = 0
+    Width = 492
+    Align = alClient
+    AutoResizeViewport = True
+    OnMakeCurrent = GLControlMakeCurrent
+    OnMouseDown = VisMouseDown
+    OnMouseMove = VisMouseMove
+    OnMouseUp = VisMouseUp
+    OnResize = GLControlResize
+    object LeftPanel: TPanel
+      Tag = 5
+      Cursor = crSizeWE
+      Left = 0
+      Height = 386
+      Top = 25
+      Width = 5
+      Anchors = [akTop, akLeft, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      PopupMenu = MainPopupMenu
+      TabOrder = 0
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object RightPanel: TPanel
+      Tag = 4
+      Cursor = crSizeWE
+      Left = 487
+      Height = 386
+      Top = 25
+      Width = 5
+      Anchors = [akTop, akRight, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      PopupMenu = MainPopupMenu
+      TabOrder = 3
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object BottomPanel: TPanel
+      Tag = 8
+      Cursor = crSizeNS
+      Left = 5
+      Height = 5
+      Top = 411
+      Width = 482
+      Anchors = [akLeft, akRight, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      PopupMenu = MainPopupMenu
+      TabOrder = 4
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object LeftBottomPanel: TPanel
+      Tag = 13
+      Cursor = crSizeNESW
+      Left = 0
+      Height = 5
+      Top = 411
+      Width = 5
+      Anchors = [akLeft, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      PopupMenu = MainPopupMenu
+      TabOrder = 5
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object RightBottomPanel: TPanel
+      Tag = 12
+      Cursor = crSizeNWSE
+      Left = 487
+      Height = 5
+      Top = 411
+      Width = 5
+      Anchors = [akRight, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      PopupMenu = MainPopupMenu
+      TabOrder = 2
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object TopPanel: TPanel
+      Left = 0
+      Height = 25
+      Top = 0
+      Width = 492
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 25
+      ClientWidth = 492
+      Color = clActiveBorder
+      ParentColor = False
+      TabOrder = 1
+      object HeaderImage: TImage
+        Tag = 3
+        Cursor = crArrow
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 492
+        Align = alTop
+        OnMouseDown = HeaderImageMouseDown
+        OnMouseMove = HeaderImageMouseMove
+        OnMouseUp = VisMouseUp
+        Picture.Data = {
+          1754506F727461626C654E6574776F726B47726170686963BF00000089504E47
+          0D0A1A0A0000000D494844520000000C0000001908020000008A0C5898000000
+          017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048
+          597300000EC300000EC301C76FA8640000005449444154384F8DC19102803000
+          00D1FBB0300CC3300AC361180EC361188661360CC3309CED17EE3D8AC02FF009
+          BC028F4016B8052E8153E010D80592C02610055681452008CC0293C0283008F4
+          029D402BD00815D68E1E5FF5DC39320000000049454E44AE426082
+        }
+        PopupMenu = MainPopupMenu
+        Stretch = True
+      end
+      object HeaderLbl: TLabel
+        Tag = 3
+        Cursor = crArrow
+        Left = 8
+        Height = 25
+        Top = 0
+        Width = 432
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = False
+        Caption = 'Visualisierungsfenster'
+        Font.Color = clBackground
+        Font.Height = -19
+        Font.Style = [fsBold]
+        Layout = tlCenter
+        ParentColor = False
+        ParentFont = False
+        PopupMenu = MainPopupMenu
+        OnClick = HeaderLblClick
+        OnDblClick = HeaderLblDblClick
+        OnMouseDown = HeaderLblMouseDown
+        OnMouseMove = HeaderLblMouseMove
+        OnMouseUp = VisMouseUp
+      end
+      object HeaderEdit: TEdit
+        Cursor = crArrow
+        Left = 8
+        Height = 20
+        Top = 2
+        Width = 428
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = False
+        Font.Quality = fqCleartypeNatural
+        Font.Style = [fsBold]
+        OnExit = HeaderEditExit
+        OnKeyPress = HeaderEditKeyPress
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
+      object CloseBtn: TButton
+        Left = 464
+        Height = 17
+        Top = 4
+        Width = 19
+        Anchors = [akTop, akRight]
+        Caption = 'û'
+        Font.Name = 'wingdings'
+        OnClick = CloseBtnClick
+        ParentFont = False
+        TabOrder = 1
+      end
+      object MaximizeBtn: TButton
+        Left = 444
+        Height = 17
+        Top = 4
+        Width = 19
+        Anchors = [akTop, akRight]
+        Caption = 'p'
+        Font.Name = 'wingdings'
+        OnClick = MaximizeBtnClick
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+  end
+  object Timer: TTimer
+    Interval = 100
+    OnTimer = TimerTimer
+    left = 8
+    top = 32
+  end
+  object MainPopupMenu: TPopupMenu
+    left = 8
+    top = 72
+    object SetSizePMI: TMenuItem
+      Caption = '&Set Size'
+      OnClick = SetSizePMIClick
+    end
+  end
+end

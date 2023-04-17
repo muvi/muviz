@@ -1,0 +1,25 @@
+object InfoMsgForm: TInfoMsgForm
+  Left = 455
+  Height = 89
+  Top = 139
+  Width = 439
+  AlphaBlend = True
+  AlphaBlendValue = 215
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Info'
+  ClientHeight = 89
+  ClientWidth = 439
+  Color = 4279368
+  FormStyle = fsStayOnTop
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poScreenCenter
+  LCLVersion = '1.6.0.4'
+  inline InfoMsgFrm1: TInfoMsgFrm
+    inherited MsgLbl: TLabel
+      Font.Color = 10595496
+      ParentFont = False
+    end
+  end
+end

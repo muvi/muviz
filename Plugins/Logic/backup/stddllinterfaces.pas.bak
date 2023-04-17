@@ -1,0 +1,398 @@
+unit StdDllInterfaces; 
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType;
+
+type
+  IEInt        = LongInt;
+  IEFloat      = Double;
+  IEColor      = LongInt;
+  IEControlType= (ectButton = 0,ectEdit = 1, ectListBox = 2, ectSpinEdit = 3, ectFloatSpinEdit = 4, ectCheckbox = 5, ectCombobox = 6,ectColorbox = 7);
+  IECheckState = (ieUnchecked,ieChecked,ieGrayed);
+
+  IEControl    = interface (IMInterface)
+    ['{81093E80-45F5-4763-9452-4B64B4782647}']
+    function GetAnchors: TAnchors; stdcall;
+    procedure SetAnchors(const Value: TAnchors); stdcall;
+    function GetCaption: ShortString; stdcall;
+    procedure SetCaption(const Value: ShortString); stdcall;
+    function GetControlType: IEControlType; stdcall;
+    function GetEnabled: Boolean; stdcall;
+    procedure SetEnabled(const Value: Boolean); stdcall;
+    function GetHeight: IEInt; stdcall;
+    procedure SetHeight(const Value: IEInt); stdcall;
+    function GetLeft: IEInt; stdcall;
+    procedure SetLeft(const Value: IEInt); stdcall;
+    function GetTabOrder: IEInt; stdcall;
+    procedure SetTabOrder(const Value: IEInt); stdcall;
+    function GetTop: IEInt; stdcall;
+    procedure SetTop(const Value: IEInt); stdcall;
+    function GetVisible: Boolean; stdcall;
+    procedure SetVisible(const Value: Boolean); stdcall;
+    function GetWidth: IEInt; stdcall;
+    procedure SetWidth(const Value: IEInt); stdcall;
+
+    function GetObj: Pointer; stdcall;
+
+    property Anchors: TAnchors read GetAnchors write SetAnchors;
+    property Caption: ShortString read GetCaption write SetCaption;
+    property ControlType: IEControlType read GetControlType;
+    property Enabled: Boolean read GetEnabled write SetEnabled;
+    property Height: IEInt read GetHeight write SetHeight;
+    property Left: IEInt read GetLeft write SetLeft;
+    property TabOrder: IEInt read GetTabOrder write SetTabOrder;
+    property Top: IEInt read GetTop write SetTop;
+    property Visible: Boolean read GetVisible write SetVisible;
+    property Width: IEInt read GetWidth write SetWidth;
+  end;
+
+  IEGUIArea    = interface (IMInterface)
+    ['{3B31D5A2-3EF5-433D-9FDA-358E9BB26824}']
+    function GetCaption: ShortString; stdcall;
+    procedure SetCaption(const Value: ShortString); stdcall;
+    function GetLeft: IEInt; stdcall;
+    procedure SetLeft(const Value: IEInt); stdcall;
+    function GetHeight: IEInt; stdcall;
+    procedure SetHeight(const Value: IEInt); stdcall;
+    function GetTop: IEInt; stdcall;
+    procedure SetTop(const Value: IEInt); stdcall;
+    function GetWidth: IEInt; stdcall;
+    procedure SetWidth(const Value: IEInt); stdcall;
+    function AddIControl(const ControlType: IEControlType): IEControl; stdcall;
+    procedure RemoveIControl(var Control: IEControl); stdcall;
+
+    function GetObj: Pointer; stdcall;
+
+    property Caption: ShortString read GetCaption write SetCaption;
+    property Left: IEInt read GetLeft write SetLeft;
+    property Height: IEInt read GetHEight write SetHeight;
+    property Top: IEInt read GetTop write SetTop;
+    property Width: IEInt read GetWidth write SetWidth;
+  end;
+
+  //IEControlType= interface of IEControl;
+
+  IEButton     = interface (IEControl)
+    ['{D7C87EF5-89AB-46AF-9FF0-8FD309F1F2E6}']
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+  end;
+
+  IEEdit       = interface (IEControl)
+    ['{D9F17B9E-1739-4F0B-9CC1-0E3B4C1C1594}']
+    function GetAutoSelect: Boolean; stdcall;
+    procedure SetAutoSelect(const Value: Boolean); stdcall;
+    function GetMaxLength: IEInt; stdcall;
+    procedure SetMaxLength(const Value: IEInt); stdcall;
+    function GetPasswordChar: Char; stdcall;
+    procedure SetPasswordChar(const Value: Char); stdcall;
+    function GetReadOnly: Boolean; stdcall;
+    procedure SetReadOnly(const Value: Boolean); stdcall;
+    function GetText: ShortString; stdcall;
+    procedure SetText(const Value: ShortString); stdcall;
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDblClick: TNotifyEvent; stdcall;
+    procedure SetOnDblClick(const Value: TNotifyEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+    function GetOnEditingDone: TNotifyEvent; stdcall;
+    procedure SetOnEditingDone(const Value: TNotifyEvent); stdcall;
+
+    property AutoSelect: Boolean read GetAutoSelect write SetAutoSelect;
+    property MaxLength: IEInt read GetMaxLength write SetMaxLength;
+    property PasswordChar: Char read GetPasswordChar write SetPasswordChar;
+    property ReadOnly: Boolean read GetReadOnly write SetReadOnly;
+    property Text: ShortString read GetText write SetText;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnDblClick: TNotifyEvent read GetOnDblClick write SetOnDblClick;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+    property OnEditingDone: TNotifyEvent read GetOnEditingDone write SetOnEditingDone;
+  end;
+
+  IEListBox    = interface (IEControl)
+    ['{21269D7B-8963-42AE-8BBD-331D982A33A1}']
+    function GetItemHeight: IEInt; stdcall;
+    procedure SetItemHeight(const Value: IEInt); stdcall;
+    function GetItemIndex: IEInt; stdcall;
+    procedure SetItemIndex(const Value: IEInt); stdcall;
+    function GetMultiSelect: Boolean; stdcall;
+    procedure SetMultiSelect(const Value: Boolean); stdcall;
+    function GetSorted: Boolean; stdcall;
+    procedure SetSorted(const Value: Boolean); stdcall;
+    function GetStyle: TListBoxStyle; stdcall;
+    procedure SetStyle(const Value: TListBoxStyle); stdcall;
+
+    function GetItem(const Index: IEInt): ShortString; stdcall;
+    procedure SetItem(const Index: IEInt; const Value: ShortString); stdcall;
+    function Items_Count: IEInt; stdcall;
+    procedure Items_Clear; stdcall;
+    procedure Items_Add(const Value: ShortString); stdcall;
+    procedure Items_Delete(const Index: IEInt); stdcall;
+    procedure Items_Insert(const Index: IEInt; const Value: ShortString); stdcall;
+
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDblClick: TNotifyEvent; stdcall;
+    procedure SetOnDblClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDrawItem: TDrawItemEvent; stdcall;
+    procedure SetOnDrawItem(const Value: TDrawItemEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+    function GetOnMeasureItem: TMeasureItemEvent; stdcall;
+    procedure SetOnMeasureItem(const Value: TMeasureItemEvent); stdcall;
+
+    property ItemHeight: IEInt read GetItemHeight write SetItemHeight;
+    property ItemIndex: IEInt read GetItemIndex write SetItemIndex;
+    property MultiSelect: Boolean read GetMultiSelect write SetMultiSelect;
+    property Sorted: Boolean read GetSorted write SetSorted;
+    property Style: TListBoxStyle read GetStyle write SetStyle;
+    property Items[Index: IEInt]: ShortString read GetItem write SetItem;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnDblClick: TNotifyEvent read GetOnDblClick write SetOnDblClick;
+    property OnDrawItem: TDrawItemEvent read GetOnDrawItem write SetOnDrawItem;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+    property OnMeasureItem: TMeasureItemEvent read GetOnMeasureItem write SetOnMeasureItem;
+  end;
+
+  IESpinEdit   = interface (IEControl)
+    ['{13C228A3-2736-4086-9A74-093BFE3576CB}']
+    function GetAutoSelect: Boolean; stdcall;
+    procedure SetAutoSelect(const Value: Boolean); stdcall;
+    function GetMaxValue: IEInt; stdcall;
+    procedure SetMaxValue(const Value: IEInt); stdcall;
+    function GetMinValue: IEInt; stdcall;
+    procedure SetMinValue(const Value: IEInt); stdcall;
+    function GetReadOnly: Boolean; stdcall;
+    procedure SetReadOnly(const Value: Boolean); stdcall;
+    function GetValue: IEInt; stdcall;
+    procedure SetValue(const Value: IEInt); stdcall;
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+    function GetOnEditingDone: TNotifyEvent; stdcall;
+    procedure SetOnEditingDone(const Value: TNotifyEvent); stdcall;
+
+    property AutoSelect: Boolean read GetAutoSelect write SetAutoSelect;
+    property MaxValue: IEInt read GetMaxValue write SetMaxValue;
+    property MinValue: IEInt read GetMinValue write SetMinValue;
+    property ReadOnly: Boolean read GetReadOnly write SetReadOnly;
+    property Value: IEInt read GetValue write SetValue;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+    property OnEditingDone: TNotifyEvent read GetonEditingDone write SetOnEditingDone;
+  end;
+
+  IEFloatSpinEdit= interface (IEControl)
+    ['{DA06BC21-A9B8-452C-9727-3E2A4D6452D5}']
+    function GetAutoSelect: Boolean; stdcall;
+    procedure SetAutoSelect(const Value: Boolean); stdcall;
+    function GetMaxValue: IEFloat; stdcall;
+    procedure SetMaxValue(const Value: IEFloat); stdcall;
+    function GetMinValue: IEFloat; stdcall;
+    procedure SetMinValue(const Value: IEFloat); stdcall;
+    function GetReadOnly: Boolean; stdcall;
+    procedure SetReadOnly(const Value: Boolean); stdcall;
+    function GetValue: IEFloat; stdcall;
+    procedure SetValue(const Value: IEFloat); stdcall;
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+    function GetOnEditingDone: TNotifyEvent; stdcall;
+    procedure SetOnEditingDone(const Value: TNotifyEvent); stdcall;
+
+    property AutoSelect: Boolean read GetAutoSelect write SetAutoSelect;
+    property MaxValue: IEFloat read GetMaxValue write SetMaxValue;
+    property MinValue: IEFloat read GetMinValue write SetMinValue;
+    property ReadOnly: Boolean read GetReadOnly write SetReadOnly;
+    property Value: IEFloat read GetValue write SetValue;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+    property OnEditingDone: TNotifyEvent read GetonEditingDone write SetOnEditingDone;
+  end;
+
+  IECheckbox     = interface (IEControl)
+    ['{2847A277-C5CE-47D8-9AE4-C5A53A6ADDC2}']
+    function GetAllowGrayed: Boolean; stdcall;
+    procedure SetAllowGrayed(const Value: Boolean); stdcall;
+    function GetChecked: Boolean; stdcall;
+    procedure SetChecked(const Value: Boolean); stdcall;
+    function GetState: IECheckState; stdcall;
+    procedure SetState(const Value: IECheckState); stdcall;
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+
+    property AllowGrayed: Boolean read GetAllowGrayed write SetAllowGrayed;
+    property Checked: Boolean read GetChecked write SetChecked;
+    property State: IECheckState read GetState write SetState;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+  end;
+
+  IEComboBox     = interface (IEControl)
+    ['{DB233816-D800-4BB4-9036-7AA5A24BEDD7}']
+    function GetAutoComplete: Boolean; stdcall;
+    procedure SetAutoComplete(const Value: Boolean); stdcall;
+    function GetAutoDropDown: Boolean; stdcall;
+    procedure SetAutoDropDown(const Value: Boolean); stdcall;
+    function GetAutoSelect: Boolean; stdcall;
+    procedure SetAutoSelect(const Value: Boolean); stdcall;
+    function GetDropDownCount: IEInt; stdcall;
+    procedure SetDropDownCount(const Value: IEInt); stdcall;
+    function GetItemHeight: IEInt; stdcall;
+    procedure SetItemHeight(const Value: IEInt); stdcall;
+    function GetItemIndex: IEInt; stdcall;
+    procedure SetItemIndex(const Value: IEInt); stdcall;
+    function GetMaxLength: IEInt; stdcall;
+    procedure SetMaxLength(const Value: IEInt); stdcall;
+    function GetReadOnly: Boolean; stdcall;
+    procedure SetReadOnly(const Value: Boolean); stdcall;
+    function GetSorted: Boolean; stdcall;
+    procedure SetSorted(const Value: Boolean); stdcall;
+    function GetStyle: TComboBoxStyle; stdcall;
+    procedure SetStyle(const Value: TComboBoxStyle); stdcall;
+
+    function GetItem(const Index: IEInt): ShortString; stdcall;
+    procedure SetItem(const Index: IEInt; const Value: ShortString); stdcall;
+    function Items_Count: IEInt; stdcall;
+    procedure Items_Clear; stdcall;
+    procedure Items_Add(const Value: ShortString); stdcall;
+    procedure Items_Delete(const Index: IEInt); stdcall;
+    procedure Items_Insert(const Index: IEInt; const Value: ShortString); stdcall;
+
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDblClick: TNotifyEvent; stdcall;
+    procedure SetOnDblClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDrawItem: TDrawItemEvent; stdcall;
+    procedure SetOnDrawItem(const Value: TDrawItemEvent); stdcall;
+    function GetOnDropDown: TNotifyEvent; stdcall;
+    procedure SetOnDropDown(const Value: TNotifyEvent); stdcall;
+    function GetOnCloseUp: TNotifyEvent; stdcall;
+    procedure SetOnCloseUp(const Value: TNotifyEvent); stdcall;
+    function GetOnEditingDone: TNotifyEvent; stdcall;
+    procedure SetOnEditingDone(const Value: TNotifyEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+    function GetOnMeasureItem: TMeasureItemEvent; stdcall;
+    procedure SetOnMeasureItem(const Value: TMeasureItemEvent); stdcall;
+
+    property AutoComplete: Boolean read GetAutoComplete write SetAutoComplete;
+    property AutoDropDown: Boolean read GetAutoDropDown write SetAutoDropDown;
+    property AutoSelect: Boolean read GetAutoSelect write SetAutoSelect;
+    property DropDownCount: IEInt read GetDropDownCount write SetDropDownCount;
+    property ItemHeight: IEInt read GetItemHeight write SetItemHeight;
+    property ItemIndex: IEInt read GetItemIndex write SetItemIndex;
+    property MaxLength: IEInt read GetMaxLength write SetMaxLength;
+    property ReadOnly: Boolean read GetReadOnly write SetReadOnly;
+    property Sorted: Boolean read GetSorted write SetSorted;
+    property Style: TComboBoxStyle read GetStyle write SetStyle;
+    property Items[Index: IEInt]: ShortString read GetItem write SetItem;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnDblClick: TNotifyEvent read GetOnDblClick write SetOnDblClick;
+    property OnDrawItem: TDrawItemEvent read GetOnDrawItem write SetOnDrawItem;
+    property OnEditingDone: TNotifyEvent read GetOnEditingDone write SetOnEditingDone;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+    property OnMeasureItem: TMeasureItemEvent read GetOnMeasureItem write SetOnMeasureItem;
+  end;
+
+  IEColorBox     = interface (IEControl)
+    ['{B937CEE3-C562-40D0-93BC-0F983DB3204E}']
+    function GetAutoComplete: Boolean; stdcall;
+    procedure SetAutoComplete(const Value: Boolean); stdcall;
+    function GetAutoDropDown: Boolean; stdcall;
+    procedure SetAutoDropDown(const Value: Boolean); stdcall;
+    function GetAutoSelect: Boolean; stdcall;
+    procedure SetAutoSelect(const Value: Boolean); stdcall;
+    function GetDefaultColor: IEColor; stdcall;
+    procedure SetDefaultColor(const Value: IEColor); stdcall;
+    function GetDropDownCount: IEInt; stdcall;
+    procedure SetDropDownCount(const Value: IEInt); stdcall;
+    function GetItemHeight: IEInt; stdcall;
+    procedure SetItemHeight(const Value: IEInt); stdcall;
+    function GetSelected: IEColor; stdcall;
+    procedure SetSelected(const Value: IEColor); stdcall;
+    function GetStyle: TColorBoxStyle; stdcall;
+    procedure SetStyle(const Value: TColorBoxStyle); stdcall;
+    function GetNoneColor: IEColor; stdcall;
+    procedure SetNoneColor(const Value: IEColor); stdcall;
+
+    function GetItem(const Index: IEInt): ShortString; stdcall;
+    function Items_Count: IEInt; stdcall;
+
+    function GetOnChange: TNotifyEvent; stdcall;
+    procedure SetOnChange(const Value: TNotifyEvent); stdcall;
+    function GetOnClick: TNotifyEvent; stdcall;
+    procedure SetOnClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDblClick: TNotifyEvent; stdcall;
+    procedure SetOnDblClick(const Value: TNotifyEvent); stdcall;
+    function GetOnDropDown: TNotifyEvent; stdcall;
+    procedure SetOnDropDown(const Value: TNotifyEvent); stdcall;
+    function GetOnCloseUp: TNotifyEvent; stdcall;
+    procedure SetOnCloseUp(const Value: TNotifyEvent); stdcall;
+    function GetOnEditingDone: TNotifyEvent; stdcall;
+    procedure SetOnEditingDone(const Value: TNotifyEvent); stdcall;
+    function GetOnEnter: TNotifyEvent; stdcall;
+    procedure SetOnEnter(const Value: TNotifyEvent); stdcall;
+    function GetOnExit: TNotifyEvent; stdcall;
+    procedure SetOnExit(const Value: TNotifyEvent); stdcall;
+
+    property AutoComplete: Boolean read GetAutoComplete write SetAutoComplete;
+    property AutoDropDown: Boolean read GetAutoDropDown write SetAutoDropDown;
+    property AutoSelect: Boolean read GetAutoSelect write SetAutoSelect;
+    property DefaultColor: IEColor read GetDefaultColor write SetDefaultColor;
+    property DropDownCount: IEInt read GetDropDownCount write SetDropDownCount;
+    property ItemHeight: IEInt read GetItemHeight write SetItemHeight;
+    property Selected: IEColor read GetSelected write SetSelected;
+    property Style: TColorBoxStyle read GetStyle write SetStyle;
+    property NoneColor: IEColor read GetNoneColor write SetNoneColor;
+    property Items[Index: IEInt]: ShortString read GetItem;
+    property OnChange: TNotifyEvent read GetOnChange write SetOnChange;
+    property OnClick: TNotifyEvent read GetOnClick write SetOnClick;
+    property OnDblClick: TNotifyEvent read GetOnDblClick write SetOnDblClick;
+    property OnEditingDone: TNotifyEvent read GetOnEditingDone write SetOnEditingDone;
+    property OnEnter: TNotifyEvent read GetOnEnter write SetOnEnter;
+    property OnExit: TNotifyEvent read GetOnExit write SetOnExit;
+  end;
+
+implementation
+
+end.
+

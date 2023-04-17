@@ -1,0 +1,40 @@
+object PresetListFrame2: TPresetListFrame2
+  Left = 0
+  Height = 304
+  Top = 0
+  Width = 321
+  ClientHeight = 304
+  ClientWidth = 321
+  TabOrder = 0
+  DesignLeft = 260
+  DesignTop = 94
+  object PresetTV: TTreeView
+    Left = 0
+    Height = 278
+    Top = 26
+    Width = 321
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    DefaultItemHeight = 18
+    ReadOnly = True
+    TabOrder = 0
+    OnDeletion = PresetTVDeletion
+    OnKeyDown = PresetTVKeyDown
+    OnMouseDown = PresetTVMouseDown
+    Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+  end
+  object FilterEdit: TTreeFilterEdit
+    Left = 0
+    Height = 23
+    Top = 0
+    Width = 297
+    OnFilterItem = FilterEditFilterItem
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akTop, akLeft, akRight]
+    MaxLength = 0
+    TabOrder = 1
+    OnChange = FilterEditChange
+    OnKeyDown = PresetTVKeyDown
+    FilteredTreeview = PresetTV
+  end
+end

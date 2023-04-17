@@ -1,0 +1,20 @@
+unit TVSPSourceAttachmentContainer;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, TVSPServerAttachment;
+
+type
+  TTVSPSourceAttachmentContainer = class
+  strict private
+    FAttachment: TTVSPServerAttachment;
+    FCount     : Cardinal;
+  end;
+
+implementation
+
+end.
+

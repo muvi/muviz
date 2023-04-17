@@ -1,0 +1,73 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TAnalyseSettingForm','FORMDATA',[
+  'TPF0'#19'TAnalyseSettingForm'#18'AnalyseSettingForm'#4'Left'#3#174#1#6'Heigh'
+  +'t'#3'^'#1#3'Top'#3#184#0#5'Width'#3#193#1#11'BorderIcons'#11#12'biSystemMen'
+  +'u'#0#11'BorderStyle'#7#8'bsDialog'#7'Caption'#6#20'Analyseeinstellungen'#12
+  +'ClientHeight'#3'^'#1#11'ClientWidth'#3#193#1#8'Position'#7#16'poMainFormCen'
+  +'ter'#10'LCLVersion'#6#6'0.9.30'#0#6'TLabel'#13'SyncHCountLbl'#4'Left'#2#10#6
+  +'Height'#2#23#3'Top'#2#8#5'Width'#3#176#0#8'AutoSize'#8#7'Caption'#6#25'Samp'
+  +'les zwischen 2 Syncs:'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#6'TLab'
+  +'el'#6'BHCLbl'#4'Left'#2#10#6'Height'#2#23#3'Top'#2'('#5'Width'#3#176#0#8'Au'
+  +'toSize'#8#7'Caption'#6#19'Gespeicherte Beats:'#6'Layout'#7#8'tlCenter'#11'P'
+  +'arentColor'#8#0#0#6'TLabel'#8'BPMHCLbl'#4'Left'#2#10#6'Height'#2#23#3'Top'#2
+  +'h'#5'Width'#3#176#0#8'AutoSize'#8#7'Caption'#6#18'Gespeicherte BPMs:'#6'Lay'
+  +'out'#7#8'tlCenter'#11'ParentColor'#8#0#0#6'TLabel'#6'BCCLbl'#4'Left'#2#10#6
+  +'Height'#2#23#3'Top'#2'H'#5'Width'#3#176#0#8'AutoSize'#8#7'Caption'#6#23'Zu '
+  +'vergleichende Beats:'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#6'TLabe'
+  +'l'#18'BeatSensibilityLbl'#4'Left'#2#10#6'Height'#2#23#3'Top'#3#136#0#5'Widt'
+  +'h'#3#176#0#8'AutoSize'#8#7'Caption'#6#27'Empfindlichkeit f'#195#188'r Beats'
+  +':'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#6'TLabel'#18'SyncBufferCou'
+  +'ntLbl'#4'Left'#2#10#6'Height'#2#23#3'Top'#3#168#0#5'Width'#3#176#0#8'AutoSi'
+  +'ze'#8#7'Caption'#6#18'Gespeicherte BPMs:'#6'Layout'#7#8'tlCenter'#11'Parent'
+  +'Color'#8#0#0#6'TLabel'#16'SaveSyncCountLbl'#4'Left'#2#10#6'Height'#2#23#3'T'
+  +'op'#3#200#0#5'Width'#3#176#0#8'AutoSize'#8#7'Caption'#6#20'Schutzpuffergr'
+  +#195#182#195#159'e:'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#9'TSpinEd'
+  +'it'#14'SyncHCountEdit'#4'Left'#3#194#0#6'Height'#2#23#3'Top'#2#8#5'Width'#2
+  +'2'#8'MaxValue'#4#0#202#154';'#8'MinValue'#2#1#8'TabOrder'#2#0#5'Value'#3#150
+  +#0#0#0#9'TSpinEdit'#7'BHCEdit'#4'Left'#3#194#0#6'Height'#2#23#3'Top'#2'('#5
+  +'Width'#2'2'#8'MaxValue'#4#128#150#152#0#8'MinValue'#2#1#8'TabOrder'#2#1#5'V'
+  +'alue'#3#232#3#0#0#9'TSpinEdit'#7'BCCEdit'#4'Left'#3#194#0#6'Height'#2#23#3
+  +'Top'#2'H'#5'Width'#2'2'#8'MaxValue'#4#0#225#245#5#8'MinValue'#2#1#8'TabOrde'
+  +'r'#2#2#5'Value'#3#144#1#0#0#9'TSpinEdit'#9'BPMHCEdit'#4'Left'#3#194#0#6'Hei'
+  +'ght'#2#23#3'Top'#2'h'#5'Width'#2'2'#8'MaxValue'#4#0#202#154';'#8'MinValue'#2
+  +#1#8'TabOrder'#2#3#5'Value'#2'd'#0#0#9'TCheckBox'#15'BeatOptimizerCB'#4'Left'
+  +#2#10#6'Height'#2#19#3'Top'#3#232#0#5'Width'#3#234#0#8'AutoSize'#8#7'Caption'
+  +#6#14'Beat Optimizer'#7'Checked'#9#5'State'#7#9'cbChecked'#8'TabOrder'#2#4#0
+  +#0#9'TCheckBox'#16'BeatOptimizerHCB'#4'Left'#2#10#6'Height'#2#19#3'Top'#3#8#1
+  +#5'Width'#3#234#0#8'AutoSize'#8#7'Caption'#6#22'History Beat Optimizer'#7'Ch'
+  +'ecked'#9#5'State'#7#9'cbChecked'#8'TabOrder'#2#5#0#0#14'TFloatSpinEdit'#19
+  +'BeatSensibilityEdit'#4'Left'#3#194#0#6'Height'#2#23#3'Top'#3#136#0#5'Width'
+  +#2'2'#13'DecimalPlaces'#2#8#9'Increment'#5#0#216#163'p='#10#215#163#248'?'#8
+  +'MaxValue'#5#0#0#0#0#0#0#0#200#5'@'#8'MinValue'#5#0#0#0#0#0#0#0#0#0#0#8'TabO'
+  +'rder'#2#6#5'Value'#5#0'hfffff'#166#255'?'#0#0#7'TButton'#5'OKBtn'#4'Left'#3
+  +#208#0#6'Height'#2#25#3'Top'#3'?'#1#5'Width'#2'K'#7'Anchors'#11#7'akRight'#8
+  +'akBottom'#0#7'Caption'#6#3'&OK'#7'Default'#9#11'ModalResult'#2#1#7'OnClick'
+  +#7#11'SetBtnClick'#8'TabOrder'#2#7#0#0#7'TButton'#9'CancelBtn'#4'Left'#3' '#1
+  +#6'Height'#2#25#3'Top'#3'?'#1#5'Width'#2'K'#7'Anchors'#11#7'akRight'#8'akBot'
+  +'tom'#0#6'Cancel'#9#7'Caption'#6#10'&Abbrechen'#11'ModalResult'#2#2#8'TabOrd'
+  +'er'#2#8#0#0#7'TButton'#6'SetBtn'#4'Left'#3'q'#1#6'Height'#2#25#3'Top'#3'?'#1
+  +#5'Width'#2'K'#7'Anchors'#11#7'akRight'#8'akBottom'#0#7'Caption'#6#12#195#156
+  +'&bernehmen'#7'OnClick'#7#11'SetBtnClick'#8'TabOrder'#2#9#0#0#9'TSpinEdit'#19
+  +'SyncBufferCountEdit'#4'Left'#3#194#0#6'Height'#2#23#3'Top'#3#168#0#5'Width'
+  +#2'2'#8'MaxValue'#4#255#255#255#127#8'MinValue'#2#1#8'TabOrder'#2#10#5'Value'
+  +#4#168#186#6#0#0#0#9'TSpinEdit'#17'SaveSyncCountEdit'#4'Left'#3#194#0#6'Heig'
+  +'ht'#2#23#3'Top'#3#200#0#5'Width'#2'2'#8'MaxValue'#4'@B'#15#0#8'TabOrder'#2
+  +#11#5'Value'#2#10#0#0#244#18'TThreadOptionFrame'#20'BPMThreadOptionFrame'#4
+  +'Left'#3#0#1#3'Top'#2#8#5'Width'#3#185#0#11'ClientWidth'#3#185#0#8'TabOrder'
+  +#2#12#0#241#9'TGroupBox'#8'GroupBox'#5'Width'#3#185#0#11'ClientWidth'#3#181#0
+  +#0#241#9'TComboBox'#10'PriorityCB'#5'Width'#2'b'#0#0#241#9'TCheckBox'#9'Dyna'
+  +'micCB'#5'Width'#3#162#0#0#0#241#14'TFloatSpinEdit'#7'FPSEdit'#5'Width'#2'b'
+  +#0#0#0#0#244#18'TThreadOptionFrame'#21'SyncThreadOptionFrame'#4'Left'#3#255#0
+  +#3'Top'#3#130#0#5'Width'#3#186#0#11'ClientWidth'#3#186#0#8'TabOrder'#2#13#0
+  +#241#9'TGroupBox'#8'GroupBox'#5'Width'#3#186#0#11'ClientWidth'#3#182#0#0#241
+  +#9'TComboBox'#10'PriorityCB'#5'Width'#2'c'#0#0#241#9'TCheckBox'#9'DynamicCB'
+  +#5'Width'#3#163#0#0#0#241#14'TFloatSpinEdit'#7'FPSEdit'#5'Width'#2'c'#0#0#0#0
+  +#14'TFloatSpinEdit'#19'BeatHistoryTimeEdit'#4'Left'#3#194#0#6'Height'#2#23#3
+  +'Top'#3' '#1#5'Width'#2'2'#13'DecimalPlaces'#2#8#9'Increment'#5#0#208#204#204
+  ,#204#204#204#204#251'?'#8'MaxValue'#5#0#0#0#0#0#0#0#250#8'@'#8'MinValue'#5#0
+  +#0#0#0#0#0#0#0#0#0#8'TabOrder'#2#14#5'Value'#5#0#0#0#0#0#0#0#128#0'@'#0#0#6
+  +'TLabel'#18'BeatHistoryTimeLbl'#4'Left'#2#10#6'Height'#2#23#3'Top'#3' '#1#5
+  +'Width'#3#176#0#8'AutoSize'#8#7'Caption'#6#30'Beat '#195#188'ber diese Zeit '
+  +'mitteln:'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#0
+]);

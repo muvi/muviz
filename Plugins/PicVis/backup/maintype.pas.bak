@@ -1,0 +1,29 @@
+unit MainType;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType, MPluginType;
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+procedure PluginDone; stdcall;
+
+var
+  PluginSystem: IMPluginSystem3;
+
+implementation
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+begin
+  PluginSystem:=IMPluginSystem3(APluginSystem.Future('0.3.0'));
+end;
+
+procedure PluginDone; stdcall;
+begin
+  PluginSystem:=nil;
+end;
+
+end.
+

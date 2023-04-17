@@ -1,0 +1,171 @@
+object VisForm: TVisForm
+  Left = 460
+  Height = 417
+  Top = 121
+  Width = 492
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'VisForm'
+  ClientHeight = 417
+  ClientWidth = 492
+  Constraints.MinHeight = 30
+  Constraints.MinWidth = 100
+  KeyPreview = True
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnKeyUp = FormKeyUp
+  Position = poScreenCenter
+  ShowInTaskBar = stAlways
+  LCLVersion = '0.9.30.4'
+  object VisImage: TImage32
+    Left = 0
+    Height = 417
+    Top = 0
+    Width = 492
+    Align = alClient
+    Bitmap.ResamplerClassName = 'TNearestResampler'
+    BitmapAlign = baTopLeft
+    RepaintMode = rmDirect
+    Scale = 1
+    ScaleMode = smStretch
+    TabOrder = 0
+    OnMouseDown = VisImageMouseDown
+    OnMouseMove = VisImageMouseMove
+    OnMouseUp = VisImageMouseUp
+    object HeaderImage: TImage
+      Cursor = crArrow
+      Left = 0
+      Height = 25
+      Top = 0
+      Width = 492
+      Align = alTop
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963BF00000089504E47
+        0D0A1A0A0000000D494844520000000C0000001908020000008A0C5898000000
+        017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048
+        597300000EC300000EC301C76FA8640000005449444154384F8DC19102803000
+        00D1FBB0300CC3300AC361180EC361188661360CC3309CED17EE3D8AC02FF009
+        BC028F4016B8052E8153E010D80592C02610055681452008CC0293C0283008F4
+        029D402BD00815D68E1E5FF5DC39320000000049454E44AE426082
+      }
+      Stretch = True
+    end
+    object HeaderLbl: TLabel
+      Cursor = crArrow
+      Left = 8
+      Height = 25
+      Top = 0
+      Width = 428
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Visualisierungsfenster'
+      Font.Color = clBackground
+      Font.Height = -19
+      Font.Style = [fsBold]
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+      OnDblClick = HeaderLblDblClick
+      OnMouseDown = VisMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object LeftPanel: TPanel
+      Cursor = crSizeWE
+      Left = 0
+      Height = 388
+      Top = 25
+      Width = 5
+      Anchors = [akTop, akLeft, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      TabOrder = 0
+      OnMouseDown = LeftPanelMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object RightPanel: TPanel
+      Cursor = crSizeWE
+      Left = 487
+      Height = 388
+      Top = 25
+      Width = 5
+      Anchors = [akTop, akRight, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      TabOrder = 1
+      OnMouseDown = RightPanelMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object BottomPanel: TPanel
+      Cursor = crSizeNS
+      Left = 0
+      Height = 5
+      Top = 412
+      Width = 492
+      Anchors = [akLeft, akRight, akBottom]
+      BevelOuter = bvNone
+      Color = clActiveBorder
+      ParentColor = False
+      TabOrder = 2
+      OnMouseDown = BottomPanelMouseDown
+      OnMouseMove = VisMouseMove
+      OnMouseUp = VisMouseUp
+    end
+    object HeaderEdit: TEdit
+      Cursor = crArrow
+      Left = 8
+      Height = 20
+      Top = 2
+      Width = 428
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Font.Quality = fqCleartypeNatural
+      Font.Style = [fsBold]
+      OnExit = HeaderEditExit
+      OnKeyPress = HeaderEditKeyPress
+      ParentFont = False
+      TabOrder = 3
+      Visible = False
+    end
+  end
+  object CloseBtn: TButton
+    Left = 464
+    Height = 17
+    Top = 4
+    Width = 19
+    Anchors = [akTop, akRight]
+    Caption = 'û'
+    Font.Name = 'wingdings'
+    OnClick = CloseBtnClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object MaximizeBtn: TButton
+    Left = 440
+    Height = 17
+    Top = 4
+    Width = 19
+    Anchors = [akTop, akRight]
+    Caption = 'p'
+    Font.Name = 'wingdings'
+    OnClick = MaximizeBtnClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Timer: TTimer
+    Interval = 100
+    OnTimer = TimerTimer
+    left = 8
+    top = 32
+  end
+end

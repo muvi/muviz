@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="P:\lazarus\fpc\3.0.2\bin\x86_64-win64\fpc.exe" Date="1247518955"/>
+  <Params Value=" -MObjFPC -Scagi -Cirot -O1 -g -gl -l -vewnhibq -FiD:\Eigene_Programme\Muvi\SDK3\shared\include -FuD:\Eigene_Programme\Muvi\SDK3\shared\interfaces -FuD:\Eigene_Programme\Muvi\SDK3\shared\legacy -FuD:\Eigene_Programme\Muvi\SDK3\shared\prototypes -FuD:\Eigene_Programme\Muvi\SDK3\shared\utilities -FuD:\Eigene_Programme\Komponenten\AdvGui -FuP:\lazarus\lcl\units\x86_64-win64\win32 -FuP:\lazarus\lcl\units\x86_64-win64 -FuP:\lazarus\components\lazutils\lib\x86_64-win64 -FuP:\lazarus\packager\units\x86_64-win64 -FuD:\Eigene_Programme\Muvi\Plugins3\PicVis\ -dLCL -dLCLwin32 PicVis.pas"/>
+</CONFIG>

@@ -1,0 +1,17 @@
+program MuviTests;
+
+{$mode objfpc}{$H+}
+
+uses
+  Interfaces, Forms, GuiTestRunner, HashMapTests, HashMap, MapKeys, csl,
+  TagUnit, TagTests, AdvFuncTests, ArrayFuncTests, ListTests, LinkedList, Doors,
+  DoorUnit, advguipack, GUIDop, PluginType, DoorTests;
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TGuiTestRunner, TestRunner);
+  Application.Run;
+end.
+

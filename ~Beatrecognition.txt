@@ -1,0 +1,7 @@
+Take-first-Algorithmus:
+-immer das BPM vom ersten Maximum im diagramm nehmen...
+-also das erste, was mindestens 75% (oder) vom absoluten Maximum hoch ist
+
+DirectCor-Algorithmus:
+-direkt die Subbänder autokorellieren
+-wegen take-first müssen aber nicht so viele korellationen durchgeführt werden...

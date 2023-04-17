@@ -1,0 +1,103 @@
+DIE MUVI BUGLISTE
+-	noch zu erledigen
+|	schon fertig
+x	wird nicht erledigt (meistens durch eine andere Änderung überflüssig geworden)
+?	wird evtl. durch andere geplante Änderungen überflüssig
+!	wichtige Änderung
+:	Bisheriger Fortschritt / Kommentare
+~	nicht so wichtig
+o	online
+
+VISDLLS
+| Disco.dll
+ ~ Flowers
+ | Laser
+ | Lines
+ | EvenMoreLines
+ x Discolicht (Sternform,...)
+ | schnell blinkende Vollfarbe, auch rhytmisch (Strobe)
+- Vanish.dll verbessern:
+ | Scale
+ | Rotate, Move Lautstärkenabhängig
+ | ?Glare??? (oder besteht das aus mehreren Scales???)
+ ~ vanish um multiplizieren erweitern, lighten, darken
+x VisGobo verbessern: runde gobos...
+x unnamed.dll
+ | runde Wave
+| Triggerbugs beseitigen
+| mehr Trigger
+- VisGobo: ChangeParams Routine für Gobo Anzahl
+
+PRESETS
+x Vollfarbpresets
+- mindestens 200 Stück insgesammt... (wie kriegen wir das nur hin und WANN????)
+ : 142 Stück fertig
+
+PROGRAMMERWEITERUNGEN
+| Allgemeines öffnen aller von Muvi unterstützten Dateien: dlls,Presets,Keylayout...
+| zusammenfassungsdateien
+x Geschwindigkeit optimieren (auch dlls)
+? nettrigger in Keylayout
+x integrierter mp3-player für das Jingle (per Keylayout nutzbar)
+| Mauszeiger im viswin ausblenden (ja das müsste gehen...) obwohl ich dafür eine leere Coursordatei (.cur) brauche
+| Treeview für Presets
+| Preset-Tasten-Übersicht
+| PresetFenster nicht immer im Vordergrund
+| Triggeroutput-Konvertierungen
+| Error-Codes für Laden und Speichern (nicht immer nur "Datei entspricht keinem gültigen Muvi-Format." anzeigen)
+- MUSIKSTARTERKENNUNG
+- FPU Precision Mode setzen in BasicSpectrumData, um Rechenzeit zu sparen
+
+BUGS
+| mehrere VisWins auf einmal öffnen
+| "Schmier" in der Vis beseitigen
+| Buttons für Öffnen, speichern und anhängen von Keylayout
+- Zugriffsfehler bei nicht vorhandenen Presets beseitigen (für Keylayout)
+- alle Tastaturtasten müssen funktionieren, auch Pfeiltasten und Enter
+| Fehler "out of bounds" beimgleich schließen der Presetbearbeitung bei offenem viswin entfernen
+| Maus verschwindet in Viswin nach click auf OK und kommt NIE wieder
+| Index der Visualisierungsfenster wird nicht gesetzt (fällt nur bei mehreren VisWins auf...)
+| Fehlermeldung anzeigen, wenn eine Presetdatei aufgrund nicht installierter Visualisierungen nicht geöffnet werden kann
+| FließkommER bei Trigger.dll (Rechtschreibfehler)
+| Fehler beim Wechseln zwischen Presets mit vielen Gobos -> Absturz (meistens beim verlassen des Presets)
+| Parameter synchronisieren
+| Fehler beim beenden wegen GlobalVisThread?!?
+
+VARÄNDERUNGEN AM DLL-SYSTEM
+| ISpectrumData statt TSpectrumData
+| ChangeParams nicht allgemein, sondern für jeden Parameter einzeln
+x DynamicVisMem in der Hauptunit exportieren
+| SpectrumData und Bitmap auch an InitWorkspace und FreeWorkspace übergeben
+~ Rechteck für die Anzeige von Visualisierungen übergeben
+
+
+BUGS
+? Schließen bei dx input nicht möglich
+| Designfehler beim Größe verändern des Hauptformulars und des Presetformulars
+| Wartezeiteinstellung bei BPM-Analyse (nicht immer dynamisch)
+ : in den Analyseeinstellungen
+x diverse verschnellungsoptionen
+| Layer Löschen (stürzt fast immer ab)
+| Keylayout auswählbar machen (wie Preset) und dadurch den Fehler beseitigen der auftritt wenn man ein keylayout läd nachdem ein viswin offen ist und versucht es zu benutzen
+|! OpenAsio dll immer hochladen, sonst funktioniert ASIO nicht
+o Neuen DX Input!!!
+- bei Netzwerkverbindung und Muvi beenden: Muvi stürzt ab in UIDArray.TUIDArray.Clear in der letzten Zeile der Methode (FFreeItems.Clear) ab...
+- ähnlicher Fehler auch im Muvi Server
+| bei Muvi beenden: Fehler in AsioVis.TAsioManager.BufferSwitch(index: integer) in Zeile 301 (direkt nach begin der Methode) [wahrscheinlich nicht reproduzierbar]
+| Fehler beim Beenden mit deaktivierten VisWins
+- Fehler beim Beenden wenn ein viswin gerade buffered
+| Integer,Real,...-Storage Trigger machen komplette Datei unbrauchbar!!!!!
+ : nur Integer Storage
+| statt <> (automatisch) wird immer < (automatisch) nach neu öffnen genommen... (evtl. bug in binarysearch?)
+ : nöö wars nicht, war ein Zeichensatzfehler
+o Kabel auf Outputseite entfernen funktioniert nicht in Bearbeiten2
+o Probleme mit Parametern bei ändern der verfügbaren Presets (neue Datei öffnen, ...)
+
+VERBESSERUNGEN
+|Netzwerktrigger!!!
+
+SYSTEM
+-TBasicSpectrumData.Analyse(const ASampleCount: MVInt) : Peak wird in Nachfolgerklasse (TFFTSpectrumData) nicht richtig berechnet, wenn ASampleCount<>FWaveDataCount
+
+--------------------------------------------------------------------------------
+

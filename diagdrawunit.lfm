@@ -1,0 +1,27 @@
+object DiagDrawForm: TDiagDrawForm
+  Left = 299
+  Height = 240
+  Top = 210
+  Width = 320
+  Caption = 'Diagramm'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '0.9.30'
+  object DiagImage: TImage
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    OnResize = DiagImageResize
+  end
+  object Timer: TTimer
+    Enabled = False
+    Interval = 40
+    OnTimer = TimerTimer
+    left = 8
+    top = 8
+  end
+end

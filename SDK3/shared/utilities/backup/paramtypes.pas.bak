@@ -1,0 +1,113 @@
+unit ParamTypes;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, ParamType2, VisType2, StdParamTypes, AdvParamType,
+  PluginType;
+
+function CreateCallParam(APrototype: IPParamPrototype): IPCall;
+function CreateIntegerParam(APrototype: IPParamPrototype): IPInteger;
+function CreateIntegerParam(AMin, AMax: TVInteger; APrototype: IPParamPrototype): IPInteger;
+function CreateFloatParam(APrototype: IPParamPrototype): IPFloat;
+function CreateFloatParam(AMin, AMax, ANan: TVFloat; APrototype: IPParamPrototype): IPFloat;
+function CreateColorParam(APrototype: IPParamPrototype): IPColor;
+function CreateBooleanParam(APrototype: IPParamPrototype): IPBoolean;
+function CreateBufferParam(APrototype: IPParamPrototype): IPBuffer;
+function CreateStringParam(APrototype: IPParamPrototype): IPString;
+function CreatePresetParam(APrototype: IPParamPrototype): IPPreset;
+function CreatePresetParam(APrototype: IPParamPrototype; AEnvironment: IPVisualisationEnvironment): IPPreset;
+function CreatePointerParam(APrototype: IPParamPrototype): IPPointer;
+
+implementation
+
+function DoCreateStdParamSettings(APrototype: IPParamPrototype; AType: TPParamType): IPParamSettings; inline;
+begin
+  Assert(AType = APrototype.ID.&Type);
+  Result:=ParamTypeUtil[AType].CreateValueStorage(APrototype);
+end;
+
+function DoCreateStdParam(APrototype: IPParamPrototype; AType: TPParamType; AThread: IPThread): IPParam; inline;
+var
+  AParamSettings: IPParamSettings;
+begin
+  AParamSettings:=DoCreateStdParamSettings(APrototype, AType, AThread);
+  Result:=AParamSettings.Param;
+end;
+
+function CreateCallParam(APrototype: IPParamPrototype; AThread: IPThread): IPCall;
+begin
+  Result:=IPCall(DoCreateStdParam(APrototype, vCall, AThread));
+end;
+
+function CreateIntegerParam(APrototype: IPParamPrototype; AThread: IPThread): IPInteger;
+begin
+  Result:=IPInteger(DoCreateStdParam(APrototype, vInteger, AThread));
+end;
+
+function CreateIntegerParam(AMin, AMax: TVInteger; APrototype: IPParamPrototype; AThread: IPThread): IPInteger;
+var
+  AParamSettings: IPParamSettings;
+begin
+  AParamSettings:=DoCreateStdParamSettings(APrototype, vInteger, AThread);
+  Result:=IPInteger(AParamSettings.Param);
+  IPIntegerSettings(AParamSettings).SetBounds(AMin, AMax);
+end;
+
+function CreateFloatParam(APrototype: IPParamPrototype; AThread: IPThread): IPFloat;
+begin
+  Result:=IPFloat(DoCreateStdParam(APrototype, vFloat, AThread));
+end;
+
+function CreateFloatParam(AMin, AMax, ANan: TVFloat; APrototype: IPParamPrototype; AThread: IPThread): IPFloat;
+var
+  AParamSettings: IPParamSettings;
+begin
+  AParamSettings:=DoCreateStdParamSettings(APrototype, vFloat, AThread);
+  Result:=IPFloat(AParamSettings.Param);
+  IPFloatSettings(AParamSettings).SetBounds(AMin, AMax, ANan);
+end;
+
+function CreateColorParam(APrototype: IPParamPrototype; AThread: IPThread): IPColor;
+begin
+  Result:=IPColor(DoCreateStdParam(APrototype, vColor, AThread));
+end;
+
+function CreateBooleanParam(APrototype: IPParamPrototype; AThread: IPThread): IPBoolean;
+begin
+  Result:=IPBoolean(DoCreateStdParam(APrototype, vBoolean, AThread));
+end;
+
+function CreateBufferParam(APrototype: IPParamPrototype; AThread: IPThread): IPBuffer;
+begin
+  Result:=IPBuffer(DoCreateStdParam(APrototype, vBuffer, AThread));
+end;
+
+function CreateStringParam(APrototype: IPParamPrototype; AThread: IPThread): IPString;
+begin
+  Result:=IPString(DoCreateStdParam(APrototype, vString, AThread));
+end;
+
+function CreatePresetParam(APrototype: IPParamPrototype; AThread: IPThread): IPPreset;
+begin
+  Result:=IPPreset(DoCreateStdParam(APrototype, vPreset, AThread));
+end;
+
+function CreatePresetParam(APrototype: IPParamPrototype; AEnvironment: IPVisualisationEnvironment; AThread: IPThread): IPPreset;
+var
+  AParamSettings: IPParamSettings;
+begin
+  AParamSettings:=DoCreateStdParamSettings(APrototype, vPreset, AThread);
+  Result:=IPPreset(AParamSettings.Param);
+  IPPresetSettings(AParamSettings).Environment:=AEnvironment;
+end;
+
+function CreatePointerParam(APrototype: IPParamPrototype; AThread: IPThread): IPPointer;
+begin
+  Result:=IPPointer(DoCreateStdParam(APrototype, vPointer, AThread));
+end;
+
+end.
+

@@ -1,0 +1,22 @@
+unit PresetUtil3_PointingRouter;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PresetUtil3_ConnectionRouter, PresetUtil3_Path,
+  ParamPainter2, MStrings, VisType2;
+
+type
+  TPointingRouter = class (TConnectionRouter)
+  public
+    function AddParam(AName: IString; AValue: IPParam; AIndex: Integer = -1; AAdditionalInformation: TObject = nil): TPPParam; virtual; abstract;
+    procedure RemoveParam(AParam: TPPParam); virtual; abstract;
+    function HighestInversePriority(AID: TPParamID): LongInt;
+  end;
+
+implementation
+
+end.
+

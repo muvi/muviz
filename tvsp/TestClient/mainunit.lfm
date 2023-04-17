@@ -1,0 +1,152 @@
+object MainForm: TMainForm
+  Left = 61
+  Height = 359
+  Top = 404
+  Width = 796
+  Caption = 'MainForm'
+  ClientHeight = 359
+  ClientWidth = 796
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poDefaultPosOnly
+  LCLVersion = '1.0.4.0'
+  object UpdateListBtn: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 216
+    Caption = 'Update List'
+    OnClick = UpdateListBtnClick
+    TabOrder = 0
+  end
+  object ListBox: TListBox
+    Left = 8
+    Height = 312
+    Top = 40
+    Width = 432
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ItemHeight = 0
+    OnSelectionChange = ListBoxSelectionChange
+    ScrollWidth = 430
+    TabOrder = 1
+    TopIndex = -1
+  end
+  object SendChangeBtn: TButton
+    Left = 456
+    Height = 25
+    Top = 8
+    Width = 328
+    Anchors = [akTop, akRight]
+    Caption = 'Send Change'
+    OnClick = SendChangeBtnClick
+    TabOrder = 2
+  end
+  object ParamTypePC: TPageControl
+    Left = 456
+    Height = 248
+    Top = 104
+    Width = 328
+    ActivePage = StringTS
+    Anchors = [akTop, akRight, akBottom]
+    TabIndex = 2
+    TabOrder = 3
+    object CallTS: TTabSheet
+      Caption = 'Call'
+      ClientHeight = 213
+      ClientWidth = 318
+      object CallLbl: TLabel
+        Left = 0
+        Height = 228
+        Top = 0
+        Width = 320
+        Align = alClient
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Nothing to edit'
+        Font.Style = [fsItalic]
+        Layout = tlCenter
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object IntegerTS: TTabSheet
+      Caption = 'Integer'
+      ClientHeight = 213
+      ClientWidth = 318
+      object IntegerEdit: TSpinEdit
+        Left = 8
+        Height = 23
+        Top = 8
+        Width = 306
+        MaxValue = 1000
+        MinValue = -1000
+        TabOrder = 0
+      end
+    end
+    object StringTS: TTabSheet
+      Caption = 'StringTS'
+      ClientHeight = 213
+      ClientWidth = 318
+      object StringEdit: TEdit
+        Left = 8
+        Height = 33
+        Top = 8
+        Width = 304
+        TabOrder = 0
+        Text = 'Hello World'
+      end
+    end
+  end
+  object ParamNameEdit: TLabeledEdit
+    Left = 528
+    Height = 33
+    Top = 40
+    Width = 256
+    Anchors = [akTop, akRight]
+    EditLabel.AnchorSideTop.Control = ParamNameEdit
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = ParamNameEdit
+    EditLabel.AnchorSideBottom.Control = ParamNameEdit
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 438
+    EditLabel.Height = 22
+    EditLabel.Top = 45
+    EditLabel.Width = 87
+    EditLabel.Caption = 'Param Name:'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 4
+    Text = 'Param'
+  end
+  object GroupIDEdit: TLabeledEdit
+    Left = 528
+    Height = 33
+    Top = 68
+    Width = 256
+    Anchors = [akTop, akRight]
+    EditLabel.AnchorSideTop.Control = GroupIDEdit
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = GroupIDEdit
+    EditLabel.AnchorSideBottom.Control = GroupIDEdit
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 463
+    EditLabel.Height = 22
+    EditLabel.Top = 73
+    EditLabel.Width = 62
+    EditLabel.Caption = 'Group ID:'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 5
+    Text = '{7F5D0129-AD4F-46D7-91F5-FADAC7C35167}'
+  end
+  object SubscibeBtn: TButton
+    Left = 232
+    Height = 25
+    Top = 8
+    Width = 208
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Subscibe'
+    OnClick = SubscibeBtnClick
+    TabOrder = 6
+  end
+end

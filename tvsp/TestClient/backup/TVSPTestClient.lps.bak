@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="35">
+      <Unit0>
+        <Filename Value="TVSPTestClient.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPTestClient"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="22"/>
+        <UsageCount Value="137"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="61"/>
+        <CursorPos X="1" Y="74"/>
+        <UsageCount Value="137"/>
+        <Bookmarks Count="1">
+          <Item0 X="1" Y="157" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\abstractnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AbstractNet"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="14" Y="23"/>
+        <UsageCount Value="137"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\tvspconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPConst"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3"/>
+        <CursorPos X="3" Y="16"/>
+        <UsageCount Value="137"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\tvspmsg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPMsg"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="87"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="137"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\tvsptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4"/>
+        <CursorPos X="10" Y="17"/>
+        <UsageCount Value="137"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\Client\tcpclient.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPClient"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="12"/>
+        <CursorPos X="1" Y="35"/>
+        <UsageCount Value="137"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\..\SDK3\shared\interfaces\vistype2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5"/>
+        <CursorPos X="3" Y="18"/>
+        <UsageCount Value="137"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\tcpnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPNet"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="131"/>
+        <CursorPos X="1" Y="151"/>
+        <UsageCount Value="137"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPClient"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="35"/>
+        <CursorPos X="1" Y="51"/>
+        <FoldState Value=" TJiB1Ed"/>
+        <UsageCount Value="137"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\Client\tvspclientindexer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPClientIndexer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="4"/>
+        <FoldState Value=" TJb1R1x"/>
+        <UsageCount Value="127"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\Client\tvspindexedvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPIndexedValues"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="70"/>
+        <CursorPos X="3" Y="81"/>
+        <UsageCount Value="126"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="119"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\SDK3\shared\interfaces\stdparamtypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdParamTypes"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="48"/>
+        <CursorPos X="35" Y="13"/>
+        <UsageCount Value="120"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="testvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TestValues"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="4"/>
+        <UsageCount Value="120"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\..\csl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="csl"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="15" Y="38"/>
+        <UsageCount Value="120"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\hashmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMap"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="122"/>
+        <CursorPos X="1" Y="139"/>
+        <UsageCount Value="120"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\mapkeys.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MapKeys"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="119"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\..\..\Komponenten\AdvGui\advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="115"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\tvspbasicsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPBasicSources"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="90"/>
+        <CursorPos X="1" Y="66"/>
+        <UsageCount Value="108"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\..\SDK3\shared\interfaces\tvspsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPSources"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="11"/>
+        <CursorPos X="1" Y="22"/>
+        <UsageCount Value="108"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\Client\tvspclientsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPClientSources"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="17"/>
+        <CursorPos X="2" Y="155"/>
+        <UsageCount Value="108"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\tcpsendqueue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPSendQueue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="21" Y="96"/>
+        <UsageCount Value="41"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\Client\tvspoffsetsource.pas"/>
+        <UnitName Value="TVSPOffsetSource"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="34" Y="35"/>
+        <UsageCount Value="43"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\Client\tvspclientvalueindexer.pas"/>
+        <UnitName Value="TVSPClientValueIndexer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="16" Y="4"/>
+        <UsageCount Value="13"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\Server\tcpserver.pas"/>
+        <UnitName Value="TCPServer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="49"/>
+        <CursorPos X="36" Y="73"/>
+        <UsageCount Value="3"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\..\..\Komponenten\lnet\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="283"/>
+        <CursorPos X="14" Y="295"/>
+        <UsageCount Value="9"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\Server\tvspserver.pas"/>
+        <UnitName Value="TVSPServer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="183"/>
+        <CursorPos X="1" Y="28"/>
+        <FoldState Value=" TJe1H011x"/>
+        <UsageCount Value="3"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="P:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="998"/>
+        <CursorPos X="1" Y="1011"/>
+        <UsageCount Value="3"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\packages\fcl-base\src\syncobjs.pp"/>
+        <UnitName Value="syncobjs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="168"/>
+        <CursorPos X="3" Y="190"/>
+        <UsageCount Value="5"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\objpas\sysutils\intfh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="20"/>
+        <CursorPos X="10" Y="41"/>
+        <UsageCount Value="3"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\objpash.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="177"/>
+        <CursorPos X="23" Y="192"/>
+        <UsageCount Value="9"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="..\tvspsizeconst.pas"/>
+        <UnitName Value="TVSPSizeConst"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="20" Y="5"/>
+        <UsageCount Value="3"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="220"/>
+        <CursorPos X="13" Y="233"/>
+        <UsageCount Value="4"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="..\..\queue.pas"/>
+        <UnitName Value="Queue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit34>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="16" HistoryIndex="15">
+      <Position1>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="144" Column="15" TopLine="121"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="133" Column="65" TopLine="123"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="98" Column="11" TopLine="90"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="129" Column="12" TopLine="116"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="8" Column="25" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="53" Column="1" TopLine="53"/>
+      </Position6>
+      <Position7>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="132" Column="31" TopLine="25"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="119" Column="1" TopLine="41"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="128" Column="1" TopLine="74"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="212" Column="32" TopLine="199"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="208" Column="24" TopLine="195"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="47" Column="31" TopLine="35"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\Client\tvspclient.pas"/>
+        <Caret Line="38" Column="1" TopLine="25"/>
+      </Position13>
+      <Position14>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="151" Column="4" TopLine="141"/>
+      </Position14>
+      <Position15>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="80" Column="5" TopLine="74"/>
+      </Position15>
+      <Position16>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="166" Column="49" TopLine="153"/>
+      </Position16>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="2">
+      <Item1>
+        <Expression Value="FPort"/>
+      </Item1>
+      <Item2>
+        <Expression Value="FAddress"/>
+      </Item2>
+    </Watches>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

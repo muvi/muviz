@@ -1,0 +1,245 @@
+unit TVSPBasicSources;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  TVSPSources, csl, GUIDop, MapKeys, HashMap, SyncObjs, SysUtils, Enumerators;
+
+type
+  TTVSPSourceKey    = class (TInterfacedObject)
+  strict private
+    FSize: Cardinal;
+    FID  : TGUID;
+    function GetID: TTVSPSrcID; cdecl;
+    function GetSize: LongWord; cdecl;
+  protected
+    property LSize: Cardinal read FSize;
+    property LID: TGUID read FID;
+  public
+    constructor Create(ASize: Cardinal; AID: TGUID);
+    function Equals(AObject: TObject): Boolean; override;
+    function GetHashCode: PtrInt; override;
+    property ID: TTVSPSrcID read GetID;
+    property Size: Cardinal read FSize;
+  end;
+
+  TTVSPBasicSources = class;
+
+  TTVSPSource       = class (TTVSPSourceKey, ITVSPSource)
+  strict private
+    FContent: Pointer;
+    FLock   : TMultiReadExclusiveWriteSynchronizer;
+    FOwner  : TTVSPBasicSources;
+  strict protected
+    procedure &Set(AStart, ACount: LongWord; const Src); cdecl; virtual;
+    procedure Get(AStart, ACount: LongWord; out Dest); cdecl; virtual;
+    procedure _ValAddRef; cdecl; virtual; abstract;
+    procedure _ValRelease; cdecl; virtual; abstract;
+    function Cut(AStart, ACount: LongWord): ITVSPSource; cdecl; virtual; abstract;
+    property Content: Pointer read FContent;
+    property Owner: TTVSPBasicSources read FOwner;
+  public
+    constructor Create(AOwner: TTVSPBasicSources; ASize: Cardinal; AID: TGUID);
+    destructor Destroy; override;
+  end;
+
+  TTVSPBasicSources = class (TInterfacedObject)
+  strict private
+    FZeroSource: TTVSPSource;
+    FMap       : TMap;
+    FLock      : TCriticalSection;
+  private
+    procedure Deleted(ASource: TTVSPSource);
+  strict protected
+    function MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource; virtual;
+    //creates item if it does not exist
+    function GetItem(ASize: Cardinal; AID: TGUID): TTVSPSource;
+    //returns nil if item does not exist
+    function GetItemOrNil(ASize: Cardinal; AID: TGUID): TTVSPSource;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    function StartIterate: TObject;
+    function Iterate(AIterator: TObject): TTVSPSource;
+  end;
+
+implementation
+
+{%REGION TTVSPSourceKey}
+
+constructor TTVSPSourceKey.Create(ASize: Cardinal; AID: TGUID);
+begin
+  inherited Create;
+  FSize:=ASize;
+  FID:=AID;
+end;
+
+function TTVSPSourceKey.Equals(AObject: TObject): Boolean;
+var
+  AObject2: TTVSPSourceKey;
+begin
+  Result:=AObject.InheritsFrom(TTVSPSourceKey);
+  if Result then begin
+    AObject2:=TTVSPSourceKey(AObject);
+    Result:=(AObject2.FID = FID) and (AObject2.FSize = FSize);
+  end;
+end;
+
+function TTVSPSourceKey.GetHashCode: PtrInt;
+begin
+  Result:=GetGUIDHash(FID) xor FSize;
+end;
+
+function TTVSPSourceKey.GetID: TTVSPSrcID; cdecl;
+begin
+  with Result do begin
+    ID:=FID;
+    Size:=FSize;
+    //PartOffset:=0;
+    //PartSize:=FSize;
+  end;
+end;
+
+function TTVSPSourceKey.GetSize: LongWord; cdecl;
+begin
+  Result:=FSize;
+end;
+
+{%ENDREGION}
+{%REGION TTVSPSource}
+
+constructor TTVSPSource.Create(AOwner: TTVSPBasicSources; ASize: Cardinal; AID: TGUID);
+begin
+  Assert(AOwner <> nil);
+  inherited Create(ASize, AID);
+  FOwner:=AOwner;
+  GetMem(FContent, ASize);
+  FLock:=TMultiReadExclusiveWriteSynchronizer.Create;
+end;
+
+destructor TTVSPSource.Destroy;
+begin
+  FOwner.Deleted(Self);
+  FLock.Destroy;
+  FreeMem(FContent);
+  inherited Destroy;
+end;
+
+procedure TTVSPSource.&Set(AStart, ACount: LongWord; const Src); cdecl;
+begin
+  if (AStart >= LSize) or (ACount < 1)
+    then exit;
+  if AStart + ACount >= LSize
+    then ACount:=LSize - AStart;
+
+  FLock.Beginwrite;
+  Move(Src, (FContent + AStart)^, ACount);
+  FLock.Endwrite;
+end;
+
+procedure TTVSPSource.Get(AStart, ACount: LongWord; out Dest); cdecl;
+begin
+  if (AStart >= LSize) or (ACount < 1)
+    then exit;
+  if AStart + ACount >= LSize
+    then ACount:=LSize - AStart;
+
+  FLock.Beginread;
+  Move((FContent + AStart)^, Dest, ACount);
+  FLock.Endread;
+end;
+
+{%ENDREGION}
+{%REGION TTVSPBasicSources}
+
+constructor TTVSPBasicSources.Create;
+begin
+  inherited Create;
+  FMap:=THashMap.Create;
+  FLock:=TCriticalSection.Create;
+  FZeroSource:=MakeSource(ZEROSOURCEID.Size, ZEROSOURCEID.ID);
+  FMap.Add(FZeroSource, FZeroSource);
+end;
+
+destructor TTVSPBasicSources.Destroy;
+begin
+  //calls Deleted
+  FZeroSource.Destroy;
+  FLock.Destroy;
+  Assert(FMap.Count = 0);
+  FMap.Destroy;
+  inherited Destroy;
+end;
+
+procedure TTVSPBasicSources.Deleted(ASource: TTVSPSource);
+begin
+  FLock.Enter;
+  FMap.Remove(ASource);
+  FLock.Leave;
+end;
+
+function TTVSPBasicSources.GetItem(ASize: Cardinal; AID: TGUID): TTVSPSource;
+var
+  AKey: TTVSPSourceKey;
+  AObj: TObject;
+begin
+  AKey:=TTVSPSourceKey.Create(ASize, AID);
+
+  FLock.Enter;
+  AObj:=FMap[AKey];
+  if AObj = nil then begin
+    Result:=MakeSource(ASize, AID);
+    FMap.Add(Result, Result);
+  end else Result:=TTVSPSource(AObj);
+  FLock.Leave;
+
+  AKey.Destroy;
+end;
+
+function TTVSPBasicSources.GetItemOrNil(ASize: Cardinal; AID: TGUID): TTVSPSource;
+var
+  AKey: TTVSPSourceKey;
+  AObj: TObject;
+begin
+  AKey:=TTVSPSourceKey.Create(ASize, AID);
+
+  FLock.Enter;
+  AObj:=FMap[AKey];
+  FLock.Leave;
+
+  AKey.Destroy;
+  Result:=AObj as TTVSPSource;
+end;
+
+function TTVSPBasicSources.MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource;
+begin
+  Result:=TTVSPSource.Create(Self, ASize, AID);
+end;
+
+function TTVSPBasicSources.StartIterate: TObject;
+begin
+  FLock.Enter;
+  Result:=FMap.Enumerator;
+end;
+
+function TTVSPBasicSources.Iterate(AIterator: TObject): TTVSPSource;
+var
+  AEnumerator: TEnumerator;
+begin
+  Assert((APosition<>nil) and (APosition is TEnumerator));
+  AEnumerator:=TEnumerator(APosition);
+  if AEnumerator.MoveNext then begin
+    Result:=TTVSPBasicSource(AEnumerator.Current);
+  end else begin
+    APosition.Destroy;
+    Result:=nil;
+    FLock.Leave;
+  end;
+end;
+
+{%ENDREGION}
+
+end.
+

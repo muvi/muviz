@@ -1,0 +1,2239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="de"><head>
+<link rel="canonical" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="generator" content="vBulletin 3.8.7">
+<link rel="icon" type="image/vnd.microsoft.icon" href="http://www.delphipraxis.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" title="Delphi-PRAXiS" href="http://www.delphipraxis.net/searchprovider_delphipraxis.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="Delphi-Referenz" href="http://www.delphipraxis.net/searchprovider_delphireference.xml">
+
+<meta name="keywords" content="Multitouch,Anwendung,unter,Delphi,7,Delphi Multitouch Anwendung unter Delphi 7, delphi,borland,codegear,embarcadero,programmieren,softwareentwicklung">
+<meta name="description" content="Hallo zusammen... da ich mir ein Multitouch fähiges Tablet gekönnt habe, will ich natürlich auch gerne diese schöne Eigenschaft ausnutzen. Und das">
+
+<!-- CSS Stylesheet -->
+<style type="text/css" id="vbulletin_css">
+/**
+* vBulletin 3.8.7 CSS
+* Style: 'Elise'; Style ID: 2
+*/
+@import url("clientscript/vbulletin_css/style-aa41fd0d-00002.css");
+</style>
+<link rel="stylesheet" type="text/css" href="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/vbulletin_important.css">
+
+
+
+<!-- / CSS Stylesheet -->
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/connection-min.js"></script>
+<script type="text/javascript">
+<!--
+var SESSIONURL = "";
+var SECURITYTOKEN = "guest";
+var IMGDIR_MISC = "styles/elise/misc";
+var vb_disable_ajax = parseInt("0", 10);
+// -->
+</script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/vbulletin_global-3.js"></script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/vbulletin_menu-3.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="Delphi-PRAXiS RSS Feed" href="http://www.delphipraxis.net/external.php?type=RSS2">
+
+<link rel="alternate" type="application/rss+xml" title="Delphi-PRAXiS - Neuen Beitrag zur Code-Library hinzufügen - RSS Feed" href="http://www.delphipraxis.net/external.php?type=RSS2&amp;forumids=33">
+
+
+<title>Delphi Multitouch Anwendung unter Delphi 7 - Delphi-PRAXiS</title>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/vbulletin_post_loader.js"></script>
+<style type="text/css" id="vbulletin_showthread_css">
+<!--
+
+#links div { white-space: nowrap; }
+#links img { vertical-align: middle; }
+-->
+</style>
+</head>
+<body onload="">
+<!-- logo -->
+<a name="top"></a>
+<table style="table-layout_fixed; width:100%; height:150px; margin-bottom:5px;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td style="width:400px;" align="left">
+<a href="http://www.delphipraxis.net/dp_portal.php" id="dp-homelink" title="">&nbsp;</a>
+</td>
+<td id="header_right_cell" align="right" valign="top">
+<div style="color:#fff; float:right; margin:4px 50px 0 0;">
+<a href="http://www.delphipraxis.net/pages/agb.html" style="color:#fff;">AGB</a>
+&nbsp;·&nbsp;
+<a href="http://www.delphipraxis.net/pages/impressum.html" style="color:#fff;">Impressum</a>
+&nbsp;
+</div>
+<table id="dp_glubsch_menu" style="table-layout:fixed; position:absolute; right:160px; top:5px; margin-right:10px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr align="center" valign="top">
+<td height="80" width="50"><a href="http://www.delphipraxis.net/dp_portal.php" class="dp-glubsch-lnk"><img class="dp-glubsch-img" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/home_48x48.png" alt="" border="0"><br><span class="dp-glubsch-txt" style="display:none;">Portal</span></a></td> 
+<td height="80" width="50"><a rel="nofollow" href="http://www.delphipraxis.net/dp_recentthreads.php?timeframe=today" class="dp-glubsch-lnk"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/hot_48x48.png" class="dp-glubsch-img" alt="" border="0"></a><br><span class="dp-glubsch-txt" style="display:none;">Neues</span></td> 
+<td height="80" width="50"><a href="http://www.delphipraxis.net/pages/sitemap.html" class="dp-glubsch-lnk"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/sitemap_48x48.png" class="dp-glubsch-img" alt="" border="0"><br><span class="dp-glubsch-txt" style="display:none;">Sitemap</span></a></td> 
+<td height="80" width="50"><a href="http://www.delphipraxis.net/dp_search.php" class="dp-glubsch-lnk"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/search_48x48.png" class="dp-glubsch-img" alt="" border="0"><br><span class="dp-glubsch-txt" style="display:none;">Suche</span></a></td> 
+<td height="80" width="50"><a href="http://www.delphipraxis.net/dp_codelibrary.php" class="dp-glubsch-lnk"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/codelibrary_48x48.png" class="dp-glubsch-img" alt="" border="0"><br><span class="dp-glubsch-txt" style="display:none;">CodeLib</span></a></td> 
+</tr> 
+</tbody></table> 
+<script type="text/javascript">
+<!--
+ var hdr_search_had_focus = false;
+ function hdr_search_focus()
+ {
+ hdr_search_had_focus = true;
+ var edt_field = fetch_object( 'hdr_edt_search' );
+ if (edt_field.value == 'Suchen...')
+ {
+ edt_field.value = '';
+ edt_field.style.color = '#000';
+ }
+ var edt_hint = fetch_object('hdr_edt_hint');
+ if (edt_hint)
+ {
+ edt_hint.style.display = '';
+ }
+ }
+ function hdr_search_blur()
+ {
+ var edt_field = fetch_object( 'hdr_edt_search' );
+ if (edt_field.value == '')
+ {
+ edt_field.value = 'Suchen...';
+ edt_field.style.color = '#ccc';
+ hdr_search_had_focus = false;
+ }
+ var edt_hint = fetch_object('hdr_edt_hint');
+ if (edt_hint)
+ {
+ edt_hint.style.display = 'none';
+ }
+ }
+ function hdr_search_submit()
+ {
+ var edt_field = fetch_object( 'hdr_edt_search' );
+ if (!hdr_search_had_focus || edt_field.value == '')
+ {
+ alert( 'Bitte einen Suchbegriff angeben. Sonst ist das mit dem Suchen ein wenig schlecht...' );
+ return false;
+ }
+ return true;
+ }
+// -->
+</script>
+<br clear="all">
+<div style="position:absolute; right:50px; top:35px; white-space:nowrap;">
+<form action="http://www.delphipraxis.net/dp_search.php?do=process" method="post" onsubmit="return hdr_search_submit();">
+<input name="do" value="process" type="hidden">
+<input name="quicksearch" value="1" type="hidden">
+<input name="childforums" value="1" type="hidden">
+<input name="exactname" value="1" type="hidden">
+<input name="s" value="" type="hidden">
+<input name="securitytoken" value="guest" type="hidden">
+<input class="dpinput" id="hdr_edt_search" name="query" maxlength="40" value="Suchen..." onfocus="hdr_search_focus()" onblur="hdr_search_blur()" type="text">
+<br>
+<span id="hdr_edt_hint" class="smallfont" style="color:#fff; display:none;">ENTER: Suchanfrage absenden</span>
+</form>
+</div>
+
+</td>
+</tr>
+</tbody></table>
+<!-- /logo -->
+<div id="dpnavbar" style="margin:0px 50px 10px 50px;" align="left">
+<div style="float:right;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=login">Anmelden</a>
+
+</div>
+<div id="usercptools" style="float:right;">
+<a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?nojs=1#usercptools" accesskey="3">Nützliche Links</a>
+<script type="text/javascript"> vbmenu_register("usercptools"); </script>
+</div>
+
+
+<a href="http://www.delphipraxis.net/forum.php"> • </a>
+
+<span style="margin-left:15px;"><a href="http://www.delphipraxis.net/register.php" rel="nofollow">Registrieren</a></span>
+
+</div>
+<!-- content table -->
+<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left;">
+		<div id="dp-page" class="round-all" align="left">
+
+
+
+<!-- breadcrumb -->
+<div id="dp-breadcrumb" style="margin:10px 0px 10px 0px;">
+
+<a href="#" onclick="history.back(1); return false;"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/home.png" style="vertical-align:bottom;" alt="Zurück" border="0"></a>
+<span class="navbar">
+<a href="http://www.delphipraxis.net/forum.php" accesskey="1">Delphi-PRAXiS</a>
+</span>
+
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/arrow_right.png" style="vertical-align:bottom;" alt="" border="0"> <a href="http://www.delphipraxis.net/forum.php#code-bibliothek">Code-Bibliothek</a>
+
+
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/arrow_right.png" style="vertical-align:bottom;" alt="" border="0"> <a href="http://www.delphipraxis.net/33-neuen-beitrag-zur-code-library-hinzufuegen/">Neuen Beitrag zur Code-Library hinzufügen</a>
+
+
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/arrow_right.png" alt="" style="vertical-align:bottom;" border="0">
+<strong>
+<span class="dp-prefix" style="background-color:#FFE0B2;">Delphi</span> Multitouch Anwendung unter Delphi 7
+
+</strong>
+
+</div>
+
+
+
+
+<a name="poststop" id="poststop"></a>
+<div class="dpbox">
+<div class="dpbox-inner dpbox-container" style="margin-bottom:6px;">
+
+
+<div id="threadsearch" style="float:right; padding-left:15px; white-space:nowrap;">
+<a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?nojs=1#goto_threadsearch">Thema durchsuchen</a>
+<script type="text/javascript"> vbmenu_register("threadsearch"); </script>
+</div>
+
+
+<div id="displaymodes" style="float:right; padding-left:15px; white-space:nowrap;">
+<a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?nojs=1#goto_displaymodes">Ansicht</a>
+<script type="text/javascript"> vbmenu_register("displaymodes"); </script>
+</div>
+
+<div id="threadtools" style="float:right; padding-left:15px; white-space:nowrap;">
+<a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?nojs=1#goto_threadtools">Themen-Optionen</a>
+<script type="text/javascript"> vbmenu_register("threadtools"); </script>
+</div>
+
+<h2>Multitouch Anwendung unter Delphi 7</h2>
+<div class="dpdivider"></div>
+
+<span class="smallfont">
+Ein Thema von ich2
+
+· begonnen am 21. Nov 2010
+
+
+· letzter Beitrag vom 23. Nov 2010
+
+
+<br>
+</span>
+
+<!-- controls above postbits -->
+<table style="margin-top:25px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="bottom">
+<td align="left">
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;noquote=1&amp;time=1411324868&amp;p=1063138" class="dpbox-largebutton" rel="nofollow">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/page_add.png" alt="Antwort" class="inlineimg" align="left" border="0" hspace="5">
+Antwort
+</a>
+
+
+</td>
+
+</tr>
+</tbody></table>
+<!-- / controls above postbits -->
+
+<!-- end content table -->
+
+<!-- / end content table -->
+
+
+</div>
+<div id="posts">
+<!-- post #1063138 -->
+
+
+	<div id="edit1063138" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063138" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar15974_2.gif" alt="Benutzerbild von ich2" border="0" height="90" width="90"></a>
+
+</div>
+<div id="postmenu_1063138">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html"><strong>ich2</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063138", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit:  7. Dez 2005
+
+
+<br>Ort: Würzburg
+
+
+<br>38 Beiträge
+
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063138" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063138-post1.html" target="new" id="postcount1063138" name="1"><strong>1</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063138"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 20:46</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063138" class="messagearea">
+
+Hallo zusammen...<br>
+<br>
+da ich mir ein Multitouch fähiges Tablet gekönnt habe, will ich 
+natürlich auch gerne diese schöne Eigenschaft ausnutzen. Und das 
+natürlich gerne unter Delphi 7!<br>
+<br>
+Diese ganze Geschichte ist ja in Delphi 2010 bereits fest initialisiert,
+ aber wir schauen einfach nach den nötigen Funktionen und Definitionen 
+und holen sie uns nach Delphi 7. Eine kleine Einführung gibt bereits 
+diese Seite:<br>
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/inlink.gif" style="vertical-align:middle" alt="" align="middle" border="0" height="10" hspace="3" width="10"><a href="http://wiki.helpmvp.com/home/notes/touch" target="_blank">http://wiki.helpmvp.com/home/notes/touch</a><br>
+<br>
+Ich wollte aber noch zusätzlich die Anzahl der Finger und die Positionen
+ der Finger haben, also mußte das Ganze noch mit dem WM_TOUCH -Event 
+erweitert werden...<br>
+<br>
+erstmal ein paar Definitionen:<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_code784a007b" onclick="FoldUnfold('code784a007b'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code784a007b'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code784a007b" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">const</span><br>
+&nbsp;&nbsp;WM_GESTURENOTIFY    = $011A;<br>
+&nbsp;&nbsp;WM_GESTURE          = $0119;<br>
+&nbsp;&nbsp;WM_TOUCH            = $0240;<br>
+<br>
+&nbsp;&nbsp;WM_TABLET_DEFBASE   = $02C0;<br>
+&nbsp;&nbsp;WM_TABLET_FLICK = WM_TABLET_DEFBASE + 11;<br>
+<br>
+<span class="code_k">type</span><br>
+&nbsp;&nbsp;TGestureNotifyStruct = <span class="code_k">record</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;cbSize: UINT;                    <span class="code_c">// size, in bytes, of this structure</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwFlags: DWORD;                  <span class="code_c">// unused</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;hwndTarget: HWND;                <span class="code_c">// <abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">handle</abbr> to window targeted by the gesture</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptsLocation: TSmallPoint;        <span class="code_c">// starting location</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwInstanceID: DWORD;             <span class="code_c">// internally used</span><br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;PGestureNotifyStruct = ^TGestureNotifyStruct;<br>
+<br>
+&nbsp;&nbsp;TWMGestureNotify = <span class="code_k">packed</span> <span class="code_k">record</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Msg: Cardinal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Unused: WPARAM;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NotifyStruct: PGestureNotifyStruct;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Result: Integer;<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+<br>
+&nbsp;&nbsp;HTOUCHINPUT = THandle;<br>
+<br>
+<span class="code_k">type</span><br>
+&nbsp;&nbsp;PTOUCHINPUT = ^TOUCHINPUT;<br>
+&nbsp;&nbsp;TOUCHINPUT = <span class="code_k">record</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;x: Integer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y: Integer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hSource: THandle;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwID: DWORD;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwFlags: DWORD;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwMask: DWORD;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwTime: DWORD;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dwExtraInfo: LongInt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cxContact: DWORD;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cyContact: DWORD;<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;TTouchInput = TOUCHINPUT;<br>
+<br>
+...<br>
+<br>
+&nbsp;&nbsp;TForm1 = <span class="code_k">class</span>(TForm)<br>
+&nbsp;&nbsp;<span class="code_k">protected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> WMTOUCH(<span class="code_k">var</span> Msg: TMessage); <span class="code_k">message</span> WM_TOUCH;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> WMGestureNotify(<span class="code_k">var</span> Msg: TWMGestureNotify); <span class="code_k">message</span> WM_GESTURENOTIFY;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> WMGesture(<span class="code_k">var</span> Msg: TMessage); <span class="code_k">message</span> WM_GESTURE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> WMTabletFlick(<span class="code_k">var</span> Msg: TMessage); <span class="code_k">message</span> WM_TABLET_FLICK;<br>
+&nbsp;&nbsp;<span class="code_k">private</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">{ Private declarations }</span><br>
+&nbsp;&nbsp;<span class="code_k">public</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">{ Public declarations }</span><br>
+&nbsp;&nbsp;<span class="code_k">end</span>;
+		</div>
+	</div>
+</div>...dann holen wir uns noch die nötigen Funktionen aus der User32.dll (ACHTUNG: das funktioniert nur unter Windows 7 !!)...<br>
+<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_code879c60c6" onclick="FoldUnfold('code879c60c6'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code879c60c6'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code879c60c6" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			&nbsp;&nbsp;<span class="code_k">function</span> CloseTouchInputHandle(hTouchInput: HTOUCHINPUT): BOOL; <span class="code_k">stdcall</span>;<br>
+&nbsp;&nbsp;<span class="code_k">function</span> CloseTouchInputHandle; <span class="code_k">external</span> user32 <span class="code_k">name</span> '<span class="code_q">CloseTouchInputHandle</span>';<br>
+<br>
+&nbsp;&nbsp;<span class="code_k">function</span> PhysicalToLogicalPoint(hWnd: HWND; <span class="code_k">var</span> lpPoint: TPoint): BOOL; <span class="code_k">stdcall</span>;<br>
+&nbsp;&nbsp;<span class="code_k">function</span> PhysicalToLogicalPoint; <span class="code_k">external</span> user32 <span class="code_k">name</span> '<span class="code_q">PhysicalToLogicalPoint</span>';<br>
+<br>
+&nbsp;&nbsp;<span class="code_k">function</span> GetTouchInputInfo(hTouchInput: HTOUCHINPUT; cInputs: UINT; pInputs: PTOUCHINPUT; cbSize: Integer): BOOL; <span class="code_k">stdcall</span>;<br>
+&nbsp;&nbsp;<span class="code_k">function</span> GetTouchInputInfo; <span class="code_k">external</span> user32 <span class="code_k">name</span> '<span class="code_q">GetTouchInputInfo</span>';<br>
+<br>
+&nbsp;&nbsp;<span class="code_k">function</span> RegisterTouchWindow(hwnd: HWND; ulFlags: Cardinal): BOOL; <span class="code_k">stdcall</span>;<br>
+&nbsp;&nbsp;<span class="code_k">function</span> RegisterTouchWindow; <span class="code_k">external</span> user32 <span class="code_k">name</span> '<span class="code_q">RegisterTouchWindow</span>';<br>
+<br>
+&nbsp;&nbsp;<span class="code_k">function</span> UnregisterTouchWindow(hwnd: HWND): BOOL; <span class="code_k">stdcall</span>;<br>
+&nbsp;&nbsp;<span class="code_k">function</span> UnregisterTouchWindow; <span class="code_k">external</span> user32 <span class="code_k">name</span> '<span class="code_q">UnregisterTouchWindow</span>';
+		</div>
+	</div>
+</div>...und schon kann man die Eingaben abholen...<br>
+<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_codebcd35926" onclick="FoldUnfold('codebcd35926'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_codebcd35926'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_codebcd35926" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">procedure</span> TForm1.WMGestureNotify(<span class="code_k">var</span> Msg: TWMGestureNotify);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(Form1.Handle, Msg.Msg, Msg.Unused, Longint(Msg.NotifyStruct));<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMGesture(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(Form1.Handle, Msg.Msg, Msg.WParam, Msg.LParam);<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMTabletFlick(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(Form1.Handle, Msg.Msg, Msg.WParam, Msg.LParam);<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMTOUCH(<span class="code_k">var</span> Msg: TMessage);<br>
+&nbsp;&nbsp;<span class="code_k">function</span> TouchPointToPoint(<span class="code_k">const</span> TouchPoint: TTouchInput): TPoint;<br>
+&nbsp;&nbsp;<span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Result := Point(TouchPoint.X <span class="code_k">div</span> 100, TouchPoint.Y <span class="code_k">div</span> 100);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PhysicalToLogicalPoint(Form1.Handle, Result);<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">var</span><br>
+&nbsp;&nbsp;TouchInputs: <span class="code_k">array</span> <span class="code_k">of</span> TTouchInput;<br>
+&nbsp;&nbsp;counter: Integer;<br>
+&nbsp;&nbsp;Handled: Boolean;<br>
+&nbsp;&nbsp;Point: TPoint;<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Handled := False;<br>
+&nbsp;&nbsp;SetLength(TouchInputs, Msg.WParam);<br>
+&nbsp;&nbsp;GetTouchInputInfo(Msg.LParam, Msg.WParam, @TouchInputs[0], SizeOf(TTouchInput));<br>
+<br>
+&nbsp;&nbsp;<span class="code_k">try</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">for</span> counter := 1 <span class="code_k">to</span> Length (TouchInputs) <span class="code_k">do</span> <span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point := TouchPointToPoint(TouchInputs [counter-1]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">// ...</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Handled := True;<br>
+&nbsp;&nbsp;<span class="code_k">finally</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">if</span> Handled <span class="code_k">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CloseTouchInputHandle(Msg.LParam)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">else</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">inherited</span>;<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div>...mit dem obigen Code bekommen wir noch keine Fingereingaben...wir müssen noch das Fenster-<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr> registrieren... <br>
+<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code39351a8e'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code39351a8e" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">procedure</span> TForm1.FormCreate(Sender: TObject);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;RegisterTouchWindow ( Form1.Handle, 0 );<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.FormClose(Sender: TObject; <span class="code_k">var</span> Action: TCloseAction);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;UnRegisterTouchWindow ( Form1.Handle );<br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div>...und schon funktioniert es...<br>
+<br>
+viel Spaß beim Spielen
+</div>
+<!-- / message -->
+
+
+
+
+<!-- sig -->
+<div style="border-top:solid 1px #DDDDDD; margin-top:5px; padding-top:5px;">
+Wissen ist Macht. Das ändert aber so gut wie nichts an der Übermacht der Dummheit.
+</div>
+<!-- / sig -->
+
+
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063138&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063138 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063138_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">ich2</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://www.nanossinddiebesserenphysiker.de/">Besuche die Homepage von ich2!</a></td></tr>
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=15974" rel="nofollow">Mehr Beiträge von ich2 finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063138 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063138 --><!-- post #1063142 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063142" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063142" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/42324-sx2008.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar42324_1.gif" alt="Benutzerbild von sx2008" border="0" height="80" width="80"></a>
+
+</div>
+<div id="postmenu_1063142">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/42324-sx2008.html"><strong>sx2008</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063142", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit: 15. Feb 2008
+
+
+<br>Ort: Baden-Württemberg
+
+
+<br>2.288 Beiträge
+
+
+<br>&nbsp;<br>Delphi 2007 Professional
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063142" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063142-post2.html" target="new" id="postcount1063142" name="2"><strong>2</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063142"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 20:57</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063142" class="messagearea">
+
+Schön, aber du hast noch einen heftigen Bug in deinem Code:<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code0c5650d8'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code0c5650d8" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">procedure</span> TForm1.WMGestureNotify(<span class="code_k">var</span> Msg: TWMGestureNotify);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(Form1.Handle, Msg.Msg, Msg.Unused, Longint(Msg.NotifyStruct));<br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div>Was würde wohl passieren, wenn von der Formular-Klasse TForm1 mehrere Objekte (also Formulare) erzeugt werden?
+</div>
+<!-- / message -->
+
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063142&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063142 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063142_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">sx2008</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/42324-sx2008.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=42324" rel="nofollow">Mehr Beiträge von sx2008 finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063142 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063142 --><!-- post #1063149 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063149" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063149" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/35651-rollstuhlfahrer.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar35651_4.gif" alt="Benutzerbild von rollstuhlfahrer" border="0" height="80" width="80"></a>
+
+</div>
+<div id="postmenu_1063149">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/35651-rollstuhlfahrer.html"><strong>rollstuhlfahrer</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063149", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit:  1. Aug 2007
+
+
+<br>Ort: Ludwigshafen am Rhein
+
+
+<br>1.527 Beiträge
+
+
+<br>&nbsp;<br>Delphi 7 Professional
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063149" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063149-post3.html" target="new" id="postcount1063149" name="3"><strong>3</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063149"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 21:33</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063149" class="messagearea">
+
+Ums kurz zu machen: Da muss Self.Handle rein.<br>
+<br>
+Bernhard<br>
+<br>
+PS: Grund: Wenn du mehr als 1 Form hast, dann wird bei allen außer der ersten das falsche <abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>
+ genommen, nämlich das der ersten. Wenn du jetzt allerdings alle Forms 
+auf die Variable Form1 erzeugst, dann hast du für alle außer der neusten
+ Form den Fehler.
+</div>
+<!-- / message -->
+
+
+
+
+<!-- sig -->
+<div style="border-top:solid 1px #DDDDDD; margin-top:5px; padding-top:5px;">
+Bernhard<br>Iliacos intra muros peccatur et extra!
+</div>
+<!-- / sig -->
+
+
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063149&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063149 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063149_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">rollstuhlfahrer</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/35651-rollstuhlfahrer.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=35651" rel="nofollow">Mehr Beiträge von rollstuhlfahrer finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063149 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063149 --><!-- post #1063150 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063150" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+<table id="post1063150" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="alt2 round-all" id="td_post_1063150" align="center">
+
+<div class="smallfont dpshade" style="float:left;">21. Nov 2010, 21:36</div>
+<span id="post_message_1063150" style="margin:0px 15px 0px 15px;">Dieses Thema wurde am "21. Nov 2010, 22:36 Uhr" von "Matze" aus dem Forum "<i>Programmieren allgemein</i>" in das Forum "<i>Neuen Beitrag zur Code-Library hinzufügen</i>" verschoben.</span><a name="post1063150"></a>
+</td>
+</tr>
+</tbody></table>
+
+	</div>
+
+<!-- / post #1063150 --><!-- post #1063155 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063155" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063155" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar3057_2.gif" alt="Benutzerbild von himitsu" border="0" height="90" width="90"></a>
+
+</div>
+<div id="postmenu_1063155">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html"><strong>himitsu</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063155", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit: 11. Okt 2003
+
+
+<br>Ort: Elbflorenz
+
+
+<br>27.747 Beiträge
+
+
+<br>&nbsp;<br>Delphi XE3 Professional
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063155" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063155-post5.html" target="new" id="postcount1063155" name="5"><strong>5</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063155"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 21:53</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063155" class="messagearea">
+
+Hab mal ein bissl am Exceptionhandling rumgespielt. <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/azzangel.gif" alt="" title="Angel" class="inlineimg" border="0"><br>
+TouchPointToPoint wird in den Private-Abschnitt der TForm1 verschoben.<br>
+Und die angesprochenen Form1 entfernt.<br>
+<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_code41c72bd5" onclick="FoldUnfold('code41c72bd5'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code41c72bd5'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code41c72bd5" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">procedure</span> TForm1.WMGestureNotify(<span class="code_k">var</span> Msg: TWMGestureNotify);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.Unused, Longint(Msg.NotifyStruct));<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMGesture(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.WParam, Msg.LParam);<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMTabletFlick(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.WParam, Msg.LParam);<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">function</span> TForm1.TouchPointToPoint(<span class="code_k">const</span> TouchPoint: TTouchInput): TPoint;<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;Result := Point(TouchPoint.X <span class="code_k">div</span> 100, TouchPoint.Y <span class="code_k">div</span> 100);<br>
+&nbsp;&nbsp;PhysicalToLogicalPoint(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Result);<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.WMTouch(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">var</span><br>
+&nbsp;&nbsp;TouchInputs: <span class="code_k">array</span> <span class="code_k">of</span> TTouchInput;<br>
+&nbsp;&nbsp;counter: Integer;<br>
+&nbsp;&nbsp;Point: TPoint;<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;SetLength(TouchInputs, Msg.WParam);<br>
+&nbsp;&nbsp;GetTouchInputInfo(Msg.LParam, Msg.WParam, @TouchInputs[0], SizeOf(TTouchInput));<br>
+&nbsp;&nbsp;<span class="code_k">try</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">for</span> counter := 0 <span class="code_k">to</span> High(TouchInputs) <span class="code_k">do</span> <span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point := TouchPointToPoint(TouchInputs[counter]);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">// ...</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;<span class="code_k">finally</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;CloseTouchInputHandle(Msg.LParam);<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;<span class="code_k">inherited</span>;<br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div><br>
+Tipp: Verschiebe einfach mal diese globale Variable aus deiner <abbr title="Sammlung mehrerer Routinen und Klassen in einer Pascal-Datei.">Unit</abbr> in die <abbr title="Delphi-Projekt (Datei)">DPR</abbr>. <br>
+Bzw. lösch diese aus deinen <abbr title="Sammlung mehrerer Routinen und Klassen in einer Pascal-Datei.">Unit</abbr> und erstelle eine <span class="sourcecode" style="border-bottom:solid 1px #ccc; border-left:4px solid #CCC; padding-left:8px; padding-right:8px; background-color:#F5F5F5;">Dummy: TForm;</span>
+
+
+     in deiner <abbr title="Delphi-Projekt (Datei)">DPR</abbr> und benenne alle Form-Variablen in diese um.<br>
+<br>
+Wenn danach dein Programm noch funktioniert, dann hast du es richtig gemacht. <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/stupid.gif" alt="" title="Stupid" class="inlineimg" border="0"><br>
+<br>
+<br>
+Diese Globale ist einfach nur was Schreckliches und gehört abgeschafft.
+</div>
+<!-- / message -->
+
+
+
+
+<!-- sig -->
+<div style="border-top:solid 1px #DDDDDD; margin-top:5px; padding-top:5px;">
+Garbage Collector ... Delphianer erzeugen keinen Müll, also brauchen sie auch keinen Müllsucher. <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/icon_rolleyes.gif" alt="" title="Rolling Eyes" class="inlineimg" border="0"><br>
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dprules_summer_2.gif" alt="" title="The Delphi-PRAXiS Rules" class="inlineimg" border="0"> <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/inlink.gif" style="vertical-align:middle" alt="" align="middle" border="0" height="10" hspace="3" width="10"><a href="http://geheimniswelten.de/sonstiges/delphi-tage/" target="_blank">Delphi-Tage 2005-2014</a>
+</div>
+<!-- / sig -->
+
+
+
+<!-- edit note -->
+<div class="smallfont" style="float:left;">
+<hr style="color:; background-color:" size="1">
+<em>
+
+Geändert von himitsu (21. Nov 2010 um <span class="time">22:01</span> Uhr)
+
+
+</em>
+</div>
+<!-- / edit note -->
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063155&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063155 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063155_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">himitsu</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://tiny.cc/himitsu">Besuche die Homepage von himitsu!</a></td></tr>
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=3057" rel="nofollow">Mehr Beiträge von himitsu finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063155 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063155 --><!-- post #1063158 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063158" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063158" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar15974_2.gif" alt="Benutzerbild von ich2" border="0" height="90" width="90"></a>
+
+</div>
+<div id="postmenu_1063158">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html"><strong>ich2</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063158", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit:  7. Dez 2005
+
+
+<br>Ort: Würzburg
+
+
+<br>38 Beiträge
+
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063158" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063158-post6.html" target="new" id="postcount1063158" name="6"><strong>6</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063158"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 21:59</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063158" class="messagearea">
+
+Danke für die schnelle Antworten und die Tips...<br>
+<br>
+werde sie in meinen Projekten berücksichtigen...
+</div>
+<!-- / message -->
+
+
+
+
+<!-- sig -->
+<div style="border-top:solid 1px #DDDDDD; margin-top:5px; padding-top:5px;">
+Wissen ist Macht. Das ändert aber so gut wie nichts an der Übermacht der Dummheit.
+</div>
+<!-- / sig -->
+
+
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063158&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063158 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063158_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">ich2</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/15974-ich2.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://www.nanossinddiebesserenphysiker.de/">Besuche die Homepage von ich2!</a></td></tr>
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=15974" rel="nofollow">Mehr Beiträge von ich2 finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063158 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063158 --><!-- post #1063159 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063159" style="margin-bottom:6px;" align="left">
+	<!-- this is not the last post shown on the page -->
+
+
+<table id="post1063159" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/avatar3057_2.gif" alt="Benutzerbild von himitsu" border="0" height="90" width="90"></a>
+
+</div>
+<div id="postmenu_1063159">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html"><strong>himitsu</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063159", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit: 11. Okt 2003
+
+
+<br>Ort: Elbflorenz
+
+
+<br>27.747 Beiträge
+
+
+<br>&nbsp;<br>Delphi XE3 Professional
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063159" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063159-post7.html" target="new" id="postcount1063159" name="7"><strong>7</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063159"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">21. Nov 2010, 22:06</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063159" class="messagearea">
+
+oder eventuell auch so<br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_code669d9b28" onclick="FoldUnfold('code669d9b28'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_code669d9b28'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_code669d9b28" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">procedure</span> TForm1.WMTOUCH(<span class="code_k">var</span> Msg: TMessage);<br>
+<span class="code_k">var</span><br>
+&nbsp;&nbsp;TouchInputs: <span class="code_k">array</span> <span class="code_k">of</span> TTouchInput;<br>
+&nbsp;&nbsp;TouchPoints: <span class="code_k">array</span> <span class="code_k">of</span> TPoint;<br>
+&nbsp;&nbsp;counter: Integer;<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;SetLength(TouchInputs, Msg.WParam);<br>
+&nbsp;&nbsp;SetLength(TouchPoints, Msg.WParam);<br>
+&nbsp;&nbsp;GetTouchInputInfo(Msg.LParam, Msg.WParam, @TouchInputs[0], SizeOf(TTouchInput));<br>
+&nbsp;&nbsp;CloseTouchInputHandle(Msg.LParam);<br>
+&nbsp;&nbsp;<span class="code_k">for</span> counter := 0 <span class="code_k">to</span> High(TouchInputs) <span class="code_k">do</span><br>
+&nbsp;&nbsp;<span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;TouchPoints[counter] := Point(TouchInputs[counter].X <span class="code_k">div</span> 100, TouchInputs[counter].Y <span class="code_k">div</span> 100);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PhysicalToLogicalPoint(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, TouchPoints[counter]);<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+<br>
+<br>
+&nbsp;&nbsp;<span class="code_c">// ...</span><br>
+&nbsp;&nbsp;<span class="code_k">for</span> counter := 0 <span class="code_k">to</span> High(TouchPoints) <span class="code_k">do</span> <span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">// TouchPoints[counter]</span><br>
+<br>
+&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;<span class="code_c">// ...</span><br>
+<br>
+&nbsp;&nbsp;<span class="code_k">inherited</span>;<br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div><br>
+und alles zusammen, aber dennoch getrennt <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/icon_redface.gif" alt="" title="Embarassed" class="inlineimg" border="0"><br>
+<div style="text-align:left; margin-top:15px;">
+	<div class="smallfont" style="float:right;">
+		
+			<a href="#" id="link_codefe153e0e" onclick="FoldUnfold('codefe153e0e'); return false;">zusammenfalten</a> ·
+		
+		<a href="#" onclick="SelectCodeElement('codeblock_codefe153e0e'); return false;">markieren</a>
+	</div>
+	<strong>Delphi-Quellcode:</strong>
+	<div class="dpbox-code">
+		<div id="codeblock_codefe153e0e" class="sourcecode" style="text-align:left; white-space:normal; overflow-x:auto; overflow-y:auto; overflow:auto; width:100%; border-left:4px solid #CCC; padding-left:3px;">
+			<span class="code_k">type</span><br>
+&nbsp;&nbsp;TForm1 = <span class="code_k">class</span>(TForm)<br>
+&nbsp;&nbsp;<span class="code_k">protected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> WndProc(<span class="code_k">var</span> <span class="code_k">Message</span>: TMessage); <span class="code_k">override</span>;<br>
+&nbsp;&nbsp;<span class="code_k">private</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">{ Private declarations }</span><br>
+&nbsp;&nbsp;<span class="code_k">public</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_c">{ Public declarations }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">procedure</span> OnTouchPoints(<span class="code_k">const</span> TouchPoints: TTouchPoints); <br>
+&nbsp;&nbsp;<span class="code_k">end</span>; <br>
+<br>
+<span class="code_k">procedure</span> TForm1.WndProc(<span class="code_k">var</span> <span class="code_k">Message</span>: TMessage); <br>
+<span class="code_k">var</span><br>
+&nbsp;&nbsp;TouchInputs: <span class="code_k">array</span> <span class="code_k">of</span> TTouchInput;<br>
+&nbsp;&nbsp;TouchPoints: <span class="code_k">array</span> <span class="code_k">of</span> TPoint;<br>
+&nbsp;&nbsp;counter: Integer;<br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;<span class="code_k">if</span> <span class="code_k">Message</span>.msg = WM_GESTURENOTIFY <span class="code_k">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.Unused, Longint(Msg.NotifyStruct))<br>
+&nbsp;&nbsp;<span class="code_k">else</span><br>
+&nbsp;&nbsp;<span class="code_k">if</span> <span class="code_k">Message</span>.msg = WM_GESTURE <span class="code_k">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.WParam, Msg.LParam)<br>
+&nbsp;&nbsp;<span class="code_k">else</span><br>
+&nbsp;&nbsp;<span class="code_k">if</span> <span class="code_k">Message</span>.msg = WM_TABLET_FLICK <span class="code_k">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Msg.Result := DefWindowProc(Form1.Handle, Msg.Msg, Msg.WParam, Msg.LParam)<br>
+&nbsp;&nbsp;<span class="code_k">else</span><br>
+&nbsp;&nbsp;<span class="code_k">if</span> <span class="code_k">Message</span>.msg = WM_TOUCH <span class="code_k">then</span><br>
+&nbsp;&nbsp;<span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;SetLength(TouchInputs, Msg.WParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SetLength(TouchPoints, Msg.WParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;GetTouchInputInfo(Msg.LParam, Msg.WParam, @TouchInputs[0], SizeOf(TTouchInput));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;CloseTouchInputHandle(Msg.LParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">for</span> counter := 0 <span class="code_k">to</span> High(TouchInputs) <span class="code_k">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TouchPoints[counter] := Point(TouchInputs[counter].X <span class="code_k">div</span> 100, TouchInputs[counter].Y <span class="code_k">div</span> 100);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalToLogicalPoint(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, TouchPoints[counter]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">end</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OnTouchPoints(TouchPoints);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">inherited</span>;<br>
+&nbsp;&nbsp;<span class="code_k">end</span> <span class="code_k">else</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_k">inherited</span>;<br>
+<span class="code_k">end</span>;<br>
+<br>
+<span class="code_k">procedure</span> TForm1.OnTouchPoints(<span class="code_k">const</span> TouchPoints: TTouchPoints); <br>
+<span class="code_k">begin</span><br>
+&nbsp;&nbsp;<span class="code_c">// ...</span><br>
+<span class="code_k">end</span>;
+		</div>
+	</div>
+</div>
+</div>
+<!-- / message -->
+
+
+
+
+<!-- sig -->
+<div style="border-top:solid 1px #DDDDDD; margin-top:5px; padding-top:5px;">
+Garbage Collector ... Delphianer erzeugen keinen Müll, also brauchen sie auch keinen Müllsucher. <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/icon_rolleyes.gif" alt="" title="Rolling Eyes" class="inlineimg" border="0"><br>
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dprules_summer_2.gif" alt="" title="The Delphi-PRAXiS Rules" class="inlineimg" border="0"> <img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/inlink.gif" style="vertical-align:middle" alt="" align="middle" border="0" height="10" hspace="3" width="10"><a href="http://geheimniswelten.de/sonstiges/delphi-tage/" target="_blank">Delphi-Tage 2005-2014</a>
+</div>
+<!-- / sig -->
+
+
+
+<!-- edit note -->
+<div class="smallfont" style="float:left;">
+<hr style="color:; background-color:" size="1">
+<em>
+
+Geändert von himitsu (21. Nov 2010 um <span class="time">22:15</span> Uhr)
+
+
+</em>
+</div>
+<!-- / edit note -->
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063159&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063159 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063159_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">himitsu</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/3057-himitsu.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://tiny.cc/himitsu">Besuche die Homepage von himitsu!</a></td></tr>
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=3057" rel="nofollow">Mehr Beiträge von himitsu finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063159 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063159 --><!-- post #1063455 -->
+
+	<!-- this is not the first post shown on the page -->
+
+
+	<div id="edit1063455" style="margin-bottom:6px;" align="left">
+	
+
+
+<table id="post1063455" align="center" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="alt2 round-topleft" align="center" width="150">
+
+<div style="margin-top:20px;">
+
+</div>
+<div id="postmenu_1063455">
+
+<a rel="nofollow" href="http://www.delphipraxis.net/members/1155-greenmile.html"><strong>greenmile</strong></a>
+<script type="text/javascript"> vbmenu_register("postmenu_1063455", true); </script>
+
+</div>
+
+
+	<!-- offline -->
+
+
+
+<div class="smallfont dpshade">
+
+<br>Registriert seit: 17. Apr 2003
+
+
+
+<br>739 Beiträge
+
+
+<br>&nbsp;<br>Delphi XE6 Professional
+
+</div>
+
+
+
+
+<!-- / status icon and date -->
+<div class="smallfont">
+&nbsp;<br>
+
+
+
+
+
+
+</div>
+</td>
+<td class="alt2 round-topright" style="padding-top:8px;" id="td_post_1063455" align="left">
+
+<div style="float:right; text-align:right; margin-right:5px;">
+
+
+
+
+#<a href="http://www.delphipraxis.net/1063455-post8.html" target="new" id="postcount1063455" name="8"><strong>8</strong></a>
+
+
+
+</div>
+
+<div style="line-height:90%;">
+<h3>AW: Multitouch Anwendung unter Delphi 7</h3>
+&nbsp; <a name="post1063455"><img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/post_old.png" class="inlineimg" alt="Alt" border="0"></a>
+
+<span class="smallfont dpshade">23. Nov 2010, 09:38</span>
+
+</div>
+
+<!-- message -->
+<div id="post_message_1063455" class="messagearea">
+
+Hallo,<br>
+<br>
+ich denke da fehlt noch etwas ganz wichtiges. Nachdem Windows 
+"WMGestureNotify" gesendet hat, muss man mittels "SetGestureConfig" 
+definieren, welche Gesturen man gerne bekommen möchte (im Zweifelsfall 
+GC_ALLGESTURES):<br>
+<br>
+  TGestureStruct = packed record<br>
+    dwID: DWord;    // gesture ID<br>
+    dwWant: Dword;  // settings related to gesture ID that are to be turned on<br>
+    dwBlock: DWord; // settings related to gesture ID that are to be turned off<br>
+  End;<br>
+  PGestureStruct = ^TGestureStruct;<br>
+<br>
+<br>
+procedure TForm1.WMGestureNotify(var Msg: TWMGestureNotify);<br>
+  var GC<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/icon_razz.gif" alt="" title="Razz" class="inlineimg" border="0">GestureStruct;<br>
+begin<br>
+  GC.dwID := Msg.NotifyStruct.dwInstanceID;<br>
+  GC.dwWant := 1; // GC_ALLGESTURES;<br>
+  SetGestureConfig(Msg.NotifyStruct.hwndTarget, 0, 3, @gc, SizeOf(TGestureStruct));<br>
+<br>
+  Msg.Result := DefWindowProc(<abbr title="Ein Integer/Cardinal Wert, welcher ein Fenster, Dateien, Pipes, etc. innerhalb der aktuellen Windows">Handle</abbr>, Msg.Msg, Msg.Unused, Longint(Msg.NotifyStruct));<br>
+end;<br>
+<br>
+Anschließend sollte WMGesture ankommen. Klappt bei mir allerdings nicht, ich denke ich habe nen Fehler im Struct.
+</div>
+<!-- / message -->
+
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td class="alt2 round-bottomleft" style="background-color:#EDF1F4;">
+&nbsp;
+</td>
+<td class="alt2 round-bottomright" style="background-color:#EDF1F4; padding:2px 6px 2px 0px;" align="right">
+<!-- controls -->
+<div style="float:left;">
+<a href="#" onclick="return click_n_search(this, 'google');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_google2.png" alt="Bei Google nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'wikipedia');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_wikipedia2.png" alt="Bei Wikipedia nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+<a href="#" onclick="return click_n_search(this, 'vbulletin');" target="_blank" class="dpbox-smallbutton" style="float:left; padding-left:4px;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_cns_dp2.png" alt="Im Forum nach dem markiertem Wort suchen" border="0" height="16" width="25">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;p=1063455&amp;time=1411324868" title="Mit Zitat antworten" rel="nofollow" class="dpbox-smallbutton" style="float:right;">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/bullet_quote.png" class="inlineimg" alt="Mit Zitat antworten" align="left" border="0" height="16" hspace="2" width="16">
+Zitat
+</a>
+
+
+
+
+<!-- / controls -->
+</td>
+</tr>
+</tbody></table>
+
+ 
+<!-- post 1063455 popup menu -->
+<div class="vbmenu_popup" id="postmenu_1063455_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">greenmile</td>
+</tr>
+
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/members/1155-greenmile.html">Öffentliches Profil ansehen</a></td></tr>
+
+
+
+
+
+
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php?do=finduser&amp;u=1155" rel="nofollow">Mehr Beiträge von greenmile finden</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / post 1063455 popup menu -->
+
+
+	</div>
+
+<!-- / post #1063455 -->
+<div id="lastpost"></div>
+</div>
+<div class="dpbox-inner dpbox-container">
+<!-- start content table -->
+
+<!-- / start content table -->
+<!-- controls below postbits -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td align="left">
+
+
+<a href="http://www.delphipraxis.net/newreply.php?do=newreply&amp;noquote=1&amp;p=1063455&amp;time=1411324868" class="dpbox-largebutton" rel="nofollow">
+<img src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/page_add.png" alt="Antwort" class="inlineimg" align="left" border="0" hspace="5">
+Antwort
+</a>
+
+
+</td>
+
+</tr>
+</tbody></table>
+<!-- / controls below postbits -->
+
+
+
+<!-- next / previous links -->
+<br>
+<div class="smallfont" align="center">
+<strong>«</strong>
+<a href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a-prev-thread.html" rel="nofollow">Vorheriges Thema</a>
+|
+<a href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a-next-thread.html" rel="nofollow">Nächstes Thema</a>
+<strong>»</strong>
+</div>
+<!-- / next / previous links -->
+
+
+
+
+<!-- lightbox scripts -->
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/vbulletin_lightbox.js"></script>
+<script type="text/javascript">
+<!--
+vBulletin.register_control("vB_Lightbox_Container", "posts", 1);
+//-->
+</script>
+<!-- / lightbox scripts -->
+
+
+
+
+</div> <!-- closing dpbox-containers -->
+</div>
+
+<!-- popup menu contents -->
+<br>
+<!-- thread tools menu -->
+<div class="vbmenu_popup" id="threadtools_menu" style="display:none">
+<form action="http://www.delphipraxis.net/postings.php?t=156146&amp;pollid=" method="post" name="threadadminform">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">Themen-Optionen<a name="goto_threadtools"></a></td>
+</tr>
+<tr>
+<td class="vbmenu_option"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/printer.gif" alt="Druckbare Version zeigen"> <a href="http://www.delphipraxis.net/printthread.php?t=156146" accesskey="3" rel="nofollow">Druckbare Version zeigen</a></td>
+</tr>
+
+
+
+
+</tbody></table>
+</form>
+</div>
+<!-- / thread tools menu -->
+
+<!-- **************************************************** -->
+<!-- thread display mode menu -->
+<div class="vbmenu_popup" id="displaymodes_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">Ansicht<a name="goto_displaymodes"></a></td>
+</tr>
+<tr>
+
+<td class="vbmenu_option" title="nohilite"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/mode_linear.gif" alt="Linear-Darstellung"> <strong>Linear-Darstellung</strong></td>
+
+</tr>
+<tr>
+
+<td class="vbmenu_option"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/mode_hybrid.gif" alt="Hybrid-Darstellung"> <a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?mode=hybrid">Zur Hybrid-Darstellung wechseln</a></td>
+
+</tr>
+<tr>
+
+<td class="vbmenu_option"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/mode_threaded.gif" alt="Baum-Darstellung"> <a rel="nofollow" href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html?mode=threaded#post1063138">Zur Baum-Darstellung wechseln</a></td>
+
+</tr>
+</tbody></table>
+</div>
+<!-- / thread display mode menu -->
+
+<!-- **************************************************** -->
+
+<!-- thread search menu -->
+<div class="vbmenu_popup" id="threadsearch_menu" style="display:none">
+<form action="http://www.delphipraxis.net/dp_search.php?do=process&amp;searchthreadid=156146" method="post">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">Thema durchsuchen<a name="goto_threadsearch"></a></td>
+</tr>
+<tr>
+<td class="vbmenu_option" title="nohilite">
+<input name="s" value="" type="hidden">
+<input name="securitytoken" value="guest" type="hidden">
+<input name="do" value="process" type="hidden">
+<input name="searchthreadid" value="156146" type="hidden">
+<input class="dpinput" name="query" size="25" type="text"><input class="button" value="Los" type="submit"><br>
+</td>
+</tr>
+<tr>
+<td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/dp_search.php?searchthreadid=156146">Erweiterte Suche</a></td>
+</tr>
+</tbody></table>
+</form>
+</div>
+<!-- / thread search menu -->
+
+<!-- **************************************************** -->
+
+<!-- / popup menu contents -->
+
+<!-- forum rules and admin links -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="bottom">
+<td valign="top" width="100%">
+<div class="dpbox" style="width:240px;">
+
+	<div style="float:right;">
+		<a href="#top" onclick="return toggle_collapse('forumrules')">
+			<img id="collapseimg_forumrules" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/collapse_thead.gif" alt="" border="0">
+		</a>
+	</div>
+
+	<h3>Forumregeln</h3>
+	<div class="dpbox-inner dpbox-container" id="collapseobj_forumrules" style="">
+
+	<div class="smallfont">
+		
+		<div>Es ist dir <strong>nicht erlaubt</strong>, neue Themen zu verfassen.</div>
+		<div>Es ist dir <strong>nicht erlaubt</strong>, auf Beiträge zu antworten.</div>
+		<div>Es ist dir <strong>nicht erlaubt</strong>, Anhänge hochzuladen.</div>
+		<div>Es ist dir <strong>nicht erlaubt</strong>, deine Beiträge zu bearbeiten.</div>
+		<hr>
+		
+		<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=bbcode" target="_blank">BB-Code</a> ist <strong>an</strong>.</div>
+		<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=showsmilies" target="_blank">Smileys</a> sind <strong>an</strong>.</div>
+		<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=bbcode#imgcode" target="_blank">[IMG]</a> Code ist <strong>an</strong>.</div>
+		<div>HTML-Code ist <strong>aus</strong>.</div><div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=linkbacks#trackbacks" target="_blank">Trackbacks</a> are <strong>an</strong></div>
+<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=linkbacks#pingbacks" target="_blank">Pingbacks</a> are <strong>an</strong></div>
+<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=linkbacks#refbacks" target="_blank">Refbacks</a> are <strong>aus</strong></div>
+		<hr>
+		<div><a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=showrules" target="_blank">Foren-Regeln</a></div>
+	</div>
+
+	</div>
+</div>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+
+<tbody><tr>
+<td>
+<div class="smallfont" style="text-align:left; white-space:nowrap">
+	<form action="http://www.delphipraxis.net/forumdisplay.php" method="get">
+	<input name="s" value="" type="hidden">
+	<input name="daysprune" value="" type="hidden">
+	<strong>Gehe zu:</strong><br>
+	<select name="f" onchange="this.form.submit();">
+		<optgroup label="Bereiche">
+			<option selected="selected" value="cp">Benutzerkontrollzentrum</option>
+			<option value="pm">Private Nachrichten</option>
+			<option value="subs">Abonnements</option>
+			<option value="wol">Wer ist online</option>
+			<option value="search">Foren durchsuchen</option>
+			<option value="home">Forum-Startseite</option>
+		</optgroup>
+		
+		<optgroup label="Foren">
+		<option value="4" class="fjdpth0"> Programmierung allgemein</option>
+<option value="78" class="fjdpth1">&nbsp; &nbsp;  Algorithmen, Datenstrukturen und Klassendesign</option>
+<option value="17" class="fjdpth1">&nbsp; &nbsp;  Win32/Win64 API (native code)</option>
+<option value="79" class="fjdpth1">&nbsp; &nbsp;  .NET-Framework (managed code)</option>
+<option value="15" class="fjdpth1">&nbsp; &nbsp;  Datenbanken</option>
+<option value="14" class="fjdpth1">&nbsp; &nbsp;  Netzwerke</option>
+<option value="16" class="fjdpth1">&nbsp; &nbsp;  Multimedia</option>
+<option value="18" class="fjdpth1">&nbsp; &nbsp;  GUI-Design mit VCL / FireMonkey / Common Controls</option>
+<option value="91" class="fjdpth1">&nbsp; &nbsp;  Cross-Platform-Entwicklung</option>
+<option value="40" class="fjdpth1">&nbsp; &nbsp;  Programmieren allgemein</option>
+<option value="46" class="fjdpth2">&nbsp; &nbsp; &nbsp; &nbsp;  XML</option>
+<option value="80" class="fjdpth0"> Sprachen und Entwicklungsumgebungen</option>
+<option value="32" class="fjdpth1">&nbsp; &nbsp;  Object-Pascal / Delphi-Language</option>
+<option value="62" class="fjdpth1">&nbsp; &nbsp;  Die Delphi-IDE</option>
+<option value="19" class="fjdpth1">&nbsp; &nbsp;  Sonstige Fragen zu Delphi</option>
+<option value="74" class="fjdpth1">&nbsp; &nbsp;  FreePascal</option>
+<option value="81" class="fjdpth1">&nbsp; &nbsp;  Lazarus (IDE)</option>
+<option value="82" class="fjdpth1">&nbsp; &nbsp;  .NET-Sprachen</option>
+<option value="63" class="fjdpth1">&nbsp; &nbsp;  Sonstige Werkzeuge</option>
+<option value="84" class="fjdpth0"> Softwareentwicklung im Allgemeinen</option>
+<option value="85" class="fjdpth1">&nbsp; &nbsp;  Projektplanung und -Management</option>
+<option value="86" class="fjdpth1">&nbsp; &nbsp;  Softwaretests und Qualitätssicherung</option>
+<option value="87" class="fjdpth1">&nbsp; &nbsp;  Arbeiten als Freelancer</option>
+<option value="6" class="fjdpth0"> Delphi-PRAXiS - Lounge</option>
+<option value="36" class="fjdpth1">&nbsp; &nbsp;  Tutorials und Kurse</option>
+<option value="26" class="fjdpth1">&nbsp; &nbsp;  Software-Projekte der Mitglieder</option>
+<option value="31" class="fjdpth1">&nbsp; &nbsp;  Ankündigungen</option>
+<option value="29" class="fjdpth1">&nbsp; &nbsp;  Fragen / Anregungen zur DP</option>
+<option value="34" class="fjdpth1">&nbsp; &nbsp;  Klatsch und Tratsch</option>
+<option value="27" class="fjdpth1">&nbsp; &nbsp;  Betriebssysteme</option>
+<option value="66" class="fjdpth1">&nbsp; &nbsp;  Job-Börse: Angebote und Gesuche</option>
+<option value="58" class="fjdpth1">&nbsp; &nbsp;  Delphi-News aus aller Welt</option>
+<option value="7" class="fjdpth0"> Delphi-PRAXiS - Hinterzimmer</option>
+
+		</optgroup>
+		
+	</select><input class="button" value="Los" type="submit">
+	</form>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!-- /forum rules and admin links -->
+<br>
+
+
+
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- /content area table -->
+<!-- user cp tools menu -->
+<div class="vbmenu_popup" id="usercptools_menu" style="display:none; margin-top:3px;" align="left">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr><td class="thead">Nützliche Links</td></tr>
+<tr><td class="vbmenu_option"><a rel="nofollow" href="http://www.delphipraxis.net/dp_recentthreads.php?timeframe=today">Heutige Beiträge</a></td></tr>
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/pages/sitemap.html">Sitemap</a></td></tr>
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_search.php">Suchen</a></td></tr>
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/dp_codelibrary.php">Code-Library</a></td></tr>
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/online.php">Wer ist online</a></td></tr>
+<tr><td class="vbmenu_option"><a href="http://www.delphipraxis.net/forumdisplay.php?do=markread&amp;markreadhash=guest" rel="nofollow">Alle Foren als gelesen markieren</a></td></tr>
+
+
+
+</tbody></table>
+</div>
+<!-- / user cp tools menu -->
+
+
+<!-- PAGENAV POPUP -->
+<div class="vbmenu_popup" id="pagenav_menu" style="display:none;">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead" nowrap="nowrap">Gehe zu...</td>
+</tr>
+<tr>
+<td class="vbmenu_option" title="nohilite">
+<form action="http://www.delphipraxis.net/forum.php" method="get" onsubmit="return this.gotopage()" id="pagenav_form">
+<input class="dpinput" id="pagenav_itxt" style="font-size:11px" size="4" type="text">
+<input class="button" id="pagenav_ibtn" value="Los" type="button">
+</form>
+</td>
+</tr>
+</tbody></table>
+</div>
+<!-- / PAGENAV POPUP -->
+
+<form action="http://www.delphipraxis.net/forum.php" method="get" style="clear:left">
+<div id="dpfooter" style="margin:10px 50px 0px 50px;" align="right">
+<span style="float:left;"><a href="http://www.delphipraxis.net/forum.php"> • </a></span>
+<a href="http://www.delphipraxis.net/pages/impressum.html" rel="nofollow">Impressum</a> ·
+<a href="http://www.delphipraxis.net/pages/agb.html" rel="nofollow">AGB</a> ·
+
+
+
+
+
+
+
+
+<a href="#top" onclick="self.scrollTo(0, 0); return false;">Nach oben</a>
+</div>
+<div class="smallfont" style="margin:5px 50px 0px 50px; text-align:right;" align="right">
+<div style="float:left;">
+
+
+</div>
+Alle Zeitangaben in WEZ +1. Es ist jetzt <span class="time">19:41</span> Uhr. <br>
+Powered by vBulletin® Copyright ©2000 - 2014, Jelsoft Enterprises Ltd.
+<br>LinkBacks Enabled by vBSEO © 2011, Crawlability, Inc.<br>
+Delphi-PRAXiS (c) 2002 - 2014 by <a href="https://www.danielwolf.eu/" style="color:#000;">Daniel R. Wolf</a>&nbsp;
+<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+
+<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+</div>
+</form>
+
+
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/mootools-1.js"></script> 
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/iFishEye-full-1.js"></script> 
+<script type="text/javascript">
+<!--
+new iFishEye({ 
+container: $("dp_glubsch_menu"),
+dimThumb: {width:20, height:20}, dimFocus: {width:48, height:48},
+eyeRadius: 94, pupilRadius: 28,
+targetImageClass: ".dp-glubsch-img", targetCaptionClass: ".dp-glubsch-txt"
+});
+// -->
+</script>
+<script type="text/javascript">
+<!--
+// Main vBulletin Javascript Initialization
+vBulletin_init();
+// -->
+</script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_codeblock-1_002.js"></script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_codeblock-1.js"></script>
+<script type="text/javascript" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/dp_click_n_search-1.js"></script>
+<!-- temp -->
+<div style="display:none">
+<!-- thread rate -->
+
+
+
+<!-- / thread rate -->
+</div>
+<div class="vbmenu_popup" id="linkbacktools_menu" style="display:none">
+<table border="0" cellpadding="4" cellspacing="1">
+<tbody><tr>
+<td class="thead">LinkBack<a name="goto_linkback"></a></td>
+</tr>
+
+<tr>
+<td class="vbmenu_option"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/linkback_url.gif" alt="LinkBack URL"> <a href="http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html" onclick="prompt('Use the following URL when referencing this thread from another forum or blog.','http://www.delphipraxis.net/156146-multitouch-anwendung-unter-delphi-7-a.html');return false;">LinkBack URL</a></td>
+</tr>
+<tr>
+<td class="vbmenu_option"><img class="inlineimg" src="Delphi%20Multitouch%20Anwendung%20unter%20Delphi%207%20-%20Delphi-PRAXiS_files/linkback_about.gif" alt="About LinkBacks"> <a rel="nofollow" href="http://www.delphipraxis.net/misc.php?do=linkbacks">About LinkBacks</a></td>
+</tr>
+
+</tbody></table>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+window.orig_onload = window.onload;
+window.onload = function() {
+var cpost=document.location.hash.substring(1);var cpost2='';if(cpost){ var ispost=cpost.substring(0,4)=='post';if(ispost)cpost2='post_'+cpost.substring(4);if((cobj = fetch_object(cpost))||(cobj = fetch_object(cpost2))){cobj.scrollIntoView(true);}else if(ispost){cpostno = cpost.substring(4,cpost.length);if(parseInt(cpostno)>0){location.replace('http://www.delphipraxis.net/showthread.php?p='+cpostno);};} }
+
+if(typeof window.orig_onload == "function") window.orig_onload();
+}
+
+//]]>
+</script>
+
+</body></html>

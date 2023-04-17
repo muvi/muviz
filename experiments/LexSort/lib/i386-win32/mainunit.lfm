@@ -1,0 +1,42 @@
+object Form1: TForm1
+  Left = 215
+  Height = 240
+  Top = 281
+  Width = 320
+  Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '1.6.0.4'
+  object Edit1: TEdit
+    Left = 16
+    Height = 23
+    Top = 16
+    Width = 296
+    OnChange = Edit1Change
+    TabOrder = 0
+  end
+  object LexedLbl: TLabel
+    Left = 16
+    Height = 15
+    Top = 48
+    Width = 46
+    Caption = 'LexedLbl'
+    ParentColor = False
+  end
+  object Edit2: TEdit
+    Left = 16
+    Height = 23
+    Top = 80
+    Width = 296
+    OnChange = Edit1Change
+    TabOrder = 1
+  end
+  object CompareLbl: TLabel
+    Left = 16
+    Height = 15
+    Top = 120
+    Width = 65
+    Caption = 'CompareLbl'
+    ParentColor = False
+  end
+end

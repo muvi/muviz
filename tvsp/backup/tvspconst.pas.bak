@@ -1,0 +1,36 @@
+unit TVSPConst;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+const
+  DEFAULTPORT          = 11156;
+  //Commands
+  tcERROR              = 0; //error notification
+  tcLIST               = 1; //request: list of all group ids
+  tcSUBSCRIBE          = 2; //request: subscribe to one group
+  tcLISTRET            = 3; //result: all group ids
+  tcVAL                = 4; //value message
+  tcVALINDEXED         = 5;
+  tcVALINDEXEDPASSIVE  = tcVALINDEXED;
+  tcVALINDEX           = 6; //value id indexer
+  tcSRC                = 7; //set part of source
+  tcSRCINDEX           = 8; //source id indexer (maybe not implemented)
+  tcSRCINDEXRET        = 9; //result: source index (maybe not implemented)
+  tcGRANT              = 10; //grants unique permissions to clients. Request and result.
+  tcVALPERMITTED       = 11;
+  tcVALINDEXEDPERMITTED= 12;
+  tcSRCPERMITTED       = 13;
+  tcSUBSCRIBEVAL       = 14;
+  tcVALGROUP           = 15;
+  tcVALGROUPREMOVED    = 16;
+
+
+implementation
+
+end.
+

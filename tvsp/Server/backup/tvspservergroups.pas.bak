@@ -1,0 +1,142 @@
+unit TVSPServerGroups;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, TVSPGroups, TVSPValues, VisType2, TVSPMsg, GUIDop,
+  TVSPType, TVSPServerAttachment, ObjectClasses, TVSPAbstractServerValue, MapKeys;
+
+type
+  TTVSPServerGroups = class;
+
+  TTVSPServerGroup  = class (TTVSPBasicGroup)
+  strict private
+    FOwner: TTVSPServerGroups;
+    procedure DeleteObject(Sender: TObject);
+    function ObjectsEmpty: Boolean;
+  strict protected
+    function CreateValue(AOwner: TTVSPBasicGroup; AName: string; AType: TPParamType): TTVSPBasicValue; override;
+  public
+    constructor Create(AOwner: TTVSPServerGroups; AID: TGUID);
+    destructor Destroy; override;
+    function IterateSubscribers(var AIterator: TObject): TTVSPServerAttachment;
+    function Subscribe(AAttachment: TTVSPServerAttachment): Boolean;
+    function Unsubscribe(AAttachment: TTVSPServerAttachment): Boolean;
+  end;
+
+  TTVSPServerGroups = class (TTVSPBasicGroups)
+  strict protected
+    function CreateGroup(AID: TGUID): TTVSPBasicGroup; override;
+  end;
+
+procedure Init; inline;
+procedure Done; inline;
+function GetGroups: TTVSPBasicGroups; inline;
+property Groups: TTVSPBasicGroups read GetGroups;
+
+implementation
+
+{%REGION TTVSPServerGroup}
+
+constructor TTVSPServerGroup.Create(AOwner: TTVSPServerGroups; AID: TGUID);
+begin
+  inherited Create(AID);
+  FOwner:=AOwner;
+  Objects.OnDeleteObject:=@DeleteObject;
+end;
+
+destructor TTVSPServerGroup.Destroy;
+begin
+  Objects.OnDeleteObject:=nil;
+  inherited Destroy;
+end;
+
+function TTVSPServerGroup.CreateValue(AOwner: TTVSPBasicGroup; AName: string; AType: TPParamType): TTVSPBasicValue;
+begin
+  if TVSPParamSourceCount(AType) = 0
+    then Result:=TTVSPBigValue.Create(AOwner, AName, AType)
+    else Result:=TTVSPSourceValue.Create(AOwner, AName, AType);
+end;
+
+function TTVSPServerGroup.IterateSubscribers(var AIterator: TObject): TTVSPServerAttachment;
+var
+  AIterator2: TObjectListItem;
+begin
+  AIterator2:=AIterator as TObjectListItem;
+  Objects.IterateObjects(AIterator2);
+  AIterator:=AIterator2;
+  if AIterator2 <> nil
+    then Result:=TTVSPServerAttachment(AIterator2.Content)
+    else Result:=nil;
+end;
+
+function TTVSPServerGroup.ObjectsEmpty: Boolean;
+begin
+  Result:=Objects.Count = 0;
+end;
+
+procedure TTVSPServerGroup.DeleteObject(Sender: TObject);
+var
+  AResult: Boolean;
+begin
+  //delete this group if it is not subscribed by any client anymore
+  AResult:=FOwner.DeleteGroup(Self, @ObjectsEmpty);
+  Assert(AResult);
+end;
+
+function TTVSPServerGroup.Subscribe(AAttachment: TTVSPServerAttachment): Boolean;
+var
+  AIterator: TObject;
+  AValue   : TTVSPServerValue;
+begin
+  Result:=Objects.AddObject(AAttachment);
+
+  if Result then begin
+    //send initial values
+    AIterator:=nil;
+    AValue:=IterateValues(AIterator) as TTVSPServerValue;
+    while AValue <> nil do begin
+      AValue.Send(AAttachment, true);
+      AValue:=IterateValues(AIterator) as TTVSPServerValue;
+    end;
+  end;
+end;
+
+function TTVSPServerGroup.Unsubscribe(AAttachment: TTVSPServerAttachment): Boolean;
+begin
+  Result:=Objects.RemoveObject(AAttachment);
+end;
+
+{%ENDREGION}
+{%REGION TTVSPServerGroups}
+
+function TTVSPServerGroups.CreateGroup(AID: TGUID): TTVSPBasicGroup;
+begin
+  Result:=TTVSPServerGroup.Create(Self, AID);
+end;
+
+{%ENDREGION}
+
+var
+  LGroups: TTVSPServerGroups;
+
+function GetGroups: TTVSPBasicGroups; inline;
+begin
+  Result:=LGroups;
+end;
+
+procedure Init; inline;
+begin
+  LGroups:=TTVSPServerGroups.Create;
+end;
+
+procedure Done; inline;
+begin
+  Assert(LGroups <> nil);
+  LGroups.Destroy;
+end;
+
+end.
+

@@ -1,0 +1,913 @@
+unit ArtNet;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, lNet, lNetComponents, Dialogs, ArtNetConst, IPTools,
+  ObjectClasses, ObjectClassBasic;
+
+const
+  ARTNETUNIVERSECOUNT = 32768;
+  DMXCHANNELCOUNT     = 512;
+
+type
+  EArtNet             = class (Exception)
+  end;
+
+  TArtPacketHeader    = packed record
+    ID        : array [0..7] of Char;
+    OpCode    : Word;
+  end;
+
+  PArtPacketHeader    = ^TArtPacketHeader;
+
+  TArtPollReplyPacket = packed record
+    Header     : TArtPacketHeader;
+    IPAddress  : TIP4;
+    Port       : Word; //has to be PORTDIRECTEDBROADCAST
+    VersInfoH  : Byte;
+    VersInfoL  : Byte;
+    NetSwitch  : Byte;
+    SubSwitch  : Byte;
+    OemHi      : Byte;
+    OemLo      : Byte;
+    UbeaVersion: Byte;
+    Status1    : Byte;
+    EstaMan    : Word;
+    ShortName  : array [0..17] of Char;
+    LongName   : array [0..63] of Char;
+    NodeReport : array [0..63] of Char;
+    NumPortsHi : Byte;
+    NumPortsLo : Byte;
+    PortTypes  : array [0..3] of Byte;
+    GoodInput  : array [0..3] of Byte;
+    GoodOutput : array [0..3] of Byte;
+    SwIn       : array [0..3] of Byte;
+    SwOut      : array [0..3] of Byte;
+    SwVideo    : Byte;
+    SwMacro    : Byte;
+    SwRemote   : Byte;
+    Spare      : array [0..2] of Byte;
+    Style      : Byte;
+    MAC        : array [0..5] of Byte; //from Hi to Lo
+    BindIp     : array [0..3] of Byte;
+    BindIndex  : Byte;
+    Status2    : Byte;
+    Filler     : array [0..25] of Byte;
+  end;
+
+  PArtPollReplyPacket = ^TArtPollReplyPacket;
+  TDMXArray           = packed array [1..DMXCHANNELCOUNT] of Byte;
+  PDMXArray           = ^TDMXArray;
+
+  TArtDMXPacket       = packed record
+    Header   : TArtPacketHeader;
+    ProtVerHi: Byte;
+    ProtVerLo: Byte;
+    Sequence : Byte;
+    Physical : Byte;
+    SubUni   : Byte;
+    Net      : Byte;
+    LengthHi : Byte;
+    LengthLo : Byte;
+    Data     : TDMXArray;
+  end;
+
+  TArtNzsPacket       = packed record
+    Header   : TArtPacketHeader;
+    ProtVerHi: Byte;
+    ProtVerLo: Byte;
+    Sequence : Byte;
+    StartCode: Byte;
+    SubUni   : Byte;
+    Net      : Byte;
+    LengthHi : Byte;
+    LengthLo : Byte;
+    Data     : TDMXArray;
+  end;
+
+  PArtNzsPacket       = ^TArtNzsPacket;
+
+  TArtNetPort         = record
+    Enabled    : Boolean;
+    PortAddress: Byte; //Low 4 bits of the port address
+  end;
+
+  TArtNetPorts        = record
+    Inputs : array [0..3] of TArtNetPort;
+    Outputs: array [0..3] of TArtNetPort;
+  end;
+
+  TArtNetDevice       = class;
+  TArtNetUniverse     = class;
+  TUniverseDeviceEvent= procedure (ADevice: TArtNetDevice; AUniverse: Word) of object;
+  TUniverseEvent      = procedure (AUniverse: TArtNetUniverse) of object;
+  TArtNetUniverses    = class;
+  TArtNet             = class;
+
+  TArtNetUniverse     = class (TObjectItem)
+  strict private
+    FOwner       : TArtNetUniverses;
+    FDMX         : TDMXArray;
+    FChangeStart : Word;
+    FChangeEnd   : Word;
+    FSubscribers : TObjectList;
+    FReceived    : Boolean;
+    FSend        : Boolean;
+    FSendSequence: Byte;
+    FIndex       : Word;
+    function GetDMX(AChannel: Word): Byte;
+    procedure SetDMX(AChannel: Word; AValue: Byte);
+
+    procedure SendDMXMsg(const AMsg; ASize: Cardinal);
+    procedure SendArtDMX(ACount: Integer);
+    procedure SendArtNzs(AStartCode: Byte; ACount: Integer);
+  private
+    procedure Received(const ADMX: TDMXArray; AStart, AEnd: Word);
+    //returns, if the Universe has received new data
+    function SendAndReceive: Boolean;
+  public
+    constructor Create(AOwner: TArtNetUniverses; AIndex: Word);
+    destructor Destroy; override;
+    procedure Subscribe(ADevice: TArtNetDevice);
+    property DMX[AChannel: Word]: Byte read GetDMX write SetDMX; default;
+    property Index: Word read FIndex;
+    property Subscribers: TObjectList read FSubscribers;
+  end;
+
+  TArtNetUniverses    = class
+  strict private
+    FUniverses        : array [0..ARTNETUNIVERSECOUNT-1] of TArtNetUniverse;
+    FChangedUniverses : TObjectList;
+    FOwner            : TArtNet;
+    function GetUniverse(AIndex: Word): TArtNetUniverse;
+    function GetNet: TLUDPComponent;
+  private
+    procedure UniverseChanged(AUniverse: TArtNetUniverse);
+    procedure DMXFrame;
+  protected
+    property Net: TLUDPComponent read GetNet;
+  public
+    constructor Create(AOwner: TArtNet);
+    destructor Destroy; override;
+    property Universes[AIndex: Word]: TArtNetUniverse read GetUniverse; default;
+  end;
+
+  TArtNetDevice       = class (TObjectItem)
+  strict private
+    FPollSwitch  : Boolean;
+    FReplyCounter: Word;
+    function GetDeviceUniverse(AIndex: Cardinal; AIsInput: Boolean): Word;
+  private
+    procedure ForAllUniverses(ADo: TUniverseDeviceEvent);
+    property PollSwitch: Boolean read FPollSwitch write FPollSwitch;
+    property ReplyCounter: Word read FReplyCounter write FReplyCounter;
+  strict protected
+    FShortName   : string;
+    FLongName    : string;
+    FIP          : TIP4;
+    FVersion     : Word;
+    FNet         : Byte; //7 Bit, only in Artnet 3
+    FSubNet      : Byte; //4 Bit
+    FOemCode     : Word;
+    FManufacturer: Word;
+    FPorts       : TArtNetPorts;
+  public
+    constructor Create(APacket: TArtPollReplyPacket);
+    constructor Create(AShortName, ALongName: string; AIP: TIP4; AVersion: Word; ANet, ASubNet: Byte; AOemCode, AManufacturer: Word; APorts: TArtNetPorts);
+    destructor Destroy; override;
+    function IsRootDevice: Boolean; virtual;
+    function Equals(Obj: TObject): Boolean; override;
+    property IP: TIP4 read FIP;
+    property LongName: string read FLongName;
+    property Manufacturer: Word read FManufacturer;
+    property Net: Byte read FNet;
+    property OemCode: Word read FOemCode;
+    property Ports: TArtNetPorts read FPorts;
+    property ShortName: string read FShortName;
+    property SubNet: Byte read FSubNet;
+    property Universes[AIndex: Cardinal; AIsInput: Boolean]: Word read GetDeviceUniverse;
+    property Version: Word read FVersion;
+  end;
+
+  TArtRootDevice      = class (TArtNetDevice)
+  public
+    constructor Create(AShortName, ALongName: string; AVersion: Word; ANet, ASubNet: Byte; AOemCode, AManufacturer: Word; APorts: TArtNetPorts);
+    function IsRootDevice: Boolean; override;
+    property LongName: string read FLongName write FLongName;
+    property Net: Byte read FNet write FNet;
+    property OemCode: Word read FOemCode;
+    property Ports: TArtNetPorts read FPorts write FPorts;
+    property ShortName: string read FShortName write FShortName;
+    property SubNet: Byte read FSubNet write FSubNet;
+    property Version: Word read FVersion write FVersion;
+  end;
+
+  TArtNetDeviceEvent  = procedure (ADevice: TArtNetDevice) of object;
+
+  TArtNet             = class
+  strict private
+    FNet              : TLUDPComponent;
+    FListenNet        : TLUDPComponent;
+    FListenBuf        : PArtPacketHeader;
+    FRootDevices      : TObjectList;
+    FDevicesList      : TObjectList;
+    FUniverses        : TArtNetUniverses;
+    FPollSwitch       : Boolean;
+
+    FOnDeviceAdded    : TArtNetDeviceEvent;
+    FOnDeviceRemoved  : TArtNetDeviceEvent;
+    FOnReceiveDMX     : TUniverseEvent;
+    procedure NetReceive(aSocket: TLSocket);
+    function RenewDevice(const APacket: TArtPollReplyPacket): Boolean;
+
+    procedure AddDeviceToUniverse(ADevice: TArtNetDevice; AUniverse: Word);
+    procedure AddDevice(const APacket: TArtPollReplyPacket);
+    procedure RemoveDevice(ADevice: TArtNetDevice);
+
+    procedure ReceivePoll(aSocket: TLSocket);
+    procedure ReceivePollReply(aSocket: TLSocket);
+    procedure ReceiveDMX(aSocket: TLSocket; AIsNzs: Boolean);
+  private
+    property Net: TLUDPComponent read FNet;
+  public
+    constructor Create(ANet, AListenNet: TLUDPComponent);
+    destructor Destroy; override;
+    procedure Poll;
+    procedure DMXFrame;
+    procedure AddRootDevice(ADevice: TArtRootDevice);
+    property Devices: TObjectList read FDevicesList;
+    property Universes: TArtNetUniverses read FUniverses;
+    property OnDeviceAdded: TArtNetDeviceEvent read FOnDeviceAdded write FOnDeviceAdded;
+    property OnDeviceRemoved: TArtNetDeviceEvent read FOnDeviceRemoved write FOnDeviceRemoved;
+    property OnReceiveDMX: TUniverseEvent read FOnReceiveDMX write FOnReceiveDMX;
+  end;
+
+const
+  ESTAMANUFACTURERCODE = $7FF0; //reserved for prototyping. Think about getting your own.
+  OEMCODE              = $FFFF; //OemGlobal. Think about getting your own.
+
+function GetUniverse(ANet, ASubNet, ASw: Byte): Word;
+function IsInputEnabled(APortType: Byte): Boolean;
+function IsOutputEnabled(APortType: Byte): Boolean;
+function SamePorts(ADevice: TArtNetDevice; const APacket: TArtPollReplyPacket): Boolean;
+function FindFirstUniverse(const APacket: TArtPollReplyPacket; out AUniverse: Word): Boolean;
+
+implementation
+
+type
+  TArtPollPacket      = packed record
+    Header    : TArtPacketHeader;
+    ProtVerHi : Byte;
+    ProtVerLo : Byte;
+    TalkToMe  : Byte;
+    Priority  : Byte;
+  end;
+
+{%REGION ArtNet Msgs}
+
+procedure InitHeader(var AMsg; AOpCode: Word);
+begin
+  with TArtPacketHeader(AMsg) do begin
+    //ID:=ARTNETID;
+    ID[0]:='A';
+    ID[1]:='r';
+    ID[2]:='t';
+    ID[3]:='-';
+    ID[4]:='N';
+    ID[5]:='e';
+    ID[6]:='t';
+    ID[7]:=#0;
+    OpCode:=AOpCode;
+  end;
+end;
+
+function CheckHeader(const AMsg): Word;
+var
+  AHeader: PArtPacketHeader;
+begin
+  AHeader:=@AMsg;
+  with AHeader^ do begin
+    if (ID[0] = 'A')
+      and (ID[1] = 'r')
+      and (ID[2] = 't')
+      and (ID[3] = '-')
+      and (ID[4] = 'N')
+      and (ID[5] = 'e')
+      and (ID[6] = 't')
+      and (ID[7] = #0)
+        then Result:=OpCode
+        else raise EArtNet.Create('Invalid Artnet Header');
+  end;
+end;
+
+procedure SendArtPoll(ANet: TLUDPComponent);
+var
+  AMsg: TArtPollPacket;
+begin
+  InitHeader(AMsg, OpPoll);
+  with AMsg do begin
+    ProtVerHi:=ARTNETPROTVER shr 8;
+    ProtVerLo:=ARTNETPROTVER and $FF;
+    TalkToMe:=0;
+    Priority:=100;
+  end;
+  Assert(ANet.Connected);
+  ANet.Send(AMsg, SizeOf(AMsg), LADDR_BR);
+end;
+
+procedure SendArtPollReply(ADevice: TArtNetDevice; ANet: TLUDPComponent);
+var
+  AMsg            : TArtPollReplyPacket;
+  I               : Integer;
+  AReplyCounterStr: string;
+begin
+  //set reply counter
+  AReplyCounterStr:=IntToStr(ADevice.ReplyCounter);
+  for I:=Length(AReplyCounterStr) to 3
+    do AReplyCounterStr += '0';
+  ADevice.ReplyCounter:=ADevice.ReplyCounter + 1;
+  if ADevice.ReplyCounter > 9999
+    then ADevice.ReplyCounter:=0;
+
+  //send
+  InitHeader(AMsg, OpPollReply);
+  with AMsg do begin
+    IPAddress:=ADevice.IP;
+    Port:=PORTDIRECTEDBROADCAST;
+    VersInfoH:=ADevice.Version shr 8;
+    VersInfoL:=ADevice.Version and $FF;
+    NetSwitch:=ADevice.Net;
+    SubSwitch:=ADevice.SubNet;
+    OemHi:=ADevice.OemCode shr 8;
+    OemLo:=ADevice.OemCode and $FF;
+    UbeaVersion:=0;
+    Status1:=120; //indicators in normal mode, port address authority not used
+    EstaMan:=ADevice.Manufacturer;
+    ShortName:=ADevice.ShortName + #0;
+    LongName:=ADevice.LongName + #0;
+    NodeReport:='#0001 [' + AReplyCounterStr + '] Everything fine, you are lucky :)';
+    NumPortsHi:=0;
+    NumPortsLo:=4;
+    for I:=0 to 3 do begin
+      PortTypes[I]:=5 {protocol: Art-Net} or (Ord(ADevice.Ports.Inputs[I].Enabled) shl 6) or (Ord(ADevice.Ports.Outputs[I].Enabled) shl 7);
+      GoodInput[I]:=128 {Data received} or (Ord(not ADevice.Ports.Outputs[I].Enabled) shl 3);
+      GoodOutput[I]:=128 {Data is beeing transmitted};
+      SwIn[I]:=ADevice.Ports.Inputs[I].PortAddress;
+      SwOut[I]:=ADevice.Ports.Outputs[I].PortAddress;
+    end;
+    SwVideo:=0;
+    SwMacro:=0;
+    SwRemote:=0;
+    for I:=0 to 2
+      do Spare[I]:=0;
+    Style:=StController;
+    //do not supply MAC address
+    for I:=0 to 5
+      do MAC[I]:=0;
+    for I:=0 to 3
+      do BindIp[I]:=0;
+    BindIndex:=0;
+    //node supports no web browser configuration
+    //node's IP is DHCP configured
+    //node is capable of DHCP
+    //node supports 15 bit port addresses
+    Status2:=14;
+    for I:=0 to 25
+      do Filler[I]:=0;
+  end;
+  ANet.Send(AMsg, SizeOf(AMsg), LADDR_BR);
+end;
+
+{%ENDREGION}
+{%REGION TArtNetUniverse}
+
+constructor TArtNetUniverse.Create(AOwner: TArtNetUniverses; AIndex: Word);
+begin
+  inherited Create;
+  FOwner:=AOwner;
+  FIndex:=AIndex;
+  FSendSequence:=1;
+  FSubscribers:=TObjectList.Create;
+  FillChar(FDMX, SizeOf(FDMX), 0);
+  FReceived:=false;
+  FSend:=false;
+end;
+
+destructor TArtNetUniverse.Destroy;
+begin
+  FSubscribers.Destroy;
+  inherited Destroy;
+end;
+
+procedure TArtNetUniverse.Subscribe(ADevice: TArtNetDevice);
+begin
+  FSubscribers.Add(ADevice);
+end;
+
+function TArtNetUniverse.GetDMX(AChannel: Word): Byte;
+begin
+  Result:=FDMX[AChannel];
+end;
+
+procedure TArtNetUniverse.SetDMX(AChannel: Word; AValue: Byte);
+begin
+  Assert(AChannel >= 1);
+  Assert(AChannel <= DMXCHANNELCOUNT);
+  FDMX[AChannel]:=AValue;
+  if FSend then begin
+    if FChangeStart > AChannel
+      then FChangeStart:=AChannel;
+    if FChangeEnd < AChannel
+      then FChangeEnd:=AChannel;
+  end else begin
+    FSend:=true;
+    FChangeStart:=AChannel;
+    FChangeEnd:=AChannel;
+    if not FReceived
+      then FOwner.UniverseChanged(Self);
+  end;
+end;
+
+procedure TArtNetUniverse.Received(const ADMX: TDMXArray; AStart, AEnd: Word);
+var
+  I: Integer;
+begin
+  Assert((AStart >= 1) and (AStart <= DMXCHANNELCOUNT));
+  Assert((AEnd >= 1) and (AEnd <= DMXCHANNELCOUNT));
+  Assert(AStart <= AEnd);
+
+  for I:=AStart to AEnd
+    do FDMX[I]:=ADMX[I - AStart];
+  if not FReceived then begin
+    FReceived:=true;
+    if not FSend
+      then FOwner.UniverseChanged(Self);
+  end;
+end;
+
+function TArtNetUniverse.SendAndReceive: Boolean;
+begin
+  Result:=FReceived;
+  FReceived:=false;
+  if FSend then begin
+    //there are some nodes who do not accept messages which are not 512 values long :'(
+    SendArtDMX(DMXCHANNELCOUNT);
+    FSend:=false;
+  end;
+end;
+
+procedure TArtNetUniverse.SendDMXMsg(const AMsg; ASize: Cardinal);
+var
+  AItem: TObjectListItem;
+begin
+  //increment sequence
+  if FSendSequence < $FF
+    then Inc(FSendSequence)
+    else FSendSequence:=1;
+
+  //send
+  AItem:=FSubscribers.First;
+  while AItem <> nil do begin
+    FOwner.Net.Send(AMsg, ASize, IPToStr(TArtNetDevice(AItem.Content).IP));
+    AItem:=AItem.Next;
+  end;
+end;
+
+procedure TArtNetUniverse.SendArtDMX(ACount: Integer);
+var
+  AMsg: TArtDMXPacket;
+begin
+  Assert(ACount <= DMXCHANNELCOUNT);
+  Assert(ACount >= 2);
+  InitHeader(AMsg, OpDMX);
+  with AMsg do begin
+    ProtVerHi:=0;
+    ProtVerLo:=14;
+    Sequence:=FSendSequence;
+    Physical:=0;
+    SubUni:=FIndex and $FF;
+    Net:=FIndex shr 8;
+    LengthHi:=ACount shr 8;
+    LengthLo:=ACount and $FF;
+    Move(FDMX, Data, ACount);
+  end;
+  SendDMXMsg(AMsg, SizeOf(AMsg) - DMXCHANNELCOUNT + ACount);
+end;
+
+procedure TArtNetUniverse.SendArtNzs(AStartCode: Byte; ACount: Integer);
+var
+  AMsg: TArtNzsPacket;
+begin
+  Assert(ACount <= DMXCHANNELCOUNT);
+  Assert(ACount >= 2);
+  Assert(AStartCode >= 1);
+  Assert(AStartCode + ACount <= DMXCHANNELCOUNT);
+  InitHeader(AMsg, OpDMX);
+  with AMsg do begin
+    ProtVerHi:=0;
+    ProtVerLo:=14;
+    Sequence:=FSendSequence;
+    StartCode:=AStartCode;
+    SubUni:=FIndex and $FF;
+    Net:=FIndex shr 8;
+    LengthHi:=ACount shr 8;
+    LengthLo:=ACount and $FF;
+    Move(FDMX[AStartCode], Data, ACount);
+  end;
+  SendDMXMsg(AMsg, SizeOf(AMsg) - DMXCHANNELCOUNT + ACount);
+end;
+
+{%ENDREGION}
+{%REGION TArtNetUniverses}
+
+constructor TArtNetUniverses.Create(AOwner: TArtNet);
+var
+  I: Integer;
+begin
+  inherited Create;
+  FOwner:=AOwner;
+  for I:=0 to ARTNETUNIVERSECOUNT-1
+    do FUniverses[I]:=nil;
+  FChangedUniverses:=TObjectList.Create;
+end;
+
+destructor TArtNetUniverses.Destroy;
+var
+  I: Integer;
+begin
+  for I:=0 to ARTNETUNIVERSECOUNT-1
+    do if FUniverses[I] <> nil
+      then FUniverses[I].Destroy;
+  FChangedUniverses.Destroy;
+end;
+
+function TArtNetUniverses.GetUniverse(AIndex: Word): TArtNetUniverse;
+begin
+  Assert(AIndex < ARTNETUNIVERSECOUNT);
+  Result:=FUniverses[AIndex];
+  if Result = nil then begin
+    Result:=TArtNetUniverse.Create(Self, AIndex);
+    FUniverses[AIndex]:=Result;
+  end;
+end;
+
+function TArtNetUniverses.GetNet: TLUDPComponent;
+begin
+  Result:=FOwner.Net;
+end;
+
+procedure TArtNetUniverses.UniverseChanged(AUniverse: TArtNetUniverse);
+begin
+  FChangedUniverses.Add(AUniverse);
+end;
+
+procedure TArtNetUniverses.DMXFrame;
+var
+  AItem    : TObjectListItem;
+  AUniverse: TArtNetUniverse;
+begin
+  AItem:=FChangedUniverses.First;
+  while AItem <> nil do begin
+    AUniverse:=TArtNetUniverse(AItem.Content);
+    if AUniverse.SendAndReceive and Assigned(FOwner.OnReceiveDMX)
+      then FOwner.OnReceiveDMX(AUniverse);
+    AItem:=AItem.Next;
+  end;
+  FChangedUniverses.Clear;
+end;
+
+{%ENDREGION}
+{%REGION TArtNetDevice}
+
+constructor TArtNetDevice.Create(APacket: TArtPollReplyPacket);
+var
+  I: Integer;
+begin
+  inherited Create;
+  FShortName:=APacket.ShortName;
+  FLongName:=APacket.LongName;
+  FIP:=APacket.IPAddress;
+  FVersion:=APacket.VersInfoL or (APacket.VersInfoH shl 8);
+  FNet:=APacket.NetSwitch;
+  FSubNet:=APacket.SubSwitch;
+  FOemCode:=APacket.OemLo or (APacket.OemHi shl 8) ;
+  FManufacturer:=APacket.EstaMan;
+  for I:=0 to 3 do begin
+    with FPorts.Inputs[I] do begin
+      Enabled:=IsInputEnabled(APacket.PortTypes[I]);
+      PortAddress:=APacket.SwIn[I];
+    end;
+    with FPorts.Outputs[I] do begin
+      Enabled:=IsOutputEnabled(APacket.PortTypes[I]);
+      PortAddress:=APacket.SwOut[I];
+    end;
+  end;
+end;
+
+constructor TArtNetDevice.Create(AShortName, ALongName: string; AIP: TIP4; AVersion: Word; ANet, ASubNet: Byte; AOemCode, AManufacturer: Word; APorts: TArtNetPorts);
+begin
+  Assert(ANet < (1 shl 7));
+  Assert(ASubNet < (1 shl 4));
+  inherited Create;
+  FShortName:=AShortName;
+  FLongName:=ALongName;
+  FIP:=AIP;
+  FVersion:=AVersion;
+  FNet:=ANet;
+  FSubNet:=ASubNet;
+  FOemCode:=AOemCode;
+  FManufacturer:=AManufacturer;
+  FPorts:=APorts;
+end;
+
+destructor TArtNetDevice.Destroy;
+begin
+  inherited Destroy;
+end;
+
+function TArtNetDevice.IsRootDevice: Boolean;
+begin
+  Result:=false;
+end;
+
+function TArtNetDevice.Equals(Obj: TObject): Boolean;
+begin
+  Result:=(Obj is TArtNetDevice) and (TArtNetDevice(Obj).IP = IP);
+end;
+
+function TArtNetDevice.GetDeviceUniverse(AIndex: Cardinal; AIsInput: Boolean): Word;
+begin
+  if AIsInput
+    then Result:=GetUniverse(FNet, FSubNet, FPorts.Inputs[AIndex].PortAddress)
+    else Result:=GetUniverse(FNet, FSubNet, FPorts.Outputs[AIndex].PortAddress);
+end;
+
+procedure TArtNetDevice.ForAllUniverses(ADo: TUniverseDeviceEvent);
+var
+  I: Integer;
+begin
+  for I:=0 to 3 do begin
+    if FPorts.Inputs[I].Enabled then begin
+      if FPorts.Outputs[I].Enabled then begin
+        if FPorts.Inputs[I].PortAddress = FPorts.Outputs[I].PortAddress then begin
+          ADo(Self, GetUniverse(FNet, FSubNet, FPorts.Inputs[I].PortAddress));
+        end else begin
+          ADo(Self, GetUniverse(FNet, FSubNet, FPorts.Inputs[I].PortAddress));
+          ADo(Self, GetUniverse(FNet, FSubNet, FPorts.Outputs[I].PortAddress));
+        end;
+      end else ADo(Self, GetUniverse(FNet, FSubNet, FPorts.Inputs[I].PortAddress));
+    end else if FPorts.Outputs[I].Enabled
+      then ADo(Self, GetUniverse(FNet, FSubNet, FPorts.Outputs[I].PortAddress));
+  end;
+end;
+
+{%ENDREGION}
+{%REGION TArtRootDevice}
+
+constructor TArtRootDevice.Create(AShortName, ALongName: string; AVersion: Word; ANet, ASubNet: Byte; AOemCode, AManufacturer: Word; APorts: TArtNetPorts);
+begin
+  inherited Create(AShortName, ALongName, LocalIP, AVersion, ANet, ASubNet, AOemCode, AManufacturer, APorts);
+end;
+
+function TArtRootDevice.IsRootDevice: Boolean;
+begin
+  Result:=true;
+end;
+
+{%ENDREGION}
+{%REGION TArtNet}
+
+constructor TArtNet.Create(ANet, AListenNet: TLUDPComponent);
+begin
+  inherited Create;
+  FRootDevices:=TObjectList.Create(true);
+  FDevicesList:=TObjectList.Create(true);
+  FUniverses:=TArtNetUniverses.Create(Self);
+  GetMem(FListenBuf, UDPBUFFERSIZE);
+  FNet:=ANet;
+  FNet.Connect('2.255.255.255', PORTDIRECTEDBROADCAST);
+  FListenNet:=AListenNet;
+  FListenNet.OnReceive:=@NetReceive;
+  FListenNet.Listen(PORTDIRECTEDBROADCAST);
+end;
+
+destructor TArtNet.Destroy;
+begin
+  FUniverses.Destroy;
+  FreeMem(FListenBuf, UDPBUFFERSIZE);
+  FDevicesList.Destroy;
+  FRootDevices.Destroy;
+  inherited Destroy;
+end;
+
+procedure TArtNet.NetReceive(aSocket: TLSocket);
+begin
+  aSocket.Get(FListenBuf^, UDPBUFFERSIZE);
+  case CheckHeader(FListenBuf^) of
+    OpPoll      : ReceivePoll(aSocket);
+    OpPollReply : ReceivePollReply(aSocket);
+    OpDMX       : ReceiveDMX(aSocket, false);
+    OpNzs       : ReceiveDMX(aSocket, true);
+    else ;
+  end;
+end;
+
+function TArtNet.RenewDevice(const APacket: TArtPollReplyPacket): Boolean;
+var
+  AItem    : TObjectListItem;
+  AUniverse: Word;
+  ADevice  : TArtNetDevice;
+begin
+  if not FindFirstUniverse(APacket, AUniverse) then begin
+    //a device without any port is considered as added
+    Result:=true;
+    exit;
+  end;
+
+  AItem:=FUniverses[AUniverse].Subscribers.First;
+  while AItem <> nil do begin
+    ADevice:=TArtNetDevice(AItem.Content);
+    if (ADevice.IP = APacket.IPAddress)
+      and (ADevice.Net = APacket.NetSwitch)
+      and (ADevice.SubNet = APacket.SubSwitch)
+      and SamePorts(ADevice, APacket) then begin
+        Result:=true;
+        ADevice.PollSwitch:=FPollSwitch;
+        exit;
+      end;
+  end;
+  Result:=false;
+end;
+
+procedure TArtNet.AddDeviceToUniverse(ADevice: TArtNetDevice; AUniverse: Word);
+begin
+  FUniverses[AUniverse].Subscribe(ADevice);
+end;
+
+procedure TArtNet.AddDevice(const APacket: TArtPollReplyPacket);
+var
+  ADevice: TArtNetDevice;
+begin
+  ADevice:=TArtNetDevice.Create(APacket);
+  ADevice.PollSwitch:=FPollSwitch;
+
+  ADevice.ForAllUniverses(@AddDeviceToUniverse);
+  FDevicesList.Add(ADevice);
+
+  if Assigned(FOnDeviceAdded)
+    then FOnDeviceAdded(ADevice);
+end;
+
+procedure TArtNet.RemoveDevice(ADevice: TArtNetDevice);
+begin
+  if Assigned(FOnDeviceRemoved)
+    then FOnDeviceRemoved(ADevice);
+  ADevice.Destroy;
+end;
+
+procedure TArtNet.ReceivePoll(aSocket: TLSocket);
+var
+  AItem: TObjectListItem;
+begin
+  AItem:=FRootDevices.First;
+  while AItem <> nil do begin
+    SendArtPollReply(TArtNetDevice(AItem.Content), FNet);
+    AItem:=AItem.Next;
+  end;
+end;
+
+procedure TArtNet.ReceivePollReply(aSocket: TLSocket);
+var
+  APacket: PArtPollReplyPacket;
+begin
+  APacket:=PArtPollReplyPacket(FListenBuf);
+  //check if this is a root device
+  if APacket^.IPAddress = LocalIP
+    then exit;
+
+  if not RenewDevice(APacket^)
+    then AddDevice(APacket^);
+end;
+
+procedure TArtNet.ReceiveDMX(aSocket: TLSocket; AIsNzs: Boolean);
+var
+  APacket   : PArtNzsPacket;
+  AStartCode: Word;
+begin
+  APacket:=PArtNzsPacket(FListenBuf);
+  with APacket^ do begin
+    if AIsNzs
+      then AStartCode:=StartCode
+      else AStartCode:=1;
+    Universes[(Word(Net) shl 8) or SubUni].Received(TDMXArray(@Data[AStartCode])^, AStartCode, ((Word(LengthHi) shl 8) or LengthLo) + AStartCode - 1);
+  end;
+end;
+
+procedure TArtNet.Poll;
+var
+  AItem  : TObjectListItem;
+  ADevice: TArtNetDevice;
+begin
+  //remove old devices
+  AItem:=FDevicesList.First;
+  while AItem <> nil do begin
+    ADevice:=TArtNetDevice(AItem.Content);
+    if ADevice.PollSwitch <> FPollSwitch
+      then RemoveDevice(ADevice);
+    AItem:=AItem.Next;
+  end;
+
+  FPollSwitch:=not FPollSwitch;
+  SendArtPoll(FNet);
+end;
+
+procedure TArtNet.DMXFrame;
+begin
+  FUniverses.DMXFrame;
+end;
+
+procedure TArtNet.AddRootDevice(ADevice: TArtRootDevice);
+begin
+  FRootDevices.Add(Adevice);
+end;
+
+{%ENDREGION}
+{%REGION Misc}
+
+function GetUniverse(ANet, ASubNet, ASw: Byte): Word;
+begin
+  Assert(ANet < (1 shl 7));
+  Assert(ASubNet < (1 shl 4));
+  Assert(ASw < (1 shl 4));
+
+  Result:=(Word(ANet) shl 8) or (ASubNet shl 4) or ASw;
+end;
+
+function IsInputEnabled(APortType: Byte): Boolean;
+begin
+  Result:=Boolean((APortType shr 6) and 1);
+end;
+
+function IsOutputEnabled(APortType: Byte): Boolean;
+begin
+  Result:=Boolean(APortType shr 7);
+end;
+
+function SamePorts(ADevice: TArtNetDevice; const APacket: TArtPollReplyPacket): Boolean;
+
+  function CheckPort(ADevicePortEnabled, APacketPortEnabled: Boolean; ADevicePort, APacketPort: Byte): Boolean;
+  begin
+    Result:=ADevicePortEnabled = APacketPortEnabled;
+    if not Result
+      then exit;
+    if ADevicePortEnabled
+      then Result:=ADevicePort = APacketPort;
+  end;
+
+var
+  I: Integer;
+begin
+  for I:=0 to 3 do begin
+    //Input
+    Result:=CheckPort(ADevice.Ports.Inputs[I].Enabled,
+        IsInputEnabled(APacket.PortTypes[I]),
+        ADevice.Ports.Inputs[I].PortAddress,
+        APacket.SwIn[I]);
+    if not Result
+      then exit;
+    //Output
+    Result:=CheckPort(ADevice.Ports.Outputs[I].Enabled,
+        IsOutputEnabled(APacket.PortTypes[I]),
+        ADevice.Ports.Outputs[I].PortAddress,
+        APacket.SwOut[I]);
+    if not Result
+      then exit;
+  end;
+end;
+
+function FindFirstUniverse(const APacket: TArtPollReplyPacket; out AUniverse: Word): Boolean;
+var
+  I: Integer;
+begin
+  for I:=0 to 3 do begin
+    if IsInputEnabled(APacket.PortTypes[I]) then begin
+      AUniverse:=GetUniverse(APacket.NetSwitch, APacket.SubSwitch, APacket.SwIn[I]);
+      Result:=true;
+      exit;
+    end;
+    if IsOutputEnabled(APacket.PortTypes[I]) then begin
+      AUniverse:=GetUniverse(APacket.NetSwitch, APacket.SubSwitch, APacket.SwOut[I]);
+      Result:=true;
+      exit;
+    end;
+  end;
+  Result:=false;
+end;
+
+{%ENDREGION}
+
+end.
+

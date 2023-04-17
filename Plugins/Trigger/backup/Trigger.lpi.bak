@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <Title Value="Trigger"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="Trigger.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Trigger"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5"/>
+        <CursorPos X="36" Y="10"/>
+        <UsageCount Value="26"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="serverplugintype.pas"/>
+        <UnitName Value="ServerPluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="20"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="nettype.pas"/>
+        <UnitName Value="NetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="106" Y="13"/>
+        <UsageCount Value="20"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="23" Y="5"/>
+        <UsageCount Value="26"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="authnettype.pas"/>
+        <UnitName Value="AuthNetType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="35" Y="11"/>
+        <UsageCount Value="20"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="dllstr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DllStr"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="12"/>
+        <UsageCount Value="25"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="maintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainType"/>
+        <TopLine Value="3"/>
+        <CursorPos X="64" Y="26"/>
+        <UsageCount Value="26"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainUnit"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="30"/>
+        <CursorPos X="24" Y="40"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="mplugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MPluginType"/>
+        <TopLine Value="8"/>
+        <CursorPos X="114" Y="8"/>
+        <UsageCount Value="26"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="spectrumdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SpectrumData"/>
+        <TopLine Value="36"/>
+        <CursorPos X="1" Y="36"/>
+        <UsageCount Value="25"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="vpbuffers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VPBuffers"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="2" Y="26"/>
+        <UsageCount Value="25"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="vistype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="23" Y="41"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="clientnettype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClientNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="55" Y="19"/>
+        <UsageCount Value="25"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="mnettype.pas"/>
+        <UnitName Value="MNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="49" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="viswintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisWinType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="12"/>
+        <UsageCount Value="25"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="stddllinterfaces.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdDllInterfaces"/>
+        <TopLine Value="10"/>
+        <CursorPos X="30" Y="23"/>
+        <UsageCount Value="25"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="defaulttriggers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DefaultTriggers"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="81"/>
+        <CursorPos X="14" Y="97"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="graphx32.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GraphX32"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="268"/>
+        <CursorPos X="3" Y="278"/>
+        <UsageCount Value="24"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="461"/>
+        <CursorPos X="13" Y="472"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit18>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="52" Column="154" TopLine="39"/>
+      </Position1>
+      <Position2>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="105" Column="32" TopLine="91"/>
+      </Position2>
+      <Position3>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="111" Column="21" TopLine="106"/>
+      </Position4>
+      <Position5>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="106" Column="27" TopLine="96"/>
+      </Position5>
+      <Position6>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="110" Column="28" TopLine="100"/>
+      </Position6>
+      <Position7>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="8" Column="60" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="111" Column="32" TopLine="101"/>
+      </Position8>
+      <Position9>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="58" Column="1" TopLine="40"/>
+      </Position9>
+      <Position10>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="52" Column="58" TopLine="42"/>
+      </Position10>
+      <Position11>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="119" Column="20" TopLine="101"/>
+      </Position11>
+      <Position12>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="619" Column="24" TopLine="606"/>
+      </Position12>
+      <Position13>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="52" Column="133" TopLine="42"/>
+      </Position13>
+      <Position14>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="53" Column="138" TopLine="43"/>
+      </Position14>
+      <Position15>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="58" Column="145" TopLine="43"/>
+      </Position15>
+      <Position16>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="57" Column="57" TopLine="47"/>
+      </Position16>
+      <Position17>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="58" Column="66" TopLine="48"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="9" Column="48" TopLine="1"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="58" Column="1" TopLine="46"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="52" Column="6" TopLine="48"/>
+      </Position20>
+      <Position21>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="9" Column="38" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="vistype.pas"/>
+        <Caret Line="35" Column="28" TopLine="26"/>
+      </Position22>
+      <Position23>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="102" Column="34" TopLine="95"/>
+      </Position23>
+      <Position24>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="45" Column="41" TopLine="35"/>
+      </Position24>
+      <Position25>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="417" Column="18" TopLine="412"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="26" Column="43" TopLine="20"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="24" Column="46" TopLine="18"/>
+      </Position27>
+      <Position28>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="186" Column="16" TopLine="180"/>
+      </Position28>
+      <Position29>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="81" Column="29" TopLine="77"/>
+      </Position29>
+      <Position30>
+        <Filename Value="defaulttriggers.pas"/>
+        <Caret Line="20" Column="33" TopLine="85"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

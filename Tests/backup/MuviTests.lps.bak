@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="70">
+      <Unit0>
+        <Filename Value="MuviTests.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="32" Y="3"/>
+        <UsageCount Value="54"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="hashmaptests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMapTests"/>
+        <TopLine Value="86"/>
+        <CursorPos X="39" Y="100"/>
+        <UsageCount Value="54"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\hashmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMap"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="301"/>
+        <CursorPos Y="317"/>
+        <UsageCount Value="54"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\csl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="11"/>
+        <UsageCount Value="54"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\mapkeys.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MapKeys"/>
+        <CursorPos X="22" Y="8"/>
+        <UsageCount Value="54"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="tagtests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TagTests"/>
+        <TopLine Value="174"/>
+        <CursorPos Y="197"/>
+        <UsageCount Value="54"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\tagunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TagUnit"/>
+        <TopLine Value="389"/>
+        <CursorPos X="3" Y="330"/>
+        <UsageCount Value="53"/>
+        <Bookmarks Count="1">
+          <Item0 Y="410" ID="6"/>
+        </Bookmarks>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\..\Komponenten\AdvGui\advfunc.inc"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="19" Y="7"/>
+        <UsageCount Value="52"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="advfunctests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFuncTests"/>
+        <TopLine Value="2"/>
+        <CursorPos X="59" Y="38"/>
+        <UsageCount Value="45"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="arrayfunctests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ArrayFuncTests"/>
+        <TopLine Value="26"/>
+        <CursorPos X="11" Y="31"/>
+        <UsageCount Value="45"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\linkedlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LinkedList"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="18"/>
+        <CursorPos X="36" Y="40"/>
+        <UsageCount Value="44"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="listtests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ListTests"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="21" Y="44"/>
+        <UsageCount Value="44"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="doortests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DoorTests"/>
+        <TopLine Value="114"/>
+        <CursorPos X="5" Y="122"/>
+        <UsageCount Value="43"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\doors.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Doors"/>
+        <CursorPos X="29" Y="14"/>
+        <UsageCount Value="43"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\doorunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DoorUnit"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="208"/>
+        <CursorPos X="8" Y="227"/>
+        <UsageCount Value="43"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+        <UsageCount Value="42"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\SDK3\shared\interfaces\plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <UsageCount Value="42"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\methodqueues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MethodQueues"/>
+        <TopLine Value="57"/>
+        <CursorPos X="23" Y="77"/>
+        <UsageCount Value="32"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="methodqueuetests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MethodQueueTests"/>
+        <TopLine Value="37"/>
+        <CursorPos X="22" Y="74"/>
+        <FoldState Value=" TJf1K("/>
+        <UsageCount Value="32"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\delegates.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Delegates"/>
+        <UsageCount Value="31"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\util\incrementalset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalSet"/>
+        <CursorPos X="12"/>
+        <UsageCount Value="30"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\util\incrementalhashset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSet"/>
+        <TopLine Value="38"/>
+        <CursorPos Y="54"/>
+        <FoldState Value=" TJiF1o2G"/>
+        <UsageCount Value="30"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="incrementalhashsettests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSetTests"/>
+        <TopLine Value="150"/>
+        <CursorPos Y="165"/>
+        <FoldState Value=" TJkd17~"/>
+        <UsageCount Value="30"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\objectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClassBasic"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="50"/>
+        <CursorPos Y="76"/>
+        <FoldState Value=" TJib1rY"/>
+        <UsageCount Value="30"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="pushabletests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PushableTests"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="47" Y="41"/>
+        <UsageCount Value="29"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="queuetests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="QueueTests"/>
+        <CursorPos X="69" Y="8"/>
+        <UsageCount Value="29"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\cslpushable.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="cslPushable"/>
+        <UsageCount Value="29"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\queue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Queue"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="72"/>
+        <CursorPos Y="88"/>
+        <UsageCount Value="29"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissionTest"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="337"/>
+        <CursorPos Y="354"/>
+        <UsageCount Value="29"/>
+        <Bookmarks Count="1">
+          <Item0 Y="242" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissions"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="74"/>
+        <CursorPos Y="91"/>
+        <FoldState Value=" TJjE1I3 plPm41{H1;"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\tvsp\tvsptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPType"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="28"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="orderedlisttests.pas"/>
+        <UnitName Value="OrderedListTests"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="66" Y="8"/>
+        <UsageCount Value="19"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="parammaptests.pas"/>
+        <UnitName Value="ParamMapTests"/>
+        <CursorPos X="31" Y="9"/>
+        <UsageCount Value="25"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
+        <TopLine Value="595"/>
+        <CursorPos Y="599"/>
+        <UsageCount Value="8"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="P:\lazarus\components\fpcunit\guitestrunner.pas"/>
+        <UnitName Value="GuiTestRunner"/>
+        <TopLine Value="234"/>
+        <CursorPos Y="247"/>
+        <UsageCount Value="8"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testregistry.pp"/>
+        <TopLine Value="115"/>
+        <CursorPos X="35" Y="117"/>
+        <UsageCount Value="7"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testutils.pp"/>
+        <TopLine Value="68"/>
+        <CursorPos X="3" Y="82"/>
+        <UsageCount Value="12"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\rtl\inc\objpash.inc"/>
+        <TopLine Value="179"/>
+        <CursorPos X="22" Y="194"/>
+        <UsageCount Value="8"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\rtl\inc\systemh.inc"/>
+        <TopLine Value="239"/>
+        <CursorPos X="25" Y="243"/>
+        <UsageCount Value="7"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\rtl\inc\objpas.inc"/>
+        <TopLine Value="962"/>
+        <CursorPos X="11" Y="964"/>
+        <UsageCount Value="7"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="..\..\Komponenten\AdvGui\advfuncc.inc"/>
+        <TopLine Value="111"/>
+        <CursorPos X="37" Y="90"/>
+        <UsageCount Value="12"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="..\refcounter.pas"/>
+        <UnitName Value="RefCounter"/>
+        <TopLine Value="39"/>
+        <CursorPos X="31" Y="44"/>
+        <UsageCount Value="9"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="..\advfunc.inc"/>
+        <UsageCount Value="7"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="..\..\Komponenten\AdvGui\advfunch.inc"/>
+        <TopLine Value="11"/>
+        <CursorPos X="29" Y="32"/>
+        <UsageCount Value="8"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="..\..\Komponenten\AdvGui\advfunc.pas"/>
+        <UnitName Value="AdvFunc"/>
+        <TopLine Value="332"/>
+        <CursorPos X="11" Y="356"/>
+        <UsageCount Value="8"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="..\..\Komponenten\AdvGui\binarysearch.inc"/>
+        <CursorPos Y="8"/>
+        <UsageCount Value="8"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="..\uidarray.pas"/>
+        <UnitName Value="UIDArray"/>
+        <TopLine Value="18"/>
+        <CursorPos X="14" Y="33"/>
+        <UsageCount Value="8"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\rtl\objpas\sysutils\systhrdh.inc"/>
+        <TopLine Value="25"/>
+        <CursorPos X="23" Y="47"/>
+        <UsageCount Value="8"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="P:\lazarus\fpc\2.6.2\source\rtl\objpas\sysutils\sysuthrd.inc"/>
+        <TopLine Value="2"/>
+        <CursorPos X="3" Y="108"/>
+        <UsageCount Value="8"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
+        <TopLine Value="70"/>
+        <CursorPos Y="83"/>
+        <UsageCount Value="9"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="..\minterfacedobject.pas"/>
+        <UnitName Value="MInterfacedObject"/>
+        <CursorPos X="22" Y="9"/>
+        <UsageCount Value="8"/>
+      </Unit50>
+      <Unit51>
+        <Filename Value="..\..\Komponenten\AdvGui\advguipack.pas"/>
+        <UnitName Value="AdvGuiPack"/>
+        <CursorPos X="81" Y="5"/>
+        <UsageCount Value="8"/>
+      </Unit51>
+      <Unit52>
+        <Filename Value="..\doorutils.pas"/>
+        <UnitName Value="DoorUtils"/>
+        <CursorPos X="38" Y="6"/>
+        <UsageCount Value="9"/>
+      </Unit52>
+      <Unit53>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\objpash.inc"/>
+        <TopLine Value="219"/>
+        <CursorPos X="20" Y="230"/>
+        <UsageCount Value="8"/>
+      </Unit53>
+      <Unit54>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\objpas.inc"/>
+        <TopLine Value="975"/>
+        <CursorPos Y="984"/>
+        <UsageCount Value="8"/>
+      </Unit54>
+      <Unit55>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\sysutils.pp"/>
+        <TopLine Value="2"/>
+        <UsageCount Value="8"/>
+      </Unit55>
+      <Unit56>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win32\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <UsageCount Value="8"/>
+      </Unit56>
+      <Unit57>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\systemh.inc"/>
+        <TopLine Value="1039"/>
+        <CursorPos X="10" Y="1052"/>
+        <UsageCount Value="8"/>
+      </Unit57>
+      <Unit58>
+        <Filename Value="..\parammap.pas"/>
+        <UnitName Value="ParamMap"/>
+        <CursorPos Y="13"/>
+        <UsageCount Value="8"/>
+      </Unit58>
+      <Unit59>
+        <Filename Value="..\SDK3\shared\interfaces\stdparamtypes.pas"/>
+        <UnitName Value="StdParamTypes"/>
+        <UsageCount Value="8"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="..\SDK3\shared\interfaces\paramtype2.pas"/>
+        <UnitName Value="ParamType2"/>
+        <TopLine Value="55"/>
+        <CursorPos X="14" Y="70"/>
+        <UsageCount Value="8"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="..\SDK3\shared\interfaces\vistype2.pas"/>
+        <UnitName Value="VisType2"/>
+        <TopLine Value="150"/>
+        <CursorPos X="21" Y="157"/>
+        <UsageCount Value="8"/>
+      </Unit61>
+      <Unit62>
+        <Filename Value="..\paramtypeimpl.pas"/>
+        <UnitName Value="ParamTypeImpl"/>
+        <CursorPos X="29" Y="9"/>
+        <UsageCount Value="8"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="..\vistypeunit.pas"/>
+        <UnitName Value="VisTypeUnit"/>
+        <TopLine Value="440"/>
+        <CursorPos X="64" Y="384"/>
+        <UsageCount Value="8"/>
+      </Unit63>
+      <Unit64>
+        <Filename Value="..\vistypeunit2.pas"/>
+        <UnitName Value="VisTypeUnit2"/>
+        <TopLine Value="61"/>
+        <UsageCount Value="8"/>
+      </Unit64>
+      <Unit65>
+        <Filename Value="..\vistypeimpl.pas"/>
+        <UnitName Value="VisTypeImpl"/>
+        <TopLine Value="14"/>
+        <CursorPos X="23" Y="10"/>
+        <UsageCount Value="9"/>
+      </Unit65>
+      <Unit66>
+        <Filename Value="P:\lazarus\fpc\3.0.0\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="774"/>
+        <CursorPos X="3" Y="776"/>
+        <UsageCount Value="10"/>
+      </Unit66>
+      <Unit67>
+        <Filename Value="P:\lazarus\fpc\3.0.0\source\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="807"/>
+        <CursorPos X="11" Y="795"/>
+        <UsageCount Value="10"/>
+      </Unit67>
+      <Unit68>
+        <Filename Value="P:\lazarus\fpc\3.0.0\source\rtl\inc\objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="226"/>
+        <CursorPos Y="241"/>
+        <UsageCount Value="9"/>
+      </Unit68>
+      <Unit69>
+        <Filename Value="P:\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\sysuthrd.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="58"/>
+        <CursorPos Y="74"/>
+        <UsageCount Value="10"/>
+      </Unit69>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="330" TopLine="308"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="227" TopLine="211"/>
+      </Position2>
+      <Position3>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="327" TopLine="308"/>
+      </Position3>
+      <Position4>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="328" TopLine="308"/>
+      </Position4>
+      <Position5>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="329" TopLine="308"/>
+      </Position5>
+      <Position6>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="330" TopLine="308"/>
+      </Position6>
+      <Position7>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="78" TopLine="62"/>
+      </Position7>
+      <Position8>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="79" TopLine="62"/>
+      </Position8>
+      <Position9>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="80" TopLine="62"/>
+      </Position9>
+      <Position10>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="81" TopLine="62"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="136" TopLine="102"/>
+      </Position11>
+      <Position12>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="328" Column="18" TopLine="308"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="136" TopLine="102"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="209" TopLine="193"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="223" TopLine="197"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="224" TopLine="198"/>
+      </Position16>
+      <Position17>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="225" TopLine="199"/>
+      </Position17>
+      <Position18>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="289" Column="22" TopLine="271"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="136" TopLine="102"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="285" TopLine="269"/>
+      </Position20>
+      <Position21>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="235" Column="73" TopLine="208"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="217" Column="37" TopLine="209"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="59" Column="23" TopLine="43"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="225" TopLine="221"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <Caret Line="211" Column="39" TopLine="194"/>
+      </Position25>
+      <Position26>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="288" Column="18" TopLine="280"/>
+      </Position26>
+      <Position27>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="354" TopLine="326"/>
+      </Position27>
+      <Position28>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="294" Column="10" TopLine="277"/>
+      </Position28>
+      <Position29>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="305" Column="13" TopLine="277"/>
+      </Position29>
+      <Position30>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <Caret Line="359" Column="19" TopLine="333"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="FFirst"/>
+      </Item1>
+    </Watches>
+  </Debugging>
+</CONFIG>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="P:\lazarus\fpc\2.6.4\bin\i386-win32\fpc.exe" Date="1150455029"/>
+  <Params Value=" -MObjFPC -Scgi -O1 -vewnhi -FiD:\Eigene_Programme\Muvi\SDK3\shared\include -FuD:\Eigene_Programme\Muvi\SDK3\shared\interfaces -FuD:\Eigene_Programme\Muvi\SDK3\shared\legacy -FuD:\Eigene_Programme\Muvi\SDK3\template\ -l Example.lpr"/>
+</CONFIG>

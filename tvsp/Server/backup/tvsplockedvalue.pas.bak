@@ -1,0 +1,40 @@
+unit TVSPLockedValue;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, TVSPGroups;
+
+type
+  TTVSPLockedValue = class (TTVSPBasicValue)
+  strict private
+    FLock: TMultiReadExclusiveWriteSynchronizer;
+  strict protected
+    property Lock: TMultiReadExclusiveWriteSynchronizer read FLock;
+  public
+    constructor Create(AOwner: TTVSPBasicGroup; AName: string; AType: TPParamType);
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{%REGION TTVSPLockedValue}
+
+constructor TTVSPLockedValue.Create(AOwner: TTVSPBasicGroup; AName: string; AType: TPParamType);
+begin
+  inherited Create(AOwner, AName, AType);
+  FLock:=TMultiReadExclusiveWriteSynchronizer.Create;
+end;
+
+destructor TTVSPLockedValue.Destroy;
+begin
+  FLock.Destroy;
+  inherited Destroy;
+end;
+
+{%ENDREGION}
+
+end.
+

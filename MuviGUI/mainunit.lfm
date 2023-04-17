@@ -1,0 +1,31 @@
+object MainForm: TMainForm
+  Left = 348
+  Height = 240
+  Top = 485
+  Width = 320
+  Caption = 'MainForm'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '1.6.0.4'
+  object EditorBtn: TButton
+    Left = 144
+    Height = 25
+    Top = 32
+    Width = 75
+    Caption = 'Editor'
+    OnClick = EditorBtnClick
+    TabOrder = 0
+  end
+  object ToolboxBtn: TButton
+    Left = 144
+    Height = 25
+    Top = 64
+    Width = 75
+    Caption = 'Toolbox'
+    OnClick = ToolboxBtnClick
+    TabOrder = 1
+  end
+end

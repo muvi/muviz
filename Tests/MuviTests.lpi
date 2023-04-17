@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="MuviTests"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="4">
+      <Item1>
+        <PackageName Value="AdvGuiPack"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FPCUnitTestRunner"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+      </Item4>
+    </RequiredPackages>
+    <Units Count="31">
+      <Unit0>
+        <Filename Value="MuviTests.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="hashmaptests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMapTests"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\hashmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMap"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\csl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\mapkeys.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MapKeys"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="tagtests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TagTests"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\tagunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TagUnit"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\..\Komponenten\AdvGui\advfunc.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="advfunctests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFuncTests"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="arrayfunctests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ArrayFuncTests"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\linkedlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LinkedList"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="listtests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ListTests"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="doortests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DoorTests"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\doors.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Doors"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\doorunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DoorUnit"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\SDK3\shared\interfaces\plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\methodqueues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MethodQueues"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="methodqueuetests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MethodQueueTests"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\delegates.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Delegates"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\util\incrementalset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalSet"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\util\incrementalhashset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSet"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="incrementalhashsettests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSetTests"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\objectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClassBasic"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="pushabletests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PushableTests"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="queuetests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="QueueTests"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\cslpushable.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="cslPushable"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\queue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Queue"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="tvsppermissiontest.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissionTest"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\tvsp\Server\tvsppermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissions"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\tvsp\tvsptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPType"/>
+      </Unit30>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir);..\..\Komponenten\AdvGui"/>
+      <OtherUnitFiles Value="..;..\SDK3\shared\utilities;..\SDK3\shared\interfaces;..\util;..\tvsp\Server;..\tvsp"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="6">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+      <Item4>
+        <Name Value="EAssertionFailedError"/>
+      </Item4>
+      <Item5>
+        <Name Value="EOutOfDoors"/>
+      </Item5>
+      <Item6>
+        <Name Value="EMethodQueueException"/>
+      </Item6>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

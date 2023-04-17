@@ -1,0 +1,84 @@
+object ErrorDebugForm: TErrorDebugForm
+  Left = 268
+  Height = 180
+  Top = 194
+  Width = 500
+  BorderIcons = [biSystemMenu]
+  Caption = 'Fehler beim Benutzen einer dynamischen Datenstruktur!'
+  ClientHeight = 180
+  ClientWidth = 500
+  Constraints.MinHeight = 100
+  Constraints.MinWidth = 500
+  FormStyle = fsStayOnTop
+  Position = poScreenCenter
+  LCLVersion = '0.9.28.2'
+  object ErrorDescLbl: TLabel
+    Left = 8
+    Height = 114
+    Top = 8
+    Width = 482
+    Alignment = taCenter
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoSize = False
+    Caption = 'Fehlerbeschreibung'
+    Layout = tlCenter
+    ParentColor = False
+    WordWrap = True
+  end
+  object FixLbl: TLabel
+    Left = 8
+    Height = 16
+    Top = 131
+    Width = 110
+    Anchors = [akLeft, akRight, akBottom]
+    AutoSize = False
+    Caption = 'Verfügbare Fixes (0):'
+    ParentColor = False
+  end
+  object FixBtn: TButton
+    Left = 123
+    Height = 42
+    Top = 131
+    Width = 120
+    Anchors = [akRight, akBottom]
+    Caption = 'Fix Anwenden'
+    Default = True
+    ModalResult = 4
+    TabOrder = 0
+  end
+  object RaiseBtn: TButton
+    Left = 251
+    Height = 42
+    Top = 131
+    Width = 120
+    Anchors = [akRight, akBottom]
+    Caption = 'Exception Auslösen'
+    ModalResult = 3
+    TabOrder = 1
+  end
+  object IgnoreBtn: TButton
+    Left = 374
+    Height = 42
+    Top = 131
+    Width = 120
+    Anchors = [akRight, akBottom]
+    Caption = 'Ignorieren'
+    ModalResult = 5
+    TabOrder = 2
+  end
+  object FixCB: TComboBox
+    Left = 8
+    Height = 23
+    Top = 150
+    Width = 111
+    Anchors = [akLeft, akRight, akBottom]
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 3
+  end
+  object ApplicationProperties: TApplicationProperties
+    OnException = ApplicationPropertiesException
+    left = 24
+    top = 56
+  end
+end

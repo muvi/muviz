@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="18">
+      <Unit0>
+        <Filename Value="Touchtest.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Touchtest"/>
+        <UsageCount Value="28"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="27" Y="30"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\touchevent.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TouchEvent"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="21" Y="55"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TouchControl"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="88"/>
+        <CursorPos X="1" Y="75"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\touchcontrolbase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TouchControlBase"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="142"/>
+        <CursorPos X="1" Y="161"/>
+        <FoldState Value=" TJiB1O8"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\wininc\redef.inc"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="103"/>
+        <CursorPos X="1" Y="505"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\wininc\base.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="612"/>
+        <CursorPos X="1" Y="625"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="P:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2067"/>
+        <CursorPos X="15" Y="2079"/>
+        <UsageCount Value="11"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="P:\lazarus\lcl\lmessages.pp"/>
+        <UnitName Value="LMessages"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="248"/>
+        <CursorPos X="3" Y="43"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\wininc\messages.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1417"/>
+        <CursorPos X="22" Y="1431"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win32\windows.pp"/>
+        <UnitName Value="windows"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="28"/>
+        <CursorPos X="7" Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="P:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="6342"/>
+        <CursorPos X="1" Y="6357"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="P:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1941"/>
+        <CursorPos X="1" Y="1954"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\mainunit.pas"/>
+        <UnitName Value="MainUnit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="53"/>
+        <CursorPos X="41" Y="66"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\wininc\ascdef.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="176"/>
+        <CursorPos X="10" Y="189"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\wininc\errors.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="775"/>
+        <CursorPos X="72" Y="788"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\win\sysosh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="9"/>
+        <CursorPos X="41" Y="9"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\heaph.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="75"/>
+        <CursorPos X="10" Y="91"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="14" HistoryIndex="13">
+      <Position1>
+        <Filename Value="..\..\touchevent.pas"/>
+        <Caret Line="55" Column="21" TopLine="43"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="154" Column="43" TopLine="138"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="105" Column="57" TopLine="93"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="113" Column="49" TopLine="102"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="110" Column="46" TopLine="97"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="129" Column="25" TopLine="117"/>
+      </Position6>
+      <Position7>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="131" Column="16" TopLine="99"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="90" Column="26" TopLine="82"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="71" Column="27" TopLine="59"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="72" Column="1" TopLine="59"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="73" Column="1" TopLine="59"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="75" Column="68" TopLine="62"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="17" Column="20" TopLine="4"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\touchcontrol.pas"/>
+        <Caret Line="75" Column="1" TopLine="62"/>
+      </Position14>
+    </JumpHistory>
+  </ProjectSession>
+  <EditorMacros Count="0"/>
+</CONFIG>

@@ -1,0 +1,209 @@
+object BeatMonForm: TBeatMonForm
+  Left = 890
+  Height = 319
+  Top = 112
+  Width = 492
+  Caption = 'Beat Monitor'
+  ClientHeight = 319
+  ClientWidth = 492
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  LCLVersion = '0.9.30'
+  object BeatMonitor: TImage
+    Left = 8
+    Height = 234
+    Top = 56
+    Width = 256
+    Anchors = [akTop, akLeft, akRight, akBottom]
+  end
+  object BeatMonitor2: TImage
+    Left = 272
+    Height = 186
+    Top = 104
+    Width = 211
+    Anchors = [akTop, akRight, akBottom]
+  end
+  object HistoryZoomLbl: TLabel
+    Left = 176
+    Height = 16
+    Top = 11
+    Width = 74
+    Caption = 'HistoryZoom:'
+    ParentColor = False
+  end
+  object TakeFirstDeltaLbl: TLabel
+    Left = 272
+    Height = 16
+    Top = 36
+    Width = 84
+    Caption = 'Take First Delta:'
+    ParentColor = False
+  end
+  object SensibilityEdit: TFloatSpinEdit
+    Left = 16
+    Height = 23
+    Top = 6
+    Width = 96
+    Increment = 1
+    MaxValue = 1E300
+    MinValue = 0
+    OnChange = SensibilityEditChange
+    TabOrder = 0
+    Value = 3
+  end
+  object SubbandEdit: TSpinEdit
+    Left = 120
+    Height = 23
+    Top = 6
+    Width = 50
+    MaxValue = 2147483647
+    TabOrder = 1
+  end
+  object BeatHistoryCB: TCheckBox
+    Left = 328
+    Height = 19
+    Top = 8
+    Width = 81
+    Caption = 'BeatHistory'
+    TabOrder = 2
+  end
+  object BPMSensibilityEdit: TFloatSpinEdit
+    Left = 424
+    Height = 23
+    Top = 6
+    Width = 64
+    Increment = 1
+    MaxValue = 1E300
+    MinValue = 0
+    OnChange = BPMSensibilityEditChange
+    TabOrder = 3
+    Value = 1.3
+  end
+  object HistoryZoomEdit: TFloatSpinEdit
+    Left = 256
+    Height = 23
+    Top = 8
+    Width = 66
+    Increment = 0.1
+    MaxValue = 1E300
+    MinValue = 1E-300
+    OnChange = HistoryZoomEditChange
+    TabOrder = 4
+    Value = 60
+  end
+  object DrawCB: TCheckBox
+    Left = 12
+    Height = 19
+    Top = 36
+    Width = 47
+    Caption = 'Draw'
+    Checked = True
+    State = cbChecked
+    TabOrder = 5
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 296
+    Width = 492
+    Panels = <>
+  end
+  object TestCB1: TCheckBox
+    Left = 64
+    Height = 19
+    Top = 36
+    Width = 20
+    TabOrder = 7
+  end
+  object TestCB2: TCheckBox
+    Left = 80
+    Height = 19
+    Top = 36
+    Width = 20
+    TabOrder = 8
+  end
+  object TestCB3: TCheckBox
+    Left = 96
+    Height = 19
+    Top = 36
+    Width = 20
+    TabOrder = 9
+  end
+  object HistoryCountEdit: TSpinEdit
+    Left = 208
+    Height = 23
+    Top = 32
+    Width = 50
+    MaxValue = 10000
+    MinValue = 1
+    TabOrder = 10
+    Value = 200
+  end
+  object TakeFirstDeltaEdit: TFloatSpinEdit
+    Left = 368
+    Height = 23
+    Top = 32
+    Width = 64
+    Increment = 0.001
+    MaxValue = 1
+    MinValue = 0
+    OnChange = TakeFirstDeltaEditChange
+    TabOrder = 11
+    Value = 0.75
+  end
+  object TakeFirstMaxPosOffsetEdit: TSpinEdit
+    Left = 438
+    Height = 23
+    Top = 32
+    Width = 50
+    MaxValue = 10
+    MinValue = -10
+    OnChange = TakeFirstMaxPosOffsetEditChange
+    TabOrder = 12
+    Value = 2
+  end
+  object TFsqrCB: TCheckBox
+    Left = 272
+    Height = 19
+    Top = 64
+    Width = 36
+    Caption = 'sqr'
+    Checked = True
+    OnChange = TFsqrCBChange
+    State = cbChecked
+    TabOrder = 13
+  end
+  object BeatZoomEdit: TFloatSpinEdit
+    Left = 392
+    Height = 23
+    Top = 60
+    Width = 90
+    DecimalPlaces = 4
+    Increment = 0.1
+    MaxValue = 1E300
+    MinValue = 1E-300
+    OnChange = BeatZoomEditChange
+    TabOrder = 14
+    Value = 0.1
+  end
+  object DPSCB: TCheckBox
+    Left = 272
+    Height = 19
+    Top = 80
+    Width = 156
+    Caption = 'Double Peak Search (DPS)'
+    OnChange = DPSCBChange
+    TabOrder = 15
+  end
+  object Beat600CB: TCheckBox
+    Left = 120
+    Height = 19
+    Top = 36
+    Width = 61
+    Caption = 'Beat600'
+    TabOrder = 16
+  end
+end

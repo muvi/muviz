@@ -1,0 +1,9 @@
+Zeichenfolge, die an den Anfang geschrieben wird, wenn das erste Zeichen nicht escaped wird
+Zeichenfolge, die an den Anfang geschrieben wird, wenn das erste Zeichen escaped wird
+Zeichenfolge, die an das Ende geschrieben wird, wenn das letzte Zeichen nicht escaped wird
+Zeichenfolge, die an das Ende geschrieben wird, wenn das letzte Zeichen escaped wird
+Zeichenfolge zur Verkettung von zwei nicht escapeden Zeichen
+Zeichenfolge zur Verkettung von einem nicht escapeden zeichen mit einem escapeden Zeichen
+Zeichenfolge zur Verkettung von einem escapeden zeichen mit einem nicht escapeden Zeichen
+Zeichenfolge zur Verkettung von zwei escapeden Zeichen
+256 Zeilen (leere Zeile wenn das Zeichen escaped wird, sonst der Text)

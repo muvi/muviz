@@ -1,0 +1,72 @@
+unit VisualisationUtil;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, VisType2, TagType, PresetType, StdParamTypes, VisAddInput,
+  MStrings;
+
+procedure CopyVis(ASrc, ADest: IPVisualisation);
+function MakeChild(AID: TPPresetID; AParent: TPPresetID; ALoaded: Boolean = false; AEnvironment: IPVisualisationEnvironment = nil; AName: IString = nil): IPVisualisation;
+function MakeChild(AParent: TPPresetID; ALoaded: Boolean = false; AEnvironment: IPVisualisationEnvironment = nil; AName: IString = nil): IPVisualisation;
+function CreatePreset(AName: IString; AID: TPPresetID; AEnvironment: IPVisualisationEnvironment = nil): IPVisualisation;
+
+implementation
+
+procedure CopyVis(ASrc, ADest: IPVisualisation);
+var
+  AParam, ANewParam: IPParam;
+  AIterator        : Pointer;
+  I                : Integer;
+  ATags            : ITags;
+begin
+  //copy params
+  AIterator:=nil;
+  AParam:=ASrc.IterateInput(AIterator);
+  while AParam<>nil do begin
+    ANewParam:=ADest[AParam.ID];
+    //copy value
+    ANewParam.GetFrom(AParam);
+    //increment
+    AParam:=ASrc.IterateInput(AIterator);
+  end;
+  //copy tags
+  ATags:=ASrc.Tags;
+  for I:=0 to ATags.Count-1
+    do ADest.AddTag(ATags[I]);
+end;
+
+function MakeChild(AID: TPPresetID; AParent: TPPresetID; ALoaded: Boolean = false; AEnvironment: IPVisualisationEnvironment = nil; AName: IString = nil): IPVisualisation;
+var
+  AParentVis: IPVisualisation;
+begin
+  AParentVis:=PresetUtil[AParent];
+  if AName = nil
+    then AName:='Copy of ' + IPString(AParentVis[ParamID(NAMEINPUTNAME, vString)]).Value;
+  Result:=PresetUtil.CreatePreset(AID, AEnvironment);
+  CopyVis(AParentVis, Result);
+  with Result do begin
+    AddInput(This, NAMEINPUTNAME, AName);
+    AddInput(This, PARENTINPUTNAME, AParent);
+    AddInput(This, LOADEDINPUTNAME, ALoaded);
+  end;
+end;
+
+function MakeChild(AParent: TPPresetID; ALoaded: Boolean = false; AEnvironment: IPVisualisationEnvironment = nil; AName: IString = nil): IPVisualisation;
+var
+  AID: TGUID;
+begin
+  CreateGUID(AID);
+  Result:=MakeChild(AID, AParent, ALoaded, AEnvironment, AName);
+end;
+
+function CreatePreset(AName: IString; AID: TPPresetID; AEnvironment: IPVisualisationEnvironment = nil): IPVisualisation;
+begin
+  Result:=PresetUtil.CreatePreset(AID, AEnvironment);
+  AddInput(Result, NAMEINPUTNAME, AName);
+end;
+
+end.
+

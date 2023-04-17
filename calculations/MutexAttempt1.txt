@@ -1,0 +1,21 @@
+procedure EnterRead;
+begin
+  writeLock.TryEnter;
+  readLock.Increment;
+end;
+
+procedure LeaveRead;
+begin
+  if readLock.Decrement = 0
+    then writeLock.Leave;
+end;
+
+procedure EnterWrite;
+begin
+  writeLock.Enter;
+end;
+
+procedure LeaveWrite;
+begin
+  writeLock.Leave;
+end;

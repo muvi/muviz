@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1342715691"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -Fi/media/Daten/Eigene_Programme/Muvi/tvsp/Server/lib/x86_64-linux -Fl/opt/gnome/lib -Fu/media/Daten/Eigene_Programme/Muvi -Fu/media/Daten/Eigene_Programme/Komponenten/AdvGui -Fu/media/Daten/Eigene_Programme/Muvi/SDK3/shared/utilities -Fu/media/Daten/Eigene_Programme/Muvi/SDK3/shared/interfaces -Fu/media/Daten/Eigene_Programme/Muvi/tvsp -Fu/media/Daten/Eigene_Programme/Komponenten/lnet/lazaruspackage/lib/x86_64-linux -Fu/usr/lib64/lazarus/ideintf/units/x86_64-linux/gtk2 -Fu/usr/lib64/lazarus/lcl/units/x86_64-linux/gtk2 -Fu/usr/lib64/lazarus/lcl/units/x86_64-linux -Fu/usr/lib64/lazarus/components/lazutils/lib/x86_64-linux -Fu/usr/lib64/lazarus/packager/units/x86_64-linux -Fu/media/Daten/Eigene_Programme/Muvi/tvsp/Server/ -FU/media/Daten/Eigene_Programme/Muvi/tvsp/Server/lib/x86_64-linux/ -l -dLCL -dLCLgtk2 tvsp.lpr"/>
+  <Complete Value="False"/>
+</CONFIG>

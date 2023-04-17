@@ -1,0 +1,8 @@
+1 Getränke 1
+2 Getränke 2
+3 Sub
+4 Bier
+5 Note 1
+6 Note 2
+7 Box innen
+8 Box außen

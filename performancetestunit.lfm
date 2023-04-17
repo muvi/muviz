@@ -1,0 +1,45 @@
+object PerformanceTestForm: TPerformanceTestForm
+  Left = 310
+  Height = 240
+  Top = 198
+  Width = 320
+  Caption = 'Performance Test'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '1.4.4.0'
+  object CountEdit: TSpinEdit
+    Left = 120
+    Height = 23
+    Top = 8
+    Width = 114
+    MaxValue = 2000000000
+    MinValue = 1
+    TabOrder = 0
+    Value = 100000
+  end
+  object CountLbl: TLabel
+    Left = 16
+    Height = 15
+    Top = 8
+    Width = 91
+    Caption = 'Number of Tests:'
+    ParentColor = False
+  end
+  object TimeLbl: TLabel
+    Left = 16
+    Height = 15
+    Top = 40
+    Width = 82
+    Caption = 'Needed Time: -'
+    ParentColor = False
+  end
+  object TestBtn: TButton
+    Left = 16
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'Test now'
+    OnClick = TestBtnClick
+    TabOrder = 1
+  end
+end

@@ -1,0 +1,108 @@
+unit artnetn;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, lNet, lNetComponents;
+
+type
+  TArtNet = class
+  private
+    FNet: TLUDPComponent;
+  public
+    constructor Create(ANet: TLUDPComponent);
+    destructor Destroy; override;
+    procedure Poll;
+  end;
+
+const
+  OpPoll             = $2000;
+  OpPollReply        = $2100;
+  OpDiagData         = $2300;
+  OpCommand          = $2400;
+  OpOutput           = $5000;
+  OpDMX              = opOutput;
+  OpNzs              = $5100;
+  OpSync             = $5200;
+  OpAddress          = $6000;
+  OpInput            = $7000;
+  OpTodRequest       = $8000;
+  OpTodData          = $8100;
+  OpTodControl       = $8200;
+  OpRdm              = $8300;
+  OpRdmSub           = $8400;
+  OpVideoSetup       = $A010;
+  OpVideoPalette     = $A020;
+  OpVideoData        = $A040;
+  OpMacMaster        = $F000;
+  OpMacSlave         = $F100;
+  OpFirmwareMaster   = $F200;
+  OpFirmwareReply    = $F300;
+  OpFileTnMaster     = $F400;
+  OpFileFnMaster     = $F500;
+  OpFileFnReply      = $F600;
+  OpIpProg           = $F800;
+  OpIpProgReply      = $F900;
+  OpMedia            = $9000;
+  OpMediaPatch       = $9100;
+  OpMediaControl     = $9200;
+  OpMediaContrlReply = $9300;
+  OpTimeCode         = $9700;
+  OpTimeSync         = $9800;
+  OpTrigger          = $9900;
+  OpDirectory        = $9A00;
+  OpDirectoryReply   = $9B00;
+
+implementation
+
+const
+  ARTNETID : array [0..7] of Char = 'Art-Net'+#0;
+
+  talkArtPollReplyOnConditionChange = $2;
+  talkDiagnostics                   = $4;
+  talkDiagnosticsUnicast            = $8;
+
+type
+  TArtPollPacket = packed record
+    ID        : array [0..7] of Char;
+    OpCode    : Word;
+    ProtVerHi : Byte;
+    ProtVerLo : Byte;
+    TalkToMe  : Byte;
+    Priority  : Byte;
+  end;
+
+{%REGION TArtNet}
+
+constructor TArtNet.Create(ANet: TLUDPComponent);
+begin
+  inherited Create;
+  FNet:=ANet;
+end;
+
+destructor TArtNet.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TArtNet.Poll;
+var
+  AMsg: TArtPollPacket;
+begin
+  with AMsg do begin
+    ID:=ARTNETID;
+    OpCode:=OpPoll;
+    ProtVerHi:=3;
+    ProtVerLo:=14;
+    TalkToMe:=0;
+    Priority:=100;
+  end;
+  FNet.Socks[0].SocketState;
+end;
+
+{%ENDREGION}
+
+end.
+

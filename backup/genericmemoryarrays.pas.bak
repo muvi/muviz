@@ -1,0 +1,544 @@
+unit GenericMemoryArrays;
+
+{$mode objfpc}{$H+}
+
+interface
+
+{.$DEFINE DSRC}
+{.$DEFINE DSRCNEXTPREV}
+
+uses
+  Classes, SysUtils, DynamicBase
+  {$IFDEF DSRC}, DynamicErrorDebugHelper{$ENDIF};
+
+type
+  TBufferArray                            = class (TADObject)
+  private
+    FMemSize: dsi;
+    FCount  : dsi;
+    FSize   : dsi;
+  protected
+    FMem    : Pointer;
+    function GetAdressOfItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi): Pointer; inline;
+  public
+    constructor Create(const ASize: dsi = SizeOf(TObject); const ACount: dsi = 0; AOwner: TADObject = nil); virtual; reintroduce;
+    destructor Destroy; override;
+    procedure Resize(const ACount: dsi = 0); inline;
+    procedure GetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; out AItem); inline;
+    procedure SetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; const AItem); inline;
+    procedure Fill(const AValue); inline;
+    property AdressOfItems[const Index: dsi]: Pointer read GetAdressOfItem;
+    property Data: Pointer read FMem;
+  published
+    property Count: dsi read FCount write Resize;
+    property ItemSize: dsi read FSize;
+    property MemorySize: dsi read FMemSize;
+  end;
+
+  TBam                                    = packed record
+    V: array [0..SizeOf(Pointer)-1] of Byte;
+  end;
+
+  TMarkableBufferArray                    = class (TBufferArray)
+  private
+    function GetBamAdress({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): Pointer;
+  public
+    constructor Create(const ASize: dsi = SizeOf(TObject); const ACount: dsi = 0; AOwner: TADObject = nil); override;
+    destructor Destroy; override;
+    procedure GetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; out AItem); inline;
+    procedure SetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const AItem); inline;
+    procedure Next(var ABam: TBam); inline;
+    procedure Prev(var ABam: TBam); inline;
+    function ToFirst: TBam; inline;
+    function ToLast: TBam; inline;
+    function IsFirst(const ABam: TBam): Boolean; inline;
+    function IsLast(const ABam: TBam): Boolean; inline;
+    function ToItem({$IFNDEF DSRC}const{$ENDIF} AIndex: Integer): TBam; inline;
+    procedure CopyFrom(ASource: TMarkableBufferArray); overload;
+    procedure CopyFrom(ASource: TMarkableBufferArray; const ASourceIndex,ADestIndex,ACount: dsi); overload;
+    procedure CopyFrom(ASource: TMarkableBufferArray; const ASourceBam,ADestBam: TBam; {$IFNDEF DSRC}const{$ENDIF} ACount: dsi); overload;
+    property AdressOfBam[{$IFNDEF DSRC}const{$ENDIF} ABam: TBam]: Pointer read GetBamAdress;
+  end;
+
+  generic TGenericBufferArray<BufferType> = class (TMarkableBufferArray)
+  type
+    PBufferType                           = ^BufferType;
+    BufferTypeFormat                      = array [0..0] of BufferType;
+    PBufferTypeFormat                     = ^BufferTypeFormat;
+    TLocalBam                             = PBufferType;
+  var
+    protected
+      function GetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi): BufferType; inline;
+      procedure SetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; const Value: BufferType); inline;
+      function GetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): BufferType; inline;
+      procedure SetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const Value: BufferType); inline;
+    public
+      constructor Create(const ACount: dsi = 0; AOwner: TADObject = nil); virtual; reintroduce;
+      destructor Destroy; override;
+      procedure Fill2(const AValue: BufferType); inline;
+      property Items[const Index: dsi]: BufferType read GetItem write SetItem; default;
+      property Bams[const ABam: TBam]: BufferType read GetBams write SetBams;
+  end;
+
+const
+  EMPTYBAM: TBam = (V:(0,0,0,0));
+
+procedure ZeroBuffer(out Buffer; const ASize: dsi); inline;
+function BamAssigned(ABam: TBam): Boolean; inline;
+
+implementation
+
+{TBufferArray}
+
+constructor TBufferArray.Create(const ASize: dsi = SizeOf(TObject); const ACount: dsi = 0; AOwner: TADObject = nil);
+begin
+  inherited Create(AOwner);
+  FCount:=ACount;
+  FSize:=ASize;
+  FMemSize:=FCount*FSize;
+  GetMem(FMem,FMemSize);
+end;
+
+destructor TBufferArray.Destroy;
+begin
+  FreeMem(FMem,FMemSize);
+  inherited Destroy;
+end;
+
+procedure TBufferArray.Resize(const ACount: dsi = 0);
+begin
+  if FCount=ACount then exit;
+  FreeMem(FMem,FMemSize);
+  FCount:=ACount;
+  FMemSize:=FCount*FSize;
+  GetMem(FMem,FMemSize);
+end;
+
+procedure TBufferArray.GetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; out AItem);
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if Index>=FCount then begin
+    if FCount>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(FCount-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'GetItem','Buffer index overrun: The buffer contains '+IntToStr(FCount)+' items, but you tried to read the '+IntToStr(Index)+'. one.',Fixes) of
+      0: Index:=FCount-1;
+    end;
+  end;
+  {$ENDIF}
+  Move((FMem+(Index*FSize))^,AItem,FSize);
+end;
+
+procedure TBufferArray.SetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; const AItem);
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if Index>=FCount then begin
+    if FCount>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(FCount-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'SetItem','Buffer index overrun: The buffer contains '+IntToStr(FCount)+' items, but you tried to write to the '+IntToStr(Index)+'. one.',Fixes) of
+      0: Index:=FCount-1;
+    end;
+  end;
+  {$ENDIF}
+  Move(AItem,(FMem+(Index*FSize))^,FSize);
+end;
+
+procedure TBufferArray.Fill(const AValue);
+var
+  I   : Integer;
+  APtr: Pointer;
+begin
+  APtr:=FMem;
+  for I:=0 to FCount-1 do begin
+    Move(AValue,APtr^,FSize);
+    APtr+=FSize;
+  end;
+end;
+
+function TBufferArray.GetAdressOfItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi): Pointer;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if Index>=FCount then begin
+    if FCount>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(FCount-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'GetAdressOfItem','Buffer index overrun: The buffer contains '+IntToStr(FCount)+' items, but you tried to get the adress of the '+IntToStr(Index)+'. one.',Fixes) of
+      0: Index:=FCount-1;
+    end;
+  end;
+  {$ENDIF}
+  Result:=(FMem+(FSize*Index));
+end;
+
+{TMarkableBufferArray}
+
+type
+  TBam2 = Pointer;
+
+constructor TMarkableBufferArray.Create(const ASize: dsi = SizeOf(TObject); const ACount: dsi = 0; AOwner: TADObject = nil);
+begin
+  inherited Create(ASize,ACount,AOwner);
+end;
+
+destructor TMarkableBufferArray.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TMarkableBufferArray.GetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; out AItem);
+var
+  ABam2: TBam2 absolute ABam;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+FMemSize) then begin
+    SetLength(Fixes,FCount);
+    for I:=0 to FCount-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if FCount>0 then Fixes[FCount-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an list item, but you wanted to read it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(FCount)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  {$ENDIF}
+  Move(ABam2^,AItem,FSize);
+end;
+
+procedure TMarkableBufferArray.SetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const AItem);
+var
+  ABam2: TBam2 absolute ABam;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+FMemSize) then begin
+    SetLength(Fixes,FCount);
+    for I:=0 to FCount-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if FCount>0 then Fixes[FCount-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'SetItem','Marker Error: The marker does not point to an list item, but you wanted to set it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(FCount)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  {$ENDIF}
+  Move(AItem,ABam2^,FSize);
+end;
+
+procedure TMarkableBufferArray.Next(var ABam: TBam);
+var
+  ABam2: TBam2 absolute ABam;
+{$IFDEF DSRCNEXTPREV} {$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF} {$ENDIF}
+begin
+  {$IFDEF DSRCNEXTPREV} {$IFDEF DSRC}
+  if (ABam2<FMem-FSize) or (ABam2>=FMem+FMemSize) then begin
+    SetLength(Fixes,FCount);
+    for I:=0 to FCount-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if FCount>0 then Fixes[FCount-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'Next','Marker Error: The marker does not point to an list item and will not point to one if you go to the next item. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(FCount)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  if ABam2=FMem+FMemSize-FSize then begin
+    if ShowAndFixBug(Self,'Next','Marker Error: The marker points at the last item, but you wanted to go to the next item. The list contains '+IntToStr(FCount)+' items.',['Skip going to next item'])=0
+      then exit;
+  end;
+  if ABam2=FMem-FSize then ShowAndFixBug(Self,'Next','Marker Warning: The marker does not point to an list item, but it will point to one if you go to the next item. The list contains '+IntToStr(FCount)+' items.',['Ignore this warning']);
+  {$ENDIF} {$ENDIF}
+  ABam2+=FSize;
+end;
+
+procedure TMarkableBufferArray.Prev(var ABam: TBam);
+var
+  ABam2: TBam2 absolute ABam;
+{$IFDEF DSRCNEXTPREV} {$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF} {$ENDIF}
+begin
+  {$IFDEF DSRCNEXTPREV} {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+FMemSize+FSize) then begin
+    SetLength(Fixes,FCount);
+    for I:=0 to FCount-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if FCount>0 then Fixes[FCount-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'Prev','Marker Error: The marker does not point to an list item and will not point to one if you go to the previous item. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(FCount)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  if ABam2=FMem then begin
+    if ShowAndFixBug(Self,'Prev','Marker Error: The marker points at the first item, but you wanted to go to the previous item. The list contains '+IntToStr(FCount)+' items.',['Skip going to previous item'])=0
+      then exit;
+  end;
+  if ABam2=FMem+FMemSize then ShowAndFixBug(Self,'Prev','Marker Warning: The marker does not point to an list item, but it will point to one if you go to the previous item. The list contains '+IntToStr(FCount)+' items.',['Ignore this warning']);
+  {$ENDIF} {$ENDIF}
+  ABam2-=FSize;
+end;
+
+function TMarkableBufferArray.ToFirst: TBam;
+var
+  ABam2: TBam2 absolute Result;
+begin
+  ABam2:=FMem;
+end;
+
+function TMarkableBufferArray.ToLast: TBam;
+var
+  ABam2: TBam2 absolute Result;
+begin
+  ABam2:=FMem+MemorySize-ItemSize;
+end;
+
+function TMarkableBufferArray.IsFirst(const ABam: TBam): Boolean;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=(ABam2=FMem);
+end;
+
+function TMarkableBufferArray.IsLast(const ABam: TBam): Boolean;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=(ABam2=FMem+MemorySize-ItemSize)
+end;
+
+function TMarkableBufferArray.ToItem({$IFNDEF DSRC}const{$ENDIF} AIndex: Integer): TBam;
+var
+  ABam2: TBam2 absolute Result;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if AIndex>=FCount then begin
+    if FCount>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(FCount-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'ToItem','Buffer index overrun: The buffer contains '+IntToStr(FCount)+' items, but you tried to put the selection to the '+IntToStr(AIndex)+'. one.',Fixes) of
+      0: AIndex:=FCount-1;
+    end;
+  end;
+  {$ENDIF}
+  ABam2:=FMem+(AIndex*FSize);
+end;
+
+procedure TMarkableBufferArray.CopyFrom(ASource: TMarkableBufferArray);
+begin
+  {$IFDEF DSRC}
+  if ASource=nil then ShowAndFixBug(Self,'CopyFrom','The Source Buffer is not defined',[]);
+  if ASource.FSize<>FSize then ShowAndFixBug(Self,'CopyFrom','The buffer sizes are not equal',[]);
+  {$ENDIF}
+  Resize(ASource.Count);
+  Move(ASource.Data^,Data^,FMemSize);
+end;
+
+procedure TMarkableBufferArray.CopyFrom(ASource: TMarkableBufferArray; const ASourceBam,ADestBam: TBam; {$IFNDEF DSRC}const{$ENDIF} ACount: dsi);
+var
+{$IFDEF DSRC}
+  ASource2: Pointer;
+  ADest2  : Pointer;
+  ACount2 : dsi;
+{$ELSE}
+  ASource2: TBam2 absolute ASourceBam;
+  ADest2  : TBam2 absolute ADestBam;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if ASource=nil then ShowAndFixBug(Self,'CopyFrom','The Source Buffer is not defined',[]);
+  if ASource.ItemSize<>ItemSize then ShowAndFixBug(Self,'CopyFrom','The buffer sizes are not equal',[]);
+  ASource2:=GetBamAdress(ASourceBam);
+  ADest2:=GetBamAdress(ADestBam);
+  if (ASource2+(ACount*ItemSize)>Data+MemorySize) then begin
+    ACount2:=(Data+MemorySize-ASource2) div ItemSize;
+    if ShowAndFixBug(Self,'CopyFrom','There are not enough items to copy',['Copy only '+IntToStr(ACount2)+' items']) = 0
+      then ACount:=ACount2;
+  end;
+  if (ADest2+(ACount*ItemSize)>Data+MemorySize) then begin
+    ACount2:=(Data+MemorySize-ADest2) div ItemSize;
+    if ShowAndFixBug(Self,'CopyFrom','There are not enough items to copy',['Copy only '+IntToStr(ACount2)+' items']) = 0
+      then ACount:=ACount2;
+  end;
+  {$ENDIF}
+  Move(ASource2^,ADest2^,ACount*ItemSize);
+end;
+
+procedure TMarkableBufferArray.CopyFrom(ASource: TMarkableBufferArray; const ASourceIndex,ADestIndex,ACount: dsi);
+begin
+  CopyFrom(ASource,ASource.ToItem(ASourceIndex),ToItem(ADestIndex),ACount);
+end;
+
+function TMarkableBufferArray.GetBamAdress({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): Pointer;
+var
+  ABam2: TBam2 absolute ABam;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+FMemSize) then begin
+    SetLength(Fixes,FCount+1);
+    for I:=0 to FCount-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if FCount>0 then Fixes[FCount-1]:='Go to last item';
+    Fixes[FCount]:='Return 0x00000000';
+    I:=ShowAndFixBug(Self,'GetBamAdress','Marker Error: The marker does not point to an list item, but you wanted to get the adress of it. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(FCount)+' items.',Fixes);
+    if I=FCount then begin
+      Result:=nil;
+      exit;
+    end;
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  {$ENDIF}
+  Result:=ABam2;
+end;
+
+{TGenericBufferArray}
+
+constructor TGenericBufferArray.Create(const ACount: dsi = 0; AOwner: TADObject = nil);
+begin
+  inherited Create(SizeOf(BufferType),ACount,AOwner);
+end;
+
+destructor TGenericBufferArray.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TGenericBufferArray.Fill2(const AValue: BufferType);
+begin
+  Fill(AValue);
+end;
+
+function TGenericBufferArray.GetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi): BufferType;
+//var
+//  AMem: PBufferTypeFormat absolute FMem;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if Index>=Count then begin
+    if Count>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(Count-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'GetItem','Buffer index overrun: The buffer contains '+IntToStr(Count)+' items, but you tried to read the '+IntToStr(Index)+'. one.',Fixes) of
+      0: Index:=Count-1;
+    end;
+  end;
+  {$ENDIF}
+  Result:=PBufferTypeFormat(FMem)^[Index];
+end;
+
+procedure TGenericBufferArray.SetItem({$IFNDEF DSRC}const{$ENDIF} Index: dsi; const Value: BufferType);
+//var
+//  AMem: PBufferTypeFormat absolute FMem;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if Index>=Count then begin
+    if Count>0 then begin
+      SetLength(Fixes,1);
+      Fixes[0]:='Use last valid index ('+IntToStr(Count-1)+')';
+    end else SetLength(Fixes,0);
+    case ShowAndFixBug(Self,'SetItem','Buffer index overrun: The buffer contains '+IntToStr(Count)+' items, but you tried to write to the '+IntToStr(Index)+'. one.',Fixes) of
+      0: Index:=Count-1;
+    end;
+  end;
+  {$ENDIF}
+  PBufferTypeFormat(FMem)^[Index]:=Value;
+end;
+
+function TGenericBufferArray.GetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): BufferType;
+var
+  ABam2: TLocalBam absolute ABam;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then begin
+    SetLength(Fixes,Count);
+    for I:=0 to Count-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if Count>0 then Fixes[Count-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an list item, but you wanted to read it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(Count)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  {$ENDIF}
+  Result:=ABam2^;
+end;
+
+procedure TGenericBufferArray.SetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const Value: BufferType);
+var
+  ABam2: TLocalBam absolute ABam;
+{$IFDEF DSRC}
+var
+  Fixes: array of string;
+  I    : Integer;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then begin
+    SetLength(Fixes,Count);
+    for I:=0 to Count-2 do Fixes[I]:='Go to '+IntToStr(I+1)+'. item';
+    if Count>0 then Fixes[Count-1]:='Go to last item';
+    I:=ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an list item, but you wanted to read it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'. The list contains '+IntToStr(Count)+' items.',Fixes);
+    if I>=0 then ABam:=ToItem(I);
+  end;
+  {$ENDIF}
+  ABam2^:=Value;
+end;
+
+{Allgemein}
+
+procedure ZeroBuffer(out Buffer; const ASize: dsi); inline;
+var
+  I   : Cardinal;
+  APtr: PByte;
+begin
+  APtr:=@Buffer;
+  for I:=0 to ASize-1 do begin
+    APtr^:=0;
+    Inc(APtr);
+  end;
+end;
+
+function BamAssigned(ABam: TBam): Boolean; inline;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=(ABam2<>nil);
+end;
+
+end.
+

@@ -1,0 +1,29 @@
+unit MainType;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType, MPluginType;
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+procedure PluginDone; stdcall;
+
+var
+  PluginSystem: IMServerPluginSystem;
+
+implementation
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+begin
+  PluginSystem:=IMServerPluginSystem(APluginSystem.Future('0.2.0'));
+end;
+
+procedure PluginDone; stdcall;
+begin
+  PluginSystem:=nil;
+end;
+
+end.
+

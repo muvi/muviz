@@ -1,0 +1,20 @@
+unit MTypes;
+
+{$mode objfpc}{$H+}
+
+{$MACRO ON}
+{$DEFINE mcall = cdecl}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+
+type
+  TMColor = LongWord;
+
+implementation
+
+end.
+

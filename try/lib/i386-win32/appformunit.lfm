@@ -1,0 +1,19 @@
+object AppForm: TAppForm
+  Left = 499
+  Height = 240
+  Top = 627
+  Width = 320
+  Caption = 'AppForm'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '1.2.2.0'
+  object TerminateBtn: TButton
+    Left = 202
+    Height = 25
+    Top = 116
+    Width = 75
+    Caption = 'TerminateBtn'
+    OnClick = TerminateBtnClick
+    TabOrder = 0
+  end
+end

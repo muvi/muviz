@@ -1,0 +1,137 @@
+unit MethodQueueTests;
+
+{$mode objfpc}{$H+}
+{$ASSERTIONS ON}
+
+interface
+
+uses
+  Classes, SysUtils, fpcunit, testutils, testregistry, MethodQueues, Delegates;
+
+type
+  TMethodQueueTest= class(TTestCase)
+  private
+    FMethodQueue   : TMethodQueue;
+    FExecutionCount: Integer;
+    procedure IncExecutionCount;
+    procedure AddEvent;
+    procedure AddAndExecuteEvent;
+  protected
+    procedure SetUp; override;
+    procedure TearDown; override;
+  published
+    procedure TestSimple;
+    procedure TestNestedAdd;
+    procedure TestNestedAddAndExecute;
+    procedure TestRemovalFail;
+  end;
+
+  TTestEvent      = procedure of object;
+
+  TTestMethod     = class (TDelegateMethod)
+  private
+    FMethod: TTestEvent;
+  public
+    constructor Create(AMethod: TTestEvent);
+    procedure Execute(AParams: TDelegateParams); override;
+    function Equals(Obj: TObject): Boolean; override;
+  end;
+
+implementation
+
+{%REGION TTestMethod}
+
+constructor TTestMethod.Create(AMethod: TTestEvent);
+begin
+  inherited Create;
+  FMethod:=AMethod;
+end;
+
+procedure TTestMethod.Execute(AParams: TDelegateParams);
+begin
+  Assert(AParams = nil);
+  FMethod;
+end;
+
+function TTestMethod.Equals(Obj: TObject): Boolean;
+begin
+  Result:=Obj.InheritsFrom(TTestMethod)
+    and (TTestMethod(Obj).FMethod = FMethod);
+end;
+
+{%ENDREGION}
+{%REGION TMethodQueueTest}
+
+procedure TMethodQueueTest.IncExecutionCount;
+begin
+  Inc(FExecutionCount);
+end;
+
+procedure TMethodQueueTest.AddEvent;
+begin
+  FMethodQueue.Add(TTestMethod.Create(@IncExecutionCount));
+end;
+
+procedure TMethodQueueTest.AddAndExecuteEvent;
+begin
+  AddEvent;
+  FMethodQueue.Execute(nil, false);
+end;
+
+procedure TMethodQueueTest.SetUp;
+begin
+  FMethodQueue:=TMethodQueue.Create;
+  FExecutionCount:=0;
+end;
+
+procedure TMethodQueueTest.TearDown;
+begin
+  FMethodQueue.Destroy;
+end;
+
+procedure TMethodQueueTest.TestSimple;
+begin
+  AddAndExecuteEvent;
+  AddAndExecuteEvent;
+  AddAndExecuteEvent;
+  AssertEquals(3, FExecutionCount);
+end;
+
+procedure TMethodQueueTest.TestNestedAdd;
+begin
+  FMethodQueue.AddAndExecute(TTestMethod.Create(@AddEvent), nil, false);
+  AssertEquals(1, FExecutionCount);
+end;
+
+procedure TMethodQueueTest.TestNestedAddAndExecute;
+begin
+  FMethodQueue.AddAndExecute(TTestMethod.Create(@AddAndExecuteEvent), nil, false);
+  AssertEquals(1, FExecutionCount);
+end;
+
+procedure TMethodQueueTest.TestRemovalFail;
+var
+  AMethod: TDelegateMethod;
+begin
+  AddEvent;
+  AMethod:=TTestMethod.Create(@IncExecutionCount);
+  try
+    FMethodQueue.RemoveWeak(AMethod);
+    AMethod.Destroy;
+    Fail('EMethodQueueException expected')
+  except
+    on E: EMethodQueueException
+      do AMethod.Destroy;
+    on E: Exception do begin
+      AMethod.Destroy;
+      Fail('EMethodQueueException expected');
+    end;
+  end;
+end;
+
+{%ENDREGION}
+
+initialization
+  RegisterTest(TMethodQueueTest);
+end.
+

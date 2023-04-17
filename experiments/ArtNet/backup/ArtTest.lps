@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="23">
+      <Unit0>
+        <Filename Value="ArtTest.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="15"/>
+        <UsageCount Value="110"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="65"/>
+        <CursorPos X="14" Y="90"/>
+        <UsageCount Value="110"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="ArtNet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="116"/>
+        <CursorPos X="3" Y="147"/>
+        <UsageCount Value="104"/>
+        <Bookmarks Count="4">
+          <Item0 X="28" Y="228" ID="9"/>
+          <Item1 Y="149" ID="3"/>
+          <Item2 X="14" Y="797" ID="1"/>
+          <Item3 X="36" Y="63" ID="2"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="artnetconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ArtNetConst"/>
+        <TopLine Value="7"/>
+        <CursorPos X="3" Y="28"/>
+        <UsageCount Value="79"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="iptools.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IPTools"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos Y="20"/>
+        <UsageCount Value="77"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\objectclasses.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClasses"/>
+        <TopLine Value="10"/>
+        <CursorPos X="3" Y="27"/>
+        <UsageCount Value="50"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\..\SDK3\shared\interfaces\plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <UsageCount Value="50"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="artnetn.pas"/>
+        <TopLine Value="82"/>
+        <CursorPos Y="102"/>
+        <UsageCount Value="16"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="Artnet\Artnet.pas"/>
+        <TopLine Value="32"/>
+        <CursorPos X="13" Y="34"/>
+        <UsageCount Value="11"/>
+        <Bookmarks Count="1">
+          <Item0 X="9" Y="587" ID="1"/>
+        </Bookmarks>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\..\Komponenten\lnet\lazaruspackage\lnetcomponents.pas"/>
+        <UnitName Value="lNetComponents"/>
+        <TopLine Value="199"/>
+        <CursorPos X="16" Y="201"/>
+        <UsageCount Value="7"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\Komponenten\lnet\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <TopLine Value="876"/>
+        <CursorPos X="18" Y="878"/>
+        <UsageCount Value="7"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\..\Komponenten\lnet\lib\lcommon.pp"/>
+        <UnitName Value="lCommon"/>
+        <TopLine Value="66"/>
+        <CursorPos Y="81"/>
+        <UsageCount Value="3"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="P:\lazarus\components\lazutils\avglvltree.pas"/>
+        <UnitName Value="AvgLvlTree"/>
+        <TopLine Value="405"/>
+        <CursorPos Y="418"/>
+        <UsageCount Value="4"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="D:\usr\share\fpcsrc\packages\fcl-process\src\process.pp"/>
+        <TopLine Value="83"/>
+        <CursorPos X="15" Y="96"/>
+        <UsageCount Value="4"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="D:\usr\share\fpcsrc\packages\fcl-process\src\unix\process.inc"/>
+        <TopLine Value="425"/>
+        <CursorPos X="3" Y="431"/>
+        <UsageCount Value="3"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="D:\usr\share\fpcsrc\rtl\objpas\classes\classesh.inc"/>
+        <TopLine Value="1726"/>
+        <CursorPos X="17" Y="1740"/>
+        <UsageCount Value="7"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="D:\usr\share\fpcsrc\rtl\objpas\sysutils\sysstrh.inc"/>
+        <TopLine Value="94"/>
+        <CursorPos X="10" Y="109"/>
+        <UsageCount Value="4"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="D:\usr\share\fpcsrc\rtl\objpas\sysutils\sysstr.inc"/>
+        <TopLine Value="624"/>
+        <CursorPos X="9" Y="732"/>
+        <UsageCount Value="4"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="D:\usr\share\fpcsrc\rtl\inc\objpash.inc"/>
+        <TopLine Value="229"/>
+        <CursorPos Y="248"/>
+        <UsageCount Value="7"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\minterfacedobject.pas"/>
+        <UnitName Value="MInterfacedObject"/>
+        <TopLine Value="12"/>
+        <CursorPos Y="71"/>
+        <UsageCount Value="7"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\..\objectclassbasic.pas"/>
+        <UnitName Value="ObjectClassBasic"/>
+        <TopLine Value="5"/>
+        <CursorPos X="33" Y="8"/>
+        <UsageCount Value="7"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="D:\usr\lib64\lazarus\lcl\include\trackbar.inc"/>
+        <TopLine Value="307"/>
+        <CursorPos Y="323"/>
+        <UsageCount Value="10"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\..\..\Komponenten\lnet\trunk\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1202"/>
+        <CursorPos X="39" Y="1291"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+    </Units>
+    <JumpHistory Count="16" HistoryIndex="15">
+      <Position1>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="801" TopLine="793"/>
+      </Position1>
+      <Position2>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="242" Column="39" TopLine="229"/>
+      </Position2>
+      <Position3>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="45" Column="13" TopLine="37"/>
+      </Position3>
+      <Position4>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="48" Column="24" TopLine="27"/>
+      </Position4>
+      <Position5>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="42" Column="47" TopLine="27"/>
+      </Position5>
+      <Position6>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="45" TopLine="38"/>
+      </Position6>
+      <Position7>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="788" Column="29" TopLine="782"/>
+      </Position7>
+      <Position8>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="45" TopLine="38"/>
+      </Position8>
+      <Position9>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="47" TopLine="40"/>
+      </Position9>
+      <Position10>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="57" TopLine="55"/>
+      </Position10>
+      <Position11>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="792" Column="14" TopLine="780"/>
+      </Position11>
+      <Position12>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="824" Column="10" TopLine="809"/>
+      </Position12>
+      <Position13>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="90" Column="14" TopLine="65"/>
+      </Position13>
+      <Position14>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="412" Column="13" TopLine="410"/>
+      </Position14>
+      <Position15>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="113" Column="23" TopLine="97"/>
+      </Position15>
+      <Position16>
+        <Filename Value="ArtNet.pas"/>
+        <Caret Line="62" Column="46" TopLine="46"/>
+      </Position16>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="2">
+      <Item1>
+        <Expression Value="AStartCode"/>
+      </Item1>
+      <Item2>
+        <Expression Value="ACount"/>
+      </Item2>
+    </Watches>
+  </Debugging>
+</CONFIG>

@@ -1,0 +1,15 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TPerformanceTestForm','FORMDATA',[
+  'TPF0'#20'TPerformanceTestForm'#19'PerformanceTestForm'#4'Left'#3'6'#1#6'Heig'
+  +'ht'#3#240#0#3'Top'#3#198#0#5'Width'#3'@'#1#7'Caption'#6#16'Performance Test'
+  +#12'ClientHeight'#3#240#0#11'ClientWidth'#3'@'#1#10'LCLVersion'#6#7'1.4.4.0'
+  +#0#9'TSpinEdit'#9'CountEdit'#4'Left'#2'x'#6'Height'#2#23#3'Top'#2#8#5'Width'
+  +#2'r'#8'MaxValue'#4#0#148'5w'#8'MinValue'#2#1#8'TabOrder'#2#0#5'Value'#4#160
+  +#134#1#0#0#0#6'TLabel'#8'CountLbl'#4'Left'#2#16#6'Height'#2#15#3'Top'#2#8#5
+  +'Width'#2'['#7'Caption'#6#16'Number of Tests:'#11'ParentColor'#8#0#0#6'TLabe'
+  +'l'#7'TimeLbl'#4'Left'#2#16#6'Height'#2#15#3'Top'#2'('#5'Width'#2'R'#7'Capti'
+  +'on'#6#14'Needed Time: -'#11'ParentColor'#8#0#0#7'TButton'#7'TestBtn'#4'Left'
+  +#2#16#6'Height'#2#25#3'Top'#2'H'#5'Width'#2'K'#7'Caption'#6#8'Test now'#7'On'
+  +'Click'#7#12'TestBtnClick'#8'TabOrder'#2#1#0#0#0
+]);

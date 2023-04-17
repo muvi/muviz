@@ -1,0 +1,170 @@
+unit TVSPClientSources;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, TVSPSources, TVSPBasicSources, AbstractNet, TVSPMsg,
+  TVSPType;
+
+type
+  TTVSPClientSources = class;
+
+  TTVSPClientSource         = class (TTVSPSource)
+  strict private
+    //number of values which use this param
+    FValRefCount: Integer;
+    function IsSynchronized: Boolean;
+  public
+    constructor Create(AOwner: TTVSPClientSources; ASize: Cardinal; AID: TGUID);
+    destructor Destroy; override;
+    procedure _ValAddRef; cdecl; override;
+    procedure _ValRelease; cdecl; override;
+    procedure &Set(AStart, ACount: LongWord; const Src); cdecl; override;
+    procedure Get(AStart, ACount: LongWord; out Dest); cdecl; override;
+    //function Cut(AStart, ACount: LongWord): ITVSPSource; cdecl; override;
+    //set the value without sending it
+    procedure NetSet(AStart, ACount: LongWord; const Src);
+  end;
+
+  TTVSPClientSources        = class (TTVSPBasicSources, ITVSPSources)
+  strict private
+    FNet: TANet;
+    function GetSource(AID: TTVSPSrcID): ITVSPSource; cdecl;
+  strict protected
+    function MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource; override;
+  protected
+    property Net: TANet read FNet;
+  public
+    constructor Create(ANet: TANet);
+    property Items[AID: TTVSPSrcID]: ITVSPSource read GetSource; default;
+    //gets the item without reference counting. needed for networking.
+    property NetItems[ASize: Cardinal; ID: TGUID]: TTVSPSource read GetItem;
+  end;
+
+implementation
+
+{%REGION TTVSPClientSources}
+
+constructor TTVSPClientSources.Create(ANet: TANet);
+begin
+  inherited Create;
+  FNet:=ANet;
+end;
+
+function TTVSPClientSources.MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource;
+begin
+  Result:=TTVSPClientSource.Create(Self, ASize, AID);
+end;
+
+function TTVSPClientSources.GetSource(AID: TTVSPSrcID): ITVSPSource; cdecl;
+begin
+  {
+  Assert(AID.PartOffset <= AID.Size);
+  Assert(AID.PartSize <= AID.Size - AID.PartOffset);
+  }
+  Result:=GetItem(AID.Size, AID.ID);
+  {
+  if (AID.PartSize < AID.Size) or (AID.PartOffset > 0)
+    then Result:=TTVSPOffsetSource.Create(Result, AID.PartOffset, AID.PartSize);
+  }
+end;
+
+{%ENDREGION}
+{%REGION TTVSPClientSource}
+
+constructor TTVSPClientSource.Create(AOwner: TTVSPClientSources; ASize: Cardinal; AID: TGUID);
+begin
+  AOwner._AddRef;
+  inherited Create(AOwner, ASize, AID);
+  FValRefCount:=0;
+end;
+
+destructor TTVSPClientSource.Destroy;
+begin
+  Assert(FValRefCount = 0);
+  inherited Destroy;
+  TTVSPClientSources(Owner)._Release;
+end;
+
+procedure TTVSPClientSource._ValAddRef; cdecl;
+var
+  AResult: Integer;
+
+  procedure DoSend;
+  var
+    AMsg    : PSMSrc;
+    AMsgSize: Cardinal;
+  begin
+    AMsgSize:=PrepareMsgSrc(LID, LSize, 0, LSize, AMsg);
+    Get(0, Size, AMsg^.Value);
+    TTVSPClientSources(Owner).Net.Send(nil, AMsg, AMsgSize);
+    FreeMem(AMsg, AMsgSize);
+  end;
+
+begin
+  _AddRef;
+
+  AResult:=InterLockedIncrement(FValRefCount);
+  //send to server if necessary
+  if AResult = 1
+    then DoSend;
+end;
+
+procedure TTVSPClientSource._ValRelease; cdecl;
+var
+  AResult: Integer;
+begin
+  AResult:=InterLockedDecrement(FValRefCount);
+  Assert(AResult >= 0);
+
+  _Release;
+end;
+
+function TTVSPClientSource.IsSynchronized: Boolean;
+var
+  AValRefCount: Integer;
+begin
+  InterLockedExchange(AValRefCount, FValRefCount);
+  Result:=AValRefCount > 0;
+end;
+
+procedure TTVSPClientSource.&Set(AStart, ACount: LongWord; const Src); cdecl;
+var
+  AMsg    : PCMSrc;
+  AMsgSize: Cardinal;
+begin
+  Assert(AStart <= LSize);
+  Assert(ACount <= LSize - AStart);
+  inherited &Set(AStart, ACount, Src);
+  if IsSynchronized then begin
+    AMsgSize:=MakeMsgSrc(LID, LSize, AStart, ACount, Src, AMsg);
+    TTVSPClientSources(Owner).Net.Send(nil, AMsg, AMsgSize);
+    FreeMem(AMsg, AMsgSize);
+  end;
+end;
+
+procedure TTVSPClientSource.Get(AStart, ACount: LongWord; out Dest); cdecl;
+begin
+  Assert(AStart <= LSize);
+  Assert(ACount <= LSize - AStart);
+  inherited Get(AStart, ACount, Dest);
+end;
+
+{
+function TTVSPClientSource.Cut(AStart, ACount: LongWord): ITVSPSource; cdecl;
+begin
+  Result:=TTVSPOffsetSource.Create(Self, AStart, ACount);
+end;
+}
+
+procedure TTVSPClientSource.NetSet(AStart, ACount: LongWord; const Src);
+begin
+  inherited &Set(AStart, ACount, Src);
+end;
+
+{%ENDREGION}
+
+end.
+

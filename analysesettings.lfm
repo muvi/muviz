@@ -1,0 +1,271 @@
+object AnalyseSettingForm: TAnalyseSettingForm
+  Left = 430
+  Height = 350
+  Top = 184
+  Width = 449
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Analyseeinstellungen'
+  ClientHeight = 350
+  ClientWidth = 449
+  Position = poMainFormCenter
+  LCLVersion = '0.9.30'
+  object SyncHCountLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 8
+    Width = 176
+    AutoSize = False
+    Caption = 'Samples zwischen 2 Syncs:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object BHCLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 40
+    Width = 176
+    AutoSize = False
+    Caption = 'Gespeicherte Beats:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object BPMHCLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 104
+    Width = 176
+    AutoSize = False
+    Caption = 'Gespeicherte BPMs:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object BCCLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 72
+    Width = 176
+    AutoSize = False
+    Caption = 'Zu vergleichende Beats:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object BeatSensibilityLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 136
+    Width = 176
+    AutoSize = False
+    Caption = 'Empfindlichkeit für Beats:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object SyncBufferCountLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 168
+    Width = 176
+    AutoSize = False
+    Caption = 'Gespeicherte BPMs:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object SaveSyncCountLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 200
+    Width = 176
+    AutoSize = False
+    Caption = 'Schutzpuffergröße:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object SyncHCountEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 8
+    Width = 50
+    MaxValue = 1000000000
+    MinValue = 1
+    TabOrder = 0
+    Value = 150
+  end
+  object BHCEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 40
+    Width = 50
+    MaxValue = 10000000
+    MinValue = 1
+    TabOrder = 1
+    Value = 1000
+  end
+  object BCCEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 72
+    Width = 50
+    MaxValue = 100000000
+    MinValue = 1
+    TabOrder = 2
+    Value = 400
+  end
+  object BPMHCEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 104
+    Width = 50
+    MaxValue = 1000000000
+    MinValue = 1
+    TabOrder = 3
+    Value = 100
+  end
+  object BeatOptimizerCB: TCheckBox
+    Left = 10
+    Height = 19
+    Top = 232
+    Width = 234
+    AutoSize = False
+    Caption = 'Beat Optimizer'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+  end
+  object BeatOptimizerHCB: TCheckBox
+    Left = 10
+    Height = 19
+    Top = 264
+    Width = 234
+    AutoSize = False
+    Caption = 'History Beat Optimizer'
+    Checked = True
+    State = cbChecked
+    TabOrder = 5
+  end
+  object BeatSensibilityEdit: TFloatSpinEdit
+    Left = 194
+    Height = 23
+    Top = 136
+    Width = 50
+    DecimalPlaces = 8
+    Increment = 0.01
+    MaxValue = 100
+    MinValue = 0
+    TabOrder = 6
+    Value = 1.3
+  end
+  object OKBtn: TButton
+    Left = 208
+    Height = 25
+    Top = 319
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = '&OK'
+    Default = True
+    ModalResult = 1
+    OnClick = SetBtnClick
+    TabOrder = 7
+  end
+  object CancelBtn: TButton
+    Left = 288
+    Height = 25
+    Top = 319
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Cancel = True
+    Caption = '&Abbrechen'
+    ModalResult = 2
+    TabOrder = 8
+  end
+  object SetBtn: TButton
+    Left = 369
+    Height = 25
+    Top = 319
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Ü&bernehmen'
+    OnClick = SetBtnClick
+    TabOrder = 9
+  end
+  object SyncBufferCountEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 168
+    Width = 50
+    MaxValue = 2147483647
+    MinValue = 1
+    TabOrder = 10
+    Value = 441000
+  end
+  object SaveSyncCountEdit: TSpinEdit
+    Left = 194
+    Height = 23
+    Top = 200
+    Width = 50
+    MaxValue = 1000000
+    TabOrder = 11
+    Value = 10
+  end
+  inline BPMThreadOptionFrame: TThreadOptionFrame
+    Left = 256
+    Top = 8
+    Width = 185
+    ClientWidth = 185
+    TabOrder = 12
+    inherited GroupBox: TGroupBox
+      Width = 185
+      ClientWidth = 181
+      inherited PriorityCB: TComboBox
+        Width = 98
+      end
+      inherited DynamicCB: TCheckBox
+        Width = 162
+      end
+      inherited FPSEdit: TFloatSpinEdit
+        Width = 98
+      end
+    end
+  end
+  inline SyncThreadOptionFrame: TThreadOptionFrame
+    Left = 255
+    Top = 130
+    Width = 186
+    ClientWidth = 186
+    TabOrder = 13
+    inherited GroupBox: TGroupBox
+      Width = 186
+      ClientWidth = 182
+      inherited PriorityCB: TComboBox
+        Width = 99
+      end
+      inherited DynamicCB: TCheckBox
+        Width = 163
+      end
+      inherited FPSEdit: TFloatSpinEdit
+        Width = 99
+      end
+    end
+  end
+  object BeatHistoryTimeEdit: TFloatSpinEdit
+    Left = 194
+    Height = 23
+    Top = 288
+    Width = 50
+    DecimalPlaces = 8
+    Increment = 0.1
+    MaxValue = 1000
+    MinValue = 0
+    TabOrder = 14
+    Value = 2
+  end
+  object BeatHistoryTimeLbl: TLabel
+    Left = 10
+    Height = 23
+    Top = 288
+    Width = 176
+    AutoSize = False
+    Caption = 'Beat über diese Zeit mitteln:'
+    Layout = tlCenter
+    ParentColor = False
+  end
+end

@@ -1,0 +1,57 @@
+library Geometry;
+
+{$mode objfpc}{$H+}
+
+uses
+  Classes, PluginType, MPluginType4, MStrings, MTypes, TagType, VPBuffers,
+  ImportType, ParamType2, PresetType, VisType2, SpectrumData, StdParamTypes,
+  CanvasType, StdTags, VisEventImpl, GUIDop, AdvGlFunc, ValueStorages,
+  GraphX32, GeometryUnit, MainUnit;
+
+const
+  REQUIRED_VERSION            = '0.4.0';
+  LIB_VERSION                 = '2.0.0';
+  LIB_NAME                    = 'Geometry2';
+  LIB_DESCRIPTION             = 'Geometric Elements & Rain';
+
+function LibGetData(APluginSystem: IMPluginSystem): TPluginLibInfo; stdcall;
+begin
+  with Result do begin
+    Name:=LIB_NAME;
+    Description:=LIB_DESCRIPTION;
+    Version:=LIB_VERSION;
+    Supported:=(APluginSystem.Future(REQUIRED_VERSION)<>nil);
+  end;
+end;
+
+procedure InitPlugin(APluginSystem: IMPluginSystem); stdcall;
+begin
+  //register units
+  PluginSystem:=IMPluginSystem4(APluginSystem.Future(REQUIRED_VERSION));
+  EmptyString:=PluginSystem.GetEmptyString;
+  ParamTypeUtil:=PluginSystem.GetParamTypeUtil;
+  PresetUtil:=PluginSystem.GetPresetUtil;
+  VisualisationUtil:=PresetUtil;
+  NoCanvas:=PluginSystem.GetNoCanvas;
+  AdvSpectrumData:=PluginSystem.GetSpectrumData;
+
+  Init_Plugin;
+end;
+
+procedure PluginDone; stdcall;
+begin
+  Plugin_Done;
+  //unregister units
+  AdvSpectrumData:=nil;
+  NoCanvas:=nil;
+  VisualisationUtil:=nil;
+  PresetUtil:=nil;
+  ParamTypeUtil:=nil;
+  EmptyString:=nil;
+  PluginSystem:=nil;
+end;
+
+exports
+  LibGetData, InitPlugin, PluginDone;
+end.
+

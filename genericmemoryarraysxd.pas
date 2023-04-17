@@ -1,0 +1,633 @@
+unit GenericMemoryArraysXD;
+
+{$mode objfpc}{$H+}
+
+interface
+
+{.$DEFINE DSRC}
+
+uses
+  Classes, SysUtils, DynamicBase, GenericMemoryArrays
+  {$IFDEF DSRC}, DynamicErrorDebugHelper{$ENDIF};
+
+type
+  // nicht für Benutzung in Bibliotheken, daher keine GUID und kein stdcall;
+  {IInterMark                              = interface
+    {$IFDEF DSRC}
+    {$ENDIF}
+    function GetDimensions: dsi;
+  end;}
+
+  TBufferArrayXD                          = class (TADObject)
+  private
+    FCounts        : array of dsi;
+    FSize          : dsi;
+    FCombinedCounts: array of dsi;
+    function GetDimensions: dsi; inline;
+    function GetSize: dsi; inline;
+    function GetMemSize: dsi; inline;
+    function GetCount({$IFNDEF DSRC} const {$ENDIF} D: dsi): dsi; inline;
+  protected
+    FMem    : Pointer;
+    {$IFDEF DSRC} procedure CheckDimension(var D: dsi; ACaller: string = 'CheckDimension'); inline; {$ENDIF}
+  public
+    constructor Create(const ACounts: array of dsi; ASize: dsi = SizeOf(TObject); AOwner: TADObject = nil); virtual; reintroduce;
+    destructor Destroy; override;
+    procedure Resize(const ACounts: array of dsi); inline;
+    procedure GetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; out AItem);
+    procedure SetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; const AItem);
+    //Füllen: []=alles
+    procedure Fill(const AValue); inline; overload;
+    procedure Fill(const AValue; const Indices: array of dsi); inline; overload;
+    function AdressOfItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi {$IFDEF DSRC}; const ACaller: string = 'GetAdressOfItem'{$ENDIF}): Pointer;
+    property Count[const D: dsi]: dsi read GetCount;// write SetCount;
+    property Data: Pointer read FMem;
+  published
+    property Dimensions: dsi read GetDimensions;
+    property ItemSize: dsi read GetSize;
+    property MemorySize: dsi read GetMemSize;
+  end;
+
+  TMarkableBufferArrayXD                  = class (TBufferArrayXD)
+  private
+    function GetBamAdress({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): Pointer;
+  {$IFDEF DSRC}
+  protected
+    procedure CheckBam(var ABam: TBam; const ACaller: string = 'CheckBam');
+  {$ENDIF}
+  public
+    constructor Create(const ACounts: array of dsi; ASize: dsi = SizeOf(TObject); AOwner: TADObject = nil); override;
+    destructor Destroy; override;
+    procedure GetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; out AItem); inline;
+    procedure SetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const AItem); inline;
+    procedure Next(var ABam: TBam); inline; overload;
+    procedure Next(var ABam: TBam; D: dsi); inline; overload;
+    procedure Prev(var ABam: TBam); inline;
+    procedure Prev(var ABam: TBam; D: dsi); inline; overload;
+    procedure RotateNext(var ABam: TBam); inline; overload;
+    procedure RotateNext(var ABam: TBam; D: dsi); inline; overload;
+    procedure RotatePrev(var ABam: TBam); inline; overload;
+    procedure RotatePrev(var ABam: TBam; D: dsi); inline; overload;
+    function ToFirst: TBam; inline; overload;
+    procedure ToFirst(var ABam: TBam; D: dsi); inline; overload;
+    function ToLast: TBam; inline; overload;
+    procedure ToLast(var ABam: TBam; D: dsi); inline; overload;
+    function IsFirst(const ABam: TBam): Boolean; inline;
+    function IsLast(const ABam: TBam): Boolean; inline;
+    function IsValid(const ABam: TBam): Boolean; inline;
+    function IndexOf(ABam: TBam; D: dsi): dsi; inline;
+    function ToItem({$IFNDEF DSRC}const{$ENDIF} AIndices: array of dsi): TBam;
+    function ToCoord(var ABam: TBam; AIndex,D: dsi): TBam; inline;
+    procedure CopyFrom(ASource: TMarkableBufferArrayXD); overload;
+    //CopyFrom: Count immer in Einzelelementen
+    procedure CopyFrom(ASource: TMarkableBufferArrayXD; const ASourceIndices,ADestIndices: array of dsi; ACount: dsi); overload;
+    procedure CopyFrom(ASource: TMarkableBufferArrayXD; const ASourceBam,ADestBam: TBam; {$IFNDEF DSRC}const{$ENDIF} ACount: dsi); overload;
+    property AdressOfBam[{$IFNDEF DSRC}const{$ENDIF} ABam: TBam]: Pointer read GetBamAdress;
+  end;
+
+  generic TGenericBufferArrayXD<BufferType>= class (TMarkableBufferArrayXD)
+  type
+    PBufferType                           = ^BufferType;
+    TLocalBam                             = PBufferType;
+  var
+    protected
+      function GetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): BufferType; inline;
+      procedure SetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const Value: BufferType); inline;
+    public
+      constructor Create(const ACounts: array of dsi; AOwner: TADObject = nil); virtual; reintroduce;
+      destructor Destroy; override;
+      procedure Fill2(const AValue: BufferType); inline; overload;
+      procedure Fill2(const AValue: BufferType; const Indices: array of dsi); overload;
+      function GetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi): BufferType;
+      procedure SetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; const Value: BufferType);
+      property Bams[const ABam: TBam]: BufferType read GetBams write SetBams;
+  end;
+
+procedure ZeroBuffer(out Buffer; const ASize: dsi);
+
+implementation
+
+{%REGION TBufferArrayXD}
+
+constructor TBufferArrayXD.Create(const ACounts: array of dsi; ASize: dsi = SizeOf(TObject); AOwner: TADObject = nil);
+var
+  I: Integer;
+  L: dsi;
+begin
+  inherited Create(AOwner);
+  FSize:=ASize;
+  L:=Length(ACounts);
+  SetLength(FCounts,L);
+  SetLength(FCombinedCounts,L+1);
+  FCombinedCounts[L]:=1;
+  for I:=L-1 downto 0 do begin
+    FCounts[I]:=ACounts[I];
+    FCombinedCounts[I]:=FCombinedCounts[I+1]*ACounts[I];
+  end;
+  GetMem(FMem,MemorySize);
+end;
+
+destructor TBufferArrayXD.Destroy;
+begin
+  FreeMem(FMem,MemorySize);
+  SetLength(FCounts,0);
+  SetLength(FCombinedCounts,0);
+  inherited Destroy;
+end;
+
+procedure TBufferArrayXD.Resize(const ACounts: array of dsi);
+var
+  I            : Integer;
+  L,AOldMemSize: dsi;
+  ASameSize    : Boolean;
+begin
+  AOldMemSize:=MemorySize;
+  L:=Length(ACounts);
+  ASameSize:=(L=Length(FCounts));
+  if not ASameSize then begin
+    SetLength(FCounts,L);
+    SetLength(FCombinedCounts,L+1);
+    FCombinedCounts[L]:=1;
+  end;
+  for I:=L-1 downto 0 do begin
+    if ASameSize then begin
+      if FCounts[I]=ACounts[I]
+        then continue
+        else ASameSize:=false;
+    end;
+    FCounts[I]:=ACounts[I];
+    FCombinedCounts[I]:=FCombinedCounts[I+1]*ACounts[I];
+  end;
+  if ASameSize then exit;
+  FreeMem(FMem,AOldMemSize);
+  GetMem(FMem,MemorySize);
+end;
+
+procedure TBufferArrayXD.GetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; out AItem);
+begin
+  Move(AdressOfItem(Indices{$IFDEF DSRC},'GetItem'{$ENDIF})^,AItem,ItemSize);
+end;
+
+procedure TBufferArrayXD.SetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; const AItem);
+begin
+  Move(AItem, AdressOfItem(Indices{$IFDEF DSRC},'SetItem'{$ENDIF})^,ItemSize);
+end;
+
+procedure TBufferArrayXD.Fill(const AValue);
+var
+  I   : Integer;
+  APtr: Pointer;
+begin
+  APtr:=FMem;
+  for I:=0 to FCombinedCounts[0]-1 do begin
+    Move(AValue,APtr^,FSize);
+    APtr+=FSize;
+  end;
+end;
+
+procedure TBufferArrayXD.Fill(const AValue; const Indices: array of dsi);
+var
+  I   : Integer;
+  APtr: Pointer;
+begin
+  APtr:=AdressOfItem(Indices{$IFDEF DSRC},'Fill'{$ENDIF});
+  for I:=0 to FCombinedCounts[Length(Indices)]-1 do begin
+    Move(AValue,APtr^,FSize);
+    APtr+=FSize;
+  end;
+end;
+
+function TBufferArrayXD.GetSize: dsi;
+begin
+  Result:=FSize;
+end;
+
+function TBufferArrayXD.GetMemSize: dsi;
+begin
+  Result:=FCombinedCounts[0]*FSize;
+end;
+
+function TBufferArrayXD.GetDimensions: dsi;
+begin
+  Result:=Length(FCounts);
+end;
+
+function TBufferArrayXD.GetCount({$IFNDEF DSRC} const {$ENDIF} D: dsi): dsi;
+begin
+  {$IFDEF DSRC} CheckDimension(D,'GetCount'); {$ENDIF}
+  Result:=FCounts[D];
+end;
+
+function TBufferArrayXD.AdressOfItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi {$IFDEF DSRC}; const ACaller: string = 'GetAdressOfItem'{$ENDIF}): Pointer;
+var
+  I         : Integer;
+  AMemOffset: dsi;
+begin
+  AMemOffset:=0;
+  //0 to Length(Indices)-1 oder Length(Indices)-1 downto 0 ist hier egal:
+  for I:=0 to Length(Indices)-1 do {$IFDEF DSRC} begin
+    if I>=Length(Indices) then case ShowAndFixBug(Self,ACaller,'Too much Indices ('+IntToStr(Length(Indices))+'; max: '+IntToStr(Length(FCounts))+')',['Use only valid Indices']) of
+      0: break;
+    end;
+    if Indices[I]>=FCounts[I] then begin
+      if FCounts[I]>0 then case ShowAndFixBug(Self,ACaller,'Buffer index overrun: The '+IntToStr(I)+'. dimension contains '+IntToStr(FCounts[I])+' items, but you tried to access the '+IntToStr(Indices[I])+'. one.',['Use last valid index ('+IntToStr(FCounts[I]-1)+')']) of
+        0: Indices[I]:=FCounts[I]-1;
+      end else ShowAndFixBug(Self,ACaller,'Buffer index overrun: The '+IntToStr(I)+'. dimension contains '+IntToStr(FCounts[I])+' items, but you tried to access the '+IntToStr(Indices[I])+'. one.',[]);
+    end;
+    {$ENDIF}
+    AMemOffset+=Indices[I]*FCombinedCounts[I+1];
+  {$IFDEF DSRC} end; {$ENDIF}
+  Result:=FMem+AMemOffset*FSize;
+end;
+
+{$IFDEF DSRC}
+procedure TBufferArrayXD.CheckDimension(var D: dsi; const ACaller: string = 'CheckDimension');
+var
+  I    : Integer;
+  DC   : dsi;
+  Fixes: array of string;
+begin
+  if D>=Length(FCounts) then begin
+    DC:=Length(FCounts);
+    SetLength(Fixes,DC);
+    for I:=0 to DC-1 do Fixes[I]:='Use the '+IntToStr(I+1)+'. dimension';
+    D:=ShowAndFixBug(Self,ACaller,'The Buffer has '+IntToStr(DC)+' dimensions, but you tried to access the '+IntToStr(D)+'. one',Fixes);
+  end;
+end;
+{$ENDIF}
+
+{%ENDREGION}
+{%REGION TMarkableBufferArray}
+
+type
+  TBam2 = Pointer;
+
+constructor TMarkableBufferArrayXD.Create(const ACounts: array of dsi; ASize: dsi = SizeOf(TObject); AOwner: TADObject = nil);
+begin
+  inherited Create(ACounts,ASize,AOwner);
+end;
+
+destructor TMarkableBufferArrayXD.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TMarkableBufferArrayXD.GetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; out AItem);
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then case ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an buffer item, but you wanted to read it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits),['Go to first item','Go to last item']) of
+    0: ABam:=ToFirst;
+    1: ABam:=ToLast;
+  end;
+  {$ENDIF}
+  Move(ABam2^,AItem,FSize);
+end;
+
+procedure TMarkableBufferArrayXD.SetItem({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const AItem);
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then case ShowAndFixBug(Self,'SetItem','Marker Error: The marker does not point to an buffer item, but you wanted to set it''s value. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits),['Go to first item','Go to last item']) of
+    0: ABam:=ToFirst;
+    1: ABam:=ToLast;
+  end;
+  {$ENDIF}
+  Move(AItem,ABam2^,FSize);
+end;
+
+procedure TMarkableBufferArrayXD.Next(var ABam: TBam);
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  ABam2+=FSize;
+end;
+
+procedure TMarkableBufferArrayXD.Next(var ABam: TBam; D: dsi); inline; overload;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  ABam2+=FCombinedCounts[D+1]*FSize;
+end;
+
+procedure TMarkableBufferArrayXD.Prev(var ABam: TBam);
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  ABam2-=FSize;
+end;
+
+procedure TMarkableBufferArrayXD.Prev(var ABam: TBam; D: dsi);
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  ABam2-=FCombinedCounts[D+1]*FSize;
+end;
+
+procedure TMarkableBufferArrayXD.RotateNext(var ABam: TBam);
+var
+  ABam2                                     : TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'RotateNext');
+  {$ENDIF}
+  ABam2+=FSize;
+  if ABam2>=FMem+MemorySize then ABam2:=FMem;
+end;
+
+procedure TMarkableBufferArrayXD.RotateNext(var ABam: TBam; D: dsi);
+var
+  ABam2                                     : TBam2 absolute ABam;
+  AFirstBam,ALastBam                        : TBam2;
+  AOffset,ACombinedCountsD,ACombinedCountsD1: dsi;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'RotateNext');
+  CheckDimension(D,'RotateNext');
+  {$ENDIF}
+  AOffset:=ABam2-FMem;
+  ACombinedCountsD:=FCombinedCounts[D]*FSize;
+  ACombinedCountsD1:=FCombinedCounts[D+1]*FSize;
+  AFirstBam:=ABam2-(AOffset mod ACombinedCountsD)+(AOffset mod ACombinedCountsD1);
+  ALastBam:=AFirstBam+ACombinedCountsD-ACombinedCountsD1;
+
+  ABam2+=ACombinedCountsD1;
+  if ABam2>ALastBam then ABam2:=AFirstBam;
+end;
+
+procedure TMarkableBufferArrayXD.RotatePrev(var ABam: TBam);
+var
+  ABam2                                     : TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'RotatePrev');
+  {$ENDIF}
+  ABam2-=FSize;
+  if ABam2<FMem then ABam2:=FMem+MemorySize-FSize;
+end;
+
+procedure TMarkableBufferArrayXD.RotatePrev(var ABam: TBam; D: dsi);
+var
+  ABam2                                     : TBam2 absolute ABam;
+  AFirstBam                                 : TBam2;
+  AOffset,ACombinedCountsD,ACombinedCountsD1: dsi;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'RotatePrev');
+  CheckDimension(D,'RotatePrev');
+  {$ENDIF}
+  AOffset:=ABam2-FMem;
+  ACombinedCountsD:=FCombinedCounts[D]*FSize;
+  ACombinedCountsD1:=FCombinedCounts[D+1]*FSize;
+  AFirstBam:=ABam2-(AOffset mod ACombinedCountsD)+(AOffset mod ACombinedCountsD1);
+
+  ABam2-=ACombinedCountsD1;
+  if ABam2<AFirstBam then ABam2:=AFirstBam+ACombinedCountsD-ACombinedCountsD1{ALastBam};
+end;
+
+function TMarkableBufferArrayXD.ToFirst: TBam;
+var
+  ABam2: TBam2 absolute Result;
+begin
+  ABam2:=FMem;
+end;
+
+procedure TMarkableBufferArrayXD.ToFirst(var ABam: TBam; D: dsi);
+var
+  ABam2  : TBam2 absolute ABam;
+  AOffset: dsi;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'ToFirst');
+  CheckDimension(D,'ToFirst');
+  {$ENDIF}
+  AOffset:=ABam2-FMem;
+  ABam2:=ABam2-(AOffset mod (FCombinedCounts[D]*FSize))+(AOffset mod (FCombinedCounts[D+1]*FSize));
+end;
+
+function TMarkableBufferArrayXD.ToLast: TBam;
+var
+  ABam2: TBam2 absolute Result;
+begin
+  ABam2:=FMem+MemorySize-ItemSize;
+end;
+
+procedure TMarkableBufferArrayXD.ToLast(var ABam: TBam; D: dsi);
+var
+  ABam2                                     : TBam2 absolute ABam;
+  AOffset,ACombinedCountsD,ACombinedCountsD1: dsi;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'ToLast');
+  CheckDimension(D,'ToLast');
+  {$ENDIF}
+  AOffset:=ABam2-FMem;
+  ACombinedCountsD:=FCombinedCounts[D]*FSize;
+  ACombinedCountsD1:=FCombinedCounts[D+1]*FSize;
+  ABam2:=ABam2-(AOffset mod ACombinedCountsD)+(AOffset mod ACombinedCountsD1)+ACombinedCountsD-ACombinedCountsD1;
+end;
+
+function TMarkableBufferArrayXD.IsFirst(const ABam: TBam): Boolean;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=(ABam2=FMem);
+end;
+
+function TMarkableBufferArrayXD.IsLast(const ABam: TBam): Boolean;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=(ABam2=FMem+MemorySize-ItemSize)
+end;
+
+function TMarkableBufferArrayXD.IsValid(const ABam: TBam): Boolean; inline;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  Result:=((ABam2>=FMem) and (ABam2<FMem+MemorySize-FSize));
+end;
+
+function TMarkableBufferArrayXD.IndexOf(ABam: TBam; D: dsi): dsi; inline;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  CheckDimension(D,'IndexOf');
+  CheckBam(ABam,'IndexOf');
+  {$ENDIF}
+  Result:=((ABam2-FMem) div (FCombinedCounts[D+1]*FSize)) mod FCombinedCounts[D];
+end;
+
+function TMarkableBufferArrayXD.ToItem({$IFNDEF DSRC}const{$ENDIF} AIndices: array of dsi): TBam;
+var
+  ABam2: TBam2 absolute Result;
+begin
+  ABam2:=AdressOfItem(AIndices {$IFDEF DSRC},'ToItem'{$ENDIF});
+end;
+
+function TMarkableBufferArrayXD.ToCoord(var ABam: TBam; AIndex,D: dsi): TBam; inline;
+var
+  ABam2                                     : TBam2 absolute ABam;
+  AOffset,ACombinedCountsD,ACombinedCountsD1: dsi;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'ToCoord');
+  CheckDimension(D,'ToCoord');
+  {$ENDIF}
+  AOffset:=ABam2-FMem;
+  ACombinedCountsD:=FCombinedCounts[D]*FSize;
+  ACombinedCountsD1:=FCombinedCounts[D+1]*FSize;
+  ABam2:=ABam2-(AOffset mod ACombinedCountsD)+(AOffset mod ACombinedCountsD1)+(ACombinedCountsD1*AIndex);
+end;
+
+procedure TMarkableBufferArrayXD.CopyFrom(ASource: TMarkableBufferArrayXD);
+begin
+  {$IFDEF DSRC}
+  if ASource=nil then ShowAndFixBug(Self,'CopyFrom','The Source Buffer is not defined',[]);
+  if ASource.FSize<>FSize then ShowAndFixBug(Self,'CopyFrom','The buffer sizes are not equal',[]);
+  {$ENDIF}
+  Resize(ASource.FCounts);
+  Move(ASource.Data^,Data^,MemorySize);
+end;
+
+procedure TMarkableBufferArrayXD.CopyFrom(ASource: TMarkableBufferArrayXD; const ASourceBam,ADestBam: TBam; {$IFNDEF DSRC}const{$ENDIF} ACount: dsi);
+var
+{$IFDEF DSRC}
+  ASource2: Pointer;
+  ADest2  : Pointer;
+  ACount2 : dsi;
+{$ELSE}
+  ASource2: TBam2 absolute ASourceBam;
+  ADest2  : TBam2 absolute ADestBam;
+{$ENDIF}
+begin
+  {$IFDEF DSRC}
+  if ASource=nil then ShowAndFixBug(Self,'CopyFrom','The Source Buffer is not defined',[]);
+  if ASource.ItemSize<>ItemSize then ShowAndFixBug(Self,'CopyFrom','The buffer sizes are not equal',[]);
+  ASource2:=GetBamAdress(ASourceBam);
+  ADest2:=GetBamAdress(ADestBam);
+  if (ASource2+(ACount*ItemSize)>Data+MemorySize) then begin
+    ACount2:=(Data+MemorySize-ASource2) div ItemSize;
+    if ShowAndFixBug(Self,'CopyFrom','There are not enough items to copy',['Copy only '+IntToStr(ACount2)+' items']) = 0
+      then ACount:=ACount2;
+  end;
+  if (ADest2+(ACount*ItemSize)>Data+MemorySize) then begin
+    ACount2:=(Data+MemorySize-ADest2) div ItemSize;
+    if ShowAndFixBug(Self,'CopyFrom','There are not enough items to copy',['Copy only '+IntToStr(ACount2)+' items']) = 0
+      then ACount:=ACount2;
+  end;
+  {$ENDIF}
+  Move(ASource2^,ADest2^,ACount*ItemSize);
+end;
+
+procedure TMarkableBufferArrayXD.CopyFrom(ASource: TMarkableBufferArrayXD; const ASourceIndices,ADestIndices: array of dsi; ACount: dsi);
+begin
+  {$IFDEF DSRC}
+  if ASource=nil then ShowAndFixBug(Self,'CopyFrom','The Source Buffer is not defined',[]);
+  {$ENDIF}
+  CopyFrom(ASource,ASource.ToItem(ASourceIndices),ToItem(ADestIndices),ACount);
+end;
+
+{$IFDEF DSRC}
+procedure TMarkableBufferArrayXD.CheckBam(var ABam: TBam; const ACaller: string = 'CheckBam');
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then case ShowAndFixBug(Self,ACaller,'Marker Error: The marker does not point to an buffer item, but you wanted to access it. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'.',['Go to first item','go to last item','Return 0x00000000']) of
+    0: ABam:=ToFirst;
+    1: ABam:=ToLast;
+    2: ABam2:=nil;
+  end;
+end;
+{$ENDIF}
+
+function TMarkableBufferArrayXD.GetBamAdress({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): Pointer;
+var
+  ABam2: TBam2 absolute ABam;
+begin
+  {$IFDEF DSRC}
+  CheckBam(ABam,'GetBamAdress');
+  {$ENDIF}
+  Result:=ABam2;
+end;
+
+{TGenericBufferArray}
+
+constructor TGenericBufferArrayXD.Create(const ACounts: array of dsi; AOwner: TADObject = nil);
+begin
+  inherited Create(ACounts,SizeOf(BufferType),AOwner);
+end;
+
+destructor TGenericBufferArrayXD.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TGenericBufferArrayXD.Fill2(const AValue: BufferType);
+begin
+  Fill(AValue);
+end;
+
+procedure TGenericBufferArrayXD.Fill2(const AValue: BufferType; const Indices: array of dsi);
+begin
+  Fill(AValue,Indices);
+end;
+
+function TGenericBufferArrayXD.GetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi): BufferType;
+begin
+  Result:=PBufferType(AdressOfItem(Indices{$IFDEF DSRC},'GetItem'{$ENDIF}))^;
+end;
+
+procedure TGenericBufferArrayXD.SetItem({$IFNDEF DSRC}const{$ENDIF} Indices: array of dsi; const Value: BufferType);
+begin
+  PBufferType(AdressOfItem(Indices{$IFDEF DSRC},'SetItem'{$ENDIF}))^:=Value;
+end;
+
+function TGenericBufferArrayXD.GetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam): BufferType;
+var
+  ABam2: TLocalBam absolute ABam;
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then case ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an list item, but you wanted to access it. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'.',['Go to first item','Go to last item']) of
+    0: ABam:=ToFirst;
+    1: ABam:=ToLast;
+  end;
+  {$ENDIF}
+  Result:=ABam2^;
+end;
+
+procedure TGenericBufferArrayXD.SetBams({$IFNDEF DSRC}const{$ENDIF} ABam: TBam; const Value: BufferType);
+var
+  ABam2: TLocalBam absolute ABam;
+begin
+  {$IFDEF DSRC}
+  if (ABam2<FMem) or (ABam2>=FMem+MemorySize) then case ShowAndFixBug(Self,'GetItem','Marker Error: The marker does not point to an list item, but you wanted to access it. It points at 0x'+IntToHex(PtrInt(ABam2),PointerHexDigits)+'.',['Go to first item','Go to last item']) of
+    0: ABam:=ToFirst;
+    1: ABam:=ToLast;
+  end;
+  {$ENDIF}
+  ABam2^:=Value;
+end;
+
+{%ENDREGION}
+{%REGION General}
+
+procedure ZeroBuffer(out Buffer; const ASize: dsi);
+var
+  I   : Cardinal;
+  APtr: PByte;
+begin
+  APtr:=@Buffer;
+  for I:=0 to ASize-1 do begin
+    APtr^:=0;
+    Inc(APtr);
+  end;
+end;
+
+{%ENDREGION}
+
+end.
+

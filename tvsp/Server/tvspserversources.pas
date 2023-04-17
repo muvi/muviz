@@ -1,0 +1,226 @@
+unit TVSPServerSources;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  TVSPBasicSources, SyncObjs, TVSPMsg, TVSPServerAttachment, IncrementalSet,
+  IncrementalHashSet, GUIDop, TVSPSources, Dialogs, SysUtils;
+
+type
+  TTVSPSources          = class;
+
+  TTVSPServerSource     = class (TTVSPSource)
+  strict private
+    FKnownSockets: TIncrementalSet;
+    FKnownLock   : TCriticalSection;
+    //for debugging only
+    FKnownCount  : Integer;
+    procedure Send(AAttachment: TTVSPServerAttachment);
+    function GetKnownCount: Integer;
+  protected
+    procedure AutomaticDeletion(Sender: TObject);
+    procedure BeforeAutomaticDeletion(Sender: TObject; ACount: Cardinal);
+  public
+    constructor Create(AOwner: TTVSPSources; ASize: Cardinal; AID: TGUID);
+    destructor Destroy; override;
+    //incremental subscribtion; may subscribe multiple times
+    procedure Subscribe(AAttachment: TTVSPServerAttachment; ASend: Boolean = true); virtual;
+    procedure Unsubscribe(AAttachment: TTVSPServerAttachment); virtual;
+    procedure &Set(ASender: TTVSPServerAttachment; AStart, ACount: LongWord; const Src); virtual; reintroduce;
+    property KnownSocketsCount: Integer read GetKnownCount;
+  end;
+
+  TTVSPSources          = class (TTVSPBasicSources)
+  strict protected
+    function MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource; override;
+  public
+    property AddedItems[ASize: Cardinal; AID: TGUID]: TTVSPSource read GetItem;
+    property Items[ASize: Cardinal; AID: TGUID]: TTVSPSource read GetItemOrNil; default;
+  end;
+
+procedure Init; inline;
+procedure Done; inline;
+function GetSources: TTVSPSources; inline;
+property Sources: TTVSPSources read GetSources;
+
+implementation
+
+{%REGION TTVSPServerZeroSource}
+
+type
+  TTVSPServerZeroSource = class (TTVSPServerSource)
+  public
+    constructor Create(AOwner: TTVSPSources);
+    procedure Subscribe(AAttachment: TTVSPServerAttachment; ASend: Boolean = true); override;
+    procedure Unsubscribe(AAttachment: TTVSPServerAttachment); override;
+    procedure &Set(ASender: TTVSPServerAttachment; AStart, ACount: LongWord; const Src); override;
+  end;
+
+constructor TTVSPServerZeroSource.Create(AOwner: TTVSPSources);
+begin
+  inherited Create(AOwner, ZEROSOURCEID.Size, ZEROSOURCEID.ID);
+end;
+
+procedure TTVSPServerZeroSource.Subscribe(AAttachment: TTVSPServerAttachment; ASend: Boolean = true);
+begin
+  //do nothing
+end;
+
+procedure TTVSPServerZeroSource.Unsubscribe(AAttachment: TTVSPServerAttachment);
+begin
+  //do nothing
+end;
+
+procedure TTVSPServerZeroSource.&Set(ASender: TTVSPServerAttachment; AStart, ACount: LongWord; const Src);
+begin
+  //do nothing
+end;
+
+{%ENDREGION}
+{%REGION TTVSPServerSource}
+
+constructor TTVSPServerSource.Create(AOwner: TTVSPSources; ASize: Cardinal; AID: TGUID);
+begin
+  inherited Create(AOwner, ASize, AID);
+  //to prevent heartbleeds...
+  FillChar(Content^, ASize, 0);
+
+  FKnownSockets:=TIncrementalHashSet.Create;
+  FKnownLock:=TCriticalSection.Create;
+  FKnownCount:=0;
+  FKnownSockets.OnAutomaticDeletion:=@AutomaticDeletion;
+  FKnownSockets.OnBeforeAutomaticDeletion:=@BeforeAutomaticDeletion;
+end;
+
+destructor TTVSPServerSource.Destroy;
+begin
+  FKnownLock.Destroy;
+  FKnownSockets.Destroy;
+  inherited Destroy;
+end;
+
+procedure TTVSPServerSource.&Set(ASender: TTVSPServerAttachment; AStart, ACount: LongWord; const Src);
+var
+  AMsg    : PSMSrc;
+  AMsgSize: Cardinal;
+  AItem   : TObject;
+begin
+  inherited &Set(AStart, ACount, Src);
+  AMsgSize:=MakeMsgSrc(LID, LSize, AStart, ACount, Src, AMsg);
+
+  FKnownLock.Enter;
+  for AItem in FKnownSockets do begin
+    if AItem <> ASender
+      then TTVSPServerAttachment(AItem).Send(AMsg, AMsgSize);
+  end;
+  FKnownLock.Leave;
+
+  FreeMem(AMsg, AMsgSize);
+end;
+
+procedure TTVSPServerSource.Send(AAttachment: TTVSPServerAttachment);
+var
+  AMsg    : PSMSrc;
+  AMsgSize: Cardinal;
+begin
+  AMsgSize:=PrepareMsgSrc(LID, LSize, 0, LSize, AMsg);
+  Get(0, LSize, AMsg^.Value);
+
+  AAttachment.Send(AMsg, AMsgSize);
+
+  FreeMem(AMsg, AMsgSize);
+end;
+
+procedure TTVSPServerSource.AutomaticDeletion(Sender: TObject);
+begin
+  FKnownLock.Leave;
+  _Release;
+end;
+
+procedure TTVSPServerSource.BeforeAutomaticDeletion(Sender: TObject; ACount: Cardinal);
+begin
+  FKnownLock.Enter;
+  FKnownCount-=ACount;
+end;
+
+function TTVSPServerSource.GetKnownCount: Integer;
+begin
+  FKnownLock.Enter;
+  Result:=FKnownCount;
+  FKnownLock.Leave;
+end;
+
+procedure TTVSPServerSource.Subscribe(AAttachment: TTVSPServerAttachment; ASend: Boolean = true);
+var
+  AIsNew: Boolean;
+begin
+  _AddRef;
+
+  FKnownLock.Enter;
+  AIsNew:=FKnownSockets.Add(AAttachment);
+  Inc(FKnownCount);
+  FKnownLock.Leave;
+
+  if not AIsNew
+    then _Release;
+
+  if ASend and AIsNew
+    then Send(AAttachment);
+end;
+
+procedure TTVSPServerSource.Unsubscribe(AAttachment: TTVSPServerAttachment);
+var
+  ARemovalResult: TIncrementalSetRemovalResult;
+begin
+  FKnownLock.Enter;
+  ARemovalResult:=FKnownSockets.Remove(AAttachment);
+  Dec(FKnownCount);
+  FKnownLock.Leave;
+  //no server assert, this really HAS to exist
+  Assert(ARemovalResult.Existed);
+
+  if not ARemovalResult.ExistsNow
+    then _Release;
+end;
+
+{%ENDREGION}
+{%REGION TTVSPSources}
+
+function TTVSPSources.MakeSource(ASize: Cardinal; AID: TGUID): TTVSPSource;
+begin
+  if (ASize <> ZEROSOURCEID.Size) or (AID <> ZEROSOURCEID.ID)
+    then Result:=TTVSPServerSource.Create(Self, ASize, AID)
+    else Result:=TTVSPServerZeroSource.Create(Self);
+end;
+
+{%ENDREGION}
+{%REGION Misc}
+
+var
+  LSources: TTVSPSources = nil;
+
+function GetSources: TTVSPSources; inline;
+begin
+  Result:=LSources;
+end;
+
+procedure Init; inline;
+begin
+  LSources:=TTVSPSources.Create;
+  LSources._AddRef;
+end;
+
+procedure Done; inline;
+var
+  ARefCount: Integer;
+begin
+  Assert(LSources <> nil);
+  ARefCount:=LSources._Release;
+  Assert(ARefCount = 0);
+end;
+
+{%ENDREGION}
+
+end.

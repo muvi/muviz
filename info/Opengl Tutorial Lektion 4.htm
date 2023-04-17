@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js" lang="de"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Tutorial Lektion 4 – DGL Wiki</title>
+<meta charset="UTF-8">
+<meta name="generator" content="MediaWiki 1.18.1">
+<link rel="shortcut icon" href="http://wiki.delphigl.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.delphigl.com/opensearch_desc.php" title="DGL Wiki (de)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wiki.delphigl.com/api.php?action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „DGL Wiki“" href="http://wiki.delphigl.com/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom">
+<link rel="stylesheet" href="Opengl%20Tutorial%20Lektion%204_files/load_002.css">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?303" media="screen" /><![endif]--><style type="text/css" media="all">.mw-collapsible-toggle{float:right} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+
+/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-css:4:4250852ed2349a0d4d0fc6509a3e7d4c */
+</style><style type="text/css" media="all">.js-messagebox{margin:1em 5%;padding:0.5em 2.5%;border:1px solid #ccc;background-color:#fcfcfc;font-size:0.8em}.js-messagebox .js-messagebox-group{margin:1px;padding:0.5em 2.5%;border-bottom:1px solid #ddd}.js-messagebox .js-messagebox-group:last-child{border-bottom:thin none transparent}
+
+/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-css:4:8b08bdc91c52a9ffba396dccfb5b473c */
+</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="Opengl%20Tutorial%20Lektion%204_files/load.css">
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}a.new,#quickbar a.new{color:#ba0000}
+
+/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-css:4:c88e2bcd56513749bec09a7e29cb3ffa */
+</style>
+<script src="Opengl%20Tutorial%20Lektion%204_files/load.php"></script><script src="Opengl%20Tutorial%20Lektion%204_files/load_005.php"></script>
+<script>if(window.mw){
+	mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Tutorial_Lektion_4", "wgTitle": "Tutorial Lektion 4", "wgCurRevisionId": 23659, "wgArticleId": 1753, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": ["Tutorial"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script><script>if(window.mw){
+	mw.loader.load(["mediawiki.page.startup"]);
+}
+</script><script type="text/javascript" src="Opengl%20Tutorial%20Lektion%204_files/load_004.php"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-pascal {padding: 1em; border: 1px dashed #2f6fab; color: black; background-color: #f9f9f9; line-height: 1.1em;}
+.source-pascal li, .source-pascal pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for pascal
+ * CSS class: source-pascal, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.pascal.source-pascal .de1, .pascal.source-pascal .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.pascal.source-pascal  {font-family:monospace;}
+.pascal.source-pascal .imp {font-weight: bold; color: red;}
+.pascal.source-pascal li, .pascal.source-pascal .li1 {font-weight: normal; vertical-align:top;}
+.pascal.source-pascal .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.pascal.source-pascal .li2 {font-weight: bold; vertical-align:top;}
+.pascal.source-pascal .kw1 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw2 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw3 {color: #000066;}
+.pascal.source-pascal .kw4 {color: #000066; font-weight: bold;}
+.pascal.source-pascal .co1 {color: #666666; font-style: italic;}
+.pascal.source-pascal .coMULTI {color: #666666; font-style: italic;}
+.pascal.source-pascal .es0 {color: #000099; font-weight: bold;}
+.pascal.source-pascal .es_h {color: #000099; font-weight: bold;}
+.pascal.source-pascal .br0 {color: #009900;}
+.pascal.source-pascal .sy0 {color: #339933;}
+.pascal.source-pascal .st0 {color: #ff0000;}
+.pascal.source-pascal .st_h {color: #ff0000;}
+.pascal.source-pascal .nu0 {color: #cc66cc;}
+.pascal.source-pascal .me1 {color: #0066ee;}
+.pascal.source-pascal .ln-xtra, .pascal.source-pascal li.ln-xtra, .pascal.source-pascal div.ln-xtra {background-color: #ffc;}
+.pascal.source-pascal span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+/*]]>*/
+</style></head>
+<body class="mediawiki ltr sitedir-ltr capitalize-all-nouns ns-0 ns-subject page-Tutorial_Lektion_4 action-view skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content"><div style="display: none;" class="js-messagebox" id="mw-js-message"></div>
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Tutorial Lektion 4</h1>
+	<div id="bodyContent">
+		<div id="siteSub">Aus DGL Wiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Wechseln zu: <a href="#column-one">Navigation</a>, <a href="#searchInput">Suche</a></div>
+		<!-- start content -->
+<div dir="ltr" class="mw-content-ltr" lang="de"><table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2><span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Verbergen</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Texturen.2C_Tapeten_und_Ihre_T.C3.BCcken"><span class="tocnumber">1</span> <span class="toctext">Texturen, Tapeten und Ihre Tücken</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Vorwort"><span class="tocnumber">1.1</span> <span class="toctext">Vorwort</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Crash-Kurs_im_Handwerk_des_Tapezierens"><span class="tocnumber">1.2</span> <span class="toctext">Crash-Kurs im Handwerk des Tapezierens</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Ich_verstehe_nur_.22Renovierung.22.3F"><span class="tocnumber">1.2.1</span> <span class="toctext">Ich verstehe nur "Renovierung"?</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Tapezieren_leicht_gemacht.21"><span class="tocnumber">1.2.2</span> <span class="toctext">Tapezieren leicht gemacht!</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Tapeten_besorgen"><span class="tocnumber">1.2.3</span> <span class="toctext">Tapeten besorgen</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Texturen_richtig_zubereitet"><span class="tocnumber">1.2.4</span> <span class="toctext">Texturen richtig zubereitet</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Die_R.C3.BCckkehr_der_Matrizen"><span class="tocnumber">1.3</span> <span class="toctext">Die Rückkehr der Matrizen</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Texturen"><span class="tocnumber">1.3.1</span> <span class="toctext">Texturen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Wir_tapezieren_unsere_Welt_mal_anders"><span class="tocnumber">1.4</span> <span class="toctext">Wir tapezieren unsere Welt mal anders</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Am_Flie.C3.9Fband"><span class="tocnumber">1.4.1</span> <span class="toctext">Am Fließband</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Terraforming_mal_anders"><span class="tocnumber">1.4.2</span> <span class="toctext">Terraforming mal anders</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Nachwort"><span class="tocnumber">1.5</span> <span class="toctext">Nachwort</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Dateien"><span class="tocnumber">1.6</span> <span class="toctext">Dateien</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table>
+<h1> <span class="mw-headline" id="Texturen.2C_Tapeten_und_Ihre_T.C3.BCcken">Texturen, Tapeten und Ihre Tücken</span></h1>
+<h2> <span class="mw-headline" id="Vorwort">Vorwort</span></h2>
+<p>Hi Leute,
+kaum zu glauben aber wahr. Dieses Tutorial wird ausnahmsweise mal etwas 
+mehr Erholung sein. Zumindest am Anfang. Was wir bisher erreicht haben 
+ist ja alles schön, nett, praktisch und auch wichtig als Grundlage aber 
+wenn wir aus dem Fenster sehen hören wir die Vöglein zwitschern. Hö? Wir
+ hören was sehend? Es ist tiefste Nacht? Es muss Frühling sein ^__^.<br>
+Und was macht man da normalweise? Wir kramen herum und machen einen 
+großen Frühjahrsputz... die Schränke abziehen und alles schön sauber und
+ ordentlich machen. Hach... es dürstet mich richtig danach...&nbsp;:D 
+(means... *würg*).<br>
+Da unsere Tutorials bisher Gott sei Dank keine dreckige Sache waren 
+werden wir das mit dem Saubermachen einfach mal wegfallen lassen und uns
+ nur mit einem Tapetenwechsel begnügen. In der Tat werden wir ab jetzt 
+unseren Tutorials mehr grafisches Gewicht zumuten. Endlich haben die 
+blauen Dreiecke ein Ende! Ich wünsche Euch viel Spaß&nbsp;;).
+</p>
+<h2> <span class="mw-headline" id="Crash-Kurs_im_Handwerk_des_Tapezierens">Crash-Kurs im Handwerk des Tapezierens</span></h2>
+<h3> <span class="mw-headline" id="Ich_verstehe_nur_.22Renovierung.22.3F">Ich verstehe nur "Renovierung"?</span></h3>
+<p>Ich finde es immer wieder erschreckend Leute im Internet zu treffen, 
+die nicht wissen was eine Textur ist... ich meine, kennen keinen Kafka, 
+keine Quantenphysik und wissen nicht einmal wo man die Systemsteuerung 
+findet. Wie soll man solch einem Menschen erklären, was eine Textur ist?
+Nun, am Besten fangen wir mit einem möglichst praktischen Beispiel an. 
+Texturen sind wie... Tapeten. Wir blicken nun zu unserer linken Seite. 
+Der Autor erwartet nun ein DirectMind-Uplink zum Empfangen der visuellen
+ Bildsignale. Dort haben wir eine schöne Wand... quadratisch in ihrer 
+Form. Wollen wir diese mit einer Tapete verzieren, gehen wir in den 
+nächsten Baumarkt, suchen uns eine hübsche aus und bringen diese an der 
+Wand an. Natürlich haben wir eine Große geholt, und fangen nicht mit 
+kleinen Streifen an.<br>
+Wenn dann alles geklappt hat stehen wir vor dieser Wand und begutachten 
+die Tapete in voller Pracht direkt vor uns. Wir haben die Wand 
+texturiert. Streng genommen machen wir auch bei OpenGL nichts anderes, 
+als ein Bild zu laden und dieses auf eine Fläche zu kleben. Wir werden 
+uns jedoch auf Dauer nicht damit begnügen immer nur quadratische Flächen
+ zu texturieren, sondern durchaus auch mal Dreiecke oder andere 
+Vielecke. Und auch hat man uns Werkzeuge in die Hand gegeben um diese 
+Textur noch nachträglich an der Wand zu verschieben ohne dass wir sie 
+abnehmen müssen. Ist doch super. Es lebe die virtuelle Welt!
+</p>
+<h3> <span class="mw-headline" id="Tapezieren_leicht_gemacht.21">Tapezieren leicht gemacht!</span></h3>
+<p>Okay, wir haben lange genug um den heißen Brei herumgeredet und 
+sollten uns nun endlich auf die Arbeit stürzen. Jeder von uns sollte in 
+der Lage sein, ein Quadrat in OpenGL genau vor unserer Nase zu erzeugen.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:258px;"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_nonetex.png" class="image"><img alt="" src="Opengl%20Tutorial%20Lektion%204_files/256px-Tutimg_lektion4_nonetex.png" class="thumbimage" height="203" width="256"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_nonetex.png" class="internal" title="vergrößern"><img src="Opengl%20Tutorial%20Lektion%204_files/magnify-clip.png" alt="" height="11" width="15"></a></div>Leeres Quadrat</div></div></div>
+<p>Spätestens nun sollte die gleiche Frage aufkommen, wie bei jedem, der
+ zum ersten Mal versucht, eine Tapete an die Wand zu bringen: "Wie rum 
+muss ich das Ding da befestigen?". Immerhin müssen wir uns nicht um den 
+Leim kümmern, das erledigt unsere Grafikkarte bzw. OpenGL für 
+uns&nbsp;;).
+</p><p>Wer noch nie 3D programmiert hat wird im ersten Moment vielleicht
+ fälschlicherweise denken, dass man die Position der Textur per 
+Weltkoordinaten definiert. Das hätte allerdings fatale Folgen sobald 
+sich das Objekt im Raum bewegt. Wir müssten die Position jedes mal neu 
+berechnen. Um eben dieses Problem zu umgehen, geht man in der 
+3D-Programmierung einen anderen Weg. Man vergibt einfach für jede Ecke 
+eines Objektes eine Koordinate der Textur. OpenGL errechnet dann aus 
+diesen Texturkoordinaten das Stück der Textur, das dann über das gesamt 
+Objekt projiziert wird.
+</p><p>Die Rede ist hierbei vom so genannten UV-Mapping, welches vor 
+allem bei Anfängern ein leichtes Gefühl des Unbehagens auslösen sollte. 
+Es ist jedoch nur halb so wild, wenn man es halbwegs verstanden hat.
+</p><p>Betrachten wir gleich mal das Bild rechts und versuchen, uns in 
+die Problematik hineinzuversetzen. Da Texturen unterschiedliche Größen 
+haben können wurden so genannte Texturkoordinaten eingeführt. Es ist 
+total egal wie groß eine Textur ist, da sie nur einen Wertebereich von 0
+ bis 1 haben kann. Das heißt, wenn eine Textur 256x256 groß ist und eine
+ andere 512x512, so haben beide eine maximale Größe von 1. Wir brauchen 
+also das UV-Mapping nicht verändern, selbst wenn ein Objekt eine neue 
+Textur mit anderer Größe erhält.
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:258px;"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_texuv_02.png" class="image"><img alt="" src="Opengl%20Tutorial%20Lektion%204_files/256px-Tutimg_lektion4_texuv_02.png" class="thumbimage" height="203" width="256"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_texuv_02.png" class="internal" title="vergrößern"><img src="Opengl%20Tutorial%20Lektion%204_files/magnify-clip.png" alt="" height="11" width="15"></a></div>Textur und leere Quadratfläche. Eingezeichnet ist das Standardmapping</div></div></div>
+<p>Auf diesem Bild sehen wir zum einen die Textur, die wir verwenden 
+wollen, zum anderen das Objekt, auf das "geklebt" werden soll 
+hintereinander. Natürlich sieht das in der Realität nicht so aus (die 
+Textur würde das gesamte Objekt überdecken). Ich denke aber diese 
+Darstellung erleichtert das Verstehen&nbsp;;).
+</p><p>Die obere linke Ecke der Textur trägt die Texturkoordinaten von 
+(0 / 0) (d.h. u = 0 und v = 0), die untere linke Ecke (0 / 1), die 
+untere rechte Ecke (1 / 1) und schließlich die obere rechte Ecke die 
+Koordinaten (1 / 0). Das heißt alles was wir machen müssen um auf unser 
+Objekt eine Textur zu kleben ist dem jeweiligen Eckpunkt unseres 
+Quadrates die entsprechende Texturkoordinate zuzuweisen. Wobei in diesem
+ Sinne korrekt in Anführungszeichnen stehen sollte. Es gibt kein 
+falsches UV-Mapping. Man kann tolle Sachen mit diesen Textur-Koordinaten
+ machen und so z.&nbsp;B. auch eine Textur auf einem Objekt spiegeln. 
+Dafür müssten wir in unserem Beispiel nur die linken und rechten 
+UV-Mapping vertauschen und z.&nbsp;B. für den zweiten Punkt die 
+Koordinaten von (0 / 1) setzen und dafür beim dritten (1 / 1). Genauso 
+würden wir auch die unteren vertauschen. Die UV-Koordinaten, wie sie 
+oben angegeben sind bewirken nur, dass die Textur, so wie sie in der 
+Datei vorkommt auch auf das Objekt geklebt wird. Selbstverständlich ist 
+es auch möglich eine Textur gekachelt aufzukleben, nämlich indem Ihr 
+Texturkoordinaten &gt; 1 vergebt. Ebenso ist es möglich nur Teile einer 
+Textur zu verwenden. Spielt ruhig ein wenig damit herum und schaut Euch 
+an was passiert! Auf einige tolle Spielereien kommen wir zum Schluss 
+noch mal zurück&nbsp;:).
+</p><p>Sicherlich brennt es einigen von Euch nun bereits unter den 
+Finger und Ihr fragt "Wie kann ich denn die UV-Koordinaten den 
+Eckpunkten der Fläche zuweisen?". Nun, zunächst funktioniert das ähnlich
+ wie bei allen Dingen unter OpenGL. Wir setzen eine UV-Koordinate und 
+solange wir nichts verändern werden alle Punkte mit diesen Koordinaten 
+versehen bis wir andere Instruktionen geben. In unserem Fall müssen wir 
+dies natürlich nach jedem Punkt machen. Die Funktion, die dafür 
+verwendet wird heißt <a href="http://wiki.delphigl.com/index.php/glTexCoord" title="glTexCoord">glTexCoord</a>. Um also eine Textur auf unserem Quad zu projizieren, benötigen wir folgenden Code:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glBegin<span class="br0">(</span>GL_QUADS<span class="br0">)</span>;
+  glTexCoord2f<span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;  <span class="co1">//lo</span>
+  glTexCoord2f<span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">1</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>; <span class="co1">//lu</span>
+  glTexCoord2f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;  <span class="co1">//ru</span>
+  glTexCoord2f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;   <span class="co1">//ro</span>
+glEnd;</pre></div></div>
+<p>Das klappt doch wunderbar oder? Damit wir die Textur aber auch 
+wirklich (bzw. überhaupt) genießen können müssen wir Texturing mit Hilfe
+ von <b>glEnable</b> und dem Token <b>GL_TEXTURE_2D</b> aktivieren. In 
+unserem Fall wo das gesamte Projekt(ein Quad) texturiert werden soll, 
+könnt ihr den Aufruf direkt in eure GL-Initialisierung schreiben, 
+ansonsten gehört selbiger direkt vor die zu texturierenden Flächen in 
+die Renderschleife.
+</p>
+<pre>glEnable(GL_TEXTURE_2D);
+</pre>
+<p>Mit Hilfe von glDisable und demselben Token ist es dann auch möglich 
+Objekte zu Zeichnen, die über keine Texturen verfügen. Andernfalls würde
+ nämlich die zuletzt gesetzte Textur und die Texturkoordinaten des 
+letzten glTexCoord-Aufrufs verwendet werden. 
+</p><p>Doch eine Kleinigkeit habe ich Euch nun doch noch verschwiegen! 
+Wir müssen natürlich noch die richtige Textur setzen damit OpenGL 
+überhaupt weiß, was auf diesem Quad gezeichnet werden soll. Dies ist an 
+sich noch relativ einfach, allerdings müssen wir diese auch noch in den 
+Speicher bekommen, damit sie überhaupt zur Verfügung steht. Nun wird's 
+theoretisch&nbsp;;).
+</p>
+<h3> <span class="mw-headline" id="Tapeten_besorgen">Tapeten besorgen</span></h3>
+<p>Ich werde jetzt nicht näher darauf eingehen, wie man Texturen 
+erstellt. Vielleicht gibt's ja einige Photoshopexperten unter Euch, die 
+Lust haben einige Ihrer Tricks den anderen in Form eines Tutorials zu 
+zeigen.
+</p><p>Zunächst einmal müssen wir uns die eigentlichen Bilddaten besorgen. Wir werden das jetzt in diesem Tutorial mit <a href="http://wiki.delphigl.com/index.php/SDL" title="SDL">SDL</a> machen es gibt jedoch auch die Möglichkeit die Daten manuell zu laden das könnt Ihr hier nachlesen:
+</p>
+<ul><li> <a href="http://wiki.delphigl.com/index.php/TGA_Bilder_laden" title="TGA Bilder laden">TGA Bilder laden</a>
+</li></ul>
+<p>Es gibt allerdings auch Texturloader die Euch die nächsten Kapitel 
+abnehmen und das alles für Euch machen. glBitmap ist so ein Loader. Mehr
+ dazu erfahrt Ihr in dem <a href="http://wiki.delphigl.com/index.php/Glbitmap_loader" title="Glbitmap loader">glBitmap</a>-Artikel.
+</p><p>Bei SDL rufen wir nur <a href="http://wiki.delphigl.com/index.php/IMG_Load" title="IMG Load">IMG_Load</a>
+ auf und prüfen dann ob das Laden erfolgreich war. Hierbei sei erwähnt, 
+dass es unter Linux zu Problemen führen kann, wenn ein Programm nicht 
+aus einer Konsole heraus gestartet wurde. In diesem Fall sind die Pfade 
+zu den Texturen nämlich falsch gesetzt und das Laden würde fehlschlagen.
+ Abhilfe schafft man durch das Verwenden von absoluten Pfaden.
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1"><span class="kw1">uses</span> SDL<span class="sy0">,</span> SDL_Image;
+&nbsp;
+<span class="kw1">var</span> 
+  tex <span class="sy0">:</span> PSDL_Surface;
+<span class="kw1">begin</span>
+  tex <span class="sy0">:=</span> IMG_Load<span class="br0">(</span>PChar<span class="br0">(</span>ExtractFileDir<span class="br0">(</span>paramStr<span class="br0">(</span><span class="nu0">0</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">+</span><span class="st_h">'/wiki.jpg'</span><span class="br0">)</span><span class="br0">)</span>;
+  <span class="kw1">if</span> assigned<span class="br0">(</span>tex<span class="br0">)</span> <span class="kw1">then</span>
+  <span class="kw1">begin</span></pre></div></div>
+<p>Das war es dann auch schon... Wir haben die Textur im Speicher. Doch was nun?
+</p>
+<h3> <span class="mw-headline" id="Texturen_richtig_zubereitet">Texturen richtig zubereitet</span></h3>
+<p>Nachdem sich unsere Textur nun im Speicher des Computers befindet, 
+geht es darum daraus auch eine richtige Textur zu machen, damit wir 
+diese in OpenGL anzeigen können. Bisher befinden sich ja nur die 
+Rohdaten im Speicher. Hierfür teilen wir OpenGL mit, dass wir eine neue 
+Textur erzeugen wollen:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glGenTextures<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span> @TexID<span class="br0">)</span>;</pre></div></div>
+<p>TexID ist in diesem Fall ein gluInt, kann aber genauso gut ein Array 
+davon sein, um mehrere Texturen zu erzeugen. Genau dafür wird dann auch 
+der erste Parameter verwendet, der OpenGL mitteilt wieviele Texturen in 
+dieses Array geschrieben werden sollen. In unserem Fall ist dies eben 
+nur ein Element. Aber was ist ist das für ein Wert in TexID? OpenGL 
+verwaltet die Texturen anhand eindeutiger Namen. <a href="http://wiki.delphigl.com/index.php/glGenTextures" title="glGenTextures">glGenTextures</a>
+ ermittelt einen oder mehrere bisher ungenutzte Namen und schreibt diese
+ in TexID. Durch TexID können wir unsere Textur ab sofort also eindeutig
+ identifizieren.
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glBindTexture<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> TexID<span class="br0">)</span>;</pre></div></div>
+<p>Wir teilen OpenGL mit, dass sich von nun an alle Änderungen und 
+Anweisungen, die sich auf Texturen beziehen auf die Textur TexID 
+beziehen.<br>
+Die folgenden beiden Zeilen sind zwar nicht wirklich nötig, um eine 
+Textur zu erzeugen aber glaubt mir, sie werden ansonsten potthässlich 
+aussehen. Wir werden in einem anderen Tutorial näher auf dessen 
+Bedeutung eingehen, nämlich den so genannten Texturfiltern. Die 
+momentane Einstellung ist leicht rechenlastig jedoch auch von recht 
+guter Qualität. Ihr werdet anfangs keine Probleme mit der 
+Geschwindigkeit bekommen&nbsp;;).
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glTexParameteri<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> GL_TEXTURE_MAG_FILTER<span class="sy0">,</span> GL_LINEAR<span class="br0">)</span>;
+glTexParameteri<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> GL_TEXTURE_MIN_FILTER<span class="sy0">,</span> GL_LINEAR<span class="br0">)</span>;</pre></div></div>
+<p>Zu guter Letzt müssen wir die Bildinformationen irgendwie an OpenGL übergeben. Dies übernimmt die Funktion <a href="http://wiki.delphigl.com/index.php/glTexImage2D" title="glTexImage2D">glTexImage2D</a>:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glTexImage2D<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">3</span><span class="sy0">,</span> tex^.<span class="me1">w</span><span class="sy0">,</span> tex^.<span class="me1">h</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span> GL_RGB<span class="sy0">,</span> GL_UNSIGNED_BYTE<span class="sy0">,</span> tex^.<span class="me1">pixels</span><span class="br0">)</span>;</pre></div></div>
+<p>Der erste Parameter steht für den Typ der Textur. Die Dimension des 
+Typs muss hier mit der des Befehls übereinstimmen (glTexImage2D erlaubt 
+also nur GL_TEXTURE_2D). Der zweite Parameter gibt die Nummer des Level 
+of Detail (LoD) an. Für den Anfang reicht hier der Level 0. Der dritte 
+Parameter gibt an, wie viele Farbkomponenten in dem Bild enthalten sind 
+(1-4). Die zwei folgenden Parameter übermitteln OpenGL die Breite und 
+die Höhe des Bildes. Der sechste Parameter gibt die Breite des Rahmens 
+an. Im siebenten Parameter wird das Format verlangt, in welcher 
+Reihenfolge die einzelnen Farbkomponenten gespeichert sind. Der Typ, der
+ einzelnen Farbwerte muss im 8. Parameter angegeben werden. Letztendlich
+ müssen im 9. Parameter nur noch die Bildpunkte selbst übergeben werden.<br>
+Mit Hilfe dieser Funktion sollten nur Texturen der Größe 2^n x 2^n 
+erzeugt werden. Andernfalls werdet Ihr die Textur nicht in Ihrer vollen 
+Schönheit, d.h. überhaupt nicht betrachten können. Es gibt jedoch 
+Möglichkeiten Texturen zu laden, die nicht die Größe 2^n entsprechen. 
+Die Funktion <a href="http://wiki.delphigl.com/index.php/gluBuild2DMipmaps" title="gluBuild2DMipmaps">gluBuild2DMipmaps</a> bietet hier beispielsweise eine Alternative.<br>
+Das war es auch schon. Wer mehr über die einzelnen Parameter und Befehle
+ wissen will ist herzlich eingeladen in unserem Wiki umherzustöbern und 
+sein Wissen zu erweitern um später selbst vielleicht einmal ein paar 
+Artikel im Wiki zu veröffentlichen.
+</p><p>Die Daten im Arbeitsspeicher brauchen wir nun nicht mehr. Bei SDL geben wir sie so frei:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">SDL_FreeSurface<span class="br0">(</span>tex<span class="br0">)</span>;</pre></div></div>
+<p>Fassen wir das ganze bei SDL nochmal zusammen:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1"><span class="kw1">var</span>
+  tex <span class="sy0">:</span> PSDL_Surface;
+<span class="kw1">begin</span>
+  tex <span class="sy0">:=</span> IMG_Load<span class="br0">(</span><span class="st_h">'./wiki.jpg'</span><span class="br0">)</span>;
+  <span class="kw1">if</span> assigned<span class="br0">(</span>tex<span class="br0">)</span> <span class="kw1">then</span>
+  <span class="kw1">begin</span>		
+    glGenTextures<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span> @TexID<span class="br0">)</span>;
+    glBindTexture<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> TexID<span class="br0">)</span>;
+&nbsp;
+    glTexParameteri<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> GL_TEXTURE_MIN_FILTER<span class="sy0">,</span> GL_LINEAR<span class="br0">)</span>;
+    glTexParameteri<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> GL_TEXTURE_MAG_FILTER<span class="sy0">,</span> GL_LINEAR<span class="br0">)</span>;
+&nbsp;
+    <span class="co1">// Achtung! Einige Bildformate erwarten statt GL_RGB, GL_BGR. Diese Konstante fehlt in den Standard-Headern</span>
+    glTexImage2D<span class="br0">(</span>GL_TEXTURE_2D<span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">3</span><span class="sy0">,</span> tex^.<span class="me1">w</span><span class="sy0">,</span> tex^.<span class="me1">h</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span> GL_RGB<span class="sy0">,</span> GL_UNSIGNED_BYTE<span class="sy0">,</span> tex^.<span class="me1">pixels</span><span class="br0">)</span>;
+&nbsp;
+    SDL_FreeSurface<span class="br0">(</span>tex<span class="br0">)</span>;
+  <span class="kw1">end</span>;</pre></div></div>
+<p>Nun kommt aber bitte nicht auf die Idee die Textur in euerer 
+Hauptschleife wieder und wieder neu zu laden. Es reicht die Textur 
+einmal zu laden und von da an steht sie einem solange zur Verfügung bis 
+man gedenkt sie wieder aus dem Grafikkartenspeicher zu entfernen.<br>
+Das übernimmt die Funktion <a href="http://wiki.delphigl.com/index.php/glDeleteTextures" title="glDeleteTextures">glDeleteTextures</a>.
+ glDeleteTextures funktioniert ähnlich wie glGenTextures, nur dass die 
+Texturen entfernt werden. Der erste Parameter gibt die Anzahl der zu 
+löschenden Texturen an, während der zweite Parameter den Namen der 
+Textur bzw. ein Array der Namen mehrerer Texturen verlangt.<br>
+Das ist doch für den Anfang nicht schlecht. Ihr solltet nun in der Lage 
+sein, zumindest einfache Objekte zu texturieren. Das ist eigentlich das 
+gesamte Grundprinzip. Natürlich gestaltet es sich schwieriger ein 
+komplexeres Objekt mit UV-Koordinaten zu versehen als ein Quad. An der 
+Technik selbst ändert sich aber nur wenig. 
+</p><p>An dieser Stelle noch eine Anmerkung zu den Texturformaten. Man 
+sollte immer darauf achten, dass die verwendeten Texturen als 
+Kantenlänge eine 2er-Potenz besitzen. Also z.B. 64x128, 256x1024 oder 
+32x32. Dies liegt daran, dass ältere Grafikkarten nur diese Formate 
+unterstützen. Erst die neueren Generationen können auch sogenannte <i>non power of two</i> texturen darstellen. <br>
+Falls ihr also einmal nur ein weißes Viereck seht, wo eigentlich eine 
+Textur sein müßte, dann prüft ob ihr auch tatsächlich ein korrektes 
+Format verwendet.
+</p><p>Wir werden nun einige Spielereien zeigen, die man mit Texturen 
+machen kann damit Ihr ein Gefühl dafür bekommt, wie man ein Problem 
+elegant umschiffen kann!
+</p>
+<h2> <span class="mw-headline" id="Die_R.C3.BCckkehr_der_Matrizen">Die Rückkehr der Matrizen</span></h2>
+<h3> <span class="mw-headline" id="Texturen">Texturen</span></h3>
+<p>Tja... und da ich ein Sadist bin [Anm. des Lektors: Ooooh ja!] werden
+ wir uns nun nochmals den Matrizen zuwenden! Dachtet Ihr etwa, Ihr seid 
+die Dinger schon wieder los? Ich habe Euch im letzten Tutorial 
+angedroht, dass es nicht nur eine Matrix für die "Welt" gibt, sondern 
+auch noch weitere. Unter anderem eben auch für Texturen.
+</p><p>Die Texturmatrix funktioniert streng genommen genauso wie auch 
+die Worldmatrix. Solange wir sie aktiv haben, wird sie von jedem 
+Matrixbefehl berücksichtigt! Einziger wirklicher Unterschied ist, dass 
+sie nicht die Position oder die Form eines Objektes beeinflusst, sondern
+ nur das Rendern der Textur selbst. Hö? Was meint der Kerl bloß damit?! 
+Nun... stellt Euch vor, Ihr habt ein Quad und wollt darauf eine Textur 
+bewegen, so dass es aussieht, als würde sie sich von rechts nach links 
+bewegen! Was wir jedoch nicht wollen ist, dass sich das Objekt bewegt, 
+sondern nur, das was darauf zu sehen ist. Stellt Euch vor, Ihr schaut 
+aus einem Fenster und seht einen wolkigen Himmel, der Wind bläst die 
+Wolken von einer Himmelsrichtung zur anderen. Ihr könntet so z.B. das 
+Fenster als Quad nehmen und dann die Textur darauf zeichnen und glaubt 
+mir, die Illusion würde auffliegen, sobald sich das Fenster mit der 
+Textur bewegen soll. Nein, stattdessen bewegen wir nur die Textur auf 
+dem Quad und zwar ohne das UV-Mapping anzutasten. Wir beeinflussen 
+einfach die Art, wie die Textur auf das Quad projiziert werden soll. 
+Dafür dient die Texturmatrix.
+</p><p>Stellen wir uns mal vor, dass wir unser Quad zeichnen und eine 
+Variable X haben, die wir bei jedem Rendervorgang leicht erhöhen. Dies 
+soll die Bewegung darstellen. Alles was wir nun tun müssen ist, die 
+Texturmatrix entsprechend anzupassen.
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">glMatrixMode<span class="br0">(</span>GL_TEXTURE<span class="br0">)</span>;
+  glLoadIdentity;
+  glTranslatef<span class="br0">(</span>x<span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+glMatrixMode<span class="br0">(</span>GL_MODELVIEW<span class="br0">)</span>;</pre></div></div>
+<p>Das ist bereits der ganze Spuk! Wir teilen OpenGL durch glMatrixMode 
+mit, dass sich ab sofort alle Veränderungen der Matrix nur noch auf die 
+Texturmatrix beziehen sollen. Danach setzen wir diese sofort auf ihren 
+Standardwert zurück. Der Grund hierfür sollte Euch von der Worldmatrix 
+noch in Erinnerung sein. Anschließend ändern wir die Position der Textur
+ auf dem Quad. Würden wir X jedes Mal um 1 Einheit erhöhen, so würde 
+diese Operation ohne Effekt bleiben, da wir die Textur immer um ihre 
+ganze Größe nach links projizieren würden. Würden wir X z.&nbsp;B. bei 
+jedem Vorgang um 0.01 erhöhen, so würde die Textur sich langsam von 
+rechts nach links bewegen. Ich denke, Ihr könnt bereits erahnen, welche 
+Parameter dafür verwendet werden, um eine Textur von unten nach oben zu 
+bewegen&nbsp;;).
+</p><p>Wichtig ist auf jeden Fall, dass Ihr anschließend mit 
+glMatrixMode wieder die Worldmatrix aktiviert, da sonst alle weiteren 
+Matrixmanipulationen auf die Texturmatrix angewandt werden würden. Denkt
+ nicht, dass die Texturmatrix damit deaktiviert wird! Ab sofort wird auf
+ das Objekt sowohl die World- als auch die Texturmatrix angewendet. Seht
+ Ihr? Das Ganze ist doch gar nicht ganz so schlimm. Es versteht sich 
+auch von selbst, dass Ihr glRotate und glScale ebenfalls darauf anwenden
+ könnt, natürlich auch nach den gleichen Regeln auf die Worldmatrix. 
+Experimentiert am Besten auch etwas mit diesen Einstellungen herum!
+</p>
+<h2> <span class="mw-headline" id="Wir_tapezieren_unsere_Welt_mal_anders">Wir tapezieren unsere Welt mal anders</span></h2>
+<h3> <span class="mw-headline" id="Am_Flie.C3.9Fband">Am Fließband</span></h3>
+<p>Eigentlich sollte an dieser Stelle bereits Schluss sein. Ich wurde 
+allerdings während des Schreibens des Tutorials nach einer Sache gefragt
+ und möchte die Chance nutzen, diese Frage zu beantworten und 
+gleichzeitig das angewandte Wissen der vorhergehenden Lektion etwas zu 
+vertiefen. 
+</p><p>Wir haben folgende Problematik: Wir brauchen eine animierte 
+Textur auf einem Objekt. Dies könnte z.&nbsp;B. eine bewegte Lavamasse 
+sein oder irgendwas Glibbriges, was am Boden wabbelt. Oder eben in 
+unserem Fall eine Folge von Zahlen, die wie ein Countdown aufgelistet 
+werden. Sicherlich könnte nun jemand von Euch auf die Idee kommen, viele
+ einzelne Texturen zu laden und diese in einem Array zu speichern. Dies 
+mag auch durchaus sinnvoll sein nicht jedoch, wenn es sich um kleine 
+Bilder handelt (bei uns z.&nbsp;B. 32x32 Pixel).
+</p><p>Auch bei Bitmap-Fonts würde man nie auf die Idee kommen, für 
+jeden Buchstaben eine einzelne Textur zu verwenden, sondern vielmehr 
+eine Textur mit allen Buchstaben darauf erstellen, da dies u.a. den 
+Ladevorgang erheblich beschleunigt! Klingt einleuchtend oder? Aber wie 
+sollen wir dem Programm mitteilen, welcher Teil der Textur auf welche 
+"Ecke" geklebt werden soll? Nun... auch hierbei heißt des Lösungs Rätsel
+ [Anm. des Lektors: Er macht's schon wieder. Herrlich...] UV-Mapping!
+</p><p><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_numbers.gif" class="image"><img alt="Tutimg lektion4 numbers.gif" src="Opengl%20Tutorial%20Lektion%204_files/Tutimg_lektion4_numbers.gif" height="32" width="256"></a>
+</p><p>Dies ist unsere Textur! Sie hat eine Gesamtlänge von 256x32 
+Bildpunkten und wie man leicht sehen kann, soll sie aus 8 Teilstücken 
+bestehen. Die V-Koordinate können wir in diesem Fall getrost 
+vernachlässigen, weil sie in diesem Fall immer konstant sein wird, weil 
+wir die ganze Höhe der Textur verwenden wollen. Sie wäre nur dann 
+interessant, wenn wir z.&nbsp;B. noch eine zweite Reihe darunter setzen 
+würden. Ich denke jedoch, dass jemand der das gleich folgende verstanden
+ hat, sofort eine Lösung für diese "Problematik" finden wird&nbsp;;).
+</p><p><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_numbers2.gif" class="image"><img alt="Tutimg lektion4 numbers2.gif" src="Opengl%20Tutorial%20Lektion%204_files/Tutimg_lektion4_numbers2.gif" height="48" width="288"></a>
+</p><p>Wichtig ist, dass wir uns bewusst werden, dass eine Textur beim 
+UV-Mapping immer von 0 bis 1 reicht. Um nun die einzelnen Bilder aus 
+einer Textur auf ein Objekt zu setzen, müssen wir nichts anderes machen,
+ als zu errechnen, an welcher Stelle ein Bild anfängt und wo es aufhört.
+ Nur zur Kontrolle, damit es auch jeder begreift: Würden wir nur die 
+erste Hälfte der Textur auf ein Objekt kleben, so müsste unsere 
+U-Koordinate von 0 bis 0.5 reichen. Die zweite Hälfte hingegen von 0.5 -
+ 1.0. Soweit klingt es doch noch alles logisch oder?
+</p><p>Genauso müssen wir auch vorgehen, wenn wir einzelne Bilder auf 
+einem Quad abbilden wollen. In unserem Fall müsste die U-Koordinate von 0
+ bis 1/8 reichen. Das zweite Bildchen hingegen von 1/8 bis 2/8 etc. 
+D.&nbsp;h. wir wissen, dass jedes unserer Bilder 1/8 "Einheiten" lang 
+ist! Und somit haben wir ja bereits eine Lösung für unser Problem. Um 
+das ganze dynamisch auszudrücken: Wir brauchen nur die Größe der Textur 
+durch die Anzahl der Bilder zu teilen. Bevor jemand einen Denkfehler 
+macht: Es ist hierbei ganz egal, wie groß die Textur wirklich ist (hier 
+256x32 Pixel). Dank OpenGL errechnen wir das UV-Mapping ja in absoluten 
+Größen.
+Nun der Code:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">PicLength<span class="sy0">:=</span> <span class="nu0">1</span> <span class="sy0">/</span> PicCount;
+PicPos<span class="sy0">:=</span>Round<span class="br0">(</span>Pic<span class="br0">)</span><span class="sy0">*</span>PicLength;
+glBegin<span class="br0">(</span>GL_QUADS<span class="br0">)</span>;
+  glTexCoord2f<span class="br0">(</span>PicPos<span class="sy0">,</span>		   <span class="nu0">1</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+  glTexCoord2f<span class="br0">(</span>PicPos <span class="sy0">+</span> PicLength<span class="sy0">,</span> <span class="nu0">1</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+  glTexCoord2f<span class="br0">(</span>PicPos <span class="sy0">+</span> PicLength<span class="sy0">,</span> <span class="nu0">0</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+  glTexCoord2f<span class="br0">(</span>PicPos<span class="sy0">,</span>		   <span class="nu0">0</span><span class="br0">)</span>; glVertex3f<span class="br0">(</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+glEnd;
+&nbsp;
+Pic<span class="sy0">:=</span>Pic <span class="sy0">+</span> MovementValue;</pre></div></div>
+<p>Pic ist in diesem Fall eine Variable vom Typ Single, die langsam 
+erhöht wird. Wir runden den Wert hier, so dass beim Erreichen eines 
+jeden ganzzahligen Wertes das nächste Bild angezeigt wird. Wir 
+multiplizieren die Nummer des anzuzeigenden Bildes mit der Breite eines 
+Bildes, um die Anfangsposition zu erhalten und addieren dann noch eine 
+volle Bildbreite dazu, um die Endposition zu erhalten. Hört sich 
+gewaltig gefährlich an, liegt aber mehr an meinem mangelnden Ausdruck 
+als an der Schwierigkeit dieses Problems&nbsp;;).
+</p><p>Im Sample werdet Ihr noch sehen, was passiert, wenn man den Wert 
+nicht rundet. Man erhält in diesem Fall einen "flüssigen" Bildübergang. 
+Letztendlich gibt es viele Möglichkeiten, solche Ideen zu 
+implementieren. Nehmt dies einfach als kleineren Gedankenschub und vor 
+allem: Werdet Euch bewusst, was genau dort passiert! Eine Menge toller 
+Dinge lassen sich mit einem guten UV-Mapping erzielen.
+Wer noch etwas umherexperimentieren will kann gern versuchen selbes Ziel
+ mit Hilfe der Texturenmatrix zu erreichen. Die Lösung ist verblüffend 
+einfach.
+</p>
+<h3> <span class="mw-headline" id="Terraforming_mal_anders">Terraforming mal anders</span></h3>
+<p>Relativ lange habe ich nach einem guten Beispiel für folgende 
+Problematik gesucht: Ich wollte Euch die UV-Koordinaten etwas näher 
+bringen und Euch zeigen, wofür man sie einsetzen kann. Irgendwie wollte 
+mir nichts Interessantes aus meinem Kopf entspringen bis ich irgendwann 
+in einigen alten Programmen von mir rumgewühlt habe und einen alten 
+Terrainrenderer von mir fand. Schon war die Idee da! Wir schreiben ein 
+kleines Programm, das eine ganz simple, unoptimierte Landschaft rendern 
+wird. Das hört sich sicherlich Anfangs relativ gewaltig an, mit etwas 
+Verständnis für die oberen Probleme sollte dies jedoch kein Problem für 
+Euch sein.
+</p><p>Zuvor allerdings ein paar Gedankenspiele. Zunächst widmen wir uns
+ kurz der Texturiering. Wie würde die simpelste Landschaft aussehen, die
+ wir uns vorstellen können? Richtig! Sie wäre ein einfaches, flach 
+liegendes Quadrat mit einer Textur überzogen, der Wand aus unserem 
+ersten Versuch sehr ähnlich! Dies hat jedoch einen klitzekleinen 
+Nachteil: Wir könnten keine Höhenstufen einbauen und ohne die wäre die 
+Landschaft nur halb so realistisch. Denn wir wollen versuchen, folgende 
+Szene zu zaubern:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:258px;"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landscape.gif" class="image"><img alt="" src="Opengl%20Tutorial%20Lektion%204_files/256px-Tutimg_lektion4_landscape.gif" class="thumbimage" height="192" width="256"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landscape.gif" class="internal" title="vergrößern"><img src="Opengl%20Tutorial%20Lektion%204_files/magnify-clip.png" alt="" height="11" width="15"></a></div>eine Lanschaft</div></div></div>
+<p>Um allerdings Höhen einzubinden, müssen wir die Landschaft in viele 
+kleinen Quads unterteilen, die natürlich an Ihren Eckpunkten 
+unterschiedliche Höhen haben, sich jedoch jeweils einige Punkte teilen. 
+Es versteht sich von selbst, dass diese die gleiche Höhe haben müssen, 
+damit die Landschaft auch durchgängig ist und nicht irgendwelche 
+mysteriösen Löcher darauf erscheinen&nbsp;;).
+Auf folgendem Screenshot kann man dies deutlich erkennen:
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:258px;"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landwire.gif" class="image"><img alt="" src="Opengl%20Tutorial%20Lektion%204_files/256px-Tutimg_lektion4_landwire.gif" class="thumbimage" height="192" width="256"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landwire.gif" class="internal" title="vergrößern"><img src="Opengl%20Tutorial%20Lektion%204_files/magnify-clip.png" alt="" height="11" width="15"></a></div>Gitter Ansicht der Landschaft</div></div></div>
+<p>Technisch gesehen ist das Ganze einfach zu realisieren, da wir nur 
+begreifen müssen, dass alle Quads nebeneinander liegen und sich - bis 
+auf die äußeren alle einen Eckpunkt teilen. Nun müssen wir beim Rendern 
+jeden Eckpunkt nur noch vom angrenzenden Quad lesen und fertig ist die 
+Landschaft. Ich will da nicht näher drauf eingehen, weil es sich hier 
+nicht um ein Tutorial zur Landschaftsgestaltung handelt. Der Code sollte
+ sich eigentlich von selbst erklären.
+</p><p>Vielmehr sollten wir uns einer anderen Problematik widmen! 
+Nämlich wie zur Hölle texturieren wir die Landschaft so, dass sie nicht 
+zur Marke "augenfeindlich" gehört?
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:258px;"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landscapeerror.gif" class="image"><img alt="" src="Opengl%20Tutorial%20Lektion%204_files/256px-Tutimg_lektion4_landscapeerror.gif" class="thumbimage" height="192" width="256"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://wiki.delphigl.com/index.php/Datei:Tutimg_lektion4_landscapeerror.gif" class="internal" title="vergrößern"><img src="Opengl%20Tutorial%20Lektion%204_files/magnify-clip.png" alt="" height="11" width="15"></a></div>wiederkehrende Landschaft</div></div></div>
+<p>Wenn Euer erster Gedanke dabei "Boah, cool!" ist, dann gibt's eins 
+auf die Finger! Das wollen wir doch nicht... wie sieht den die 
+Landschaft aus. Eine immer wiederkehrende Landschaft -&gt; man erkennt 
+sofort, dass wir hierbei auf jedes Quad die gleiche Textur geklebt 
+haben. Doch wie schaffen wir es nun, dass wir eine Textur über alle 
+Quads ziehen, so dass die ganze Landschaft mit einer Textur überzogen 
+ist anstatt nur über ein einzelnes Feld?
+Nun, des Lösungs Geheimnis [Anm. des Lektors: Ich liebe ihn dafür! 
+Andere lösen Rätsel. Er geheimnist Lösungen] sind eben unsere 
+UV-Koordinaten und einige pfiffige Köpfe unter Euch sollten bereits 
+einen ersten Verdacht haben. Denn die erste Idee sollte es sein, den 
+linken unteren Punkt eine UV-Koordinate von (0/0) zu geben und der 
+rechten oberen (1/1).
+Alles was wir nun also machen müssen, ist, uns die entsprechenden 
+UV-Koordinaten für die Quads dazwischen auszurechnen und sie dann den 
+Punkten zuzuweisen. Dafür benötigen wir zunächst die Breite eines Quads.
+ Mit normaler Logik lässt sich folgende Aussage aufstellen.
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">qw<span class="sy0">:=</span><span class="nu0">1</span> <span class="sy0">/</span> XCount
+qh<span class="sy0">:=</span><span class="nu0">1</span> <span class="sy0">/</span> YCount;</pre></div></div>
+<p>Ein Quad benötigt die Länge von 1 durch die Anzahl der Quads in einer
+ Reihe oder Spalte. Genauso verhält es sich auch mit der Höhe. Nun 
+brauchen wir beim Rendern nur noch dem jeweiligen Quad in einer 
+For-Schleife die entsprechende Koordinate zuzuweisen:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="pascal source-pascal" style="font-family:monospace;"><pre class="de1">U<span class="sy0">:=</span><span class="nu0">1</span> <span class="sy0">/</span> XCount;
+V<span class="sy0">:=</span><span class="nu0">1</span> <span class="sy0">/</span> YCount;
+&nbsp;
+<span class="kw1">for</span> y<span class="sy0">:=</span><span class="nu0">0</span> <span class="kw1">to</span> YCount<span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+<span class="kw1">begin</span>
+  glPushMatrix;
+  <span class="kw1">for</span> x<span class="sy0">:=</span><span class="nu0">0</span> <span class="kw1">to</span> XCount<span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+  <span class="kw1">begin</span>
+    glBegin<span class="br0">(</span>GL_QUADS<span class="br0">)</span>;
+      glTexCoord2f<span class="br0">(</span>U<span class="sy0">*</span>x<span class="sy0">,</span>     V<span class="sy0">*</span><span class="br0">(</span>y<span class="sy0">+</span><span class="nu0">1</span><span class="br0">)</span><span class="br0">)</span>; 
+      glVertex3f<span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span>  Map<span class="br0">[</span>x<span class="sy0">,</span>y<span class="sy0">+</span><span class="nu0">1</span><span class="br0">]</span><span class="sy0">,</span>  <span class="nu0">0</span><span class="br0">)</span>;
+      glTexCoord2f<span class="br0">(</span>U<span class="sy0">*</span>x<span class="sy0">,</span>     V<span class="sy0">*</span>y<span class="br0">)</span>;     
+      glVertex3f<span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span>  Map<span class="br0">[</span>x<span class="sy0">,</span>y<span class="br0">]</span><span class="sy0">,</span>  <span class="nu0">1</span><span class="br0">)</span>;
+      glTexCoord2f<span class="br0">(</span>U<span class="sy0">*</span><span class="br0">(</span>x<span class="sy0">+</span><span class="nu0">1</span><span class="br0">)</span><span class="sy0">,</span> V<span class="sy0">*</span>y<span class="br0">)</span>;     
+      glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span>  Map<span class="br0">[</span>x<span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span>y<span class="br0">]</span><span class="sy0">,</span>  <span class="nu0">1</span><span class="br0">)</span>;
+      glTexCoord2f<span class="br0">(</span>U<span class="sy0">*</span><span class="br0">(</span>x<span class="sy0">+</span><span class="nu0">1</span><span class="br0">)</span><span class="sy0">,</span> V<span class="sy0">*</span><span class="br0">(</span>y<span class="sy0">+</span><span class="nu0">1</span><span class="br0">)</span><span class="br0">)</span>;  
+      glVertex3f<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span> Map<span class="br0">[</span>x<span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span>y<span class="sy0">+</span><span class="nu0">1</span><span class="br0">]</span><span class="sy0">,</span>  <span class="nu0">0</span><span class="br0">)</span>;
+    glEnd;
+    glTranslatef<span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">0</span><span class="br0">)</span>;
+  <span class="kw1">end</span>;
+  glPopMatrix;
+  glTranslatef<span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,-</span><span class="nu0">1</span><span class="br0">)</span>;
+<span class="kw1">end</span>;</pre></div></div>
+<p>Das sieht nach einem herben Stück Arbeit aus oder? Aber wenn Ihr Euch
+ das ganze mal aufzeichnet und im Kopf durchspielt, wird der Groschen 
+fallen. Denkt mal etwas darüber nach! Wenn es dann doch noch Probleme 
+mit dem Verständnis geben sollte, wird das nächste Kapitel hoffentlich 
+jedes Missverständnis aus dem Wege räumen&nbsp;;).
+</p>
+<h2> <span class="mw-headline" id="Nachwort">Nachwort</span></h2>
+<p>Okay... ich hoffe Ihr fühlt Euch nach der Abarbeitung dieses 
+Tutorials genauso wie ich, nachdem ich es für Euch geschrieben habe... 
+nämlich elend. Irgendwie wurde das immer mehr und ich sagte mir immer 
+wieder "nein, dass ist nicht genug. Das muss genauer und anschaulicher 
+werden". Dies ist auch der Grund dafür, warum dieses eines der größten 
+Tutorials mit den meisten Bildern usw geworden ist. Erst sollte es noch 
+etwas mehr werden und dann in mehrere Tutorials aufgespaltet werden, 
+allerdings glaube ich mit diesem Tutorial einen guten Mittelweg zwischen
+ Information und Totlabern gefunden zu haben. Lasst es mich wissen, wie 
+Ihr dazu steht!<br>
+Und bevor die Kritiker gleich wieder alle aus Ihren Löchern kommen und 
+mir sagen, dass einige Bereich einfach als gegeben angenommen werden; 
+denen sei nur gesagt, dass wir u.&nbsp;a. auch versuchen Rücksicht auf 
+Leute zu nehmen, die noch nie 3D programmiert haben und vielleicht Eurem
+ Wissen nicht standhalten können. Daher halte ich es hier für wichtiger,
+ Grundlagen wie UV-Koordinaten und den Einsatz von Texturen zu erklären,
+ als ihnen tausende von Zeilen um die Ohren zu hauen, wie sie die Bytes 
+von der Festplatte in den Arbeitsspeicher laden können. Um jedoch keine 
+Wissenslöcher offen zu lassen: Ihr könnt Euch sicher sein, dass 
+spezielle Tutorials folgen werden, die sich speziell mit dem Laden 
+verschiedener Formate beschäftigen und die genaue Interna (was im 
+Hintergrund abläuft) zu erklären versuchen. Auch das Alpha Blending wird
+ hier mehr zu "Show-Zwecken" verwendet und wird zusammen mit dem 
+Z-Buffer genauer erklärt werden! <br>
+Also bloß keine falsche Hektik! Ich weiß ... einige von Euch sind recht 
+ungeduldig, aber ständiges Nachfragen und Drängeln führt zu nichts. 
+Versucht Fragen lieber ins Forum zu setzen, damit dort ein wenig Leben 
+reinkommt. Denn wenn es dort belebter wird, kommen auch schneller neue 
+Leute und vielleicht sind ja auch welche dabei, die dann das DGL-Team 
+entlasten können. Also nutzt bitte das Forum, anstatt andauernd per ICQ 
+oder Mail irgendwelche Fragen zu stellen! Die Antwort wird auch nicht 
+viel länger auf sich warten lassen. Im Forum jedoch ist alles 
+dokumentiert und auch anderen zugänglich, so dass ich nicht die gleiche 
+Frage bis zu 5 mal am Tag beantworten muss. Sorry aber das geht einem 
+auf die Nerven und vor allem auf die Zeit&nbsp;;). Schließlich sind wir 
+keine Maschinen sondern Menschen, die auch ein privates Leben haben 
+^__-.
+</p><p>Glaubt uns, wir investieren einen sehr großen Teil unserer Zeit 
+in dieses Projekt und solch ein Tutorial lässt sich nicht binnen weniger
+ Tage anfertigen. Jeder der so etwas bereits einmal gemacht hat, wird 
+wissen was ich meine. Es muss ein Konzept her, es müssen Samples 
+geschrieben, Screenshots gemacht werden und ein halbwegs verständlicher 
+Text her. Und nichtsdestotrotz soll es am Ende auch noch passen, einem 
+möglichst großen Publikum Wissen vermitteln, am Besten von Schreib- und 
+Sprachfehlern befreit und in einem halbwegs ansehnlichen HTML-Dokument 
+präsentiert werden. Ein langer Weg&nbsp;;).
+Okay, in diesem Sinne, bis bald&nbsp;;)!
+btw: Vielen Dank an Magellan für die Bereitstellung und Integration 
+seiner "besonderen Lernleistung".
+</p><p>Euer<br>
+<b>Phobeus</b>
+</p>
+<h2> <span class="mw-headline" id="Dateien"> Dateien </span></h2>
+<ul><li> Der aktuellste Beispiel-Quelltext befindet sich im DGLSDK 2006.1 für <a href="http://wiki.delphigl.com/index.php/Archiv:dglsdk_win32_2006_1" title="Archiv:dglsdk win32 2006 1">Windows</a> <a href="http://wiki.delphigl.com/index.php/Datei:File.jpg" class="image"><img alt="File.jpg" src="Opengl%20Tutorial%20Lektion%204_files/10px-File.jpg" height="14" width="10"></a> und <a href="http://wiki.delphigl.com/index.php/Archiv:dglsdk_linux_2006_1" title="Archiv:dglsdk linux 2006 1">Linux</a> <a href="http://wiki.delphigl.com/index.php/Datei:File.jpg" class="image"><img alt="File.jpg" src="Opengl%20Tutorial%20Lektion%204_files/10px-File.jpg" height="14" width="10"></a>
+</li><li> <a href="http://wiki.delphigl.com/index.php/Archiv:tut_lektion_4_delphi_api" title="Archiv:tut lektion 4 delphi api">Alter Delphi-API-Quelltext zum Tutorial</a> <a href="http://wiki.delphigl.com/index.php/Datei:File.jpg" class="image"><img alt="File.jpg" src="Opengl%20Tutorial%20Lektion%204_files/10px-File.jpg" height="14" width="10"></a>
+</li><li> <a href="http://wiki.delphigl.com/index.php/Archiv:tut_lektion_4_delphi_vcl" title="Archiv:tut lektion 4 delphi vcl">Alter Delphi-VCL-Quelltext zum Tutorial</a> <a href="http://wiki.delphigl.com/index.php/Datei:File.jpg" class="image"><img alt="File.jpg" src="Opengl%20Tutorial%20Lektion%204_files/10px-File.jpg" height="14" width="10"></a>
+</li><li> <a href="http://wiki.delphigl.com/index.php/Archiv:tut_lektion_4_exe" title="Archiv:tut lektion 4 exe">Windows-Binary zum Tutorial</a> <a href="http://wiki.delphigl.com/index.php/Datei:File.jpg" class="image"><img alt="File.jpg" src="Opengl%20Tutorial%20Lektion%204_files/10px-File.jpg" height="14" width="10"></a>
+</li></ul>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+  <td colspan="3">
+<hr>
+  </td>
+</tr>
+<tr>
+  <td width="35%"><div align="left"><b>Vorhergehendes Tutorial: <br><a href="http://wiki.delphigl.com/index.php/Tutorial_Lektion_3" title="Tutorial Lektion 3">Tutorial Lektion 3</a></b></div></td>
+  <td width="30%"><div align="center"><b><a href="http://wiki.delphigl.com/index.php/Tutorial" title="Tutorial">Zur Übersicht</a></b></div></td>
+  <td width="35%"><div align="right"><b>Nächstes Tutorial: <br><a href="http://wiki.delphigl.com/index.php/Tutorial_Lektion_5" title="Tutorial Lektion 5">Tutorial Lektion 5</a></b></div></td>
+</tr>
+<tr>
+  <td colspan="3"> 
+<hr>
+<small><div align="center">Schreibt was ihr zu diesem Tutorial denkt ins <a class="external text" href="http://www.delphigl.com/forum/viewforum.php?f=8">Feedbackforum von DelphiGL.com</a>. <br>
+Lob, Verbesserungsvorschläge, Hinweise und Tutorialwünsche sind stets willkommen.</div></small></td>
+</tr>
+</tbody></table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 233/1000000
+Post-expand include size: 1516/2097152 bytes
+Template argument size: 387/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key db1052972-dgl-dglwiki_:pcache:idhash:1753-0!*!0!!de!2!* and timestamp 20120714103726 -->
+</div><div class="printfooter">
+Von „<a href="http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;oldid=23659">http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;oldid=23659</a>“</div>
+		<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.delphigl.com/index.php/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="http://wiki.delphigl.com/index.php/Kategorie:Tutorial" title="Kategorie:Tutorial">Tutorial</a></li></ul></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Ansichten</h5>
+		<div class="pBody">
+			<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://wiki.delphigl.com/index.php/Tutorial_Lektion_4" title="Seiteninhalt anzeigen [alt-shift-c]" accesskey="c">Seite</a></li>
+				<li id="ca-talk"><a href="http://wiki.delphigl.com/index.php/Diskussion:Tutorial_Lektion_4" title="Diskussion zum Seiteninhalt [alt-shift-t]" accesskey="t">Diskussion</a></li>
+				<li id="ca-viewsource"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;action=edit" title="Diese Seite ist geschützt. Der Quelltext kann angesehen werden. [alt-shift-e]" accesskey="e">Quelltext anzeigen</a></li>
+				<li id="ca-history"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;action=history" title="Frühere Versionen dieser Seite [alt-shift-h]" accesskey="h">Versionen/Autoren</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Meine Werkzeuge</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://wiki.delphigl.com/index.php?title=Spezial:Anmelden&amp;returnto=Tutorial+Lektion+4" title="Sich anzumelden wird zwar gerne gesehen, ist aber keine Pflicht. [alt-shift-o]" accesskey="o">Anmelden</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a title="Hauptseite" style="background-image: url(&quot;http://wiki.delphigl.com/wiki.png&quot;);" href="http://wiki.delphigl.com/index.php/Hauptseite"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-Navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.delphigl.com/index.php/Hauptseite" title="Hauptseite anzeigen [alt-shift-z]" accesskey="z">Hauptseite</a></li>
+				<li id="n-Forum"><a href="http://www.delphigl.com/forum/index.php">Forum</a></li>
+				<li id="n-Links"><a href="http://wiki.delphigl.com/index.php/Link">Links</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.delphigl.com/index.php/Spezial:Letzte_%C3%84nderungen" title="Liste der letzten Änderungen in DGL Wiki [alt-shift-r]" accesskey="r">Letzte Änderungen</a></li>
+				<li id="n-randompage"><a href="http://wiki.delphigl.com/index.php/Spezial:Zuf%C3%A4llige_Seite" title="Zufällige Seite [alt-shift-x]" accesskey="x">Zufällige Seite</a></li>
+				<li id="n-Impressum"><a href="http://delphigl.com/impressum.php">Impressum</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Hauptkategorien">
+		<h5>Hauptkategorien</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Tutorials"><a href="http://wiki.delphigl.com/index.php/Tutorial">Tutorials</a></li>
+				<li id="n-OpenGL-Funktionen"><a href="http://wiki.delphigl.com/index.php/OpenGL-Funktions%C3%BCbersicht">OpenGL-Funktionen</a></li>
+				<li id="n-SDL-Funktionen"><a href="http://wiki.delphigl.com/index.php/SDL-Funktions%C3%BCbersicht">SDL-Funktionen</a></li>
+				<li id="n-OpenAL-Funktionen"><a href="http://wiki.delphigl.com/index.php/OpenAL-Funktions%C3%BCbersicht">OpenAL-Funktionen</a></li>
+				<li id="n-OGL-Extensions"><a href="http://wiki.delphigl.com/index.php/OpenGL-Extensions">OGL Extensions</a></li>
+				<li id="n-Hintergrundwissen"><a href="http://wiki.delphigl.com/index.php/Hintergrundwissen">Hintergrundwissen</a></li>
+				<li id="n-Techniken"><a href="http://wiki.delphigl.com/index.php/Techniken_und_Algorithmen">Techniken</a></li>
+				<li id="n-Materialsammlung"><a href="http://wiki.delphigl.com/index.php/Materialsammlung">Materialsammlung</a></li>
+				<li id="n-Shadersammlung"><a href="http://wiki.delphigl.com/index.php/Shadersammlung">Shadersammlung</a></li>
+				<li id="n-Linksammlung"><a href="http://wiki.delphigl.com/index.php/Link">Linksammlung</a></li>
+				<li id="n-DGL-Projekte"><a href="http://wiki.delphigl.com/index.php/DGL_Projekte">DGL-Projekte</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Suche</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/index.php" id="searchform">
+				<input name="title" value="Spezial:Suche" type="hidden">
+				<input name="search" title="DGL Wiki durchsuchen [alt-shift-f]" accesskey="f" id="searchInput" type="search">
+				<input name="go" value="Seite" title="Gehe direkt zu der Seite, die exakt dem eingegebenen Namen entspricht." id="searchGoButton" class="searchButton" type="submit">&nbsp;
+				<input name="fulltext" value="Suchen" title="Suche nach Seiten, die diesen Text enthalten" id="mw-searchButton" class="searchButton" type="submit">
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Werkzeuge</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.delphigl.com/index.php/Spezial:Linkliste/Tutorial_Lektion_4" title="Liste aller Seiten, die hierher verlinken [alt-shift-j]" accesskey="j">Links auf diese Seite</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.delphigl.com/index.php/Spezial:%C3%84nderungen_an_verlinkten_Seiten/Tutorial_Lektion_4" title="Letzte Änderungen an Seiten, die von hier verlinkt sind [alt-shift-k]" accesskey="k">Änderungen an verlinkten Seiten</a></li>
+				<li id="t-specialpages"><a href="http://wiki.delphigl.com/index.php/Spezial:Spezialseiten" title="Liste aller Spezialseiten [alt-shift-q]" accesskey="q">Spezialseiten</a></li>
+				<li><a href="http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;printable=yes" rel="alternate">Druckversion</a></li>
+				<li id="t-permalink"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_Lektion_4&amp;oldid=23659" title="Dauerhafter Link zu dieser Seitenversion">Permanenter Link</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-copyrightico">
+		<a href="http://www.gnu.org/copyleft/fdl.html"><img src="Opengl%20Tutorial%20Lektion%204_files/gnu-fdl.png" alt="GNU Free Documentation License 1.2" height="31" width="88"></a>
+	</div>
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="Opengl%20Tutorial%20Lektion%204_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> Diese Seite wurde zuletzt am 17. Mai 2009 um 17:40 Uhr geändert.</li>
+		<li id="viewcount">Diese Seite wurde bisher 40.147-mal abgerufen.</li>
+		<li id="copyright">Der Inhalt ist verfügbar unter der Lizenz <a class="external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.2</a>.</li>
+		<li id="privacy"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:Datenschutz" title="DGL Wiki:Datenschutz">Datenschutz</a></li>
+		<li id="about"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:%C3%9Cber" title="DGL Wiki:Über">Über DGL Wiki</a></li>
+		<li id="disclaimer"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:Impressum" title="DGL Wiki:Impressum">Impressum</a></li>
+	</ul>
+</div>
+</div>
+<script>if(window.mw){
+	mw.loader.load(["mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+}
+</script><script type="text/javascript" src="Opengl%20Tutorial%20Lektion%204_files/load_002.php"></script>
+<script src="Opengl%20Tutorial%20Lektion%204_files/load_003.php"></script>
+<script>if(window.mw){
+	mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,
+	"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false});;mw.user.tokens.set({"editToken":"+\\","watchToken":false});;mw.loader.state({"user.options":"ready","user.tokens":"ready"});
+	
+	/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-js:4:32094c5cdfab140a1f75f1878bce4f52 */
+}
+</script><!-- Served in 0.330 secs. --></body></html>

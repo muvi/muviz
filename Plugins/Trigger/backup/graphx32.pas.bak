@@ -1,0 +1,322 @@
+unit GraphX32;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, AdvFunc;
+
+type
+  TColor32 = type LongWord;
+  TColor   = type LongWord;
+
+  TXBGR    = packed record
+    R,G,B,X: Byte;
+  end;
+
+  TARGB    = packed record
+    B,G,R,A: Byte;
+  end;
+
+  TAHSV    = record
+    H    : Real;
+    S,V,A: Byte;
+  end;
+
+  Byte9    = 0..511;
+  Byte10   = 0..1023;
+  Byte11   = 0..2047;
+  Byte12   = 0..4095;
+
+function ColorToColor32(const Color: TColor; const Alpha: Byte = $FF): TColor32;
+function Color32ToColor(const Color: TColor32): TColor;
+function ExtractAlpha(const Color: TColor32): Byte;
+procedure SetColor32Color(SrcColor: TColor; var DestColor: TColor32);
+procedure SetColor32Color32(SrcColor: TColor32; var DestColor: TColor32);
+procedure SetColor32Alpha(Alpha: Byte; var DestColor: TColor32);
+function BlendAlpha({const }Color,Blend: TColor32): TColor32;
+function BetaBlend(const Color1,Color2: TColor32; const Beta: Byte): TColor32;
+function TriBetaBlend(const Color1,Color2,Color3: TColor32; const Beta: Byte9): TColor32;
+function MultiBetaBlend(const Colors: array of TColor32; const Beta: Cardinal): TColor32;
+function MaxBeta(const Colors: Cardinal = 2): Cardinal;
+procedure PiCut(var X: Real);
+//procedure DrawAlphaColorArea(Canvas: TCanvas; Rect: TRect; Color: TColor32; AC1: TColor = clWhite; AC2: TColor = clBlack; AlphaSizeX: Integer = 4; AlphaSizeY: Integer = 4);
+//procedure DrawChessRects(Canvas: TCanvas; Rect: TRect; Color1,Color2: TColor; RectSize: TPoint);
+function ARGBToAHSV(AColor: TColor32): TAHSV;
+function AHSVToARGB(AColor: TAHSV): TColor32;
+
+implementation
+
+const
+  HSVCA = pi/3; //2*pi/6
+  HSVCA2= HSVCA*2;
+  HSVCA4= HSVCA*4;
+
+function ColorToColor32(const Color: TColor; const Alpha: Byte = $FF): TColor32;
+begin
+  Result:=(Color and $0000FF00) or (Alpha shl 24) or ((Color and $00FF0000) shr 16) or ((Color and $000000FF) shl 16);
+end;
+
+function Color32ToColor(const Color: TColor32): TColor;
+begin
+  Result:=(Color and $0000FF00) or ((Color and $00FF0000) shr 16) or ((Color and $000000FF) shl 16);
+end;
+
+function ExtractAlpha(const Color: TColor32): Byte;
+begin
+  Result:=Color shr 24;
+end;
+
+procedure SetColor32Color(SrcColor: TColor; var DestColor: TColor32);
+begin
+  DestColor:=(DestColor and $FF000000) or (SrcColor and $0000FF00) or ((SrcColor and $00FF0000) shr 16) or ((SrcColor and $000000FF) shl 16);
+end;
+
+procedure SetColor32Color32(SrcColor: TColor32; var DestColor: TColor32);
+begin
+  DestColor:=(DestColor and $FF000000) or (SrcColor and $00FFFFFF);
+end;
+
+procedure SetColor32Alpha(Alpha: Byte; var DestColor: TColor32);
+begin
+  DestColor:=(DestColor and $00FFFFFF) or (Alpha shl 24);
+end;
+
+function BlendAlpha({const }Color,Blend: TColor32): TColor32;
+var
+  Color2 : TARGB absolute Color;
+  Result2: TARGB absolute Result;
+  Blend2 : TARGB absolute Blend;
+begin
+  Result2.R:=(Blend2.R*Blend2.A+Color2.R*($FF-Blend2.A)) div $FF;
+  Result2.G:=(Blend2.G*Blend2.A+Color2.G*($FF-Blend2.A)) div $FF;
+  Result2.B:=(Blend2.B*Blend2.A+Color2.B*($FF-Blend2.A)) div $FF;
+  Result2.A:=Color2.A;
+end;
+
+function BetaBlend(const Color1,Color2: TColor32; const Beta: Byte): TColor32;
+var
+  AColor1: TARGB absolute Color1;
+  AColor2: TARGB absolute Color2;
+  Result2: TARGB absolute Result;
+begin
+  Result2.R:=(AColor1.R*Beta+AColor2.R*($FF-Beta)) div $FF;
+  Result2.G:=(AColor1.G*Beta+AColor2.G*($FF-Beta)) div $FF;
+  Result2.B:=(AColor1.B*Beta+AColor2.B*($FF-Beta)) div $FF;
+  Result2.A:=(AColor1.A*Beta+AColor2.A*($FF-Beta)) div $FF;
+end;
+
+function TriBetaBlend(const Color1,Color2,Color3: TColor32; const Beta: Byte9): TColor32;
+begin
+  if Beta<$100
+    then Result:=BetaBlend(Color1,Color2,Beta)
+    else Result:=BetaBlend(Color2,Color3,Beta-$100);
+end;
+
+function MultiBetaBlend(const Colors: array of TColor32; const Beta: Cardinal): TColor32;
+var
+  AIndex: Cardinal;
+begin
+  AIndex:=Beta div $100;
+  Result:=BetaBlend(Colors[AIndex],Colors[AIndex+1],Beta mod $100);
+end;
+
+function MaxBeta(const Colors: Cardinal = 2): Cardinal;
+begin
+  Result:=($100*(Colors-1))-1;
+end;
+
+procedure PiCut(var X: Real);
+begin
+  if X>Pi
+    then X-=(Round(X/Pi)+1)*Pi
+    else if X<-Pi
+      then X+=(-Round(X/Pi)+1)*Pi
+end;
+
+procedure DrawChessRects(Canvas: TCanvas; Rect: TRect; Color1,Color2: TColor; RectSize: TPoint);
+var
+  J,XCount,YCount,XAdd,YAdd: Integer;
+  IsFirstColor             : Boolean;
+  AColors                  : array [Boolean] of TColor;
+  ARect                    : TRect;
+
+  procedure DrawXRow;
+  var
+    I: Integer;
+  begin
+    for I:=0 to XCount-1 do begin
+      with ARect do begin
+        Left:=Right;
+        Right+=RectSize.X;
+      end;
+      with Canvas do begin
+        Brush.Color:=AColors[IsFirstColor];
+        Pen.Color:=Brush.Color;
+        Rectangle(ARect);
+      end;
+      IsFirstColor:=not IsFirstColor;
+    end;
+    with ARect do begin
+      Left:=Right;
+      Right+=XAdd;
+    end;
+    with Canvas do begin
+      Brush.Color:=AColors[IsFirstColor];
+      Pen.Color:=Brush.Color;
+      Rectangle(ARect);
+    end;
+  end;
+
+begin
+  if Color1=Color2 then begin
+    Canvas.Pen.Color:=Color1;
+    Canvas.Brush.COlor:=Color2;
+    Canvas.Rectangle(Rect);
+    exit;
+  end;
+
+  AColors[true]:=Color1;
+  AColors[false]:=Color2;
+  XAdd:=Rect.Right-Rect.Left;
+  YAdd:=Rect.Bottom-Rect.Top;
+  XCount:=XAdd div RectSize.X;
+  YCount:=YAdd div RectSize.Y;
+  XAdd:=XAdd mod RectSize.X;
+  YAdd:=YAdd mod RectSize.Y;
+  ARect.Bottom:=Rect.Top;
+  Canvas.Pen.Width:=1;
+
+  for J:=0 to YCount-1 do begin
+    IsFirstColor:=Odd(J);
+    with ARect do begin
+      Right:=Rect.Left;
+      Top:=Bottom;
+      Bottom+=RectSize.Y;
+    end;
+    DrawXRow;
+  end;
+
+  if YAdd>0 then begin
+    IsFirstColor:=Odd(YCount);
+    with ARect do begin
+      Right:=Rect.Left;
+      Top:=Bottom;
+      Bottom+=YAdd;
+    end;
+    DrawXRow;
+  end;
+end;
+
+procedure DrawAlphaColorArea(Canvas: TCanvas; Rect: TRect; Color: TColor32; AC1: TColor = clWhite; AC2: TColor = clBlack; AlphaSizeX: Integer = 4; AlphaSizeY: Integer = 4);
+var
+  C1,C2: TColor;
+begin
+  DrawChessRects(Canvas,Rect,Color32ToColor(BlendAlpha(ColorToColor32(AC1),Color)),Color32ToColor(BlendAlpha(ColorToColor32(AC2),Color)),Point(AlphaSizeX,AlphaSizeY));
+end;
+
+function ARGBToAHSV(AColor: TColor32): TAHSV;
+var
+  AColor2  : TARGB absolute AColor;
+  {AMax,}AMin: Byte;
+begin
+  with AColor2 do begin
+    AMin:=IntMin([R,G,B]);
+    //Alpha
+    Result.A:=A;
+    //Hue
+    if (R=G) and (G=B) then begin
+      Result.H:=0.0;
+      Result.V:=R;
+    end else begin
+      if (R>=G) and (R>=B) then begin
+        Result.V:=R;
+        Result.H:=(HSVCA*((G-B)/(R-AMin)));
+        if Result.H<0.0 then Result.H+=2*pi;
+      end;
+      if (G>=R) and (G>=B) then begin
+        Result.V:=G;
+        Result.H:=(HSVCA*((B-R)/(G-AMin)))+HSVCA2;
+      end;
+      if (B>=R) and (B>=G) then begin
+        Result.V:=B;
+        Result.H:=(HSVCA*((R-G)/(B-AMin)))+HSVCA4;
+      end;
+    end;
+    //Saturation
+    if Result.V>0
+      then Result.S:=Round(((Result.V-AMin)/Result.V)*$FF)
+      else Result.S:=0;
+    //Value;
+    //Result.V:=AMax;
+  end;
+end;
+
+function AHSVToARGB(AColor: TAHSV): TColor32;
+var
+  AResult: TARGB absolute Result;
+  hi     : Integer;
+  f      : Real;
+
+  function p: Byte;
+  begin
+    Result:=Round((AColor.V/$FF)*(1.0-(AColor.S/$FF))*$FF);
+  end;
+
+  function q: Byte;
+  begin
+    Result:=Round((AColor.V/$FF)*(1.0-((AColor.S/$FF)*f))*$FF);
+  end;
+
+  function t: Byte;
+  begin
+    Result:=Round((AColor.V/$FF)*(1.0-((AColor.S/$FF)*(1.0-f)))*$FF);
+  end;
+
+begin
+  with AColor do begin
+    //Alpha
+    AResult.A:=A;
+    //RGB
+    f:=H/HSVCA;
+    hi:=Trunc(f);
+    f-=hi;
+
+    case hi of
+      0,6: begin
+          AResult.R:=V;
+          AResult.G:=t;
+          AResult.B:=p;
+        end;
+      1  : begin
+          AResult.R:=q;
+          AResult.G:=V;
+          AResult.B:=p;
+        end;
+      2  : begin
+          AResult.R:=p;
+          AResult.G:=V;
+          AResult.B:=t;
+        end;
+      3  : begin
+          AResult.R:=p;
+          AResult.G:=q;
+          AResult.B:=V;
+        end;
+      4  : begin
+          AResult.R:=t;
+          AResult.G:=p;
+          AResult.B:=V;
+        end;
+      5  : begin
+          AResult.R:=V;
+          AResult.G:=p;
+          AResult.B:=q;
+        end;
+    end;
+  end;
+end;
+
+end.
+

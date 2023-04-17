@@ -1,0 +1,16 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TLoadSelectForm','FORMDATA',[
+  'TPF0'#15'TLoadSelectForm'#14'LoadSelectForm'#4'Left'#3#249#0#6'Height'#3'M'#1
+  +#3'Top'#3#181#0#5'Width'#3'9'#1#7'Caption'#6#15'Presets Puffern'#12'ClientHe'
+  +'ight'#3'M'#1#11'ClientWidth'#3'9'#1#10'LCLVersion'#6#6'0.9.30'#0#13'TCheckL'
+  +'istBox'#9'SelectCLB'#4'Left'#2#0#6'Height'#3#27#1#3'Top'#2#0#5'Width'#3'9'#1
+  +#5'Align'#7#8'alClient'#10'ItemHeight'#2#0#8'TabOrder'#2#0#0#0#6'TPanel'#12
+  +'SettingPanel'#4'Left'#2#0#6'Height'#2'2'#3'Top'#3#27#1#5'Width'#3'9'#1#5'Al'
+  +'ign'#7#8'alBottom'#12'ClientHeight'#2'2'#11'ClientWidth'#3'9'#1#8'TabOrder'
+  +#2#1#0#7'TButton'#7'LoadBtn'#4'Left'#3#160#0#6'Height'#2#25#3'Top'#2#13#5'Wi'
+  +'dth'#3#139#0#7'Caption'#6#20'Ausgew'#195#164'hlte Puffern'#7'OnClick'#7#12
+  +'LoadBtnClick'#8'TabOrder'#2#0#0#0#7'TButton'#9'UnloadBtn'#4'Left'#2#8#6'Hei'
+  +'ght'#2#25#3'Top'#2#13#5'Width'#3#147#0#7'Caption'#6#22'Ausgew'#195#164'hlte'
+  +' Freigeben'#7'OnClick'#7#14'UnloadBtnClick'#8'TabOrder'#2#1#0#0#0#0
+]);

@@ -1,0 +1,105 @@
+unit AdvGlFunc;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, StdParamTypes, GL, CanvasType, GraphX32;
+
+procedure SetColor(Color: TVColor); inline;
+procedure Line(X1,Y1,X2,Y2: Double; Color: TVColor);
+procedure Line(X1,Y1,X2,Y2: Double; Color1, Color2: TVColor);
+procedure FillRect(X1,Y1,X2,Y2: Double; Color: TVColor);
+procedure FillRect(X1,Y1,X2,Y2: Double; ColorLT, ColorRT, ColorLB, ColorRB: TVColor);
+procedure Clear(Color: TVColor);
+procedure Rotate2D(var Matrix: TGLMatrix; Phi: TVFloat);
+procedure Zoom2D(var Matrix: TGLMatrix; X,Y: TVFloat);
+procedure Move2D(var Matrix: TGLMatrix; X,Y: TVFloat);
+
+implementation
+
+procedure SetColor(Color: TVColor); inline;
+begin
+  glColor4ub(RedComponent(Color), GreenComponent(Color), BlueComponent(Color), AlphaComponent(Color));
+end;
+
+procedure Line(X1,Y1,X2,Y2: Double; Color: TVColor);
+begin
+  glBegin(GL_LINES);
+          SetColor(Color);
+          glVertex2f(X1,Y1);
+          glVertex2f(X2,Y2);
+  glEnd();
+end;
+
+procedure Line(X1,Y1,X2,Y2: Double; Color1, Color2: TVColor);
+begin
+  glBegin(GL_LINES);
+          SetColor(Color1);
+          glVertex2f(X1,Y1);
+          SetColor(Color2);
+          glVertex2f(X2,Y2);
+  glEnd();
+end;
+
+procedure FillRect(X1,Y1,X2,Y2: Double; Color: TVColor);
+begin
+  glBegin(GL_QUADS);
+          SetColor(Color);
+          glVertex2f(X1,Y1);
+          glVertex2f(X2,Y1);
+          glVertex2f(X2,Y2);
+          glVertex2f(X1,Y2);
+  glEnd();
+end;
+
+procedure FillRect(X1,Y1,X2,Y2: Double; ColorLT, ColorRT, ColorLB, ColorRB: TVColor);
+begin
+  glBegin(GL_QUADS);
+          SetColor(ColorLT);
+          glVertex2f(X1,Y1);
+          SetColor(ColorRT);
+          glVertex2f(X2,Y1);
+          SetColor(ColorRB);
+          glVertex2f(X2,Y2);
+          SetColor(ColorLB);
+          glVertex2f(X1,Y2);
+  glEnd();
+end;
+
+procedure Clear(Color: TVColor);
+begin
+  glClearColor(((Color shr 16) and $FF)/glfloat(255.0),((Color shr 8) and $FF)/glfloat(255.0),(Color and $FF)/glfloat(255.0),1.0{(Color shr 24)/glfloat(255.0)});
+  glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+end;
+
+procedure Rotate2D(var Matrix: TGLMatrix; Phi: TVFloat);
+begin
+  glPushMatrix;
+  glLoadMatrixd(@Matrix);
+  glRotatef(Phi,0.0,0.0,-1.0);
+  glGetDoublev(GL_MODELVIEW_MATRIX,@Matrix);
+  glPopMatrix;
+end;
+
+procedure Zoom2D(var Matrix: TGLMatrix; X,Y: TVFloat);
+begin
+  glPushMatrix;
+  glLoadMatrixd(@Matrix);
+  glScalef(X,Y,0.0);
+  glGetDoublev(GL_MODELVIEW_MATRIX,@Matrix);
+  glPopMatrix;
+end;
+
+procedure Move2D(var Matrix: TGLMatrix; X,Y: TVFloat);
+begin
+  glPushMatrix;
+  glLoadMatrixd(@Matrix);
+  glTranslatef(X,Y,0.0);
+  glGetDoublev(GL_MODELVIEW_MATRIX,@Matrix);
+  glPopMatrix;
+end;
+
+end.
+

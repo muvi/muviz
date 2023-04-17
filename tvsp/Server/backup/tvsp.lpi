@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="10"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="tvsp"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="lnetvisual"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="39">
+      <Unit0>
+        <Filename Value="tvsp.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\csl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\..\Komponenten\AdvGui\advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\SDK3\shared\interfaces\vistype2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType2"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\hashmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMap"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\abstractnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AbstractNet"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="tcpserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPServer"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\tvspconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPConst"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\tvsptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPType"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\enumerators.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Enumerators"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\tvspmsg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPMsg"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="tvspgroups.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPGroups"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="tvspserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServer"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\tcpnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPNet"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\objectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClassBasic"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\objectclasses.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClasses"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="tvspserverattachment.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerAttachment"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\SDK3\shared\interfaces\tvspsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPSources"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\tvspbasicsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPBasicSources"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="tvspservergroups.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerGroups"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="tvspvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPValues"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="tvspabstractservervalue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPAbstractServerValue"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="tvspservererror.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerError"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="tvspserversources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerSources"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\..\util\incrementalset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalSet"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\..\util\incrementalhashset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSet"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="..\tcpsendqueue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPSendQueue"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\tcpreceivebuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPReceiveBuffer"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\tcpsocketproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPSocketProperties"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="..\tcptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPType"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="tvsppermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissions"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\orderedobjectlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OrderedObjectList"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="tvspserverpermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerPermissions"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="tvspparamgroupmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPParamGroupMap"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="lockedobjects.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LockedObjects"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="diagnoseunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DiagnoseForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DiagnoseUnit"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="..\..\advancedobjectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvancedObjectClassBasic"/>
+      </Unit38>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="tvsp"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\..;..\..\..\Komponenten\AdvGui;..\..\SDK3\shared\utilities;..\..\SDK3\shared\interfaces;..;..\..\util"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="4">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+      <Item4>
+        <Name Value="ETVSPServerError"/>
+      </Item4>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

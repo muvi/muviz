@@ -1,0 +1,78 @@
+object ToolboxForm: TToolboxForm
+  Left = 47
+  Height = 409
+  Top = 556
+  Width = 365
+  Caption = 'ToolboxForm'
+  ClientHeight = 409
+  ClientWidth = 365
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.2.0'
+  object ToolboxPC: TPageControl
+    Left = 8
+    Height = 395
+    Top = 8
+    Width = 351
+    ActivePage = PresetOverviewTS
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 0
+    object PresetOverviewTS: TTabSheet
+      Caption = 'Presets'
+      ClientHeight = 367
+      ClientWidth = 343
+      inline PresetLF: TPresetListFrame2
+        Left = 4
+        Height = 352
+        Top = 8
+        Width = 330
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        ClientHeight = 352
+        ClientWidth = 330
+        inherited PresetTV: TTreeView
+          Height = 326
+          Width = 330
+          ShowLines = True
+          ShowRoot = True
+        end
+        inherited FilterEdit: TTreeFilterEdit
+          Width = 306
+        end
+      end
+    end
+    object DefaultValueTS: TTabSheet
+      Caption = 'Default Values'
+      ClientHeight = 367
+      ClientWidth = 343
+      object DefaultValueLV: TListView
+        Left = 4
+        Height = 352
+        Top = 8
+        Width = 330
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Columns = <>
+        IconOptions.AutoArrange = True
+        LargeImages = PlugImageList
+        SmallImages = PlugImageList
+        TabOrder = 0
+        ViewStyle = vsIcon
+        OnEditing = DefaultValueLVEditing
+        OnMouseDown = DefaultValueLVMouseDown
+      end
+    end
+    object RecentTS: TTabSheet
+      Caption = 'Recently Used'
+    end
+    object FavoritesTS: TTabSheet
+      Caption = 'Favorites'
+    end
+  end
+  object PlugImageList: TImageList
+    Height = 20
+    Width = 20
+    left = 5
+    top = 120
+  end
+end

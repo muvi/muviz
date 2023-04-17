@@ -1,0 +1,19 @@
+unit InfoMsgTypes;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+const
+  IMT_INFO     = 1;
+  IMT_WARNING  = 2;
+  IMT_ERROR    = 3;
+  IMT_PROGRESS = 4;
+
+implementation
+
+end.
+

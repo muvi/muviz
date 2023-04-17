@@ -1,0 +1,56 @@
+Input- / Output-typen
+- Call (Void)
+- Int
+- Bool
+- String (neuerdings mit unbegrenzter Länge...)
+- Color
+- Buffer
+- Preset (!)
+- Pointer to Input (!)
+~ evtl. Universal (implement later)
+
+Visualisierungen (TPVisType):
+- nur der konstruktor (TPVisConstructor), keine anderen daten
+- werden identifiziert durch TVisID (TGUID, global eindeutig)
+- haben KEINEN Namen
+- müssen dementsprechend durch min. 1 Preset verwendet werden, um brauchbar zu sein
+
+Presets (TPPreset):
+- enthalten für beliebige Parameter (egal ob existent oder nicht) genau EINER Visualisierung:
+  - den Namen
+  - den Wert
+  - den Sichtbarkeitsbereich (TPVisibility)
+  - die Tags
+- haben außerdem
+  - Namen
+  - ID
+  - Tags
+
+Presets mit Triggering:
+- werden realisiert durch ein Preset (siehe "Presets") auf einer Visualisierung namens "Preset" mit folgenden Eigenschaften:
+  - besitzen beliebig viele Preset-Inputs
+  - inputs mit dem Namen "connect:<Layer>.<Output>" (string) definieren das von dem <Output> des unterlayers <Layer> ausgehende Kabel.
+  - inputs mit dem Namen "propagate:<Layer>.<Input>" (string) oder "propagate:<Layer>.<Output>" (string) definieren den Namen eines <Input> oder <Output>
+    im resultierenden Preset (wird nicht propagiert, falls der wert "" ist).
+
+Inputs / Outputs
+- sind eindeutig identifizierbar durch Namen und Typ zusammen
+- jede Visualisierug hat je eine Methode
+  - die Namen eines Inputs nimmt und ein Param-Interface zurückgibt
+  - die Namen und ein Param-Interface nimmt und das Param-Interface entsprechend mappt (die Funktion hat kein Ergebnis)
+  - den Visualisierungen wird ein Dummy-Output-Interface zur Verfügung gestellt, das eingegebene Daten verwirft
+- ein Param-Interface hat
+  - eine Methode (Set), die einen ungetypten Parameter (constref Value) mit dem Wert entgegennimmt
+  - eine Methode (Get), die einen ungetypten Parameter (out Value) mit dem Ziel des Parameters entgegennimmt
+
+allgemeine Namenskonventionen
+- Mit Preset-System zusammenhängende Klassen und Typen erhalten das Präfix TP (außer interfaces)
+- Param ist der Oberbegriff für Inputs und Outputs
+
+ParamTypes
+- Klassen und Typen erhalten Präfix TV
+
+Modifikationen:
+- Visualisierungen haben eine Methode, um zu einem Parameternamen dessen ID (eine GUID) zurückzugeben
+- Parameter haben einen Index (Position in der GUI)
+- es wird später Presetvererbung geben

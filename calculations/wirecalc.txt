@@ -1,0 +1,1 @@
+(sqrt( (2*a*x2+b)²+1)*(2*a*x2+b)+asinh(2*a*x2+b)-sqrt( (2*a*x1+b)²+1)*(2*a*x1+b)-asinh(2*a*x1+b))/(4*a)

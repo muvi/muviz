@@ -1,0 +1,14 @@
+initialisierung
+- kryptografisch sicherer pseudozufallsgenerator wird mit seed (128 bit) initialisiert
+  - erzeugt zufällige Bytes
+- seed wird mit pw ver xor'ed übertragen -> NEIN, nicht perfect forward secure, ein pw oder 1 seed reicht um alle seeds und das pw zu kriegen
+- seed wird per diffie-hellmann ausgetauscht:
+  - 2 seeds werden ver xor'ed
+  - server xor'ed seed dazu
+  - client xor'ed falschen seed dazu
+Übertragung von daten
+- beginnt mit sequenznummer (unverschlüsselt, 4 byte)
+- jedes Byte wird mit zufälligem Byte ge xor'ed
+- Lookup Array mit 255 zufälligen 64 Bit werten. wenn einer verwendet ist, wird neuer zufallswert errechnet
+- Prüfsumme (64 Bit) wird hinten angehängt.
+  - besteht aus array einträgen für jedes übertragene byte in verschlüsselt und unverschlüsselt ver xor'ed (um poritionsänderungen zu verhindern)

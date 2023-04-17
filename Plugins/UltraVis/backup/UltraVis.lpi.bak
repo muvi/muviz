@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <Title Value="UltraVis"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="UltraVis.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UltraVis"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="11"/>
+        <CursorPos X="44" Y="15"/>
+        <UsageCount Value="23"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="serverplugintype.pas"/>
+        <UnitName Value="ServerPluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="20"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="nettype.pas"/>
+        <UnitName Value="NetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="106" Y="13"/>
+        <UsageCount Value="20"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="23" Y="5"/>
+        <UsageCount Value="23"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="authnettype.pas"/>
+        <UnitName Value="AuthNetType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="35" Y="11"/>
+        <UsageCount Value="20"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="dllstr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DllStr"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="12"/>
+        <UsageCount Value="22"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="maintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainType"/>
+        <TopLine Value="3"/>
+        <CursorPos X="64" Y="26"/>
+        <UsageCount Value="23"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5"/>
+        <CursorPos X="1" Y="22"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="mplugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MPluginType"/>
+        <TopLine Value="8"/>
+        <CursorPos X="114" Y="8"/>
+        <UsageCount Value="23"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="spectrumdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SpectrumData"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="39"/>
+        <CursorPos X="14" Y="52"/>
+        <UsageCount Value="22"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="vpbuffers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VPBuffers"/>
+        <TopLine Value="1"/>
+        <CursorPos X="24" Y="6"/>
+        <UsageCount Value="22"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="vistype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="51"/>
+        <CursorPos X="33" Y="53"/>
+        <UsageCount Value="22"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="clientnettype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClientNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="55" Y="19"/>
+        <UsageCount Value="22"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="mnettype.pas"/>
+        <UnitName Value="MNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="9"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="viswintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisWinType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="12"/>
+        <UsageCount Value="22"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="stddllinterfaces.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdDllInterfaces"/>
+        <TopLine Value="8"/>
+        <CursorPos X="44" Y="19"/>
+        <UsageCount Value="22"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="uvisgobo.pas"/>
+        <UnitName Value="UVisGobo"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="21"/>
+        <CursorPos X="18" Y="30"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\alte Plugins\Trigger2000\graphx32.pas"/>
+        <UnitName Value="GraphX32"/>
+        <TopLine Value="1"/>
+        <CursorPos X="99" Y="5"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="graphx32.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GraphX32"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="68" Y="7"/>
+        <UsageCount Value="21"/>
+      </Unit18>
+    </Units>
+    <JumpHistory Count="23" HistoryIndex="22">
+      <Position1>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="5" Column="17" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="8" Column="40" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="23" Column="1" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="252" Column="1" TopLine="25"/>
+      </Position4>
+      <Position5>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="8" Column="10" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="49" Column="33" TopLine="36"/>
+      </Position6>
+      <Position7>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="8" Column="34" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="78" Column="49" TopLine="71"/>
+      </Position8>
+      <Position9>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="126" Column="24" TopLine="113"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="164" Column="32" TopLine="151"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="157" Column="51" TopLine="155"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="211" Column="1" TopLine="204"/>
+      </Position12>
+      <Position13>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="195" Column="35" TopLine="181"/>
+      </Position13>
+      <Position14>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="16" Column="101" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="212" Column="25" TopLine="203"/>
+      </Position15>
+      <Position16>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="223" Column="18" TopLine="205"/>
+      </Position16>
+      <Position17>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="235" Column="49" TopLine="222"/>
+      </Position17>
+      <Position18>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="262" Column="27" TopLine="248"/>
+      </Position18>
+      <Position19>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="265" Column="39" TopLine="250"/>
+      </Position19>
+      <Position20>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="272" Column="46" TopLine="253"/>
+      </Position20>
+      <Position21>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="266" Column="41" TopLine="253"/>
+      </Position21>
+      <Position22>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="272" Column="50" TopLine="253"/>
+      </Position22>
+      <Position23>
+        <Filename Value="uvisgobo.pas"/>
+        <Caret Line="280" Column="94" TopLine="258"/>
+      </Position23>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

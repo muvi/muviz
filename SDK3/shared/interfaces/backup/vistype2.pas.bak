@@ -1,0 +1,288 @@
+unit VisType2;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, MStrings, TagType, Doors, StdPermissions;
+
+const
+  IID_ParamSettings: TGUID = '{6F57E26D-D601-4323-8D32-7807BB230CC4}';
+
+type
+  TPVisID                   = TGUID;
+  TPPresetID                = TGUID;
+  TPParamType               = type Int64;
+  TPCanvasType              = TGUID;
+
+  TPParamName               = IString;
+  TPParamID                 = packed record
+    Name : TPParamName;
+    &Type: TPParamType;
+  end;
+
+  TPParamNotification       = procedure (Context: Pointer; Sender, SenderData: IInterface); cdecl;
+
+  IPThread                  = interface
+    (*
+      pushes a new Task to the thread.
+      - if push is called directly from this thread,
+        the task is immediately executed.
+      - if push is executed from any other thread, the task is pushed to an
+        execution list
+      - if AEmergency is true, the task is executed as soon as possible.
+        This may result in undesired behaviour.
+        (do not use this until you REALLY need it)
+    *)
+    procedure Push(AProc: TPParamNotification; AContext: Pointer; ASender, ASenderData: IInterface; AEmergency: Boolean = false); cdecl;
+    (*
+      Indicates places in the code, where other tasks may be executed.
+      Use this in longer loops to make emergency parameter changes possible.
+      - if AEmergency is false, the thread will execute
+        other tasks pushed until now
+
+      This method HAS to be executed directly from this thread.
+      Otherwise the behaviour is undefined.
+    *)
+    procedure ExecutionBreak(AEmergency: Boolean = true); cdecl;
+    procedure CancelAll(AProc: TPParamNotification; AContext: Pointer); cdecl;
+  end;
+
+  IPThreadPrototype         = interface
+    (*
+      Executes tasks. It is guaranteed that after execution, at least every task
+      which was available directly before execution is executed.
+      Make sure you called Started before.
+      CAUTION: This is not equal to "every task is executed"
+    *)
+    procedure Execute; cdecl;
+    (*
+      returns if a new task is available. The waiting is done in a non-busy way.
+    *)
+    procedure WaitForTask; cdecl;
+    (*
+      indicates, that the calling thread is the current one. Make sure to call
+      before Execute.
+    *)
+    procedure Started; cdecl;
+    (*
+      indicates, that the current thread no longer is the current one. The usage
+      of this method is optional. It has to be called from the same thread as
+      Started was called.
+    *)
+    procedure Stopped; cdecl;
+    (*
+      Calls the attached interfaces _Release function if the thread is destroyed
+      Thus, the attached interfaces lifetime and threads one will be identical.
+      You may attach no more than one interface.
+      This is just a convenience function, there is no need to use it.
+    *)
+    procedure AttachInterface(AInterface: IInterface); cdecl;
+    function GetThread: IPThread; cdecl;
+    property Thread: IPThread read GetThread;
+  end;
+
+  IPParam                   = interface;
+  IPVisualisation           = interface;
+
+  IChangedValue             = interface
+    ['{9DBB57BE-4648-48F6-B644-53C5AEF11CF1}']
+    function IsDefault: Boolean; cdecl;
+  end;
+
+  IPParamPrototype          = interface
+    function GetID: TPParamID; cdecl;
+    function GetOwner: IPVisualisation; cdecl;
+    function IsDeleted: Boolean; cdecl;
+    procedure Delete; cdecl;
+    (*
+      Attaches an interface to this param.
+      The attached interfaces _Release function will be called, if the param is
+      destroyed.
+      You may attach as many interfaces as you want.
+      After attaching, you may cast the param to the type of your attached
+      interface.
+    *)
+    procedure AttachInterface(AInterface: IInterface); cdecl;
+    function GetAttachedInterface(AID: TGUID): IInterface; cdecl;
+    procedure Attach(AParam: IPParam; APermission: TTVSPClientPermission; APermissionOwner: TGUID; AInversePriority: LongInt); cdecl;
+    procedure Detach(AParam: IPParam); cdecl;
+    procedure AddListener(AListener: TPParamNotification; AContext: Pointer; AThread: IPThread); cdecl;
+    procedure RemoveListener(AListener: TPParamNotification; AContext: Pointer); cdecl;
+    (*
+      does everything necessary arround a value change.
+    *)
+    function CheckEntryCode(var AEntryCode: TEntryCode): Boolean; cdecl;
+    procedure ValueChanged(AChangedValue: IChangedValue; AEntryCode: TEntryCode; APermission: TTVSPClientPermission; APermissionGroup: TGUID); cdecl;
+    property AttachedInterfaces[AID: TGUID]: IInterface read GetAttachedInterface;
+    property Deleted: Boolean read IsDeleted;
+    property ID: TPParamID read GetID;
+    property Owner: IPVisualisation read GetOwner;
+  end;
+
+  IPParam                   = interface
+    function GetID: TPParamID; cdecl;
+    //gets the value from AParam and stores it
+    procedure GetFrom(ASrc: IPParam; APermission: TTVSPClientPermission; APermissionGroup: TGUID; AEntryCode: TEntryCode = nil); cdecl;
+    function GetOwner: IPVisualisation; cdecl;
+    function IsDeleted: Boolean; cdecl;
+    procedure Delete; cdecl;
+    //sets the parameter to its default value
+    procedure MakeDefault(APermission: TTVSPClientPermission; APermissionOwner: TGUID; AEntryCode: TEntryCode = nil); cdecl;
+    (*
+      Attaches an interface to this param.
+      The attached interfaces _Release function will be called, if the param is
+      destroyed.
+      You may attach as many interfaces as you want.
+      After attaching, you may cast the param to the type of your attached
+      interface.
+    *)
+    procedure AttachInterface(AInterface: IInterface); cdecl;
+    function GetAttachedInterface(AID: TGUID): IInterface; cdecl;
+    procedure Attach(AParam: IPParam; APermission: TTVSPClientPermission; APermissionOwner: TGUID; AInversePriority: LongInt); cdecl;
+    procedure Detach(AParam: IPParam); cdecl;
+    //Returns the Lowest InversePriority currently used by an attached Param
+    function LowestInversePriority: LongInt; cdecl;
+    //Returns the Highest InversePriority currently used by an attached Param
+    function HighestInversePriority: LongInt; cdecl;
+    procedure AddListener(AListener: TPParamNotification; AContext: Pointer; AThread: IPThread); cdecl;
+    procedure RemoveListener(AListener: TPParamNotification; AContext: Pointer); cdecl;
+    procedure ToStream(out ADest); cdecl;
+    procedure FromStream(const ASrc; APermission: TTVSPClientPermission; APermissionOwner: TGUID; EntryCode: TEntryCode = nil); cdecl;
+    property AttachedInterfaces[AID: TGUID]: IInterface read GetAttachedInterface;
+    property Deleted: Boolean read IsDeleted;
+    property ID: TPParamID read GetID;
+    property Owner: IPVisualisation read GetOwner;
+  end;
+
+  IPParamSettings           = interface
+    ['{6F57E26D-D601-4323-8D32-7807BB230CC4}']
+    function GetParam: IPParam; cdecl;
+    property Param: IPParam read GetParam;
+  end;
+
+  IPCanvas                  = interface
+    function GetType: TPCanvasType; cdecl;
+    property &Type: TPCanvasType read GetType;
+  end;
+
+  IPVisualisationEnvironment= interface
+    function CreateSubEnvironment(ACanvas: IPCanvas = nil; AThread: IPThread = nil): IPVisualisationEnvironment; cdecl;
+    function GetThread: IPThread; cdecl;
+    function GetCanvas: IPCanvas; cdecl;
+    property Canvas: IPCanvas read GetCanvas;
+    property Thread: IPThread read GetThread;
+  end;
+
+  IPVisualisation           = interface
+    function GetInput(AID: TPParamID): IPParam; cdecl;
+    procedure Suspend; cdecl;
+    procedure Resume; cdecl;
+    function IterateInput(var AIterator: Pointer): IPParam; cdecl;
+
+    procedure AddInputGotListener(AListener: TPParamNotification; AContext: Pointer; AThread: IPThread = nil); cdecl;
+    procedure RemoveInputGotListener(AListener: TPParamNotification; AContext: Pointer); cdecl;
+
+    function GetID: TPPresetID; cdecl;
+    procedure AddTag(ATag: IString); cdecl;
+    procedure RemoveTag(ATag: IString); cdecl;
+    function HasTag(ATag: IString): Boolean; cdecl;
+    function GetTags: ITags; cdecl;
+    function IsDeleted: Boolean; cdecl;
+    procedure Delete; cdecl;
+
+    function This: IPVisualisation; cdecl;
+    function IsLoaded: Boolean; cdecl;
+    function GetParent: IPVisualisation; cdecl;
+    function GetEnvironment: IPVisualisationEnvironment; cdecl;
+    //use RARELY! Forces the visualisation to restart with the new environment.
+    procedure SetEnvironment(AEnvironment: IPVisualisationEnvironment); cdecl;
+
+    property Environment: IPVisualisationEnvironment read GetEnvironment write SetEnvironment;
+    property ID: TPPresetID read GetID;
+    property Inputs[AID: TPParamID]: IPParam read GetInput; default;
+    property Parent: IPVisualisation read GetParent;
+    property Tags: ITags read GetTags;
+  end;
+
+  IPVisualisationEvents     = interface
+    procedure GetInput(ASettings: IPParamSettings); cdecl;
+    procedure GotInput(AParam: IPParam); cdecl;
+    procedure Suspend; cdecl;
+    procedure Resume; cdecl;
+  end;
+
+  IPVisualisationPrototype  = interface
+    function GetID: TPPresetID; cdecl;
+    procedure SetEvents(AEvents: IPVisualisationEvents); cdecl;
+    function GetInput(AID: TPParamID): IPParam; cdecl;
+    function GetEnvironment: IPVisualisationEnvironment; cdecl;
+    function GetThread: IPThread; cdecl;
+    function IterateInput(var AIterator: Pointer): IPParam; cdecl;
+
+    property Environment: IPVisualisationEnvironment read GetEnvironment;
+    property ID: TPPresetID read GetID;
+    property Inputs[AID: TPParamID]: IPParam read GetInput; default;
+    property Thread: IPThread read GetThread;
+  end;
+
+  TPVisConstructor          = procedure (APrototype: IPVisualisationPrototype); cdecl;
+
+  IPVisualisationUtil       = interface
+    procedure RegisterVis(AID: TPVisID; AConstructor: TPVisConstructor); cdecl;
+    function NewThread: IPThread; cdecl;
+    function NewThreadPrototype: IPThreadPrototype; cdecl;
+    function GetCurrentThread: IPThread; cdecl;
+    function GetMainThread: IPThread; cdecl;
+    function GetMainEnvironment: IPVisualisationEnvironment; cdecl;
+
+    property CurrentThread: IPThread read GetCurrentThread;
+    property MainThread: IPThread read GetMainThread;
+    property MainEnvironment: IPVisualisationEnvironment read GetMainEnvironment;
+  end;
+
+function ParamID(AName: IString; AType: TPParamType): TPParamID; inline;
+operator := (m: string): TPVisID;
+operator = (m1: TPParamID; m2: TPParamID): Boolean;
+
+const
+  SUBPRESETDIVIDER         = '.';
+  MAININPUTNAME            = 'main';
+  //AUTOCALLNAME             = 'autocall';
+  NAMEINPUTNAME            = 'Name';
+  LOADEDINPUTNAME          = 'Loaded';
+  PARENTINPUTNAME          = 'Parent';
+
+  NULLVISID   : TPVisID    = '{00000000-0000-0000-0000-000000000000}';
+  NULLPRESETID: TPPresetID = '{00000000-0000-0000-0000-000000000000}';
+  NULLPRESETNAME           = 'Null';
+
+
+var
+  //the global unique visualisation util
+  VisualisationUtil: IPVisualisationUtil = nil;
+  NoCanvas         : IPCanvas;
+
+implementation
+
+function ParamID(AName: IString; AType: TPParamType): TPParamID; inline;
+begin
+  Assert(AName<>nil);
+  Result.Name:=AName;
+  Result.&Type:=AType;
+end;
+
+operator := (m: string): TPVisID;
+begin
+  Result:=SysUtils.StringToGUID(m);
+end;
+
+operator = (m1: TPParamID; m2: TPParamID): Boolean;
+begin
+  Assert((m1.Name <> nil) and (m2.Name <> nil));
+  Result:=m1.Name.Equals(m2.Name) and (m1.&Type = m2.&Type);
+end;
+
+end.
+

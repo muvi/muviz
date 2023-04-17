@@ -1,0 +1,47 @@
+object LoadSelectForm: TLoadSelectForm
+  Left = 249
+  Height = 333
+  Top = 181
+  Width = 313
+  Caption = 'Presets Puffern'
+  ClientHeight = 333
+  ClientWidth = 313
+  LCLVersion = '0.9.30'
+  object SelectCLB: TCheckListBox
+    Left = 0
+    Height = 283
+    Top = 0
+    Width = 313
+    Align = alClient
+    ItemHeight = 0
+    TabOrder = 0
+  end
+  object SettingPanel: TPanel
+    Left = 0
+    Height = 50
+    Top = 283
+    Width = 313
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 313
+    TabOrder = 1
+    object LoadBtn: TButton
+      Left = 160
+      Height = 25
+      Top = 13
+      Width = 139
+      Caption = 'Ausgewählte Puffern'
+      OnClick = LoadBtnClick
+      TabOrder = 0
+    end
+    object UnloadBtn: TButton
+      Left = 8
+      Height = 25
+      Top = 13
+      Width = 147
+      Caption = 'Ausgewählte Freigeben'
+      OnClick = UnloadBtnClick
+      TabOrder = 1
+    end
+  end
+end

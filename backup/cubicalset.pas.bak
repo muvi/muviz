@@ -1,0 +1,51 @@
+unit CubicalSet;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+type
+  TCSLowLevel  = bitpacked array [Byte] of Boolean;
+  TCSHighLevel = packed array [Byte] of Pointer;
+
+  TCubicalSet = class
+  strict private
+    FContent: TCSHighLevel;
+    function GetContains(AObject: TObject): Boolean;
+    procedure SetContains(AObject: TObject; AValue: Boolean);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property Contains[AObject: TObject]: Boolean read GetContains write SetContains;
+  end;
+
+implementation
+
+{%REGION TCubicalSet}
+
+constructor TCubicalSet.Create;
+begin
+  inherited Create;
+  FillChar(FContent, SizeOf(FContent), 0);
+end;
+
+destructor TCubicalSet.Destroy;
+var
+  I, I1, I2, I3, I4 {$IFDEF CPU64}, I5, I6, I7, I8 {$ENDIF}: Integer;
+begin
+  for I:=Low(Byte) to High(Byte) do begin
+
+  end;
+  inherited Destroy;
+end;
+
+function TCubicalSet.GetContains(AObject: TObject): Boolean;
+procedure SetContains(AObject: TObject; AValue: Boolean);
+
+{%ENDREGION}
+
+end.
+

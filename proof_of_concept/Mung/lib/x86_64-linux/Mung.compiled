@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1349458197"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi &quot;-Fi/home/christian/Eigene Daten/Eigene_Programme/Muvi/Tests/Mung/lib/x86_64-linux&quot; -Fl/opt/gnome/lib &quot;-Fu/home/christian/Eigene Daten/Eigene_Programme/Muvi/Tests/Mung/context&quot; -Fu/usr/share/lazarus/1.0.4/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/1.0.4/lcl/units/x86_64-linux -Fu/usr/share/lazarus/1.0.4/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/1.0.4/packager/units/x86_64-linux &quot;-Fu/home/christian/Eigene Daten/Eigene_Programme/Muvi/Tests/Mung/&quot; &quot;-FU/home/christian/Eigene Daten/Eigene_Programme/Muvi/Tests/Mung/lib/x86_64-linux/&quot; -l -dLCL -dLCLgtk2 Mung.lpr"/>
+</CONFIG>

@@ -1,0 +1,2892 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="de"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Tutorial glsl – DGL Wiki</title>
+<meta name="generator" content="MediaWiki 1.22.3">
+<link rel="shortcut icon" href="http://wiki.delphigl.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.delphigl.com/opensearch_desc.php" title="DGL Wiki (de)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wiki.delphigl.com/api.php?action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „DGL Wiki“" href="http://wiki.delphigl.com/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom">
+<link rel="stylesheet" href="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/load_002.css">
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?303" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/load.css">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-css:7:369aefe3d66cd1427cbdebca11b13958 */</style>
+
+<script src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/load_002.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Tutorial_glsl","wgTitle":"Tutorial glsl","wgCurRevisionId":26271,"wgRevisionId":26271,"wgArticleId":1687,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Tutorial"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t.",".\t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"Tutorial_glsl","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0
+,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"de","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"variant":"de"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: db1052972-dgl-dglwiki_:resourceloader:filter:minify-js:7:f463e50c8c5c0a487bec0e3a06d54794 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-pascal {line-height: normal;}
+.source-pascal li, .source-pascal pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for pascal
+ * CSS class: source-pascal, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.pascal.source-pascal .de1, .pascal.source-pascal .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.pascal.source-pascal  {font-family:monospace;}
+.pascal.source-pascal .imp {font-weight: bold; color: red;}
+.pascal.source-pascal li, .pascal.source-pascal .li1 {font-weight: normal; vertical-align:top;}
+.pascal.source-pascal .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.pascal.source-pascal .li2 {font-weight: bold; vertical-align:top;}
+.pascal.source-pascal .kw1 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw2 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw3 {color: #000066;}
+.pascal.source-pascal .kw4 {color: #000066; font-weight: bold;}
+.pascal.source-pascal .co1 {color: #808080; font-style: italic;}
+.pascal.source-pascal .co2 {color: #008000; font-style: italic;}
+.pascal.source-pascal .coMULTI {color: #808080; font-style: italic;}
+.pascal.source-pascal .es0 {color: #ff0000; font-weight: bold;}
+.pascal.source-pascal .br0 {color: #009900;}
+.pascal.source-pascal .sy0 {color: #000066;}
+.pascal.source-pascal .sy1 {color: #000066;}
+.pascal.source-pascal .sy2 {color: #000066;}
+.pascal.source-pascal .sy3 {color: #000066;}
+.pascal.source-pascal .st0 {color: #ff0000;}
+.pascal.source-pascal .nu0 {color: #cc66cc;}
+.pascal.source-pascal .me1 {color: #006600;}
+.pascal.source-pascal .re0 {color: #0000cc;}
+.pascal.source-pascal .re1 {color: #ff0000;}
+.pascal.source-pascal .ln-xtra, .pascal.source-pascal li.ln-xtra, .pascal.source-pascal div.ln-xtra {background-color: #ffc;}
+.pascal.source-pascal span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-glsl {line-height: normal;}
+.source-glsl li, .source-glsl pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for glsl
+ * CSS class: source-glsl, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.glsl.source-glsl .de1, .glsl.source-glsl .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.glsl.source-glsl  {font-family:monospace;}
+.glsl.source-glsl .imp {font-weight: bold; color: red;}
+.glsl.source-glsl li, .glsl.source-glsl .li1 {font-weight: normal; vertical-align:top;}
+.glsl.source-glsl .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.glsl.source-glsl .li2 {font-weight: bold; vertical-align:top;}
+.glsl.source-glsl .kw1 {color: #000000; font-weight: bold;}
+.glsl.source-glsl .kw2 {color: #333399; font-weight: bold;}
+.glsl.source-glsl .kw3 {color: #000066; font-weight: bold;}
+.glsl.source-glsl .kw4 {color: #333399; font-weight: bold;}
+.glsl.source-glsl .kw5 {color: #993333; font-weight: bold;}
+.glsl.source-glsl .kw6 {color: #551111;}
+.glsl.source-glsl .co1 {color: #666666; font-style: italic;}
+.glsl.source-glsl .co2 {color: #009900;}
+.glsl.source-glsl .coMULTI {color: #666666; font-style: italic;}
+.glsl.source-glsl .es0 {color: #000099; font-weight: bold;}
+.glsl.source-glsl .br0 {color: #000066;}
+.glsl.source-glsl .sy0 {color: #000066;}
+.glsl.source-glsl .st0 {color: #ff0000;}
+.glsl.source-glsl .nu0 {color: #0000ff;}
+.glsl.source-glsl .me1 {color: #006600;}
+.glsl.source-glsl .ln-xtra, .glsl.source-glsl li.ln-xtra, .glsl.source-glsl div.ln-xtra {background-color: #ffc;}
+.glsl.source-glsl span.xtra { display:block; }
+
+/*]]>*/
+</style></head>
+<body class="mediawiki ltr sitedir-ltr capitalize-all-nouns ns-0 ns-subject page-Tutorial_glsl skin-monobook action-view">
+<div id="globalWrapper">
+<div id="column-content"><div id="content" class="mw-body-primary" role="main">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading" lang="de"><span dir="auto">Tutorial glsl</span></h1>
+	<div id="bodyContent" class="mw-body">
+		<div id="siteSub">Aus DGL Wiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav" class="mw-jump">Wechseln zu: <a href="#column-one">Navigation</a>, <a href="#searchInput">Suche</a></div>
+
+		<!-- start content -->
+<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="de"><div id="toc" class="toc"><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Einleitung"><span class="tocnumber">1</span> <span class="toctext">Einleitung</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Vorkenntnisse"><span class="tocnumber">1.1</span> <span class="toctext">Vorkenntnisse</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Was_ist_GLSL.3F"><span class="tocnumber">2</span> <span class="toctext">Was ist GLSL?</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Voraussetzungen"><span class="tocnumber">2.1</span> <span class="toctext">Voraussetzungen</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Extensions"><span class="tocnumber">2.2</span> <span class="toctext">Extensions</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Sprachversionen"><span class="tocnumber">2.3</span> <span class="toctext">Sprachversionen</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Objekte"><span class="tocnumber">2.4</span> <span class="toctext">Objekte</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Ressourcen"><span class="tocnumber">2.5</span> <span class="toctext">Ressourcen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#GLSL_im_Programm"><span class="tocnumber">3</span> <span class="toctext">GLSL im Programm</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Fehlererkennung"><span class="tocnumber">3.1</span> <span class="toctext">Fehlererkennung</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Shader_benutzen"><span class="tocnumber">3.2</span> <span class="toctext">Shader benutzen</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Parameter.C3.BCbergabe"><span class="tocnumber">3.3</span> <span class="toctext">Parameterübergabe</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Die_Shadersprache"><span class="tocnumber">4</span> <span class="toctext">Die Shadersprache</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Datentypen"><span class="tocnumber">4.1</span> <span class="toctext">Datentypen</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Arrays"><span class="tocnumber">4.1.1</span> <span class="toctext">Arrays</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Strukturen"><span class="tocnumber">4.1.2</span> <span class="toctext">Strukturen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-17"><a href="#Typenqualifzierer"><span class="tocnumber">4.2</span> <span class="toctext">Typenqualifzierer</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Beispiel_A"><span class="tocnumber">4.2.1</span> <span class="toctext">Beispiel A</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Beispiel_B"><span class="tocnumber">4.2.2</span> <span class="toctext">Beispiel B</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Beispiel_C"><span class="tocnumber">4.2.3</span> <span class="toctext">Beispiel C</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-21"><a href="#Konstruktoren"><span class="tocnumber">4.3</span> <span class="toctext">Konstruktoren</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Vektor-_und_Matrixkomponenten"><span class="tocnumber">4.4</span> <span class="toctext">Vektor- und Matrixkomponenten</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Vektor-_und_Matrixoperationen"><span class="tocnumber">4.5</span> <span class="toctext">Vektor- und Matrixoperationen</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Operatoren"><span class="tocnumber">4.6</span> <span class="toctext">Operatoren</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Funktionen"><span class="tocnumber">4.7</span> <span class="toctext">Funktionen</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#if-Anweisung"><span class="tocnumber">4.8</span> <span class="toctext">if-Anweisung</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Schleifen"><span class="tocnumber">4.9</span> <span class="toctext">Schleifen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-28"><a href="#Eingebaute_Variablen.2C_Attribute_und_Konstanten"><span class="tocnumber">5</span> <span class="toctext">Eingebaute Variablen, Attribute und Konstanten</span></a>
+<ul>
+<li class="toclevel-2 tocsection-29"><a href="#Variablen_im_Vertex_Shader"><span class="tocnumber">5.1</span> <span class="toctext">Variablen im Vertex Shader</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#Attribute_im_Vertex_Shader"><span class="tocnumber">5.2</span> <span class="toctext">Attribute im Vertex Shader</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Variablen_im_Fragment_Shader"><span class="tocnumber">5.3</span> <span class="toctext">Variablen im Fragment Shader</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Eingebaute_Varyings"><span class="tocnumber">5.4</span> <span class="toctext">Eingebaute Varyings</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Eingebaute_Konstanten"><span class="tocnumber">5.5</span> <span class="toctext">Eingebaute Konstanten</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Eingebaute_Uniformvariablen"><span class="tocnumber">5.6</span> <span class="toctext">Eingebaute Uniformvariablen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-35"><a href="#Eingebaute_Funktionen"><span class="tocnumber">6</span> <span class="toctext">Eingebaute Funktionen</span></a>
+<ul>
+<li class="toclevel-2 tocsection-36"><a href="#Trigonometrie_und_Winkel"><span class="tocnumber">6.1</span> <span class="toctext">Trigonometrie und Winkel</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Hyperbolisch"><span class="tocnumber">6.2</span> <span class="toctext">Hyperbolisch</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#Exponentiell"><span class="tocnumber">6.3</span> <span class="toctext">Exponentiell</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#Standardfunktionen"><span class="tocnumber">6.4</span> <span class="toctext">Standardfunktionen</span></a></li>
+<li class="toclevel-2 tocsection-40"><a href="#Geometrie"><span class="tocnumber">6.5</span> <span class="toctext">Geometrie</span></a></li>
+<li class="toclevel-2 tocsection-41"><a href="#Matrixfunktionen"><span class="tocnumber">6.6</span> <span class="toctext">Matrixfunktionen</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Vektorvergleiche"><span class="tocnumber">6.7</span> <span class="toctext">Vektorvergleiche</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#Texturenzugriffe"><span class="tocnumber">6.8</span> <span class="toctext">Texturenzugriffe</span></a>
+<ul>
+<li class="toclevel-3 tocsection-44"><a href="#Beispiel_A_2"><span class="tocnumber">6.8.1</span> <span class="toctext">Beispiel A</span></a></li>
+<li class="toclevel-3 tocsection-45"><a href="#Beispiel_B_2"><span class="tocnumber">6.8.2</span> <span class="toctext">Beispiel B</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-46"><a href="#Noisefunktionen"><span class="tocnumber">6.9</span> <span class="toctext">Noisefunktionen</span></a></li>
+<li class="toclevel-2 tocsection-47"><a href="#Discard"><span class="tocnumber">6.10</span> <span class="toctext">Discard</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-48"><a href="#Beispielshader"><span class="tocnumber">7</span> <span class="toctext">Beispielshader</span></a>
+<ul>
+<li class="toclevel-2 tocsection-49"><a href="#Der_Vertex_Shader"><span class="tocnumber">7.1</span> <span class="toctext">Der Vertex Shader</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#Der_Fragment_Shader"><span class="tocnumber">7.2</span> <span class="toctext">Der Fragment Shader</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-51"><a href="#Post_Mortem"><span class="tocnumber">8</span> <span class="toctext">Post Mortem</span></a></li>
+<li class="toclevel-1 tocsection-52"><a href="#Beispiele"><span class="tocnumber">9</span> <span class="toctext">Beispiele</span></a></li>
+<li class="toclevel-1 tocsection-53"><a href="#Die_Zukunft"><span class="tocnumber">10</span> <span class="toctext">Die Zukunft</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Einleitung">Einleitung</span></h1>
+<p>Hallo und willkommen bei meiner "Einführung" in GLSL (kurz für "Open<b>GL</b> <b>S</b>hading <b>L</b>anguage"),
+ der offiziellen Hochlevel-Shadersprache von OpenGL. In diesem 
+umfangreichen Dokument werde ich versuchen, sowohl auf die Nutzung 
+(sprich das Laden und Anhängen von Shadern im Quellcode), als auch auf 
+die Programmierung von Shadern selbst einzugehen, inklusive aller 
+Sprachelemente der OpenGL Shadersprache. Es wird also auch recht viele 
+Informationen zu der C-ähnlichen Programmstruktur und den von GLSL 
+angebotenen Variablen und Attributen gehen. Am Ende dieser Einführung 
+sollten alle die, die sich für das Thema interessieren, in der Lage 
+sein, zumindest einfache Shader zu schreiben und auch in ihren 
+Programmen zu nutzen. Außerdem soll dieses Dokument gleichzeitig als ein
+ deutsches "Pendant" zu den von Khronoes veröffentlichten 
+Shaderspezifikationen, und damit als alltägliches Nachschlagewerk, 
+dienen.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Vorkenntnisse">Vorkenntnisse</span></h2>
+<p>Wie auch schon mein ARB_VP-Tutorial richtet sich auch diese 
+Einführung aufgrund ihrer Thematik eher an die fortgeschritteneren 
+GL-Programmierer und neben sehr guten GL-Kenntnissen sollten sich alle, 
+die sich daran versuchen wollen, mit den technischen Hintergründen der 
+GL, wie z.B. dem Aufbau der Renderpipeline auskennen. Weiterhin sind 
+C-Kenntnisse absolut erforderlich, da die Shader ja in einer an ANSI-C 
+angelehnten Syntax geschrieben werden. Auch Begriffsdefinitionen zu 
+Vertex oder Fragment werden zum Verständis dieser Einführung benötigt. 
+Wer also noch am Anfang seiner GL-Karriere steht, dem wird dieses 
+Dokument nicht viel nützen. Ganz nebenbei solltet ihr auch noch eine 
+gehörige Portion Zeit (am besten nen kompletten Nachmittag) mitbringen, 
+denn die folgende Kost ist nicht nur umfangreich, sondern auch manchmal 
+recht schwer verdaulich.
+</p>
+<h1><span class="mw-headline" id="Was_ist_GLSL.3F">Was ist GLSL?</span></h1>
+<p>Wie Eingangs kurz angesprochen handelt es sich bei GLSL um eine 
+Shadersprache, also um eine Hochsprache, in der man die programmierbaren
+ Teile aktueller Grafikbeschleuniger nach eigenem Belieben programmieren
+ kann. Sie stellt quasi den Nachfolger zu den in Assembler geschriebenen
+ Vertex- und Fragmentprogrammen (<a href="http://wiki.delphigl.com/index.php?title=GL_ARB_vertex_program&amp;action=edit&amp;redlink=1" class="new" title="GL ARB vertex program (Seite nicht vorhanden)">GL_ARB_vertex_program</a>/<a href="http://wiki.delphigl.com/index.php?title=GL_ARB_fragment_program&amp;action=edit&amp;redlink=1" class="new" title="GL ARB fragment program (Seite nicht vorhanden)">GL_ARB_fragment_program</a>) dar und basiert auf ANSI C, erweitert um Vektor- und Matrixtypen sowie einige C++-Mechanismen.
+</p><p>Die in GLSL geschriebenen Programme nennen sich, angepasst an die Terminologie von RenderMan und DirectX, <a href="http://wiki.delphigl.com/index.php/Shader" title="Shader">Shader</a>
+ (im Gegensatz zu "Programme" bei ARB_VP/FP) und werden entweder auf 
+Eckpunkte (VertexShader), Fragmente (FragmentShader) angewendet, oder 
+(neuerdings, ab Shadermodell 4.0) auch genutzt um Geometrie zu erstellen
+ (Geometryshader). Andere Teile der Renderpipeline (z.B. die 
+Rasterisierung) können momentan noch nicht durch Shader beeinflusst 
+werden, was allerdings in Zukunft noch kommen kann.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Voraussetzungen">Voraussetzungen</span></h2>
+<p>GLSL wurde 2005 mit OpenGL 1.5 eingeführt. Während es in Sachen 
+Treiber- und Hardwareunterstützung anfänglich noch dürftig aussah, wird 
+man inzwischen keine Grafikkarte mehr kaufen können die nicht zumindest 
+Vertex- und Fragmentshader beherscht. Geometrieshader hingegen sind 
+relativ neu und wurden erst mit Shadermodell 4.0 eingeführt, hier ist es
+ also unter Umständen noch möglich dass selbst aktuelle Treiber/Karten 
+keine Geometryshader beherrschen.
+</p><p>Natürlich benötigt man auch einen passenden OpenGL-Header der die
+ für GLSL nötigen Funktionen exportiert. Ich verweise dazu auf unseren 
+eigenen OpenGL-Header <a href="http://wiki.delphigl.com/index.php/DGLOpenGL.pas" title="DGLOpenGL.pas" class="mw-redirect">DGLOpenGL.pas</a>, der permanent auf dem aktuellsten Stand gehalten wird und auch Support für Geometrieshader mitbringt.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Extensions">Extensions</span></h2>
+<p>Die GL-Shadersprache "besteht" in ihrer aktuellen Version aus 
+folgenden Extensions, fürs Verständnis wäre es nicht schlecht, wenn ihr 
+euch zumindest die Einleitungen dazu durchlest&nbsp;:
+</p>
+<ul>
+<li> <a href="http://wiki.delphigl.com/index.php?title=GL_ARB_shader_objects&amp;action=edit&amp;redlink=1" class="new" title="GL ARB shader objects (Seite nicht vorhanden)">GL_ARB_shader_objects</a> (<a class="external text" href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/shader_objects.txt">Originalspezifikation</a>)
+</li>
+</ul>
+<dl>
+<dd> Definiert die API-Aufrufe, die zum Erstellen, Kompilieren, Linken, 
+Anhängen und Aktivieren von Shader- und Programmobjekten nötig sind. 
+</dd>
+</dl>
+<ul>
+<li> <a href="http://wiki.delphigl.com/index.php?title=GL_ARB_vertex_shader&amp;action=edit&amp;redlink=1" class="new" title="GL ARB vertex shader (Seite nicht vorhanden)">GL_ARB_vertex_shader</a> (<a class="external text" href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/vertex_shader.txt">Originalspezifikation</a>)
+</li>
+</ul>
+<dl>
+<dd> Fügt der OpenGL Programmierbarkeit auf Vertexebene hinzu. 
+</dd>
+</dl>
+<ul>
+<li> <a href="http://wiki.delphigl.com/index.php?title=GL_ARB_fragment_shader&amp;action=edit&amp;redlink=1" class="new" title="GL ARB fragment shader (Seite nicht vorhanden)">GL_ARB_fragment_shader</a> (<a class="external text" href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/fragment_shader.txt">Originalspezifikation</a>)
+</li>
+</ul>
+<dl>
+<dd> Fügt der OpenGL Programmierbarkeit auf Fragmentebene hinzu. 
+</dd>
+</dl>
+<ul>
+<li> <a href="http://wiki.delphigl.com/index.php?title=GL_ARB_shading_language_100&amp;action=edit&amp;redlink=1" class="new" title="GL ARB shading language 100 (Seite nicht vorhanden)">GL_ARB_shading_language_100</a> (<a class="external text" href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/shading_language_100.txt">Originalspezifikation</a>)
+</li>
+</ul>
+<dl>
+<dd> Gibt die unterstützte Version von glSlang an, momentan 1.00.
+</dd>
+</dl>
+<p><b>Hinweis</b>&nbsp;: Seit OpenGL 2.0 ist GLSL Teil des Kerns. Wenn 
+die Karte also OpenGL 2.0 unterstützt, dann unterstützt sie auch 
+(zumindest in Software) Vertex- und Fragmentshader.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Sprachversionen">Sprachversionen</span></h2>
+<p>Neben der OpenGL-Version und dem vorhandenen Shadermodell (das eher 
+an DirectX ausgerichtet ist), bietet auch GLSL verschiedene Versionen, 
+die entsprechend erweiterte Funktionalität bieten.
+</p><p>Auslesen kann man die verfürgbare GLSL-Version wie folgt:
+</p>
+<pre>glGetString(GL_SHADING_LANGUAGE_VERSION)
+</pre>
+<p>Erst ab Version 1.4. kann man davon ausgehen dass GLSL alle Features 
+des Shadermodells 4.0 liefert, ab 1.3 grob gesagt Shadermodell 3.0 (bei 
+GLSL lässt sich das leider nicht so leicht unterteilen).
+</p><p>Außerdem kann man seinem Shader eine Versionsnummer verpassen. 
+Sollte der Shadercompiler (also Treiber bzw. Hardware) diese Version 
+nicht unterstützen, gibt dieser eine Fehlermeldung heraus:
+</p>
+<pre>#version 1.50 
+</pre>
+<p><i>(Hinweis: Muss am Anfang des Shaders stehen)</i>
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Objekte">Objekte</span></h2>
+<p>Im Zuge der Vereinheitlichung der GL wird immer häufiger in Objekte 
+gekapselt, deren API dann auch aneinander angelehnt ist. Ziel ist, dabei
+ die Programmierung der GL uniform zu machen, so dass z.B. zwischen dem 
+Erstellen und Verwalten eines Vertex-Buffer-Objektes oder eines 
+Shader-Objektes kaum ein Unterschied besteht (demnächst kommen dann auch
+ Pixel-Buffer-Objekte dazu). Mit glSlang wurden dann im Zuge dieser 
+Aktion zwei neue Objekte eingeführt, deren Definition ihr euch unbedingt
+ einprägen solltet:
+</p>
+<ul>
+<li> <b>Programmobjekt</b>
+</li>
+</ul>
+<dl>
+<dd>Ein Objekt, an das die Shader später angebunden werden. Bietet 
+Funktionalität zum Linken der Shader und prüft dabei die Kompatibilität 
+zwischen Vertex- und Fragmentshader.
+</dd>
+</dl>
+<ul>
+<li> <b>Shaderobjekt</b>
+</li>
+</ul>
+<dl>
+<dd>Dieses Objekt verwaltet den Quellcodestring eines Shaders und ist entweder vom Typ <b>GL_VERTEX_SHADER</b>, <b>GL_FRAGMENT_SHADER_ARB</b> oder <b>GL_GEOMETRY_SHADER</b>.
+</dd>
+</dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Ressourcen">Ressourcen</span></h2>
+<p>Die Shadersprache ist keinesfalls final und es wurden bereits diverse
+ Ausdrücke für zukünftige Verwendung reserviert, denn ein Ziel bei ihrer
+ Entwicklung war es, sie so zukunftsorientiert zu gestalten, dass auch 
+Grafikkarten der nächsten und übernächsten Generation voll ausgenutzt 
+werden können. Damit einher geht die Tatsache, dass sich die 
+Spezifikationen in Zukunft ändern/erweitern werden, weshalb man da immer
+ einen Blick hineinwerfen sollte. Die Anlaufstelle dafür ist die <a class="external text" href="http://www.opengl.org/documentation/specs/">Spezifikationenliste auf OpenGL.org</a>.
+</p>
+<h1><span class="mw-headline" id="GLSL_im_Programm">GLSL im Programm</span></h1>
+<p>Bevor wir uns mit der Syntax von glSlang beschäftigen, zeige ich euch
+ erstmal, wie ihr Shader in euer Programm einbindet und nutzt. Warum das
+ zuerst? Ganz einfach deshalb, weil ihr dann das, was ihr im 
+glSlang-Syntaxteil lernt, direkt in eurer Testanwendung verwenden könnt.
+ Hoffe diese Entscheidung klingt logisch und findet Anklang.
+</p><p>Zuerst benötigen wir natürlich unsere Objekte. Zum einen ein <i>Programmobjekt</i>, an das unsere Shader gebunden werden, und zwei <i>Shaderobjekte</i>, die den Quellcode unseres Vertex bzw. Fragment Shaders aufnehmen. Dazu wurde eigens der neue "Datentyp" <font face="Courier New, Courier, mono">glHandle</font> eingeführt, der ein Objekthandle repräsentiert. Wir deklarieren also wie folgt&nbsp;:
+</p>
+<pre>ProgramObject       &nbsp;: GLhandle;
+VertexShaderObject  &nbsp;: GLhandle;
+FragmentShaderObject&nbsp;: GLhandle;
+</pre>
+<p><br>
+Nach dieser Deklaration können wir dann damit beginnen unsere Objekte zu erstellen. Den Anfang macht das Programmobjekt&nbsp;:
+</p>
+<pre>ProgramObject       &nbsp;:= glCreateProgram;
+</pre>
+<p>Die Funktion <a href="http://wiki.delphigl.com/index.php/glCreateProgram" title="glCreateProgram">glCreateProgram</a> erstellt uns oben ein leeres Programmobjekt und gibt ein gültiges Handle darauf zurück.
+</p><p>Weiter gehts mit der Erstellung unseres Vertex bzw. Fragment Shaders&nbsp;:
+</p>
+<pre>VertexShaderObject  &nbsp;:= glCreateShader(GL_VERTEX_SHADER);
+FragmentShaderObject&nbsp;:= glCreateShader(GL_FRAGMENT_SHADER);
+</pre>
+<p><a href="http://wiki.delphigl.com/index.php/glCreateShader" title="glCreateShader">glCreateShader</a> dient zur Generierung eines leeren Shaderobjektes. Momentan unterstützt diese Funktion VertexShader und FragmentShader.
+</p><p>Nachdem wir nun also zwei gültige Shaderobjekte haben, wollen wir diese auch mit entsprechendem Quellcode versorgen&nbsp;:
+</p>
+<pre>glShaderSource(VertexShaderObject, 1, @ShaderText, @ShaderLength);
+glShaderSource(FragmentShaderObject, 1, @ShaderText, @ShaderLength);
+</pre>
+<p>Via <a href="http://wiki.delphigl.com/index.php/glShaderSource" title="glShaderSource">glShaderSource</a> setzen wir den Quellcode eines Shaderobjektes <i>komplett</i>
+ neu. Zum Laden des Quellcodes bietet sich unter Delphi übrigens eine 
+TStringList geradezu an. Es sollte beachtet werden, dass der Quellcode 
+zu diesem Zeitpunkt <i>nicht geparst</i> wird, also keine Fehleruntersuchung stattfindet.
+</p><p>Der Quellcode wurde jetzt also an unsere Shaderobjekte gebunden und sollte dann natürlich auch noch kompiliert werden&nbsp;:
+</p>
+<pre>glCompileShader(VertexShaderObject);
+glCompileShader(FragmentShaderObject);
+</pre>
+<p>Der glSlang-Compiler des Treibers wird bei einem Aufruf von <a href="http://wiki.delphigl.com/index.php/glCompileShader" title="glCompileShader">glCompileShader</a>
+ versuchen, unsere Shader zu kompilieren. Sofern diese keine Fehler 
+aufweisen, sollte dies auch erfolgreich sein. Wenn nicht, dann spuckt 
+uns der Shadercompiler (je nach Treiber) recht detaillierte Infos aus. 
+Wie man an diese Infos kommt könnt ihr gleich nachlesen.
+</p><p>Wenn unsere Shader dann kompiliert werden konnten, ist es Zeit, 
+diese an unser anfangs erstelltes Programmobjekt anzuhängen&nbsp;:
+</p>
+<pre>glAttachShader(ProgramObject, VertexShaderObject);
+glAttachShader(ProgramObject, FragmentShaderObject);
+</pre>
+<p>Nachdem die Shaderobjekte nun an das Programmobjekt angehängt wurden,
+ werden diese nicht mehr benötigt und ihre Resourcen können freigegeben 
+werden&nbsp;:
+</p>
+<pre>glDeleteShader(VertexShaderObject);
+glDeleteShader(FragmentShaderObject);
+</pre>
+<p><br>
+Am Schluß müssen wir dann noch unsere ans Programmobjekt gebundenen Shader linken&nbsp;:
+</p>
+<pre>glLinkProgram(ProgramObject);
+</pre>
+<p>Während <a href="http://wiki.delphigl.com/index.php/glCompileShader" title="glCompileShader">glCompileShader</a> unsere Shader auf syntaktische Fehler innerhalb ihres lokalen Raums geprüft hat, werden beim Linken durch <a href="http://wiki.delphigl.com/index.php/glLinkProgram" title="glLinkProgram">glLinkProgram</a> die angehangenen Shader zu einem ausführbaren Shader gelinkt. Folgende Bedingungen führen zu einem <b>Linkerfehler</b>:
+</p>
+<ul>
+<li> Die Zahl der von der Implementation unterstützten Attributvariablen wurde überschritten
+</li>
+<li> Der Speicherplatz für Uniformvariablen wurde überschritten
+</li>
+<li> Die Zahl der von der Implementation angebotenen Sampler wurde überschritten
+</li>
+<li> Die main-Funktion fehlt
+</li>
+<li> Die Liste der Varying-Variablen des Vertexshaders stimmt nicht mit der des Fragmentshaders überein
+</li>
+<li> Funktions- oder Variablenname nicht gefunden
+</li>
+<li> Eine gemeinsame Globale ist mit unterschiedlichen Werten oder Typen initialisiert worden
+</li>
+<li> Zwei Sampler unterschiedlichen Typs zeigen auf die selbe Textureneinheit
+</li>
+<li> Ein oder mehrere angehangene(r) Shader wurden nicht erfolgreich kompiliert
+</li>
+</ul>
+<p>Die Nutzung von glSlang im eigenen Programm ist wie oben erkennbar 
+also nicht wirklich schwer und innerhalb kurzer Zeit realisiert. 
+Natürlich ist es auch möglich z.B. nur einen VertexShader oder nur einen
+ FragmentShader an ein Programmobjekt zu binden.
+</p><p>Noch eine kleine Notiz zum Löschen der Shader mittel <a href="http://wiki.delphigl.com/index.php/glDeleteShader" title="glDeleteShader">glDeleteShader</a>&nbsp;:
+ Da Shader(objekte) einen Referenzzähler besitzen und erst gelöscht 
+werden wenn diese nirgendwo mehr benötigt werden, ist es nicht falsch 
+diese vor dem Linkvorgang zu löschen. Allerdings spielt es letztendlich 
+keine Rolle ob die Löschanweisung vorher der nachher ausgeführt wird.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Fehlererkennung">Fehlererkennung</span></h2>
+<p>Natürlich wird es ohne Fehlerausgabe recht schwer, etwaige Probleme 
+in einem Vertex- oder Fragmentshader zu finden. Doch auch in diesem 
+Bereich wurde glSlang recht gut durchdacht und es wurden zwei Funktionen
+ eingeführt, welche im Zusammenspiel die Fehlersuche recht einfach 
+machen, nämlich <a href="http://wiki.delphigl.com/index.php/glGetShaderInfoLog" title="glGetShaderInfoLog">glGetShaderInfoLog</a> und <a href="http://wiki.delphigl.com/index.php/glGetShader" title="glGetShader">glGetShader</a> mit dem Argument <font face="Courier New, Courier, mono">GL_OBJECT_INFO_LOG_LENGTH</font>.
+ Erstere Funktion liefert uns einen Logstring, während uns letztere 
+Funktion dessen Länge angibt. Der Logstring wird verändert, sobald ein 
+Shader kompiliert oder ein Programm gelinkt wird.
+</p><p>Um die Ausgabe dieses Logs so einfach wie möglich zu machen, 
+bietet es sich an beide in einer einfach Funktion unterzubringen&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="pascal source-pascal"><pre class="de1"><span class="kw1">function</span> glSlang_GetInfoLog<span class="br0">(</span>pShader<span class="sy1">:</span> GLHandleARB<span class="br0">)</span><span class="sy1">:</span> <span class="kw4">String</span><span class="sy1">;</span>
+<span class="kw1">var</span>
+  blen<span class="sy1">,</span> slen<span class="sy1">:</span> GLInt<span class="sy1">;</span>
+  InfoLog<span class="sy1">:</span> PGLCharARB<span class="sy1">;</span>
+&nbsp;
+<span class="kw1">begin</span>
+  glGetShaderiv<span class="br0">(</span>pShader<span class="sy1">,</span> GL_INFO_LOG_LENGTH <span class="sy1">,</span> <span class="sy2">@</span>blen<span class="br0">)</span><span class="sy1">;</span>
+  <span class="kw1">if</span> blen &gt; <span class="nu0">1</span> <span class="kw1">then</span>
+  <span class="kw1">begin</span>
+    GetMem<span class="br0">(</span>InfoLog<span class="sy1">,</span> blen <span class="sy3">*</span> SizeOf<span class="br0">(</span>GLCharARB<span class="br0">)</span><span class="br0">)</span><span class="sy1">;</span>
+    glGetShaderInfoLog<span class="br0">(</span>pShader<span class="sy1">,</span> blen<span class="sy1">,</span> slen<span class="sy1">,</span> InfoLog<span class="br0">)</span><span class="sy1">;</span>
+    Result <span class="sy1">:</span><span class="sy3">=</span> PChar<span class="br0">(</span>InfoLog<span class="br0">)</span><span class="sy1">;</span>
+    <span class="kw3">Dispose</span><span class="br0">(</span>InfoLog<span class="br0">)</span><span class="sy1">;</span>
+  <span class="kw1">end</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+<p><br>
+Die Funktion ist recht leicht erklärt&nbsp;: Zuerst lassen wir uns über <font face="Courier New, Courier, mono">glGetShaderiv</font>
+ mitteilen wie lang der aktuelle Infolog ist. Sollte dort tatsächlich 
+etwas drinstehen (blen &gt; 1), dann lassen wir uns dessen Inhalt via <font face="Courier New, Courier, mono">glGetShaderInfoLog</font> in <font face="Courier New, Courier, mono">InfoLog</font> ausgeben und liefern diesen als Ergebnis zurück.
+</p><p>Wie bereits gesagt wird nur nach dem Kompilieren eines Shaders 
+bzw. dem Linken eines Programmobjektes ein Infolog erstellt. Es bietet 
+sich dadurch an, direkt danach einen solchen Aufruf zu machen&nbsp;:
+</p>
+<pre>glCompileShader(VertexShaderObject);
+ShowMessage(glSlang_GetInfoLog(VertexShaderObject));
+</pre>
+<p>Wenn unser Vertex Shader komplett fehlerfrei kompiliert werden 
+konnte, dann sehen wir als Ergebnis nur einen leeren Dialog. Ist dies 
+nicht der Fall, so werden wir vom Treiber mit recht detaillierten 
+Fehlerinformationen "belohnt", z.B. so&nbsp;:
+</p><p><a href="http://wiki.delphigl.com/index.php/Datei:GLSL_error_vshader.jpg" class="image"><img alt="GLSL error vshader.jpg" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/GLSL_error_vshader.jpg" height="147" width="268"></a>
+</p><p>Auch das Infolog nach dem Linken des Programmobjektes dürfte, 
+selbst wenn keine Fehler vorkommen, recht interessant sein, das sieht 
+dann nämlich so aus&nbsp;:
+</p><p><a href="http://wiki.delphigl.com/index.php/Datei:GLSL_info_programobject.jpg" class="image"><img alt="GLSL info programobject.jpg" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/GLSL_info_programobject.jpg" height="107" width="562"></a>
+</p><p>Wie zu sehen, wird uns nach dem erfolgreichen Linken auch gesagt,
+ ob und welcher Shader in Hardware bzw. Software läuft. Für 
+Debuggingzwecke sicherlich eine mehr als brauchbare Information.
+</p>
+<h2><span class="mw-headline" id="Shader_benutzen">Shader benutzen</span></h2>
+<p>Um den Shader auch für die nächsten Polygone zu benutzen oder Uniformparameter übergeben zu können, ruft man die Funktion
+</p>
+<pre>glUseProgram(ProgramObject);
+</pre>
+<p>um alle Shader zu deaktivieren, ruft man dieselbe Funktion mit dem Parameter 0.
+</p>
+<h2><span class="mw-headline" id="Parameter.C3.BCbergabe">Parameterübergabe</span></h2>
+<p>Uniformparameter (mehr dazu später) stellen die Schnittstelle 
+zwischen eurem Programm und dem Shader dar, werden also genutzt um Daten
+ aus dem Programm heraus an einen Shader zu übergeben. Zur Übergabe 
+dieser Parameter bietet OpenGL diverse Funktionen, die alle Abkömmlinge 
+von <a href="http://wiki.delphigl.com/index.php/glUniform" title="glUniform">glUniform</a> sind. Während mit <font face="Courier New, Courier, mono">glUniform4f</font> z.B. ein Vier-Komponentenvektor an das Programmobjekt übergeben wird, kann man mittels <font face="Courier New, Courier, mono">glUniformMatrix4fv</font>
+ ganze Matrizen schnell und einfach übergeben. Außerdem gibt es nun die 
+Möglichkeit Uniformparameter direkt über ihren Namen, statt wie unter 
+ARB_FP/VP über einen festen Index zu adressieren. Die Funktion <a href="http://wiki.delphigl.com/index.php/glGetUniformLocationARB" title="glGetUniformLocationARB">glGetUniformLocationARB</a>
+ gibt anhand des übergebenen Parameternamens dessen Position zurück. Man
+ kann also ganz einfach über den Namen drauf zugreifen&nbsp;:
+</p>
+<pre>glUniform3f(glGetUniformLocation(ProgramObject, PGLCharARB('LightPosition')), LPos[0], LPos[1], LPos[2]);
+glUniform1i(glGetUniformLocation(ProgramObject, PGLCharARB('texSamplerTMU3')), 3);
+</pre>
+<p><br>
+Wichtig ist hier, das man je nach Parametertyp auch die passende Anzahl 
+von Argumenten übergibt. Also für einen 4-Komponenten Floatvektor <font face="Courier New, Courier, mono">glUniform4fARB</font>
+ und für einen einfachen Integerwert (z.B. Textureinheit für einen 
+Sampler) glUnifrom1iARB. Auch nicht vergessen dürft ihr, das die Namen 
+der Parameter genauso wie im Shader geschrieben werden müssen, also 
+Groß- und Kleinschreibung beachtet werden muß.
+</p>
+<h1><span class="mw-headline" id="Die_Shadersprache">Die Shadersprache</span></h1>
+<p>Nachdem wir uns mit der Einbindung der glSlang-Shader in unser 
+Programm beschäftigt haben, wollen wir uns in den folgenden Kapiteln um 
+die Sprachelemente von glSlang kümmern. Wie schon gesagt basiert glSlang
+ auf ANSI-C, wurde allerdings um speziell auf den Zielbereich angepasste
+ Vektor- und Matrixtypen und einige C++-Features wie das freie 
+deklarieren von Variablen an jeder Stelle und das Funktionsüberladen auf
+ Basis des Argumenttyps erweitert. Wer sich ein wenig mit C/C++ auskennt
+ sollte also in der nun folgenden Materie keine Probleme bekommen.
+</p><p><b>Obligatorische Hinweise für verwöhnte Delphi-Nutzer&nbsp;: </b>
+</p>
+<ul>
+<li>Wie von C/C++ her gewohnt, spielt auch in glSlang die Groß- und 
+Kleinschreibung eine wichtige Rolle, also bitte achtet darauf. 
+gl_Position ist eine komplett andere Variable als z.B. gl_position.
+</li>
+<li>Es findet keine automatische Typenkonvertierung statt. Das bedeutet 
+also das float MyFloat = 1 ungültig ist und es in dem Falle float 
+MyFloat = 1.0 heissen muss. Typecasts müssen also immer manuell 
+stattfinden, z.B. MyFloat = float(MyInt).
+</li>
+</ul>
+<p><b>Kleine Programmstrukturkunde für C-Unkundige&nbsp;:</b><br>
+Da sicherlich einige Delpher nie richtig was mit C gemacht haben, zeige 
+ich mal anhand eines kleinen Beispieles (das auf keinen Fall nen 
+brauchbaren Shader darstellt) den grundlegenden Aufbau eines 
+glSlang-Shaders, der natürlich dem Aufbau eines C-Programmes stark 
+ähnelt&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">vec4</span> VariableA<span class="sy0">;</span>
+<span class="kw3">float</span> VariableB<span class="sy0">;</span>
+<span class="kw3">vec3</span>  VariableC<span class="sy0">;</span>
+<span class="kw2">const</span> <span class="kw3">float</span> KonstanteA <span class="sy0">=</span> <span class="nu0">256.0</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw3">float</span> MyFunction<span class="br0">(</span><span class="kw3">vec4</span> ArgumentA<span class="br0">)</span>
+<span class="br0">{</span>
+    <span class="kw3">float</span> FunktionsVariableA <span class="sy0">=</span> <span class="kw3">float</span><span class="br0">(</span><span class="nu0">5.0</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">return</span> <span class="kw3">float</span><span class="br0">(</span>ArgumentA <span class="sy0">*</span> <span class="br0">(</span>FunktionsVariableA <span class="sy0">+</span> KonstanteA<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">// Ich bin ein Kommentar</span>
+<span class="coMULTI">/* Und ich auch */</span>
+<span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+    <span class="kw6">gl_Position</span> <span class="sy0">=</span> <span class="kw6">gl_ModelViewProjectionMatrix</span> <span class="sy0">*</span> <span class="kw6">gl_Vertex</span><span class="sy0">;</span>
+    <span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span> <span class="sy0">=</span> <span class="kw6">gl_MultiTexCoord0</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Sieht doch recht bekannt aus, unser Programmaufbau. Delphi und C 
+haben ja so einige Grundlagen gleich, darunter auch der ungefähre 
+Programmaufbau. Ausserhalb jeglicher Funktionen legen wir am 
+Programmanfang unsere Variablen, Konstanten und Attribute fest, die dann
+ <i>global</i> nutzbar sind, also in jeder Funktion.
+</p><p>Darunter deklarieren wir dann eine kleine Funktion. Wie auch bei 
+den Variablendeklarationen wird hier der Rückgabetyp nicht wie bei 
+Pascal nach dem Funktionsnamen untergebracht, sondern davor. Innerhalb 
+der Funktion können dann wieder Variablen deklariert werden, die dann 
+allerdings <i>lokal</i>, also nur in dieser Funktion nutzbar sind. 
+Vorteil dieser Deklaration ist die Tatsache, dass je nach Grafikkarte 
+nur bestimmt viele globale Variablen deklariert werden können. Wenn 
+möglich sollte man also mit lokalen Vorlieb nehmen. Unsere Funktion gibt
+ dann natürlich noch via return einen Wert zurück, <i>was gemacht werden muss</i>,
+ sofern man diese nicht als void deklariert hat (entspräche dann einer 
+Prozedur in Pascal). Wird dies nicht getan, so spuckt der Compiler einen
+ Fehler aus.
+</p><p>Auch wichtig sind natürlich Kommentare. Erste Variante 
+(Doppelslash) ist auch in der Pascalwelt verfügbar und kommentiert eine 
+einzelne Zeile aus. Die Variante darunter kann man für Kommentarblöcke 
+nutzen (/* .. */) und entspricht den Kommentaren in geschweiften 
+Klammern in Delphi.
+</p><p>Danach kommt dann die <b>wichtigste Funktion</b> des Shaders, nämlich <b>main</b>,
+ die in keinem Shader fehlen darf. Sie stellt quasi den Programmkörper 
+dar und ist oft auch die einzige Funktion in einem Shader. Sie erhält 
+weder ein Argument, noch gibt sie einen Wert zurück.
+</p><p>Soviel also zum grundlegenden Aufbau eines Shader. Hoffe das 
+jetzt alle die in C nicht so bewandert sind damit klar kommen, und dann 
+bald ihre ersten glSlang-Shader schreiben können.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Datentypen">Datentypen</span></h2>
+<p>Obwohl einige Datentypen aus C übernommen wurden, sieht man der 
+Typenliste an, das diese speziell auf den 3D-Bereich zugeschnitten 
+wurde. Variablen müssen vor ihrer Nutzung eindeutig deklariert sein, 
+Typecasting erfolgt über Konstruktoren (dazu später mehr). Folgende 
+Datentypen stehen sowohl im Vertex- als auch Fragmentshader zur 
+Verfügung&nbsp;:
+</p>
+<table class="pretty" cellpadding="3" cellspacing="0" border="1">
+<tbody><tr>
+<th>Datentyp
+</th>
+<th>Erklärung
+</th></tr>
+<tr>
+<td>void
+</td>
+<td>Für Funktionen die keinen Wert zurückgeben
+</td></tr>
+<tr>
+<td>bool
+</td>
+<td>Konditionaler Typ, entweder true (wahr) oder false (falsch)
+</td></tr>
+<tr>
+<td>int
+</td>
+<td>Vorzeichenbehafteter vorzeichenbehafteter Integerwert
+</td></tr>
+<tr>
+<td>uint
+</td>
+<td>Vorzeichenbehafteter vorzeichenloser Integerwert
+</td></tr>
+<tr>
+<td>float
+</td>
+<td>Fließkommaskalar mit Singlegenauigkeit (32 Bit)
+</td></tr>
+<tr>
+<td>vec2
+</td>
+<td>2-Komponenten Fließkommavektor
+</td></tr>
+<tr>
+<td>vec3
+</td>
+<td>3-Komponenten Fließkommavektor
+</td></tr>
+<tr>
+<td>vec4
+</td>
+<td>4-Komponenten Fließkommavektor
+</td></tr>
+<tr>
+<td>bvec2
+</td>
+<td>2-Komponenten Booleanvektor
+</td></tr>
+<tr>
+<td>bvec3
+</td>
+<td>3-Komponenten Booleanvektor
+</td></tr>
+<tr>
+<td>bvec4
+</td>
+<td>4-Komponenten Booleanvektor
+</td></tr>
+<tr>
+<td>ivec2
+</td>
+<td>2-Komponenten vorzeichenbehafteter Integervektor
+</td></tr>
+<tr>
+<td>ivec3
+</td>
+<td>3-Komponenten vorzeichenbehafteter Integervektor
+</td></tr>
+<tr>
+<td>ivec4
+</td>
+<td>4-Komponenten vorzeichenbehafteter Integervektor
+</td></tr>
+<tr>
+<td>uvec2
+</td>
+<td>2-Komponenten vorzeichenloser Integervektor
+</td></tr>
+<tr>
+<td>uvec3
+</td>
+<td>3-Komponenten vorzeichenloser Integervektor
+</td></tr>
+<tr>
+<td>uvec4
+</td>
+<td>4-Komponenten vorzeichenloser Integervektor
+</td></tr>
+<tr>
+<td>mat2
+</td>
+<td>2x2 Fließkommamatrix
+</td></tr>
+<tr>
+<td>mat3
+</td>
+<td>3x3 Fließkommamatrix
+</td></tr>
+<tr>
+<td>mat4
+</td>
+<td>4x4 Fließkommamatrix
+</td></tr>
+<tr>
+<td>matMxN
+</td>
+<td>Matrix mit M Spalten und N Zeilen
+</td></tr></tbody></table>
+<p>Die sampler-Typen stellen eine besondere Klasse zum Zugriff auf 
+Texturen dar, und werden im Kapitel 6.7 genauer erklärt, inklusive 
+einiger Anwendungsbeispiele.
+</p>
+<table class="pretty" cellpadding="3" cellspacing="0" border="1">
+<tbody><tr>
+<th>Datentyp
+</th>
+<th>Erklärung
+</th></tr>
+<tr>
+<td>sampler1D
+</td>
+<td>Zugriff auf 1D-Textur
+</td></tr>
+<tr>
+<td>sampler2D
+</td>
+<td>Zugriff auf 2D-Textur
+</td></tr>
+<tr>
+<td>sampler3D
+</td>
+<td>Zugriff auf 3D-Textur
+</td></tr>
+<tr>
+<td>samplerCube
+</td>
+<td>Zugriff auf Cubemap
+</td></tr>
+<tr>
+<td>sampler2DRect
+</td>
+<td>Zugriff auf Texturen die nicht 2^n * 2^n entsprechen ("non power-of-two", NPOT)
+</td></tr>
+<tr>
+<td>sampler1DShadow
+</td>
+<td>Zugriff auf 1D-Tiefentextur mit Vergleichsoperation
+</td></tr>
+<tr>
+<td>sampler2DShadow
+</td>
+<td>Zugriff auf 2D-Tiefentextur mit Vergleichsoperation
+</td></tr>
+<tr>
+<td>samplerCubeShadow
+</td>
+<td>Zugriff auf Tiefentextur in einer Cubemap (z.b. für omni-diretionale Lichtquellen)
+</td></tr>
+<tr>
+<td>sampler2DRectShadow
+</td>
+<td>Zugriff auf 2D-NPOT-Tiefentextur
+</td></tr>
+
+<tr>
+<td>sampler1DArray
+</td>
+<td>Zugriff auf ein array aus 1D-Texturen
+</td></tr>
+<tr>
+<td>sampler2DArray
+</td>
+<td>Zugriff auf ein array aus 2D-Texturen
+</td></tr>
+<tr>
+<td>sampler1DArrayShadow
+</td>
+<td>Zugriff auf ein array aus 1D-Tiefentexturen
+</td></tr>
+<tr>
+<td>sampler2DArrayShadow
+</td>
+<td>Zugriff auf ein array aus 2D-Tiefentexturen
+</td></tr>
+<tr>
+<td>samplerBuffer
+</td>
+<td>Zugriff auf eine Puffertextur (1D-Texutr zum Speichern von Pufferobjekten)
+</td></tr>
+<tr>
+<td>sampler2DMS
+</td>
+<td>Zugriff auf eine 2D-Textur mit mehreren Samplepunkten (z.b. für Multisampling)
+</td></tr>
+<tr>
+<td>sampler2DMSArray
+</td>
+<td>Zugriff auf einarray aus 2D-Textur mit mehreren Samplepunkten (z.b. für Multisampling)
+</td></tr>
+</tbody></table>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="Arrays">Arrays</span></h3>
+<p>Natürlich unterstützt glSlang auch Arrays, die wie in C deklariert 
+werden und deren Index bei 0 beginnt. Folgendes Array im Shader&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">float</span> temp<span class="br0">[</span><span class="nu0">3</span><span class="br0">]</span><span class="sy0">;</span></pre></div></div>
+<p>beginnt also bei Index 0 und endet bei Index 2. Im Gegensatz zu C lassen sich Arrays in glSlang allerdings <i>nicht bei der Initialisierung vorbelegen</i>. Wenn ein Array als Parameter einer Funktion deklariert wird, so darf dieses keine Dimensionierung erhalten.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id="Strukturen">Strukturen</span></h3>
+<p>Neu ggü. ARB_FP/VP ist nun auch die Möglichkeit, Strukturen in einem 
+Shader zu deklarieren. Vor allem die Übersicht komplexerer Shader kann 
+dadurch stark verbessert werden. Strukturen werden wie gewohnt mit dem 
+Schlüsselwort <font face="Courier New, Courier, mono">struct</font> 
+eingeleitet und können dann zur Typisierung von Variablen genutzt 
+werden. Folgendes Beispiel dürfte die Nutzung verdeutlichen&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> light
+<span class="br0">{</span>
+    <span class="kw3">bool</span> active<span class="sy0">;</span>
+    <span class="kw3">float</span> intensity<span class="sy0">;</span>
+    <span class="kw3">vec3</span> position<span class="sy0">;</span>
+    <span class="kw3">vec3</span> color<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span></pre></div></div>
+<p>Im Shader können dann neue Variablen von diesem Typ ganz einfach deklariert werden&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"> light LightSource<span class="br0">[</span><span class="nu0">3</span><span class="br0">]</span><span class="sy0">;</span></pre></div></div>
+<p>Der Zugriff auf die Elemente der Struktur erfolgt dann wie gewohnt über den Punkt&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1">LightSource<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">.</span><span class="me1">position</span> <span class="sy0">=</span> <span class="kw3">vec3</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">5.0</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<h2><span class="mw-headline" id="Typenqualifzierer">Typenqualifzierer</span></h2>
+<p>Zusätzlich zur Typendeklaration kann eine Variable noch einen 
+Typenqualifizerer vorangestellt bekommen, der an den Anfang der 
+Deklaration gehört.
+</p>
+<ul>
+<li> <b>const</b>
+</li>
+</ul>
+<dl>
+<dd> Festgelegte (nur lesen) Konstante bzw. nur lesbarer Funktionsparameter.
+</dd>
+</dl>
+<ul>
+<li> <b>uniform</b>
+</li>
+</ul>
+<dl>
+<dd> Ein den ganzen Shader über gleichbleibender Wert, der eine 
+Schnittstelle zwischen dem Shader und der OpenGL-Anwendung darstellt. 
+Ein Uniformwert wird in der Hauptanwendung an den entsprechenden Shader 
+übergeben und kann dort dann genutzt werden.
+</dd>
+</dl>
+<ul>
+<li> <b>attribute</b>
+</li>
+</ul>
+<dl>
+<dd> Nur lesbare Werte die eine Verbindung zwischen dem Shader und der 
+OpenGL-VertexAPI darstellen (z.B. VertexParameter eines VertexArrays). 
+Natürlich nur in einem Vertex Shader nutzbar.
+</dd>
+</dl>
+<ul>
+<li> <b>varying</b>
+</li>
+</ul>
+<dl>
+<dd> Stellt die Verbindung zwischen einem Vertex- und einem 
+FragmentShader dar. Werden im VertexShader geschrieben und dann 
+perspektivisch korrekt über die Primitive interpoliert, um dann im 
+Fragment Shader gelesen werden zu können. Nutzbar sind hier nur die 
+Typen float, vec2, vec3, vec4, mat2, mat3 und mat4, Strukturen und 
+andere Datentypen können nicht varying sein. Die Namen einer 
+varying-Variable müssen sowohl im VertexShader als auch im 
+FragmentShader gleich sein.
+</dd>
+</dl>
+<ul>
+<li> <b>in</b>
+</li>
+</ul>
+<dl>
+<dd> Für Variablen die an eine Funktion übergeben und dort ausgelesen werden.
+</dd>
+</dl>
+<ul>
+<li> <b>out</b>
+</li>
+</ul>
+<dl>
+<dd> Für Variablen die von einer Funktion nach außen zurückgegeben werden.
+</dd>
+</dl>
+<ul>
+<li> <b>inout</b>
+</li>
+</ul>
+<dl>
+<dd> Für Variablen die sowohl an eine Funktion übergeben als auch von dieser zurückgegeben werden.
+</dd>
+</dl>
+<p><br>
+</p><p>Um obige Auflistung nicht leer im Raum stehen zu lassen zeige ich
+ ein paar Beispiele die hoffentlich zum Verständnis beitragen&nbsp;:
+</p>
+<h3><span class="mw-headline" id="Beispiel_A">Beispiel A</span></h3>
+<p>Vertexnormale soll an einen FragmenShader (interpoliert) übergeben werden&nbsp;:
+</p>
+<dl>
+<dd>Im VertexShader&nbsp;:
+</dd>
+</dl>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">varying</span> <span class="kw3">vec3</span> VertexNormal<span class="sy0">;</span>
+<span class="sy0">...</span>
+<span class="me1">VertexNormal</span> <span class="sy0">=</span> <span class="kw5">normalize</span><span class="br0">(</span>MV_IT <span class="sy0">*</span> <span class="kw6">gl_Normal</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<dl>
+<dd>Im FragmentShader&nbsp;:
+</dd>
+</dl>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">varying</span> <span class="kw3">vec3</span> VertexNormal<span class="sy0">;</span>
+<span class="sy0">...</span>
+<span class="me1">TempVector</span> <span class="sy0">=</span> VertexNormal<span class="sy0">*...</span></pre></div></div>
+<h3><span class="mw-headline" id="Beispiel_B">Beispiel B</span></h3>
+<p>Uniformparameter zur nachträglichen Farbänderung der Szene wird im Programm übergeben&nbsp;:
+</p>
+<dl>
+<dd>Im VertexShader&nbsp;:
+</dd>
+</dl>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">vec4</span> GlobalColor<span class="sy0">;</span>
+<span class="sy0">...</span>
+<span class="kw6">gl_FrontColor</span> <span class="sy0">=</span> GlobalColor <span class="sy0">*</span> <span class="kw6">gl_Color</span><span class="sy0">;</span></pre></div></div>
+<dl>
+<dd>Im Programm&nbsp;:
+</dd>
+</dl>
+<pre>glUniform4fARB(glSlang_GetUniLoc(ProgramObject, 'GlobalColor'), Col[0], Col[1], Col[2], Col[3]);
+</pre>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="Beispiel_C">Beispiel C</span></h3>
+<p>Konstante zur festen Farbänderung&nbsp;:
+</p>
+<dl>
+<dd>Im VertexShader&nbsp;:
+</dd>
+</dl>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">const</span> <span class="kw3">vec4</span> ColorBias <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span><span class="nu0">0.2</span><span class="sy0">,</span> <span class="nu0">0.3</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="sy0">...</span>
+<span class="kw6">gl_FrontColor</span> <span class="sy0">=</span> ColorBias <span class="sy0">*</span> <span class="kw6">gl_Color</span><span class="sy0">;</span></pre></div></div>
+<h2><span class="mw-headline" id="Konstruktoren">Konstruktoren</span></h2>
+<p>Um in einem Shader <i>Vektoren</i> oder <i>Matrizen</i> mit Werten zu
+ belegen, gibt es sogenannte Konstruktoren (nicht zu verwechseln mit 
+z.B. Klassenkonstruktoren unter Delphi), die im Endeffekt nichts anderes
+ als Funktionen zur Vorbelegung von Vektoren oder Matrizen darstellen. 
+Dabei trägt der Konstruktor den selben Namen wie die Typendeklaration, 
+also lässt sich eine Variable vom Typ <font face="Courier New, Courier, mono">vec4</font> mit dem Konstruktor <font face="Courier New, Courier, mono">vec4(float, float, float, float)</font> initialisieren.
+</p><p>Allerdings hat man sich recht viel Mühe bei dieser 
+Konstruktorgeschichte gemacht, so dass man einen vec4 nicht unbedingt 
+mit einem <font face="Courier New, Courier, mono">vec4</font>-Konstruktor
+ vorbelegen muss, sondern es vielseitige Möglichkeiten gibt. Um dies zu 
+verdeutlichen gibts ein paar Beispiele&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">vec4</span> Color <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="kw3">vec4</span> Color <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span>MyVec3<span class="sy0">,</span> <span class="nu0">1.0</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="kw3">vec4</span> Color <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span>MyVec2_A<span class="sy0">,</span> MyVec2_B<span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw3">vec3</span> LVec  <span class="sy0">=</span> <span class="kw3">vec3</span><span class="br0">(</span>MyVec4<span class="br0">)</span><span class="sy0">;</span>
+<span class="kw3">vec2</span> Tmp   <span class="sy0">=</span> <span class="kw3">vec2</span><span class="br0">(</span>MyVec3<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Trotz der recht wenigen Beispiele sollte schnell erkennbar sein, das 
+man hier wirklich sehr viele Kombinationsmöglichkeiten hat, die dann 
+gültig sind <i>wenn man mindestens auf die benötigte Anzahl der Argumente kommt</i>.
+ Im vorletzten Beispiel wird z.B. ein 3-Komponentenvektor aus einem 
+4-Komponentenvektor initialisiert. Das erzeugt keinen Fehler, sondern 
+führt dazu das <font face="Courier New, Courier, mono">vec3.x, vec3.y, vec3.z</font> aus MyVec4 übernommen werden und MyVec4.w einfach ignoriert wird.
+</p><p>Das Umkehrbeispiel, also
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">vec4</span> Color <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span>MyVec3<span class="br0">)</span></pre></div></div>
+<p>funktioniert allerdings nicht, da hier die Zahl der benötigten Argumente nicht erreicht wird. In diesem Falle müsste es dann
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1">&nbsp;
+<span class="kw3">vec4</span> Color <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span>MyVec3<span class="sy0">,</span> <span class="nu0">0.0</span><span class="br0">)</span></pre></div></div>
+<p>heissen.
+</p><p>Obiges gilt natürlich auch für <i>Matrixkonstruktoren</i>, hier sind z.B. folgende Konstuktoren denkbar, obwohl eigentlich alle Möglichkeiten nutzbar sind, <i>solange die benötigte Zahl an Argumenten erreicht wird</i>&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">mat4</span> MyMatrix <span class="sy0">=</span> <span class="kw3">mat4</span><span class="br0">(</span>MyVec4<span class="sy0">,</span> MyVec4<span class="sy0">,</span> MyVec4<span class="sy0">,</span> MyVec4<span class="br0">)</span><span class="sy0">;</span>
+<span class="kw3">mat4</span> MyMatrix <span class="sy0">=</span> <span class="kw3">mat4</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span>
+                     <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span>
+                     <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span>
+                     <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<h2><span class="mw-headline" id="Vektor-_und_Matrixkomponenten">Vektor- und Matrixkomponenten</span></h2>
+<p>Was natürlich in keiner Shadersprache fehlen darf, ist der leichte 
+Zugriff auf die einzelnen Komponenten eines Vektors. glSlang bietet, je 
+nach Anwendungsgebiet gleich drei Namensets für den Zugriff auf die 
+Komponenten eines solchen Vektors, welches Set man nutzen will bleibt 
+natürlich frei und ist unabhängig von der Deklaration eines Vektors. Man
+ sollte nur darauf achten, beim gleichzeitigen Zugriff auf mehrere 
+Komponenten im gleichen Namenset zu verbleiben&nbsp;:
+</p>
+<ul>
+<li> {x, y, z, w}
+</li>
+</ul>
+<dl>
+<dd>Für den Zugriff auf Vektoren die Punkte, Normale oder sonstige Vertexdaten repräsentieren.
+</dd>
+</dl>
+<ul>
+<li> {r, g, b, a}
+</li>
+</ul>
+<dl>
+<dd>Für den Zugriff auf Vektoren die Farbwerte repräsentieren.
+</dd>
+</dl>
+<ul>
+<li> {s, t, p, q}
+</li>
+</ul>
+<dl>
+<dd>Für den Zugriff auf Vektoren die Texturkoordinaten repräsentieren.
+</dd>
+</dl>
+<p>Ein paar Beispiele zur Unterstreichung des oben gesagten&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1">v4<span class="sy0">.</span><span class="me1">rgba</span> <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="sy0">,</span> <span class="nu0">0.0</span><span class="br0">)</span><span class="sy0">;</span>  <span class="co1">// gültig</span>
+v4<span class="sy0">.</span><span class="me1">rgzw</span> <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">2.0</span><span class="br0">)</span><span class="sy0">;</span>  <span class="co1">// Ungültig, da verschiedenen Namensets</span>
+v2<span class="sy0">.</span><span class="me1">rgb</span>  <span class="sy0">=</span> <span class="kw3">vec3</span><span class="br0">(</span><span class="nu0">1.0</span><span class="sy0">,</span> <span class="nu0">2.0</span><span class="sy0">,</span> <span class="nu0">1.0</span><span class="br0">)</span><span class="sy0">;</span>       <span class="co1">// Ungültig, da vec2 nur r+g besitzt</span>
+v2<span class="sy0">.</span><span class="me1">xx</span>   <span class="sy0">=</span> <span class="kw3">vec2</span><span class="br0">(</span><span class="nu0">5.0</span><span class="sy0">,</span> <span class="nu0">3.0</span><span class="br0">)</span><span class="sy0">;</span>            <span class="co1">// Ungültig, da 2 mal gleiche Komponente</span></pre></div></div>
+<p>Auch der Zugriff auf die Komponenten einer Matrix geht leicht von der
+ Hand. Namensets wie bei den Vektoren gibt es hier natürlich keine, aber
+ folgende Beispiele sollen den Zugriff aufzeigen&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1">MyMat4<span class="br0">[</span><span class="nu0">2</span><span class="br0">]</span>    <span class="sy0">=</span> <span class="kw3">vec4</span><span class="br0">(</span><span class="nu0">1.0</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Setzt die 3.Zeile der Matrix komplett auf 1.0</span>
+MyMat4<span class="br0">[</span><span class="nu0">3</span><span class="br0">]</span><span class="br0">[</span><span class="nu0">3</span><span class="br0">]</span> <span class="sy0">=</span> <span class="nu0">3.5</span><span class="sy0">;</span>       <span class="co1">// Setzt das Element unren rechts auf 3.5</span></pre></div></div>
+<p>Ein Zugriff auf Matrixelemente ausserhalb ihrer Dimension (also z.B. 
+MyMat4[4][4]) liefert unvorhersehabre Ergebnise, also sollte man auf 
+diese Fälle prüfen. 
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Vektor-_und_Matrixoperationen">Vektor- und Matrixoperationen</span></h2>
+<p>Wie von C gewohnt sind in glSlang so ziemlich alle Operatoren die man
+ auf Matrizen oder Vektoren anwenden kann überladen, so das man nicht 
+umständlich über selbstgeschriebene Funktionen kombinieren muss. Darüber
+ hinaus ist es in den meisten Fällen auch möglich ohne Konvertierung 
+Fließkommawerte mit kompletten Matrizen oder Vektoren zu kombinieren. 
+Folgende Beispiele zeigen einige der vielfältigen 
+Kombinationsmöglichkeiten auf&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">vec3</span>  dest<span class="sy0">;</span>
+<span class="kw3">vec3</span>  source<span class="sy0">;</span>
+<span class="kw3">float</span> factor<span class="sy0">;</span>
+&nbsp;
+<span class="kw3">vec3</span> dest <span class="sy0">=</span> source <span class="sy0">+</span> factor<span class="sy0">;</span> 
+&nbsp;
+<span class="co1">// Ist gleich</span>
+dest<span class="sy0">.</span><span class="me1">x</span> <span class="sy0">=</span> source<span class="sy0">.</span><span class="me1">x</span> <span class="sy0">+</span> factor<span class="sy0">;</span>
+dest<span class="sy0">.</span><span class="me1">y</span> <span class="sy0">=</span> source<span class="sy0">.</span><span class="me1">y</span> <span class="sy0">+</span> factor<span class="sy0">;</span>
+dest<span class="sy0">.</span><span class="me1">z</span> <span class="sy0">=</span> source<span class="sy0">.</span><span class="me1">z</span> <span class="sy0">+</span> factor<span class="sy0">;</span></pre></div></div>
+<p>Matrix * Vektor ist auch ohne manuelle Konvertierung möglich&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">vec3</span>  dest<span class="sy0">;</span>
+<span class="kw3">vec3</span>  source<span class="sy0">;</span>
+<span class="kw3">mat3</span>  MyMat<span class="sy0">;</span>
+&nbsp;
+dest <span class="sy0">=</span> source <span class="sy0">*</span> MyMat<span class="sy0">;</span> 
+&nbsp;
+<span class="co1">// Ist gleich</span>
+dest<span class="sy0">.</span><span class="me1">x</span> <span class="sy0">=</span> <span class="kw5">dot</span><span class="br0">(</span>source<span class="sy0">,</span> MyMat<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+dest<span class="sy0">.</span><span class="me1">y</span> <span class="sy0">=</span> <span class="kw5">dot</span><span class="br0">(</span>source<span class="sy0">,</span> MyMat<span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+dest<span class="sy0">.</span><span class="me1">z</span> <span class="sy0">=</span> <span class="kw5">dot</span><span class="br0">(</span>source<span class="sy0">,</span> MyMat<span class="br0">[</span><span class="nu0">2</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Auch hier sind die Möglichkeiten fast unbeschränkt und zeigen wieder wie flexibel glSlang ausgelegt ist. 
+</p>
+<h2><span class="mw-headline" id="Operatoren">Operatoren</span></h2>
+<p>glSlang bietet (momentan) folgende Operatoren, die Liste ist nach ihrer Gewichtung sortiert (Anfang = höchste). Alle <i>reservierten</i> Operatoren werden erst in kommender Hardware/glSlang-Versionen nutzbar sein&nbsp;:
+</p>
+<div align="center">
+<table class="pretty" cellpadding="3" cellspacing="0" border="1">
+<tbody><tr>
+<th>Operatorklasse
+</th>
+<th>Operatoren
+</th>
+<th>Assoziation
+</th></tr>
+<tr>
+<td>Gruppering
+</td>
+<td>()
+</td>
+<td> -
+</td></tr>
+<tr>
+<td>Arrayindizierung<br>Funktionsaufrufe und Konstruktoren<br>Strukturfeldwahl und Swizzle<br>Postinkrement und -dekrement<br>
+</td>
+<td>[]<br>()<br>.<br>++ --
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Prefixinkrement- und dekrement<br>Einheitlich (~ reserviert)
+</td>
+<td> ++ --<br> + - ~&nbsp;!
+</td>
+<td>Rechts n. Links
+</td></tr>
+<tr>
+<td>Mulitplikation (% reserviert)
+</td>
+<td>* /&nbsp;%
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Additiv
+</td>
+<td> + -
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Bitweises Verschieben (reserviert)
+</td>
+<td>&lt;&lt;  &gt;&gt;
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Relation
+</td>
+<td>&lt;  &gt;  &lt;=  &gt;=
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Vergleich
+</td>
+<td>== &nbsp;!=
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Bitweises AND (reserviert)
+</td>
+<td>&amp;
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Bitweises XOR (reserviert)
+</td>
+<td>^
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Bitweises OR (reserviert)
+</td>
+<td> |
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Logisches AND
+</td>
+<td>&amp;&amp;
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Logisches XOR
+</td>
+<td>^^
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Logisches OR
+</td>
+<td> ||
+</td>
+<td>Links n. Rechts
+</td></tr>
+<tr>
+<td>Auswahl
+</td>
+<td>?:
+</td>
+<td>Rechts n. Links
+</td></tr>
+<tr>
+<td>Zuweisung<br>Arithmetrische Zuweisung<br>(Modulis, Shift und bitweise Op. reserviert)
+</td>
+<td>=<br> += -=  *=  /=  %= <br> &lt;&lt;=  &gt;&gt;= &amp;=  ^=  |=
+</td>
+<td>Rechts n. Links
+</td></tr>
+<tr>
+<td>Aufzählung
+</td>
+<td>,
+</td>
+<td>Links n. Rechts
+</td></tr>
+</tbody></table>
+</div>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Funktionen">Funktionen</span></h2>
+<p>Ein großer Vorteil von Hochsprachen ist u.A. die Möglichkeit oft 
+genutzte Codeteile in Funktionen (bzw. auch Prozeduren unter Pascal) zu 
+verpacken um so Flexibilität als auch Übersichtlichkeit zu steigern. Wer
+ schonmal was in C geschrieben hat, der wird sich jetzt sicherlich kein 
+Kopfzerbrechen machen müssen. Funktionen werden in glSlang genauso nach 
+folgendem Prinzip deklariert&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1">RückgabeTyp FunktionsName<span class="br0">(</span>Typ0 Argument0<span class="sy0">,</span> Typ1<span class="sy0">,</span> Argument1<span class="sy0">,</span> <span class="sy0">...</span> <span class="sy0">,</span> TypN<span class="sy0">,</span> ArgumentN<span class="br0">)</span>
+ <span class="br0">{</span>
+ <span class="kw1">return</span> RückgabeWert<span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Funktionen die <i>nichts zurückgeben</i> müssen mit dem RückgabeTyp <font face="Courier New, Courier, mono">void</font> deklariert werden, außerdem entfällt dann logischerweise das <font face="Courier New, Courier, mono">return</font>.
+ Falls die Funktion eines ihrere Argumente nach außen übergeben soll, 
+muss dieses Argument mit dem Typenqualifizierer out (Siehe Kapitel 4.2) 
+versehen werden. <i>Arrays</i> können nur als Eingabeargumente übergeben
+ werden und dürfen nich dimensioniert als Argument verwendet werden, 
+sondern müssen mit leeren Klammern argumentiert werden.
+Ein paar Beispiele&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">void</span> MeineFunktion<span class="br0">(</span><span class="kw3">float</span> EingabeWert<span class="sy0">;</span> <span class="kw2">out</span> <span class="kw3">float</span> AusgabeWert<span class="br0">)</span>
+ <span class="br0">{</span>
+ AusgabeWert <span class="sy0">=</span> EingabeWert <span class="sy0">*</span> MyConstValue<span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Diese Funktion gibt <i>nichts</i> zurück, aber gibt EingabeWert*MyConstValue im Ausgabeargument AusgabeWert nach außen.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">float</span> MeineFunktion<span class="br0">(</span><span class="kw3">float</span> EingabeWert<span class="br0">)</span>
+ <span class="br0">{</span>
+ <span class="kw1">return</span> EingabeWert <span class="sy0">*</span> MyConstValue<span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Bietet genau die selbe Funktionalität wie das Beispiel darüber. 
+Allerdings wird hier der berechnete Wert als Ergebnis der Funktion 
+zurückgeliefert.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">float</span> VektorSumme<span class="br0">(</span><span class="kw3">float</span> v<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span>
+ <span class="br0">{</span>
+ <span class="kw1">return</span> v<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span> <span class="sy0">+</span> v<span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span> <span class="sy0">+</span> v<span class="br0">[</span><span class="nu0">2</span><span class="br0">]</span> <span class="sy0">+</span> v<span class="br0">[</span><span class="nu0">3</span><span class="br0">]</span><span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Wie bereits gesagt darf ein Array als Argument keine Dimensionierung 
+enthalten. Wenn man der Funktion also ein Array übergibt, sollte man 
+vorher drauf achten das es entsprechend der in der Funktion genutzten 
+Indizes dimensioniert wurde.
+</p>
+<h2><span class="mw-headline" id="if-Anweisung">if-Anweisung</span></h2>
+<p>Selektion über eine if-Anweisung darf auch in keiner Hochsprache 
+fehlen. Genauso wie in C oder Delphi erwartet auch hier die If-Anweisung
+ einen boolschen Ausdruck (Wahr oder Falsch) und wird dann ausgeführt 
+(wahr) bzw. verzweigt auf ein (wenn vorhanden) else (falsch). 
+Verschachtelung ist wie erwartet auch möglich.
+</p>
+<ul>
+<li> <b>if</b>-Anweisung
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"> <span class="kw1">if</span> <span class="br0">(</span> Texturen <span class="br0">)</span>
+&nbsp; <span class="br0">{</span>
+&nbsp; &nbsp; FragColor <span class="sy0">=</span> texture<span class="br0">(</span> myTextureSampler<span class="sy0">,</span> UV <span class="br0">)</span><span class="sy0">;</span>
+&nbsp; <span class="br0">}</span>
+ <span class="kw1">else</span>
+&nbsp; <span class="br0">{</span>
+&nbsp; &nbsp; FragColor <span class="sy0">=</span> Color<span class="sy0">;</span>
+&nbsp; <span class="br0">}</span></pre></div></div>
+<p><b>Hinweis&nbsp;: </b> 
+Grafikkarten auf dem Stand des Shadermodells 2.0 (Radeon 9x00, Radeon 
+X8x0, GeForceFX 5x00) unterstüzten im Fragmentshader kein Early-Out, was
+ zur Folge hat das bei einer If-Anweisung immer alle Zweige ausgeführt 
+werden. Am Ende wird dann aber nur ein Ergebnis geschrieben, die anderen
+ verworfen. Auf solchen Karten bringen If-Anweisungen also im Normalfall
+ keine Geschwindigkeitssteigerung, sondern oft eher das Gegenteil.
+Neuere SM3.0-Karten (Radeon X1x00, GeForce6x00 und höher) ist dass nicht
+ mehr der Fall, da hier dynamische Verzweigungen und auch Early-Out von 
+der Hardware implementiert werden.
+</p>
+<h2><span class="mw-headline" id="Schleifen">Schleifen</span></h2>
+<p>Auch Schleifen, ein wichtiges Konzept jeder Hochsprache haben ihren 
+Weg in glSlang gefunden. Unterstützt werden folgende 
+Schleifentypen&nbsp;:
+</p>
+<ul>
+<li> <b>for</b>-Schleife
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw1">for</span> <span class="br0">(</span>Startausdruck<span class="sy0">;</span> Durchlaufbedingung<span class="sy0">;</span> Wiederholungsausdruck<span class="br0">)</span>
+  <span class="br0">{</span>
+   statement
+  <span class="br0">}</span></pre></div></div>
+<ul>
+<li> <b>while</b>-Schleife
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw1">while</span> <span class="br0">(</span>Durchlaufbedingung<span class="br0">)</span>
+ <span class="br0">{</span>
+  statement
+ <span class="br0">}</span></pre></div></div>
+<ul>
+<li> <b>do</b>-while-Schleife
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw1">do</span>
+ <span class="br0">{</span>
+  statement
+ <span class="br0">}</span>
+ <span class="kw1">while</span> <span class="br0">(</span>Durchlaufbedingung<span class="br0">)</span></pre></div></div>
+<p><b>Hinweis&nbsp;:</b> Grafikkarten auf dem Stand des Shadermodells 
+2.0 (Radeon 9x00, Radeon X8x0, GeForceFX 5x00) unterstüzten Schleifen 
+nicht in Hardware. Schleifen werden dann beim Kompilieren vom Treiber 
+entrollt, wodurch natürlich Shader mit weitaus mehr Instruktionen als 
+erwartet generiert werden. Von daher sollte man auf solchen Karten 
+möglichst auf Schleifen verzichten, oder diese nur recht kurz halten. 
+Bei SM3.0-Karten (Radeon X1x00, GeForce6x00 und höher) ist dass nicht 
+mehr der Fall.
+</p>
+<h1><span class="mw-headline" id="Eingebaute_Variablen.2C_Attribute_und_Konstanten">Eingebaute Variablen, Attribute und Konstanten</span></h1>
+<p>Nachdem wir uns nun lange genug mit den minderinterssanten Elementen 
+der glSlang-Syntax beschäftigt haben, gehts jetzt endlich an die 
+wirklich interessanten Dinge. Wie schon ARB_VP/ARB_FP bringt auch 
+glSlang jede Menge eingabauter Variablen, Attribute und Konstanten mit, 
+deren Aliase sie recht leicht identifizierbar machen (ganz im Gegensatz 
+zum Indexgewusel bei den DX-Shadern).
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Variablen_im_Vertex_Shader">Variablen im Vertex Shader</span></h2>
+<p>Exklusiv im Vertex Shader stehen die folgenden Variablen zur Verfügung&nbsp;:
+</p>
+<ul>
+<li> vec4 gl_Position    muss geschrieben werden
+</li>
+</ul>
+<dl>
+<dd>Dieser Variable <b>muss</b> im Vertexshader ein Wert zugewiesen 
+werden, wird dies nicht getan ist das Ergebnis (sprich die Position des 
+Vertex) undefiniert. Vorgesehen ist diese Variable für die <i>homogene Position des Vertex</i> und wird u.a. zum Clipping und Culling verwendet. Sie darf natürlich auch (mehrfach) geschrieben und ausgelesen werden.
+</dd>
+</dl>
+<ul>
+<li> float gl_PointSize    kann geschrieben werden
+</li>
+</ul>
+<dl>
+<dd>Diese Variable wurde dazu vorgesehen um dort im VertexShader die Punktgröße in Pixeln hineinzuschreiben.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_ClipVertex    kann geschrieben werden
+</li>
+</ul>
+<dl>
+<dd>Falls genutzt, sollten hier die Vertexkoordinaten die im 
+Zusammenhang mit benutzerdefinierten Clippingplanes genutzt werden 
+abgelegt werden. Wichtig ist, das gl_ClipVertex im selben 
+Koordinatenraum wie die Clippingplane definiert ist.
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Attribute_im_Vertex_Shader">Attribute im Vertex Shader</span></h2>
+<p>Folgende Attribute stehen nur im Vertex Shader zur Verfügung und <b>können nur gelesen werden</b>&nbsp;:
+</p>
+<ul>
+<li> vec4 gl_Color
+</li>
+</ul>
+<dl>
+<dd> Farbwert des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_SecondaryColor
+</li>
+</ul>
+<dl>
+<dd>Sekundärer Farbwert des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_Normal
+</li>
+</ul>
+<dl>
+<dd>Normale des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_Vertex
+</li>
+</ul>
+<dl>
+<dd>Koordinaten des Vertex;
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_MultiTexCoord0..7
+</li>
+</ul>
+<dl>
+<dd>Texturkoordinaten auf Textureinheit 0..7.
+</dd>
+</dl>
+<ul>
+<li> float gl_FogCoord
+</li>
+</ul>
+<dl>
+<dd>Nebelkoordinate des Vertex. 
+</dd>
+</dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Variablen_im_Fragment_Shader">Variablen im Fragment Shader</span></h2>
+<p>Im Fragment Shader sind folgende Variablen exklusiv nutzbar&nbsp;:
+</p>
+<ul>
+<li> vec4 gl_FragColor
+</li>
+</ul>
+<dl>
+<dd> Speichert den Farbwert des Fragmentes, der von folgenden Funktionen
+ der festen Pipeline genutzt wird. Wird dieser Variable nichts 
+zugewiesen, so ist ihr Inhalt undefiniert und darauf aufbauende 
+Ergebnisse ebenfalls.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_FragData[0..15]
+</li>
+</ul>
+<dl>
+<dd> Ersetzt gl_FragColor bei der Verwendung von multiplen Rendertargets. 
+</dd>
+</dl>
+<ul>
+<li> float gl_FragDepth
+</li>
+</ul>
+<dl>
+<dd> Durch schreiben dieser Variable kann man den von der festen Funktionspipeline ermittelten Tiefenwert überspringen, der mit <font face="Courier New, Courier, mono">gl_FragCoord.z</font>
+ ausgelesen werden kann. Wird dieser Wert nicht geschrieben, nutzen 
+folgende Funktionen der Pipeline den vorher fest berechneten Wert.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_FragCoord    nur lesen
+</li>
+</ul>
+<dl>
+<dd> In dieser Variable ist die Position des Fragmentes relativ zur 
+Fensterposition im Format x,y,z,1/w abgelegt, wobei z den von der festen
+ Funktionspipeline berechneten Tiefenwert enthält.
+</dd>
+</dl>
+<ul>
+<li> bool gl_FrontFacing    nur lesen
+</li>
+</ul>
+<dl>
+<dd> Gibt an ob das Fragment zu einer nach vorne zeigenden Primitive gehört (=true). 
+</dd>
+</dl>
+<p><br>
+Im Bezug auf <font face="Courier New, Courier, mono">gl_FragColor</font> und <font face="Courier New, Courier, mono">gl_FragDepth</font> sei noch anzumerken das diese <i>nicht</i> in den Wertebereich 0..1 gebracht werden müssen, da dies später durch die feste Funktionspipeline automatisch gemacht wird.
+</p>
+<h2><span class="mw-headline" id="Eingebaute_Varyings">Eingebaute Varyings</span></h2>
+<p>Wie bereits in Kapitel 4.2 erwähnt, stellen Varyings eine 
+Schnittstelle zwischen dem Vertex und dem Fragment Shader dar. Sie 
+werden im Vertex Shader geschrieben und können dann im Fragment Shader 
+ausgelesen werden, ohne das die folgenden Varyings dafür explizit 
+deklariert werden müssen&nbsp;:
+</p>
+<ul>
+<li> vec4 gl_FrontColor
+</li>
+</ul>
+<dl>
+<dd> Farbe der Vorderseite des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_BackColor
+</li>
+</ul>
+<dl>
+<dd> Farbe der Rückseite des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_FrontSecondaryColor
+</li>
+</ul>
+<dl>
+<dd> Sekundäre Farbe der Vorderseite des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_BackSecondaryColor
+</li>
+</ul>
+<dl>
+<dd> Sekundäre Farbe der Rückseite des Vertex.
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_TexCoord[x]
+</li>
+</ul>
+<dl>
+<dd> Texturkoordinaten des Vertex auf Textureinheit x, wobei x die von 
+der Hardware zur Verfügung gestellte Zahl der Textureinheiten-1 nicht 
+überschreiten darf.
+</dd>
+</dl>
+<ul>
+<li> float gl_FogFragCoord
+</li>
+</ul>
+<dl>
+<dd> Nebelkoordinate des Fragmentes. 
+</dd>
+</dl>
+<p>Die Varyings <font face="Courier New, Courier, mono">gl_FrontColor, gl_FrontSecondaryColor, gl_BackColor</font> und <font face="Courier New, Courier, mono">gl_BackSecondaryColor</font>
+ können im FragmentShader nur unter den Aliases gl_Color bzw. 
+gl_SecondaryColor gelesen werden. Welcher Wert des Vertex Shaders im 
+Fragment Shader dort eingesetzt wird ist abhängig davon ob das Fragment 
+zu einer nach vorne oder nach hinten zeigenden Primitive gehört.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Eingebaute_Konstanten">Eingebaute Konstanten</span></h2>
+<p>Auch diverse Konstanten wurden definiert um darauf schnell im Shader 
+zugreifen zu können. In den Klammern stehen die von einer 
+GL-Implementation als Mindestanforderung anzubietenden Werte. Alle 
+Konstanten sind sowohl im Vertex als auch im Fragment Shader 
+abrufbar&nbsp;:
+</p>
+<dl>
+<dd> OpenGL 1.0/1.2&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> int gl_MaxLights (8)
+</li>
+<li> int gl_MaxClipPlanes (6)
+</li>
+<li> int gl_MaxTextureUnits (2)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> ARB_Fragment_Program&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> int gl_MaxTextureCoordsARB (2)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> Vertex_Shader&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> int gl_MaxVertexAttributesGL2 (16)
+</li>
+<li> int gl_MaxVertexUniformFloatsGL2 (512)
+</li>
+<li> int gl_MaxVaryingFloatsGL2 (32)
+</li>
+<li> int gl_MaxVertexTextureUnitsGL2 (1)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> Fragment_Shader&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> int gl_MaxFragmentTextureUnitsGL2 (2)
+</li>
+<li> int gl_MaxFragmentUniformFloatsGL2 (64)
+</li>
+</ul>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Eingebaute_Uniformvariablen">Eingebaute Uniformvariablen</span></h2>
+<p>Um den Zugriff auf OpenGL-Staten zu vereinfachen wurden in glSlang 
+diverse Uniformvariablen zur direkten Verwendung im Shader eingebaut. 
+Wie gewohnt wurden auch hier sinnvolle Namen verwendet, so dass eine 
+tiefere Erklärung unnötig sein dürfte&nbsp;:
+</p>
+<ul>
+<li> mat4 gl_ModelViewMatrix
+</li>
+<li> mat4 gl_ProjectionMatrix
+</li>
+<li> mat4 gl_ModelViewProjectionMatrix
+</li>
+<li> mat3 gl_NormalMatrix
+</li>
+</ul>
+<dl>
+<dd><font face="Courier New, Courier, mono">gl_NormalMatrix</font> repräsentiert die invertierten und anschließend transponierten oberen 3x3 Werte der <font face="Courier New, Courier, mono">gl_ModelViewMatrix</font>.
+</dd>
+</dl>
+<ul>
+<li> mat4 gl_TextureMatrix[gl_MaxTextureCoordsARB]
+</li>
+</ul>
+<ul>
+<li> float gl_NormalScale
+</li>
+</ul>
+<dl>
+<dd> Gibt den unter OpenGL festgelegten Faktor zur Skalierung der Normalen zurück.
+</dd>
+</dl>
+<ul>
+<li> struct gl_DepthRangeParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_DepthRangeParameters
+<span class="br0">{</span>
+ <span class="kw3">float</span> near<span class="sy0">;</span>
+ <span class="kw3">float</span> far<span class="sy0">;</span>
+ <span class="kw3">float</span> diff<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_DepthRangeParameters <span class="kw6">gl_DepthRange</span><span class="sy0">;</span></pre></div></div>
+<dl>
+<dd> Clippingplanes&nbsp;: 
+</dd>
+</dl>
+<ul>
+<li> vec4 gl_ClipPlane[gl_MaxClipPlanes]
+</li>
+</ul>
+<ul>
+<li>struct gl_PointParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_PointParameters
+<span class="br0">{</span>
+ <span class="kw3">float</span> size<span class="sy0">;</span>
+ <span class="kw3">float</span> sizeMin<span class="sy0">;</span>
+ <span class="kw3">float</span> sizeMax<span class="sy0">;</span>
+ <span class="kw3">float</span> fadeThresholdSize<span class="sy0">;</span>
+ <span class="kw3">float</span> distanceConstantAttenuation<span class="sy0">;</span>
+ <span class="kw3">float</span> distanceLinearAttenuation<span class="sy0">;</span>
+ <span class="kw3">float</span> distanceQuadraticAttenuation<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_PointParameters <span class="kw6">gl_Point</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li>struct gl_MaterialParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_MaterialParameters
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> emission<span class="sy0">;</span>
+ <span class="kw3">vec4</span> ambient<span class="sy0">;</span>
+ <span class="kw3">vec4</span> diffuse<span class="sy0">;</span>
+ <span class="kw3">vec4</span> specular<span class="sy0">;</span>
+ <span class="kw3">float</span> shininess<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_MaterialParameters <span class="kw6">gl_FrontMaterial</span><span class="sy0">;</span>
+gl_MaterialParameters <span class="kw6">gl_BackMaterial</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li>struct gl_LightSourceParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_LightSourceParameters
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> ambient<span class="sy0">;</span>
+ <span class="kw3">vec4</span> diffuse<span class="sy0">;</span>
+ <span class="kw3">vec4</span> specular<span class="sy0">;</span>
+ <span class="kw3">vec4</span> position<span class="sy0">;</span>
+ <span class="kw3">vec4</span> halfVector<span class="sy0">;</span>
+ <span class="kw3">vec3</span> spotDirection<span class="sy0">;</span>
+ <span class="kw3">float</span> spotExponent<span class="sy0">;</span>
+ <span class="kw3">float</span> spotCutoff<span class="sy0">;</span>
+ <span class="kw3">float</span> spotCosCutoff<span class="sy0">;</span>
+ <span class="kw3">float</span> constantAttenuation<span class="sy0">;</span>
+ <span class="kw3">float</span> linearAttenuation<span class="sy0">;</span>
+ <span class="kw3">float</span> quadraticAttenuation<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_LightSourceParameters <span class="kw6">gl_LightSource</span><span class="br0">[</span><span class="kw6">gl_MaxLights</span><span class="br0">]</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li>struct gl_LightModelParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_LightModelParameters
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> ambient<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_LightModelParameters <span class="kw6">gl_LightModel</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li>struct gl_LightModelProducts
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_LightModelProducts
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> sceneColor<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_LightModelProducts <span class="kw6">gl_FrontLightModelProduct</span><span class="sy0">;</span>
+gl_LightModelProducts <span class="kw6">gl_BackLightModelProduct</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li>struct gl_LightProducts
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_LightProducts
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> ambient<span class="sy0">;</span>
+ <span class="kw3">vec4</span> diffuse<span class="sy0">;</span>
+ <span class="kw3">vec4</span> specular<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_LightProducts <span class="kw6">gl_FrontLightProduct</span><span class="br0">[</span><span class="kw6">gl_MaxLights</span><span class="br0">]</span><span class="sy0">;</span>
+gl_LightProducts <span class="kw6">gl_BackLightProduct</span><span class="br0">[</span><span class="kw6">gl_MaxLights</span><span class="br0">]</span><span class="sy0">;</span></pre></div></div>
+<ul>
+<li> vec4 gl_TextureEnvColor[gl_MaxFragmentTextureUnitsGL2]
+</li>
+<li> vec4 gl_EyePlaneS[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_EyePlaneT[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_EyePlaneR[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_EyePlaneQ[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_ObjectPlaneS[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_ObjectPlaneT[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_ObjectPlaneR[gl_MaxTextureCoordsARB]
+</li>
+<li> vec4 gl_ObjectPlaneQ[gl_MaxTextureCoordsARB]
+</li>
+</ul>
+<ul>
+<li>struct gl_FogParameters
+</li>
+</ul>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">struct</span> gl_FogParameters
+<span class="br0">{</span>
+ <span class="kw3">vec4</span> color<span class="sy0">;</span>
+ <span class="kw3">float</span> density<span class="sy0">;</span>
+ <span class="kw3">float</span> start<span class="sy0">;</span>
+ <span class="kw3">float</span> end<span class="sy0">;</span>
+ <span class="kw3">float</span> scale<span class="sy0">;</span>
+<span class="br0">}</span><span class="sy0">;</span>
+gl_FogParameters <span class="kw6">gl_Fog</span><span class="sy0">;</span></pre></div></div>
+<p>Diese recht umfangreiche GL-Stateliste sollte eigentlich jeden Bedarf
+ decken und momentan gibts kaum einen OpenGL-Status den man so nicht in 
+einem Shader abfragen bzw. nutzen kann.
+</p>
+<h1><span class="mw-headline" id="Eingebaute_Funktionen">Eingebaute Funktionen</span></h1>
+<p>glSlang ist mit diversen Skalar- und Vektorfunktionen ausgestattet, 
+die teilweise (idealerweise) sogar direkt in der Hardware ausgeführt 
+werden, weshalb einer fertigen Funktion ggü. gleichwertigen eigenen 
+Berechnungen immer der Vorzug zu geben ist.
+</p>
+<table style="background-color:#d4e8fe; border: 2px solid #291852; margin-top: 2px; margin-bottom: 2px;" cellpadding="0" cellspacing="8" border="0">
+<tbody><tr>
+<td> <a href="http://wiki.delphigl.com/index.php/Datei:Info_DGL.png" class="image"><img alt="Info DGL.png" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/25px-Info_DGL.png" srcset="/images/d/dd/Info_DGL.png 1.5x, /images/d/dd/Info_DGL.png 2x" height="25" width="25"></a>
+</td>
+<td>  <i>genType</i> kann vom Type float, vec2, vec3 oder vec4 sein, <i>mat</i> vom Typ mat2, mat3 oder mat4.
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Trigonometrie_und_Winkel">Trigonometrie und Winkel</span></h2>
+<p>Alle übergebenen Winkel sollten, soweit nicht anders vermerkt, in Radien angegeben werden.
+</p>
+<ul>
+<li> genType radians (genType degrees)
+</li>
+</ul>
+<dl>
+<dd> Wandelt von Grad nach Radien. 
+</dd>
+</dl>
+<ul>
+<li> genType degrees (genType radians)
+</li>
+</ul>
+<dl>
+<dd> Wandelt von Radien nach Grad.
+</dd>
+</dl>
+<ul>
+<li> genType sin (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Sinus von x zurück, wobei x in Radien angegeben wird.
+</dd>
+</dl>
+<ul>
+<li> genType cos (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Kosinus von x zurück, wobei x in Radien angegeben wird.
+</dd>
+</dl>
+<ul>
+<li> genType tan (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Tangens von x zurück, wobei x in Radien angegeben wird.
+</dd>
+</dl>
+<ul>
+<li> genType asin (genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert den Arcsinus von x zurück, also den Winkel dessen Sinus x ergeben würde.
+</dd>
+</dl>
+<ul>
+<li> genType acos (genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert den Arckosinus von x zurück, also den Winkel dessen Cosinus x ergeben würde.
+</dd>
+</dl>
+<ul>
+<li> genType atan (genType y, genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert den Winkel zurück, dessen Tangens x/y ergeben würde.
+</dd>
+</dl>
+<ul>
+<li> genType atan (genType y_over_x)
+</li>
+</ul>
+<dl>
+<dd> Liefert den Winkel zurück, dessen Tangens x über y ergeben würde.
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Hyperbolisch">Hyperbolisch</span></h2>
+<ul>
+<li> genType sinh (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Sinus Hyperbolicus von x zurück. (return = (exp(x) - exp(-x)) * 0.5; )
+</dd>
+</dl>
+<ul>
+<li> genType cosh (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Kosinus Hyperbolicus von x zurück. (return = (exp(x) + exp(-x)) * 0.5; )
+</dd>
+</dl>
+<ul>
+<li> genType tanh (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Tangens Hyperbolicus von x zurück. (return = (exp(x) - exp(-x)) / (exp(x) + exp(-x)); )
+</dd>
+</dl>
+<ul>
+<li> genType asinh (genType angle)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Areasinus Hyperbolicus von x zurück. (return = log(x + sqrt(x * x + 1.0)); )
+</dd>
+</dl>
+<ul>
+<li> genType acosh (genType angle)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Areakosinus Hyperbolicus von x zurück. (return = log(x + sqrt(x * x - 1.0)); )
+</dd>
+</dl>
+<ul>
+<li> genType atanh (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Areatangens Hyperbolicus von x zurück. (return = log((1.0 + x) / (1.0 - x)) * 0.5; )
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Exponentiell">Exponentiell</span></h2>
+<ul>
+<li> genType pow (genType x, genType y)
+</li>
+</ul>
+<dl>
+<dd> Gibt x hoch y zurück.
+</dd>
+</dl>
+<ul>
+<li> genType exp (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt e(Eulerischezahl ≈ 2.7182) hoch x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType log (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Logarithmus zur Basis e(Eulerischezahl ≈ 2.7182) von x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType exp2 (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt 2 hoch x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType log2 (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Logarithmus zur Basis 2 von x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType sqrt (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt die Wurzel von x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType inversesqrt (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt die umgekehrte Wurzel von x zurück.
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Standardfunktionen">Standardfunktionen</span></h2>
+<ul>
+<li> genType abs (genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert den absoluten Wert von x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType sign (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt -1.0 zurück, wenn x &lt; 0.0, 0.0 wenn x = 0.0 und 1.0 wenn x &gt; 0.0.
+</dd>
+</dl>
+<ul>
+<li> genType roundeven(genType x)
+</li>
+</ul>
+<dl>
+<dd> Rundet auf den nächsten Integerwert und gibt diesen zuück. Bei ".5" Werten wird zur nächsten geraden Zahl gerundet.
+</dd>
+</dl>
+<ul>
+<li> genType round(genType x)
+</li>
+</ul>
+<dl>
+<dd> Rundet auf den nächsten Integerwert und gibt diesen zuück. ".5" Werte werden je nach Implementation anders behandelt.
+</dd>
+</dl>
+<ul>
+<li> genType trunc(genType x)
+</li>
+</ul>
+<dl>
+<dd> Rundet auf den nächsten Integerwert dessen Absoluterwert nicht größer ist als der Absolutewert von x
+</dd>
+</dl>
+<ul>
+<li> genType floor (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt denn größten Integerwert zurück, der kleiner oder gleich x ist.
+</dd>
+</dl>
+<ul>
+<li> genType ceil (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den kleinsten Integerwert zurück, der größer oder gleich x ist.
+</dd>
+</dl>
+<ul>
+<li> genType fract (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Nachkommateil von x zurück.
+</dd>
+</dl>
+<ul>
+<li> genType mod (genType x, float y) 
+</li>
+<li> genType mod (genType x, genType y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den Modulus zurück. (result = x - y * floor(x / y)) 
+</dd>
+</dl>
+<ul>
+<li> genType min (genType x, genType y) 
+</li>
+<li> genType min (genType x, float y)
+</li>
+</ul>
+<dl>
+<dd> Liefert y zurück wenn y &lt; x, ansonsten x. 
+</dd>
+</dl>
+<ul>
+<li> genType max (genType x, genType y) 
+</li>
+<li> genType max (genType x, float y)
+</li>
+</ul>
+<dl>
+<dd> Liefert y zurück wenn x &lt; y, ansonsten x. 
+</dd>
+</dl>
+<ul>
+<li> genType clamp (genType x, genType minVal, genType maxVal) 
+</li>
+<li> genType clamp (genType x, float minVal, float maxVal)
+</li>
+</ul>
+<dl>
+<dd> Zwängt x in den Bereich minVal ... maxVal .  (return = min(minVal, max(maxVal, x)))
+</dd>
+</dl>
+<ul>
+<li> genType mix (genType x, genType y, genType a)
+</li>
+<li> genType mix (genType x, genType y, float a)
+</li>
+</ul>
+<dl>
+<dd> Liefert den linearen Blend zwischen x und y zurück. (result = x * (1 - a) + y * a) 
+</dd>
+</dl>
+<ul>
+<li> genType step (genType edge, genType x)
+</li>
+<li> genType step (float edge, genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert 0.0 zurück, wenn x &lt; edge, ansonsten 1.0. 
+</dd>
+</dl>
+<ul>
+<li> genType smoothstep (genType edge0, genType edge1, genType x)
+</li>
+<li> genType smoothstep (float edge0, float edge1, genType x)
+</li>
+</ul>
+<dl>
+<dd> Liefert 0.0 zurück, wenn x &lt;= edge0 und 1.0 wenn x &gt;= edge1. 
+Dazwischen wird eine weiche Hermite Interpolation durchgeführt.
+<dl>
+<dd>float t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+</dd>
+<dd>result = t * t * (3.0 - 2.0 * t)
+</dd>
+</dl>
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Geometrie">Geometrie</span></h2>
+<ul>
+<li> float length (genType x)
+</li>
+</ul>
+<dl>
+<dd> Gibt die Länge des Vektors x (= sqrt(x[0]² + x[1]² + ... + x[n]²) zurück. 
+</dd>
+</dl>
+<ul>
+<li> float distance (genType p0, genType p1)
+</li>
+</ul>
+<dl>
+<dd> Gibt die Distanz zwischen den zwei Vektoren p0 un p1 (= length(p0-p1)) zurück. 
+</dd>
+</dl>
+<ul>
+<li> float dot (genType x, genType y)
+</li>
+</ul>
+<dl>
+<dd> Gibt das Punktprodukt von x und y zurück (=x[0]*y[0] + x[1]*y[1] + ... + x[n]*y[n]). 
+</dd>
+</dl>
+<ul>
+<li> vec3 cross (vec3 x, vec3 y)
+</li>
+</ul>
+<dl>
+<dd> Gibt das Kreuzprodukt von x und y zurück. 
+</dd>
+</dl>
+<ul>
+<li> genType normalize (genType x)
+</li>
+</ul>
+<dl>
+<dd> Normalisiert den Vektor x auf die Länge 1. 
+</dd>
+</dl>
+<ul>
+<li> vec4 ftransform()
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader. Die Funktion stellt sicher, das das 
+eingehende Vertex haargenau so transformiert wird wie in der festen 
+Funktionspipeline. gl_Position = ftransform() wird dann also gebraucht, 
+wenn in mehreren Durchgängen sowohl im Shader als auch in der festen 
+Pipeline gerendert wird, um sicherzustellen das in beiden Fällen die 
+gleiche Vertexposition herauskommt. 
+</dd>
+</dl>
+<ul>
+<li> genType faceforward (genType N, genType I, genType Nref)
+</li>
+</ul>
+<dl>
+<dd> Gibt einen nach vorne zeigenden Vektor N zurück. (If dot(NRef, I) &lt; 0 return N else return -N) 
+</dd>
+</dl>
+<ul>
+<li> genType reflect (genType l, genType N)
+</li>
+</ul>
+<dl>
+<dd> Gibt den an der Flächenausrichtung N reflektierten Vektor I zurück. (result = l - 2.0 * dot(N,I) * N; )
+</dd>
+</dl>
+<ul>
+<li> genType refract (genType l, genType N, float eta)
+</li>
+</ul>
+<dl>
+<dd> Gibt den an der Flächenausrichtung N mit dem Brechungsindex eta gebrochenen Vektor l zurück. 
+<dl>
+<dd>gentype k = 1.0 - eta * eta * (1.0 - dot(N, l) * dot(N, l))
+</dd>
+<dd>if (k &lt; 0.0)
+<dl>
+<dd>result = 0.0
+</dd>
+</dl>
+</dd>
+<dd>else 
+<dl>
+<dd>result = eta * l - (eta * dot(N, l) * sqrt(k)) * N
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Matrixfunktionen">Matrixfunktionen</span></h2>
+<ul>
+<li> mat matrixCompMult (mat x, mat y)
+</li>
+</ul>
+<dl>
+<dd> Multipliziert Matrix X mit Matrix Y komponentenweise. Um eine 
+normale lineare Matrixmultiplikation durchzuführen, sollte der 
+"*"-Operator genutzt werden.
+</dd>
+</dl>
+<ul>
+<li> mat transpose (mat m)
+</li>
+</ul>
+<dl>
+<dd> Gibt die transponierte Matrix von m zurück.
+</dd>
+</dl>
+<ul>
+<li> mat invert (mat m)
+</li>
+</ul>
+<dl>
+<dd> Gibt die invertierte Matrix von m zurück. Also die Matrix, die mit m multipliziert die Normalmatrix ergeben würde.
+</dd>
+</dl>
+<ul>
+<li> mat outerProduct(vec c, vec r)
+</li>
+</ul>
+<dl>
+<dd> Gibt eine eine Matrix als Ergebnis der linearen (return[m, n] = c[m] * r[n])-Operation zurück.
+</dd>
+</dl>
+<h2><span class="mw-headline" id="Vektorvergleiche">Vektorvergleiche</span></h2>
+<p>Die meisten Vektorvergleichsfunktionen liefern als Ergebnis einen 
+boolvektor zurück, da die Vergleiche per Komponente stattfinden. Wenn 
+man also x = vec4(1.0, 3.0, 0.0, 0.0) mit y = vec4(2.0, 1.5, 1.5, 0.0) 
+via lessThan(x, y) vergleicht, erhält man als Ergebnis bvec(true, false,
+ true, false).
+</p>
+<ul>
+<li> bvec lessThan (vec x, vec y)
+</li>
+<li> bvec lessThan (ivec x, ivec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x &lt; y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bvec lessThanEqual (vec x, vec y)
+</li>
+<li> bvec lessThanEqual (ivec x, ivec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x &lt;= y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bvec greaterThan (vec x, vec y)
+</li>
+<li> bvec greaterThan (ivec x, ivec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x &gt; y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bvec greaterThanEqual (vec x, vec y)
+</li>
+<li> bvec greaterThanEqual (ivec x, ivec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x &gt;= y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bvec equal (vec x, vec y)
+</li>
+<li> bvec equal (ivec x, ivec y)
+</li>
+<li> bvec equal (bvec x, bvec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x == y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bvec notEqual (vec x, vec y)
+</li>
+<li> bvec notEqual (ivec x, ivec y)
+</li>
+<li> bvec notEqual (bvec x, bvec y)
+</li>
+</ul>
+<dl>
+<dd> Gibt den komponentenweisen Vergleich x&nbsp;!= y zurück. 
+</dd>
+</dl>
+<ul>
+<li> bool any (bvec x)
+</li>
+</ul>
+<dl>
+<dd> Liefert true zurück, wenn mindestens eine der Komponenten von x true ist.
+</dd>
+</dl>
+<ul>
+<li> bool all (bvec x)
+</li>
+</ul>
+<dl>
+<dd> Liefert true zurück, wenn alle Komponenten von x true sind. 
+</dd>
+</dl>
+<ul>
+<li> bvec not (bvec x)
+</li>
+</ul>
+<dl>
+<dd> Liefert die logische Negation von x zurück. 
+</dd>
+</dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Texturenzugriffe">Texturenzugriffe</span></h2>
+<p>Diese wichtige Funktionskategorie dient dazu, Werte aus einer an eine
+ Textureinheit gebundenen Textur zu ermitteln. Die Texturenzugriffe 
+können sowohl im Vertex (!) als auch im Fragment Shader ausgeführt 
+werden, wobei der optionale Parameter bias im Vertex Shader ignoriert 
+wird. Allerdings gibt es zusätzlich Funktionen die auf "Lod" enden und 
+nur im Vertex Shader genutzt werden dürfen um eben dieses Manko zu 
+umgehen. Funktionen mit dem Suffix "Proj" geben einen projizierten 
+Texturenwert zurück.
+</p>
+<dl>
+<dd> <b>1D-Texturen&nbsp;:</b>
+</dd>
+</dl>
+<ul>
+<li> vec4 texture1D (sampler1D sampler, float coord [, float bias])
+</li>
+<li> vec4 texture1DProj (sampler1D sampler, vec2 coord [, float bias])
+</li>
+<li> vec4 texture1DProj (sampler1D sampler, vec4 coord [, float bias])
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> vec4 texture1DLod (sampler1D sampler, float coord, float lod)
+</li>
+<li> vec4 texture1DProjLod (sampler1D sampler, vec2 coord, float lod)
+</li>
+<li> vec4 texture1DProjLod (sampler1D sampler, vec4 coord, float lod)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> <b>2D-Texturen&nbsp;:</b>
+</dd>
+</dl>
+<ul>
+<li> vec4 texture2D (sampler2D sampler, vec2 coord [, float bias])
+</li>
+<li> vec4 texture2DProj (sampler2D sampler, vec3 coord [, float bias])
+</li>
+<li> vec4 texture2DProj (sampler2D sampler, vec4 coord [, float bias])
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader&nbsp;: 
+</dd>
+</dl>
+<ul>
+<li> vec4 texture2DLod (sampler2D sampler, vec2 coord, float lod)
+</li>
+<li> vec4 texture2DProjLod (sampler2D sampler, vec3 coord, float lod)
+</li>
+<li> vec4 texture2DProjLod (sampler2D sampler, vec4 coord, float lod)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> <b>3D-Texturen&nbsp;:</b>
+</dd>
+</dl>
+<ul>
+<li> vec4 texture3D (sampler3D sampler, vec3 coord [, float bias])
+</li>
+<li> vec4 texture3DProj (sampler3D sampler, vec4 coord [, float bias])
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader&nbsp;: 
+</dd>
+</dl>
+<ul>
+<li> vec4 texture3DLod (sampler3D sampler, vec3 coord, float lod)
+</li>
+<li> vec4 texture3DProjLod (sampler3D sampler, vec4 coord, float lod)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> <b>Cubemap&nbsp;:</b>
+</dd>
+</dl>
+<ul>
+<li> vec4 textureCube (samplerCube sampler, vec3 coord [, float bias])
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader&nbsp;: 
+</dd>
+</dl>
+<ul>
+<li>vec4 textureCubeLod (samplerCube sampler, vec3 coord, float lod)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> <b>Tiefentextur (Shadowmap)&nbsp;:</b>
+</dd>
+</dl>
+<ul>
+<li> vec4 shadow1D (sampler1DShadow sampler, vec3 coord [, float bias])
+</li>
+<li> vec4 shadow2D (sampler2DShadow sampler, vec3 coord [, float bias])
+</li>
+<li> vec4 shadow1DProj (sampler1DShadow sampler, vec4 coord [, float bias])
+</li>
+<li> vec4 shadow2DProj (sampler2DShadow sampler, vec4 coord [, float bias])
+</li>
+</ul>
+<dl>
+<dd> Nur im Vertex Shader&nbsp;:
+</dd>
+</dl>
+<ul>
+<li> vec4 shadow1DLod (sampler1DShadow sampler, vec3 coord, float lod)
+</li>
+<li> vec4 shadow2DLod (sampler2DShadow sampler, vec3 coord, float lod)
+</li>
+<li> vec4 shadow1DProjLod (sampler1DShadow sampler, vec4 coord, float lod)
+</li>
+<li> vec4 shadow2DProjLod (sampler2DShadow sampler, vec4 coord, float lod)
+</li>
+</ul>
+<p><br>
+</p>
+<dl>
+<dd> <b>Texturegröße&nbsp;:</b>
+</dd>
+</dl>
+<p>Mit den textureSize-Befehlen kann die Größe einer Textur bestimmt werden, wobei lod das Mipmaplevel angibt:
+</p>
+<ul>
+<li>int textureSize(sampler1D sampler, int lod)
+</li>
+<li>ivec2 textureSize(sampler2D sampler, int lod)
+</li>
+<li>ivec3 textureSize(sampler3D sampler, int lod)
+</li>
+<li>ivec2 textureSize(samplerCube sampler, int lod)
+</li>
+<li>int textureSize(sampler1DShadow sampler, int lod)
+</li>
+<li>ivec2 textureSize(sampler2DShadow sampler, int lod)
+</li>
+</ul>
+<p><br>
+</p><p>Wie bereits eingangs gesagt ist dieses Kapitel ein sehr 
+wichtiges, denn eine 3D-Szene ohne Texturen ist heute kaum denkbar. 
+Darüber hinaus lassen sich durch Texturenzugriffe recht viele 
+interessante Sachen machen, z.B. ein einfacher Blurfilter oder das freie
+ überblenden bestimmter Texturenteile. Deshalb führe ich hier kurz ein 
+paar Beispiele an, welche die Nutzung dieser Funktionen verdeutlichen 
+sollen&nbsp;:
+</p>
+<h3><span class="mw-headline" id="Beispiel_A_2">Beispiel A</span></h3>
+<p>Eine Textur gebunden die einfach ausgegeben werden soll
+</p><p><i>Im Vertex Shader</i>&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+ <span class="kw6">gl_Position</span>     <span class="sy0">=</span> <span class="kw6">gl_ModelViewProjectionMatrix</span> <span class="sy0">*</span> <span class="kw6">gl_Vertex</span><span class="sy0">;</span>
+ <span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span>  <span class="sy0">=</span> <span class="kw6">gl_MultiTexCoord0</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div> 
+<p>Der Vertex Shader ist recht minimal. Neben der homogenen 
+Vertexposition leiten wir hier nur die im OpenGL-Programm angegebenen 
+Texturkoordinaten weiter. <i>Dies ist aber unbedingt nötig!</i> Ohne die
+ letzte Zeile hätten wir im Fragment Shader keine gültigen 
+Texturkoordinaten auf TMU0, was in einer Fehldarstellung enden würde.
+</p><p><i>im Fragment Shader</i>&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">sampler2D</span> texSampler<span class="sy0">;</span>
+&nbsp;
+<span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+ <span class="kw6">gl_FragColor</span> <span class="sy0">=</span> <span class="kw5">texture2D</span><span class="br0">(</span>texSampler<span class="sy0">,</span> <span class="kw3">vec2</span><span class="br0">(</span><span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Zuerst deklarieren wir hier einen 2D-Texturensampler, wichtig&nbsp;: <b>Texturensampler müssen IMMER als uniform deklariert werden!</b>
+ In der Hauptfunktion weisen wir dann einfach den über die Funktion 
+texture2D aus unserer gebundenen Textur ausgelesenen Farbwert, anhand 
+der vom Vertex Shader übergebenen Texturkoordinaten, zu.
+</p>
+<table style="background-color:#d4e8fe; border: 2px solid #291852; margin-top: 2px; margin-bottom: 2px;" cellpadding="0" cellspacing="8" border="0">
+<tbody><tr>
+<td> <a href="http://wiki.delphigl.com/index.php/Datei:Info_DGL.png" class="image"><img alt="Info DGL.png" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/25px-Info_DGL.png" srcset="/images/d/dd/Info_DGL.png 1.5x, /images/d/dd/Info_DGL.png 2x" height="25" width="25"></a>
+</td>
+<td> Der Uniform-Integer für den Sampler referenziert <b>nicht</b> den Namen (die ID) des Texturobjektes, sondern die Nummer der Texturunit.
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Beispiel_B_2">Beispiel B</span></h3>
+<p>Zwei Texturen, jeweils auf TMU0 und TMU1. Fragmentfarbe soll eine Multiplikation der beiden Texturen darstellen.
+</p><p>In diesem Beispielfall (der recht häufig vorkommt) müssen wir im Programm festlegen, <i>welcher Sampler welche Textureinheit adressiert</i>,
+ genau deshalb müssen die Texturensampler auch als uniform deklariert 
+werden. Die Standardtextureneinheit eines Samplers ist TMU0, was in 
+unserem Falle natürlich nicht brauchbar ist. Also müssen wir unserem 
+zweiten Textursampler im Programm mitteilen das er seine Daten aus TMU1 
+beziehen soll&nbsp;:
+</p>
+<pre>glUniform1iARB(glSlang_GetUniLoc(ProgramObject, 'texSamplerTMU1'), 1);
+</pre>
+<p>Dies ist also unbedingt zu machen, sobald ein Texturensampler eine 
+Textureinheit &gt; GL_TEXTURE_0 adressieren will. Die Textureneinheit 
+des Samplers lässt sich also nicht im Shader selbst festlegen. Der 
+Fragment Shader ist nun allerdings schnell hergeleitet (Vertex Shader 
+verändert sich nicht, da TMU1 die Texturkoordinaten auch von TMU0 
+bezieht)&nbsp;:
+</p><p><br>
+im Fragment Shader&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">sampler2D</span> texSamplerTMU0<span class="sy0">;</span>
+<span class="kw2">uniform</span> <span class="kw3">sampler2D</span> texSamplerTMU1<span class="sy0">;</span>
+&nbsp;
+&nbsp;
+<span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+    <span class="kw6">gl_FragColor</span> <span class="sy0">=</span> <span class="kw5">texture2D</span><span class="br0">(</span>texSamplerTMU0<span class="sy0">,</span> <span class="kw3">vec2</span><span class="br0">(</span><span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span> <span class="sy0">*</span>
+                   <span class="kw5">texture2D</span><span class="br0">(</span>texSamplerTMU1<span class="sy0">,</span> <span class="kw3">vec2</span><span class="br0">(</span><span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<h2><span class="mw-headline" id="Noisefunktionen">Noisefunktionen</span></h2>
+<p>Sowohl im Vertex als auch im Fragment Shader lassen sich <a href="http://wiki.delphigl.com/index.php/GLSL_noise" title="GLSL noise">Noisefunktionen</a>
+ nutzen, mit deren Hilfe sich eine gewisse "Zufälligkeit" simulieren 
+lässt (wirklich zufällige Werte sind es natürlich nicht). Ein 
+zurückgegebener Wert liegt dabei immer im Bereich [-1..1] und ist immer 
+bei gleichem Eigabewert auch immer gleich. Die Verwendung empfiehlt sich
+ derzeit allerdings eher nicht, da nur die 3DLabs Treiber die Funktionen
+ unterstützen und eine Noisetextur wahrscheinlich performanter ist.
+</p>
+<ul>
+<li> float noise1 (genType x)
+</li>
+<li> vec2 noise2 (genType x)
+</li>
+<li> vec3 noise3 (genType x)
+</li>
+<li> vec4 noise4 (genType x)
+</li>
+</ul>
+<h2><span class="mw-headline" id="Discard">Discard</span></h2>
+<p>Eigentlich keine Funktion, sondern eine Abbruchbedingung <b>nur im Fragment Shader</b>. Das Schlüsselwort <font face="Courier New, Courier, mono">discard</font>
+ verwirft das aktuell bearbeitete Fragment und beendet gleichzeitig den 
+Shader. Es kann z.B. genutzt werden um Alphamasking manuell 
+durchzuführen.
+Man sollte dabei jedoch beachten dass ein Großteil der aktuellen 
+Hardware kein "early-out" (frühes Beenden) im Fragmentshader 
+unterstützt. Wenn dort also ein <font face="Courier New, Courier, mono">discard</font>
+ auftaucht, wird trotzdem auch der Code danach ausgeführt und einfach 
+verworfen. Einen Geschwindigkeitsvorteil durch diesen Befehl wird man 
+also erst auf neueren Karten feststellen, die dieses Faeature auch so 
+unterstützen wie es angedacht war. 
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="Beispielshader">Beispielshader</span></h1>
+<p>Wen bis hierhin nicht der Mut verlassen hat, und wer aufmerksam 
+gelesen hat, dürfte jetzt also zumindest in der Lage sein kleinere 
+Shader in glSlang zu schreiben und diese auch im Programm zu nutzen. Ich
+ habe im Themenbereich "glSlang" versucht alle Bereiche der 
+Shadersprache selbst anzusprechen und hoffe das auch brauchbar 
+rübergebracht zu haben. Um oben erlerntes (hoffe ich doch mal) nochmal 
+zu vertiefen werde ich jetzt (wie ich das bereits bei meinem 
+ARB_VP-Tutorial getan habe) einen simplen Beispielshader (Vertex und 
+Fragment Shader) auseinanderpflücken um so u.a. auch die 
+Programmstruktur für alle die in C nicht so bewandert sind zu erörtern.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Der_Vertex_Shader">Der Vertex Shader</span></h2>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">vec4</span> GlobalColor<span class="sy0">;</span>
+&nbsp;
+<span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+ <span class="kw6">gl_Position</span>     <span class="sy0">=</span> <span class="kw6">gl_ModelViewProjectionMatrix</span> <span class="sy0">*</span> <span class="kw6">gl_Vertex</span><span class="sy0">;</span>
+ <span class="kw6">gl_FrontColor</span>   <span class="sy0">=</span> <span class="kw6">gl_Color</span> <span class="sy0">*</span> GlobalColor<span class="sy0">;</span>
+ <span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span>  <span class="sy0">=</span> <span class="kw6">gl_MultiTexCoord0</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Wie gesagt recht simpel. Angefangen wird mit der Deklaration einer globalen Uniformvariable namens <font face="Courier New, Courier, mono">GlobalColor</font>.
+ Wie wir uns erinnern gibt der Typenqualifizierer uniform an, das wir 
+den Wert dieser Variable (ein 4-Komponentenvektor, da Farbwerte aus 
+R,G,B und A bestehen) in unserem Programm an den Shader übermitteln.
+</p><p>Danach gehts ohne Umwege direkt in unsere Hauptfunktion, da wir 
+im Vertex Shader keine anderen Funktionen benötigen. Dort berechnen wir 
+zuerst die homogene Position unseres Vertex, die sich aus der 
+eingehenden Vertexposition multipliziert mit der Modelansichtsmatrix 
+ergibt. Wie schonmal gesagt <b>muss diesem Wert etwas zugewiesen werden</b>,
+ da sonst alle darauf aufbauenden Funktionen unvorhersehbare Ergebnisse 
+liefern.
+Außerdem wollen wir die Frontfarbe unseres Vertex jedesmal mit der im 
+Programm übergebenen GlobalColor multiplizieren, so dass wir den 
+Farbwert der gesamten Szene aus unserem Programm heraus manipulieren 
+können. Zu guterletzt geben wir dann noch unsere aus der festen 
+Funktionspipeline erhaltenen Texturkoordinaten auf Textureinheit 0 
+weiter. Wenn im Fragmentshader Texturkoordinaten verwendet werden, <b>muss das getan werden</b>. 
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Der_Fragment_Shader">Der Fragment Shader</span></h2>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="glsl source-glsl"><pre class="de1"><span class="kw2">uniform</span> <span class="kw3">sampler2D</span> Texture0<span class="sy0">;</span>
+<span class="kw2">uniform</span> <span class="kw3">sampler2D</span> Texture1<span class="sy0">;</span>
+<span class="kw2">uniform</span> <span class="kw3">sampler2D</span> Texture2<span class="sy0">;</span>
+<span class="kw2">uniform</span> <span class="kw3">sampler2D</span> Texture3<span class="sy0">;</span>
+&nbsp;
+<span class="kw3">void</span> main<span class="br0">(</span><span class="kw3">void</span><span class="br0">)</span>
+<span class="br0">{</span>
+ <span class="kw3">vec2</span> TexCoord <span class="sy0">=</span> <span class="kw3">vec2</span><span class="br0">(</span> <span class="kw6">gl_TexCoord</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span> <span class="br0">)</span><span class="sy0">;</span>
+ <span class="kw3">vec4</span> RGB      <span class="sy0">=</span> <span class="kw5">texture2D</span><span class="br0">(</span> Texture0<span class="sy0">,</span> TexCoord <span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+ <span class="kw6">gl_FragColor</span>  <span class="sy0">=</span> <span class="kw5">texture2D</span><span class="br0">(</span>Texture1<span class="sy0">,</span> TexCoord<span class="br0">)</span> <span class="sy0">*</span> RGB<span class="sy0">.</span><span class="me1">r</span> <span class="sy0">+</span>
+                 <span class="kw5">texture2D</span><span class="br0">(</span>Texture2<span class="sy0">,</span> TexCoord<span class="br0">)</span> <span class="sy0">*</span> RGB<span class="sy0">.</span><span class="me1">g</span> <span class="sy0">+</span>
+                 <span class="kw5">texture2D</span><span class="br0">(</span>Texture3<span class="sy0">,</span> TexCoord<span class="br0">)</span> <span class="sy0">*</span> RGB<span class="sy0">.</span><span class="me1">b</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Auch hier passiert nicht wirklich viel Großartiges. Wir deklarieren 
+beim Shaderanfang zuerst vier Texturensampler, da wir insgesamt vier 
+verschiedene Texturen im Shader auslesen wollen, eine Verlaufstextur und
+ drei Oberflächentexturen. Auch hier sei wieder gesagt das man Sampler <b>immer als uniform deklarieren muss</b>.
+ In der Hauptfunktion deklarieren wir dann einen Farbvektor, der auch 
+direkt einen Farbwert aus Textureinheit 0 zugewiesen bekommt. Auf 
+Textureinheit 0 haben wir ihm Hauptprogramm eine Verlaufstextur 
+gebunden, die angibt wie die drei folgenden Texturen ineinander 
+geblendet werden.
+Danach schreiben wir dann den Farbwert des Fragmentes, der <b>im Fragment Shader ausgegeben werden muss</b>.
+ Der besteht wie einfach zu erkennen aus Farbwert von Textureinheit 1 * 
+Rotwert von Textureinheit 0 + Farbwert von Textureinheit 2 * Grünwert 
+von Textureinheit 0 + Farbwert von Textureinheit 3 * Blauwert von 
+Textureinheit 0. So ist z.B. an Stellen an denen in der Verlaufstextur 
+reines blau liegt nur die dritte Textur sichtbar.
+</p><p>So viel also zu unserem kleinen Beispielshader. Er ist weder 
+besonders toll noch besonders sinnvoll, sollte aber auch eher dazu 
+dienen euch glSlang ein wenig zu veranschaulichen, was mir hoffentlich 
+gelungen ist.
+</p><p>Wenn ihr in den vorangegangenen Kapiteln zumindest ein wenig 
+aufgepasst habt, dann könnt ihr euch vor eurem inneren Auge hoffentlich 
+vortstellen was der Shader macht&nbsp;: Er blendet drei Texturen weich 
+anhand der Verlaufstextur ineinander über. Sowas kann man z.B. für ein 
+Terrain nutzen, um dieses anhand einer Farbtextur zu texturieren. Für 
+alle, die damit Probleme haben hier zwei Bilder die den Shader 
+veranschaulichen. Links die Verlaufstextur, die angibt wo welche Textur 
+wie stark gewichtet wird und rechts dann das Ergebnis&nbsp;:
+</p>
+<div align="center"> <a href="http://wiki.delphigl.com/index.php/Datei:GLSL_sample_shader_a.jpg" class="image"><img alt="GLSL sample shader a.jpg" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/GLSL_sample_shader_a.jpg" height="256" width="256"></a> <a href="http://wiki.delphigl.com/index.php/Datei:GLSL_sample_shader_b.jpg" class="image"><img alt="GLSL sample shader b.jpg" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/GLSL_sample_shader_b.jpg" height="256" width="256"></a></div>
+<h1><span class="mw-headline" id="Post_Mortem">Post Mortem</span></h1>
+<p>Das wars also, meine "Einführung" in die OpenGL Shader Sprache. Ich 
+hoffe es hat euch nicht gelangweilt und auch die von mir zur Verfügung 
+gestellten Informationen haben euch hoffentlich ausgereicht. Mit der 
+Veröffentlichung dieser Einführung geht übrigens auch die Eröffnung 
+eines Shaderforums hier auf der DGL einher, in der ihr dann also 
+fleissig Fragen zum Thema stellen oder eure Shader präsentieren könnt. 
+In diesem Post Mortem gehe ich jetzt noch kurz auf die Zukunft von 
+glSlang ein und zeige ein paar Screenshots (damit die Augen entspannen 
+können), bevor ihr euch dann selbst in die Shaderwelt stürzen könnt. 
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="Beispiele">Beispiele</span></h1>
+<p>Anbei ein paar exemplarische Screenshots. Da man mit GLSL aber alle 
+möglichen Effekte berechnen kann (u.a. auch 1:1 die feste 
+Funktionspipeline) ist es hier unmöglich einen Überblick aller möglichen
+ Techniken zu geben.
+</p><p><a href="http://wiki.delphigl.com/index.php/Datei:tut_glsl_eigenershader_01.png" class="image"><img alt="tut glsl eigenershader 01.png" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/tut_glsl_eigenershader_01.png" height="384" width="384"></a> <a href="http://wiki.delphigl.com/index.php/Datei:tut_glsl_eigenershader_02.png" class="image"><img alt="tut glsl eigenershader 02.png" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/tut_glsl_eigenershader_02.png" height="384" width="384"></a> <a href="http://wiki.delphigl.com/index.php/Datei:tut_glsl_eigenershader_03.png" class="image"><img alt="tut glsl eigenershader 03.png" src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/tut_glsl_eigenershader_03.png" height="384" width="384"></a>
+</p><p>Wie im ersten (und dritten) Screenshot zu sehen ist es natürlich 
+auch möglich mehrere Techniken innerhalb einer Szene zu nutzen. Hier 
+sind letztendlich bis auf Hardwarelimitationen keine Grenzen gesetzt.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="Die_Zukunft">Die Zukunft</span></h1>
+<p>Als dieses Tutorial geschrieben wurde, war noch nicht ganz abzusehen 
+dass bzw. ob sich GLSL auch durchsetzen würde. ARB-Shader und NVidias cG
+ waren damals die Platzhirsche, aber inzwischen werden ARB-Shader nicht 
+mehr genutzt (und auch schon länger nicht mehr weiterentwickelt) und 
+auch NVidia setzt primär auf GLSL. GLSL wird permanent weiterenwtickelt 
+und Hersteller können dank des flexiblen Extensionsystems auch in GLSL 
+eigene Extensions offenlegen um die aktuellsten Features (wie z.b. den 
+Tesselator auf aktuellen ATI-Karten) nutzen zu können. GLSL gilt 
+inzwischen auch offizielle die Shadersprache für OpenGL und wird 
+permanent an die neusten technischen Entwicklungen im 
+Grafikkartenbereich angepasst.
+</p><p>Wer also unter OpenGL etwas mit Shadern machen möchte, kommt an GLSL nicht vorbei!
+</p><p>Also viel Spaß beim Experimentieren und Shaderschreiben! Und nicht vergessen&nbsp;: Wir wollen sehen was ihr so treibt,
+</p><p>Euer
+</p>
+<dl>
+<dd>Sascha Willems
+</dd>
+</dl>
+<p><br>
+</p>
+<table cellpadding="0" cellspacing="0" width="100%" border="0">
+<tbody><tr>
+  <td colspan="3">
+<hr>
+  </td>
+</tr>
+<tr>
+  <td width="35%"><div align="left"><b>Vorhergehendes Tutorial: <br>-</b></div></td>
+  <td width="30%"><div align="center"><b><a href="http://wiki.delphigl.com/index.php/Tutorial" title="Tutorial">Zur Übersicht</a></b></div></td>
+  <td width="35%"><div align="right"><b>Nächstes Tutorial: <br><a href="http://wiki.delphigl.com/index.php/Tutorial_glsl2" title="Tutorial glsl2">Tutorial_glsl2</a></b></div></td>
+</tr>
+<tr>
+  <td colspan="3"> 
+<hr>
+<small><div align="center">Schreibt was ihr zu diesem Tutorial denkt ins <a class="external text" href="http://www.delphigl.com/forum/viewforum.php?f=8">Feedbackforum von DelphiGL.com</a>. <br>
+Lob, Verbesserungsvorschläge, Hinweise und Tutorialwünsche sind stets willkommen.</div></small></td>
+</tr>
+</tbody></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.772 seconds
+Real time usage: 0.915 seconds
+Preprocessor visited node count: 821/1000000
+Preprocessor generated node count: 1732/1000000
+Post‐expand include size: 2986/2097152 bytes
+Template argument size: 612/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key db1052972-dgl-dglwiki_:pcache:idhash:1687-0!*!0!!de!2!* and timestamp 20150210011804
+ -->
+</div><div class="printfooter">
+Von „<a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;oldid=26271">http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;oldid=26271</a>“</div>
+		<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wiki.delphigl.com/index.php/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="http://wiki.delphigl.com/index.php/Kategorie:Tutorial" title="Kategorie:Tutorial">Tutorial</a></li></ul></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<h2>Navigationsmenü</h2>
+	<div id="p-cactions" class="portlet" role="navigation">
+		<h3>Ansichten</h3>
+		<div class="pBody">
+			<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://wiki.delphigl.com/index.php/Tutorial_glsl" title="Seiteninhalt anzeigen [c]" accesskey="c">Seite</a></li>
+				<li id="ca-talk"><a href="http://wiki.delphigl.com/index.php/Diskussion:Tutorial_glsl" title="Diskussion zum Seiteninhalt [t]" accesskey="t">Diskussion</a></li>
+				<li id="ca-viewsource"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;action=edit" title="Diese Seite ist geschützt. Ihr Quelltext kann dennoch angesehen und kopiert werden. [e]" accesskey="e">Quelltext anzeigen</a></li>
+				<li id="ca-history"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;action=history" rel="archives" title="Frühere Versionen dieser Seite [h]" accesskey="h">Versionsgeschichte</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal" role="navigation">
+		<h3>Meine Werkzeuge</h3>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://wiki.delphigl.com/index.php?title=Spezial:Anmelden&amp;returnto=Tutorial+glsl" title="Sich anzumelden wird zwar gerne gesehen, ist aber keine Pflicht. [o]" accesskey="o">Anmelden</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo" role="banner">
+<a href="http://wiki.delphigl.com/index.php/Hauptseite" style="background-image: url(http://wiki.delphigl.com/images/wiki.png);" title="Hauptseite"></a>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.delphigl.com/index.php/Hauptseite" title="Hauptseite anzeigen [z]" accesskey="z">Hauptseite</a></li>
+				<li id="n-Forum"><a href="http://www.delphigl.com/forum/index.php">Forum</a></li>
+				<li id="n-Links"><a href="http://wiki.delphigl.com/index.php/Link">Links</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.delphigl.com/index.php/Spezial:Letzte_%C3%84nderungen" title="Liste der letzten Änderungen in DGL Wiki [r]" accesskey="r">Letzte Änderungen</a></li>
+				<li id="n-randompage"><a href="http://wiki.delphigl.com/index.php/Spezial:Zuf%C3%A4llige_Seite" title="Zufällige Seite aufrufen [x]" accesskey="x">Zufällige Seite</a></li>
+				<li id="n-Impressum"><a href="http://delphigl.com/impressum.php">Impressum</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Hauptkategorien" role="navigation">
+		<h3>Hauptkategorien</h3>
+		<div class="pBody">
+			<ul>
+				<li id="n-Tutorials"><a href="http://wiki.delphigl.com/index.php/Tutorial">Tutorials</a></li>
+				<li id="n-OpenGL-Funktionen"><a href="http://wiki.delphigl.com/index.php/OpenGL-Funktions%C3%BCbersicht">OpenGL-Funktionen</a></li>
+				<li id="n-SDL-Funktionen"><a href="http://wiki.delphigl.com/index.php/SDL-Funktions%C3%BCbersicht">SDL-Funktionen</a></li>
+				<li id="n-OpenAL-Funktionen"><a href="http://wiki.delphigl.com/index.php/OpenAL-Funktions%C3%BCbersicht">OpenAL-Funktionen</a></li>
+				<li id="n-OGL-Extensions"><a href="http://wiki.delphigl.com/index.php/OpenGL-Extensions">OGL Extensions</a></li>
+				<li id="n-Hintergrundwissen"><a href="http://wiki.delphigl.com/index.php/Hintergrundwissen">Hintergrundwissen</a></li>
+				<li id="n-Techniken"><a href="http://wiki.delphigl.com/index.php/Techniken_und_Algorithmen">Techniken</a></li>
+				<li id="n-Materialsammlung"><a href="http://wiki.delphigl.com/index.php/Materialsammlung">Materialsammlung</a></li>
+				<li id="n-Shadersammlung"><a href="http://wiki.delphigl.com/index.php/Shadersammlung">Shadersammlung</a></li>
+				<li id="n-Linksammlung"><a href="http://wiki.delphigl.com/index.php/Link">Linksammlung</a></li>
+				<li id="n-DGL-Projekte"><a href="http://wiki.delphigl.com/index.php/DGL_Projekte">DGL-Projekte</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet" role="search">
+		<h3><label for="searchInput">Suche</label></h3>
+		<div id="searchBody" class="pBody">
+			<form action="/index.php" id="searchform">
+				<input name="title" value="Spezial:Suche" type="hidden">
+				<input name="search" placeholder="Suchen" title="DGL Wiki durchsuchen [f]" accesskey="f" id="searchInput" type="search">
+				<input name="go" value="Seite" title="Gehe direkt zu der Seite, die exakt dem eingegebenen Namen entspricht." id="searchGoButton" class="searchButton" type="submit">&nbsp;
+				<input name="fulltext" value="Suchen" title="Suche nach Seiten, die diesen Text enthalten" id="mw-searchButton" class="searchButton" type="submit">
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb" role="navigation">
+		<h3>Werkzeuge</h3>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.delphigl.com/index.php/Spezial:Linkliste/Tutorial_glsl" title="Liste aller Seiten, die hierher verlinken [j]" accesskey="j">Links auf diese Seite</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.delphigl.com/index.php/Spezial:%C3%84nderungen_an_verlinkten_Seiten/Tutorial_glsl" title="Letzte Änderungen an Seiten, die von hier verlinkt sind [k]" accesskey="k">Änderungen an verlinkten Seiten</a></li>
+				<li id="t-specialpages"><a href="http://wiki.delphigl.com/index.php/Spezial:Spezialseiten" title="Liste aller Spezialseiten [q]" accesskey="q">Spezialseiten</a></li>
+				<li id="t-print"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;printable=yes" rel="alternate" title="Druckansicht dieser Seite [p]" accesskey="p">Druckversion</a></li>
+				<li id="t-permalink"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;oldid=26271" title="Dauerhafter Link zu dieser Seitenversion">Permanenter Link</a></li>
+				<li id="t-info"><a href="http://wiki.delphigl.com/index.php?title=Tutorial_glsl&amp;action=info">Seiteninformationen</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer" role="contentinfo">
+	<div id="f-copyrightico">
+		<a href="http://www.gnu.org/copyleft/fdl.html"><img src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/gnu-fdl.png" alt="GNU Free Documentation License 1.2" height="31" width="88"></a>
+	</div>
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> Diese Seite wurde zuletzt am 6. November 2014 um 23:20 Uhr geändert.</li>
+		<li id="viewcount">Diese Seite wurde bisher 133.877-mal abgerufen.</li>
+		<li id="copyright">Der Inhalt ist verfügbar unter der Lizenz <a class="external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.2</a>, sofern nicht anders angegeben.</li>
+		<li id="privacy"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:Datenschutz" title="DGL Wiki:Datenschutz">Datenschutz</a></li>
+		<li id="about"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:%C3%9Cber_DGL_Wiki" title="DGL Wiki:Über DGL Wiki">Über DGL Wiki</a></li>
+		<li id="disclaimer"><a href="http://wiki.delphigl.com/index.php/DGL_Wiki:Impressum" title="DGL Wiki:Impressum">Impressum</a></li>
+	</ul>
+</div>
+</div>
+<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script>
+<script src="Tutorial%20glsl%20%E2%80%93%20DGL%20Wiki_files/load.php"></script>
+<!-- Served in 0.279 secs. --></body></html>

@@ -1,0 +1,174 @@
+unit SpectrumData;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType, VPBuffers;
+
+const
+  BeatAnaSubbandCount   = 32;
+
+type
+  TFFTMode       = (fftCombined,fftAllChannels,fftFirst);
+  TSDAnalyseFlag = (afFFT,afPeak);
+  TSDAnalyseMode = set of TSDAnalyseFlag;
+  TBPMFoundMode  = (bpmFalse = 0, bpmTrue = 1, bpmScanning = 2);
+  MVBeatState    = record
+    Togg,Free          : Boolean;
+    Max,Pos            : MVInt;
+    BeatLength,BeatTime: MVFloat;
+    BeatStart          : MVTime;
+    SyncTogg           : Boolean;
+  end;
+  TCSubbandSize  = record
+    First,Last: Single;
+  end;
+  TCSubbandSizes = array [0..BeatAnaSubbandCount-1] of TCSubbandSize;
+  PCSubbandSizes = ^TCSubbandSizes;
+  TSubbandSizes  = array [0..BeatAnaSubbandCount-1] of MVInt;
+  TSubbandValues = array [0..BeatAnaSubbandCount-1] of MVInt;
+  IBasicSpectrumData= interface (IMInterface)
+    ['{B9FB0613-0F9F-414C-B3DE-1A05027C6C84}']
+    function GetChannels: MVInt; stdcall;
+    function GetSampleRate: MVInt; stdcall;
+    {function GetVersion: MVVersion; stdcall;
+    function Future: IBasicSpectrumData; stdcall;}
+    function GetLocked: Boolean; stdcall;
+
+    property Channels: MVInt read GetChannels;
+    property Locked: Boolean read GetLocked;
+    property SampleRate: MVInt read GetSampleRate;
+  end;
+  IBasicFFTSpectrumData= interface (IBasicSpectrumData)
+    ['{39361EED-ABCD-4C09-94F7-8B793221E08D}']
+    function GetWaveData(const AIndex,AChannel: MVInt): MVFloat; stdcall;
+    function GetWaveDataLong(const AIndex,AChannel: MVInt): MVFloat; stdcall;
+    function GetLevels(const AIndex,AChannel: MVInt): MVFloat; stdcall;
+    function GetFreqCount: MVInt; stdcall;
+    function GetWaveDataCount: MVInt; stdcall;
+    function GetLongWaveDataCount: MVInt; stdcall;
+
+    property Levels[const AIndex,AChannel: MVInt]: MVFloat read GetLevels;
+    property WaveData[const AIndex,AChannel: MVInt]: MVFloat read GetWaveData;
+    property WaveDataLong[const AIndex,AChannel: MVInt]: MVFloat read GetWaveDataLong;
+    property FreqCount: MVInt read GetFreqCount;
+    property LongWaveDataCount: MVInt read GetLongWaveDataCount;
+    property WaveDataCount: MVInt read GetWaveDataCount;
+  end;
+
+  ISpectrumData        = interface (IBasicFFTSpectrumData)
+    ['{C53D164F-7DD2-42EE-B657-EE5C42F6EEB8}']
+    function GetBuffer(const ABufferIndex,AChannel: MVInt): vpRealBuffer; stdcall;
+    function GetLevelBuffer(const AChannel: MVInt): vpRealBuffer; stdcall;
+
+    function GetSyncBufferCount: MVInt; stdcall;
+
+    function GetPeak(const Channel: MVInt): MVFloat; stdcall;
+    function GetBeatAt(const Subband: MVInt): Boolean; stdcall;
+    function GetBeatAtH(const Subband,History: MVInt): Boolean; stdcall;
+    function GetBeatState: MVBeatState; stdcall;
+    function GetBPM: MVFloat; stdcall;
+    function GetBPMFound: TBPMFoundMode; stdcall;
+
+    property Beat: MVBeatState read GetBeatState;
+    property BPM: MVFloat read GetBPM;
+    property BPMFound: TBPMFoundMode read GetBPMFound;
+
+    property Peak[Channel: MVInt]: MVFloat read GetPeak;
+    property BeatAt[Subband: MVInt]: Boolean read GetBeatAt;
+    property BeatAtH[Index,Subband: MVInt]: Boolean read GetBeatAtH;
+  end;
+
+  //ISpectrumData       = ISpectrumData2;
+
+
+  {ISpectrumDataOld    = interface (IInterface)
+    ['{82072229-15A0-4B67-95A0-105C8C42DFFC}']
+    function GetChannels: MVInt; stdcall;
+    function GetBufferCount: MVInt; stdcall;
+    function GetFreqCount: MVInt; stdcall;
+    function GetLongWaveDataCount: MVInt; stdcall;
+    function GetWaveDataCount: MVInt; stdcall;
+    function GetSampleRate: MVInt; stdcall;
+
+    function GetFFTMode: TFFTMode; stdcall;
+    function GetAnalyseMode: TSDAnalyseMode; stdcall;
+
+    function GetLevels(const Index,Channel: MVInt): MVFloat; stdcall;
+    function GetLevelsC(const Index: MVInt): MVFloat; stdcall;
+    function GetWaveData(const Index,Channel: MVInt): MVFloat; stdcall;
+    function GetWaveDataC(const Index: MVInt): MVFloat; stdcall;
+    function GetWaveDataLong(const Index,Channel: MVInt): MVFloat; stdcall;
+    function GetWaveDataLongB(const Index,Channel,Buffer: MVInt): MVFloat; stdcall;
+    function GetWaveDataLongC(const Index: MVInt): MVFloat; stdcall;
+    function GetWaveDataLongBC(const Index,Buffer: MVInt): MVFloat; stdcall;
+    function GetPeak(const Channel: MVInt): MVFloat; stdcall;
+    function GetBeatAt(const Subband: MVInt): Boolean; stdcall;
+    function GetBeatAtH(const Subband,History: MVInt): Boolean; stdcall;
+    function GetBeatState: MVBeatState; stdcall;
+    function GetBPM: MVFloat; stdcall;
+    function GetBPMFound: TBPMFoundMode; stdcall;
+
+    property Channels: MVInt read GetChannels;
+    property BufferCount: MVInt read GetBufferCount;
+    property FreqCount: MVInt read GetFreqCount;
+    property LongWaveDataCount: MVInt read GetLongWaveDataCount;
+    property WaveDataCount: MVInt read GetWaveDataCount;
+    property SampleRate: MVInt read GetSampleRate;
+    property Beat: MVBeatState read GetBeatState;
+    property BPM: MVFloat read GetBPM;
+    property BPMFound: TBPMFoundMode read GetBPMFound;
+
+    property FFTMode: TFFTMode read GetFFTMode;
+    property AnalyseMode: TSDAnalyseMode read GetAnalyseMode;
+
+    property Levels[Index,Channel: MVInt]: MVFloat read GetLevels; default;
+    property LevelsC[Index: MVInt]: MVFloat read GetLevelsC;
+    property WaveData[Index,Channel: MVInt]: MVFloat read GetWaveData;
+    property WaveDataC[Index: MVInt]: MVFloat read GetWaveDataC;
+    property WaveDataLong[Index,Channel: MVInt]: MVFloat read GetWaveDataLong;
+    property WaveDataLongB[Index,Channel,Buffer: MVInt]: MVFloat read GetWaveDataLongB;
+    property WaveDataLongC[Index: MVInt]: MVFloat read GetWaveDataLongC;
+    property WaveDataLongBC[Index,Buffer: MVInt]: MVFloat read GetWaveDataLongBC;
+    property Peak[Channel: MVInt]: MVFloat read GetPeak;
+    property BeatAt[Subband: MVInt]: Boolean read GetBeatAt;
+    property BeatAtH[Index,Subband: MVInt]: Boolean read GetBeatAtH;
+  end;
+
+  ISpectrumData       = interface (ISpectrumDataOld)
+    ['{81C291A4-DF1C-498F-B5CB-41878CF7C1D2}']
+    //function GetVersion: MVVersion; stdcall;
+    //function Future: IBasicSpectrumData; stdcall;
+    function GetLocked: Boolean; stdcall;
+    function GetBuffer(const ABufferIndex,AChannel: MVInt): Pointer; stdcall;
+    function GetLevelBuffer(const AChannel: MVInt): Pointer; stdcall;
+  end;}
+
+//operator <= (const m1,m2: MVVersion): Boolean;
+
+const
+  //IIDSpectrumData: TGUID = '{82072229-15A0-4B67-95A0-105C8C42DFFC}';
+  //LastVersion    : MVVersion = (Version:255;MainVersion:255;SubVersion:65535);
+
+  WaveDataBI       = 0;
+  WaveDataLongBI   = 1;
+  FreqDataBI       = 2;
+  SyncBufferBI     = 3;
+  SyncBufferSaverBI= 4;
+  TOISyncBufferBI  = 5;
+
+implementation
+
+{operator <= (const m1,m2: MVVersion): Boolean;
+begin
+  if m1.Version=m2.Version then begin
+    if m1.MainVersion=m2.MainVersion then begin
+      Result:=(m1.SubVersion<m2.SubVersion);
+    end else Result:=(m1.MainVersion<m2.MainVersion);
+  end else Result:=(m1.Version<m2.Version);
+end;}
+
+end.
+

@@ -1,0 +1,22 @@
+unit StdPermissions;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+const
+  TPEXECUTE        = 1;
+  TPPARAMMAPPING   = 2;
+
+  TPHARDWAREACCESS = -1;
+
+  TPNOLIMIT        = High(LongInt);
+  TPNOSENDING      = Low(LongInt);
+
+implementation
+
+end.
+

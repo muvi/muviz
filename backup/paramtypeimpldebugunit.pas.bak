@@ -1,0 +1,22 @@
+unit ParamTypeImplDebugUnit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, ParamTypeImpl;
+
+type
+  IDebugParam = interface
+    function GetPrototype: IPParamPrototype; experimental;
+  end;
+
+  IDebugAttachObject = interface
+    function GetAttachedParams: string; experimental;
+  end;
+
+implementation
+
+end.
+

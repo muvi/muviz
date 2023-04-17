@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <Title Value="PicVis"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="18">
+      <Unit0>
+        <Filename Value="PicVis.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PicVis"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="8"/>
+        <CursorPos X="20" Y="22"/>
+        <UsageCount Value="38"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="serverplugintype.pas"/>
+        <UnitName Value="ServerPluginType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="19"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="nettype.pas"/>
+        <UnitName Value="NetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="106" Y="13"/>
+        <UsageCount Value="19"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="plugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PluginType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="50"/>
+        <CursorPos X="17" Y="10"/>
+        <UsageCount Value="38"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="authnettype.pas"/>
+        <UnitName Value="AuthNetType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="35" Y="11"/>
+        <UsageCount Value="19"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="dllstr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DllStr"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="12"/>
+        <UsageCount Value="37"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="maintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="10"/>
+        <CursorPos X="30" Y="14"/>
+        <UsageCount Value="38"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MainUnit"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="8"/>
+        <CursorPos X="58" Y="12"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="mplugintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MPluginType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="28" Y="14"/>
+        <UsageCount Value="38"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="spectrumdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SpectrumData"/>
+        <TopLine Value="36"/>
+        <CursorPos X="1" Y="36"/>
+        <UsageCount Value="37"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="vpbuffers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VPBuffers"/>
+        <TopLine Value="1"/>
+        <CursorPos X="24" Y="6"/>
+        <UsageCount Value="37"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="vistype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="45"/>
+        <CursorPos X="14" Y="55"/>
+        <UsageCount Value="37"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="clientnettype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClientNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="55" Y="19"/>
+        <UsageCount Value="37"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="mnettype.pas"/>
+        <UnitName Value="MNetType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="9"/>
+        <UsageCount Value="9"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="viswintype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisWinType"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="12"/>
+        <UsageCount Value="37"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="stddllinterfaces.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StdDllInterfaces"/>
+        <TopLine Value="8"/>
+        <CursorPos X="44" Y="19"/>
+        <UsageCount Value="37"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="picturetype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PictureType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="10"/>
+        <CursorPos X="3" Y="20"/>
+        <UsageCount Value="37"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="picturevisualisations.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PictureVisualisations"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="47"/>
+        <CursorPos X="81" Y="55"/>
+        <UsageCount Value="37"/>
+        <Loaded Value="True"/>
+      </Unit17>
+    </Units>
+    <JumpHistory Count="15" HistoryIndex="14">
+      <Position1>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="5" Column="17" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="8" Column="40" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="18" Column="50" TopLine="6"/>
+      </Position3>
+      <Position4>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="20" Column="108" TopLine="11"/>
+      </Position4>
+      <Position5>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="15" Column="33" TopLine="11"/>
+      </Position5>
+      <Position6>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="13" Column="14" TopLine="9"/>
+      </Position6>
+      <Position7>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="116" Column="17" TopLine="103"/>
+      </Position7>
+      <Position8>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="117" Column="71" TopLine="106"/>
+      </Position8>
+      <Position9>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="53" Column="1" TopLine="43"/>
+      </Position9>
+      <Position10>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="59" Column="1" TopLine="51"/>
+      </Position10>
+      <Position11>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="112" Column="55" TopLine="1"/>
+      </Position11>
+      <Position12>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="50" Column="19" TopLine="45"/>
+      </Position12>
+      <Position13>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="28" Column="67" TopLine="19"/>
+      </Position13>
+      <Position14>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="55" Column="1" TopLine="46"/>
+      </Position14>
+      <Position15>
+        <Filename Value="picturevisualisations.pas"/>
+        <Caret Line="65" Column="1" TopLine="55"/>
+      </Position15>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

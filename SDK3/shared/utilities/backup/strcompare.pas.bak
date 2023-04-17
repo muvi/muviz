@@ -1,0 +1,30 @@
+(*
+  implements a utilities for a relation between strings, where a string can both
+  be greater or less if the length is increased.
+*)
+unit StrCompare;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+(*
+  Result:
+    negative: S1 < S2
+    0       : S1 = S2
+    positive: S1 > S2
+*)
+function StrCompI(S1, S2: string): ShortInt;
+
+implementation
+
+function StrCompI(S1, S2: string): ShortInt;
+begin
+  strcmp
+end;
+
+end.
+

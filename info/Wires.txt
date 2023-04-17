@@ -1,0 +1,16 @@
+Layergröße (_L): 500 [pixel]
+Rackbreite (_R): 19" = 0.4826 [m]
+Dichte von Kupfer (dCu) = 8.96 g/cm³ = 8960 kg/m³
+
+Kabellänge (_G): 0.5 [m] //1m halte ich für eine sinnvolle Kabellänge, ist aber nicht übersichtlich; deshalb 1/2 meter...
+KnotCount (_K): 50
+
+Volumen eines Kabels mit 3mm Radius und _G Länge (VK3): 0.003² [m²]*Pi*_G = 0.000 028 274 333 88 [m³]*_G = 0.000 014 137 166 94
+
+SimSteps (S):
+Reibung (F):
+D (D):
+Weight (W): (VK3*dCu)/_K = 0.126 669 015 8 [kg]/50 = 0.002 533 380 316
+KnotDist (I): _G/_K = 0.01 [m]
+Pixel size (P): _R/_L=0.0009652 [m]
+Max force in rest (R):

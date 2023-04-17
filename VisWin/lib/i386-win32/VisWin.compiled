@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="P:\lazarus\fpc\2.6.4\bin\i386-win32\fpc.exe" Date="1150455029"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -vewnhi -FiD:\Eigene_Programme\Muvi\VisWin\lib\i386-win32 -FuD:\Eigene_Programme\Muvi\SDK3\shared\interfaces -FuD:\Eigene_Programme\Muvi\SDK3\shared\legacy -FuD:\Eigene_Programme\Muvi\SDK3\shared\utilities -FuD:\Eigene_Programme\Muvi -FuD:\Eigene_Programme\Komponenten\AdvGui -FuD:\Eigene_Programme\Muvi\SDK3\shared\prototypes -FuD:\Eigene_Programme\Komponenten\Graphics32\Packages\lib\i386-win32 -FuP:\lazarus\components\ideintf\units\i386-win32\win32 -FuP:\lazarus\components\opengl\lib\i386-win32\win32 -FuP:\lazarus\components\lazcontrols\lib\i386-win32\win32 -FuD:\Eigene_Programme\Komponenten\AdvGui\lib\i386-win32 -FuP:\lazarus\lcl\units\i386-win32\win32 -FuP:\lazarus\lcl\units\i386-win32 -FuP:\lazarus\components\lazutils\lib\i386-win32 -FuP:\lazarus\packager\units\i386-win32 -FuD:\Eigene_Programme\Muvi\VisWin\ -FUD:\Eigene_Programme\Muvi\VisWin\lib\i386-win32\ -l -dLCL -dLCLwin32 VisWin.lpr"/>
+  <Complete Value="False"/>
+</CONFIG>

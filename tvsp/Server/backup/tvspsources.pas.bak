@@ -1,0 +1,194 @@
+unit TVSPSources;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, csl, HashMap, SyncObjs, GUIDop, MapKeys;
+
+type
+  TTVSPSourceKey = class (TInterfacedObject)
+  strict private
+    FSize: Cardinal;
+    FID  : TGUID;
+  public
+    constructor Create(ASize: Cardinal; AID: TGUID);
+    function Equals(AObject: TObject): Boolean; override;
+    function GetHashCode: PtrInt; override;
+    property ID: TGUID read FID;
+    property Size: Cardinal read FSize;
+  end;
+
+  TTVSPSource    = class (TTVSPSourceKey)
+  strict private
+    FContent: Pointer;
+  public
+    constructor Create(ASize: Cardinal; AID: TGUID);
+    destructor Destroy; override;
+    procedure &Set(AStart, ACount: Cardinal; constref Src);
+    procedure Get(AStart, ACount: Cardinal; out Dest);
+  end;
+
+  TTVSPSources   = class
+  strict private
+    FMap : TMap;
+    FLock: TCriticalSection;
+    function GetItem(ASize: Cardinal; AID: TGUID): TTVSPSource; inline;
+  protected
+    procedure Deleted(ASource: TTVSPSource);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    function AddSource(ASize: Cardinal; AID: TGUID): TTVSPSource;
+    property Items[ASize: Cardinal; AID: TGUID]: TTVSPSource read GetItem; default;
+  end;
+
+function GetSources: TTVSPSources; inline;
+function TVSPSourceID(ASize: Cardinal; AID: TGUID): TTVSPSourceID; inline;
+
+property Sources: TTVSPSources read GetSources;
+
+implementation
+
+{%REGION TTVSPSourceKey}
+
+constructor TTVSPSourceKey.Create(ASize: Cardinal; AID: TGUID);
+begin
+  inherited Create;
+  FSize:=ASize;
+  FID:=AID;
+end;
+
+function TTVSPSourceKey.Equals(AObject: TObject): Boolean;
+var
+  AObject2: TTVSPSourceKey;
+begin
+  Result:=AObject.InheritsFrom(TTVSPSourceKey);
+  if Result then begin
+    AObject2:=TTVSPSourceKey(AObject);
+    Result:=(AObject2.ID = ID) and (AObject2.Size = Size);
+  end;
+end;
+
+function TTVSPSourceKey.GetHashCode: PtrInt;
+begin
+  Result:=GetGUIDHash(ID) xor FSize;
+end;
+
+{%ENDREGION}
+{%REGION TTVSPSource}
+
+constructor TTVSPSource.Create(ASize: Cardinal; AID: TGUID);
+begin
+  inherited Create(ASize, AID);
+  GetMem(FContent, ASize);
+end;
+
+destructor TTVSPSource.Destroy;
+begin
+  Sources.Deleted(Self);
+  FreeMem(FContent);
+  inherited Destroy;
+end;
+
+procedure TTVSPSource.&Set(AStart, ACount: Cardinal; constref Src);
+begin
+  if (AStart >= Size) or (ACount < 1)
+    then exit;
+  if AStart + ACount >= Size
+    then ACount:=Size - AStart;
+  Move(Src, (FContent + AStart)^, ACount);
+end;
+
+procedure TTVSPSource.Get(AStart, ACount: Cardinal; out Dest);
+begin
+  if (AStart >= Size) or (ACount < 1)
+    then exit;
+  if AStart + ACount >= Size
+    then ACount:=Size - AStart;
+  Move((FContent + AStart)^, Dest, ACount);
+end;
+
+{%ENDREGION}
+{%REGION TTVSPSources}
+
+constructor TTVSPSources.Create;
+begin
+  inherited Create;
+  FMap:=THashMap.Create;
+  FLock:=TCriticalSection.Create;
+end;
+
+destructor TTVSPSources.Destroy;
+begin
+  FLock.Destroy;
+  FMap.Destroy;
+  inherited Destroy;
+end;
+
+function TTVSPSources.GetItem(ASize: Cardinal; AID: TGUID): TTVSPSource; inline;
+var
+  AKey: TTVSPSourceKey;
+  AObj: TObject;
+begin
+  AKey:=TTVSPSourceKey.Create(ASize, AID);
+
+  FLock.Enter;
+  AObj:=FMap[AKey];
+  FLock.Leave;
+
+  AKey.Destroy;
+  if AObj<>nil
+    then Result:=TTVSPSource(AObj)
+    else Result:=nil;
+end;
+
+procedure TTVSPSources.Deleted(ASource: TTVSPSource);
+begin
+  FLock.Enter;
+  FMap.Remove(ASource);
+  FLock.Leave;
+end;
+
+function TTVSPSources.AddSource(ASize: Cardinal; AID: TGUID): TTVSPSource;
+begin
+  Result:=TTVSPSource.Create(ASize, AID);
+
+  FLock.Enter;
+  if FMap.Contains(Result) then begin
+    FLock.Leave;
+    Result.Destroy;
+    Result:=nil;
+    exit;
+  end;
+  FMap.Add(Result, Result);
+  FLock.Leave;
+end;
+
+{%ENDREGION}
+{%REGION Misc}
+
+var
+  LSources: TTVSPSources;
+
+function GetSources: TTVSPSources; inline;
+begin
+  Result:=LSources;
+end;
+
+function TVSPSourceID(ASize: Cardinal; AID: TGUID): TTVSPSourceID; inline;
+begin
+  Result.Size:=ASize;
+  Result.ID:=AID;
+end;
+
+initialization
+  LSources:=TTVSPSources.Create;
+finalization
+  LSources.Destroy;
+
+{%ENDREGION}
+
+end.
+

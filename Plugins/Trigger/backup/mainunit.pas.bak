@@ -1,0 +1,68 @@
+unit MainUnit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType, ClientNetType, MPluginType, AuthNetType, DllStr,
+  MainType, DefaultTriggers, VisType, VPBuffers;
+
+procedure Init_Plugin;
+procedure Plugin_Done;
+
+implementation
+
+const
+  EMPTYVAR: Byte = 0;
+
+procedure Init_Plugin;
+begin
+  //Das Plugin hier initialisieren
+  with PluginSystem do begin
+    RegisterVis('Basic FFT Trigger','!FFTTrig',@TrigFFT,['Index','Streckfaktor'],[vInteger,vReal],[],FFTIV,['FFTData'],[oReal]);
+    RegisterVis('Rounder','!Rounder',@TrigRound,['Input','Streckfaktor'],[vReal,vReal],[],RoundIV,['Output'],[oInteger]);
+    RegisterVis('Adder','!Adder__',@TrigAdd,['Eingang 1','Eingang 2'],[vReal,vReal],[],CalcIV,['Ergebnis'],[oReal]);
+    RegisterVis('Switch','!Switch4',@TrigSwitch4,['Anschluss'],[vInteger],[],SwitchIV,['Anschluss 0','Anschluss 1','Anschluss 2','Anschluss 3'],[oCall,oCall,oCall,oCall]);
+    RegisterVis('Switch (10x)','!SwitchA',@TrigSwitch10,['Anschluss'],[vInteger],[],SwitchIV,['Anschluss 0','Anschluss 1','Anschluss 2','Anschluss 3','Anschluss 4','Anschluss 5','Anschluss 6','Anschluss 7','Anschluss 8','Anschluss 9','Überlauf','Überlaufanzahl'],[oCall,oCall,oCall,oCall,oCall,oCall,oCall,oCall,oCall,oCall,oCall,oInteger]);
+    RegisterVis('Multicaller','!Multi 4',@TrigMulti4,[],[],[],EMPTYVAR,['Anschluss 1','Anschluss 2','Anschluss 3','Anschluss 4'],[oCall,oCall,oCall,oCall]);
+    RegisterVis('Counter','!Counter',@TrigCount,['Maximalwert'],[vInteger],[],CounterIV,['Aufrufanzahl'],[oInteger],SizeOf(TCounterWS),@InitCounter);
+    RegisterVis('Limit Caller','!LmtCall',@TrigLimitCall,['Input','Grenzwert'],[vReal,vReal],[],LimitCallIV,['Anschluss'],[oCall]);
+    RegisterVis('Set Color','!SetColr',@TrigSetColor,[],[],[],EMPTYVAR,['Linienfarbe 1','Linienfarbe 2','Hintergrundfarbe'],[oColor,oColor,oColor]);
+    RegisterVis('Limit Stop Caller','!StpCall',@TrigLimitStopCall,['Input','Grenzwert'],[vReal,vReal],[],LimitStopCallIV,['Anschluss'],[oCall],SizeOf(TLimitStopWS),@InitLimitStopCaller);
+    RegisterVis('Peak Trigger','!PeakTrg',@TrigPeak,['Streckfaktor'],[vReal],[],PeakTrigIV,['Lautstärke'],[oReal]);
+    RegisterVis('Colorizer','!Coloriz',@TrigColorize,['Blendstärke'],[vInteger],[],ColorizeIV,['Farbe'],[oColor]);
+    RegisterVis('BackCounter','!Count 2',@TrigBackCount,['Minimalwert','Maximalwert','Schrittweite'],[vInteger,vInteger,vInteger],[],BackCounterIV,['Aufrufanzahl'],[oInteger],SizeOf(TBackCounterWS),@InitBackCounter);
+    RegisterVis('Multiplyer','!Multipl',@TrigMultiply,['Eingang 1','Eingang 2'],[vReal,vReal],[],CalcIV,['Ergebnis'],[oReal]);
+    RegisterVis('Ganze Zahl zu Fließkomma','!IntReal',@TrigIntToReal,['Input'],[vInteger],[],IntToRealIV,['Output'],[oReal]);
+    RegisterVis('Multi Numberer','!MultiNr',@TrigMultiInt,['Input'],[vReal],[],MultiIntIV,['Ausgang 1','Ausgang 2','Ausgang 3','Ausgang 4'],[oReal,oReal,oReal,oReal]);
+    RegisterVis('Wurzel','!SqrtTrg',@TrigSqrt,['Eingang'],[vReal],[],SqrtIV,['Ausgang'],[oReal]);
+    RegisterVis('Boolean Caller','!BoolTrg',@TrigBoolCall,['Eingang'],[vBoolean],[],BoolCallIV,['Anschluss'],[oCall],SizeOf(TBoolCallWS),@InitBoolCaller);
+    RegisterVis('Step Counter','!Count2 ',@TrigCount2,['Maximalwert','Minimalwert','Startwert','Schrittweite'],[vReal,vReal,vReal,vReal],[],Counter2IV,['Position'],[oReal],SizeOf(TCounter2WS),@InitCounter2);
+    RegisterVis('Step Back Counter','!Count2B',@TrigStepBackCount,['Maximalwert','Minimalwert','Startwert','Schrittweite'],[vReal,vReal,vReal,vReal],[nil,nil,nil,@StepBackCountChangeStep],Counter2IV,['Position'],[oReal],SizeOf(TStepBackCounterWS),@InitStepBackCounter);
+    RegisterVis('Not Trigger','!NotTrig',@TrigNot,['Input'],[vBoolean],[],NotTrigIV,['Ausgang'],[oBoolean]);
+    RegisterVis('Divider','!Divider',@TrigDivide,['Eingang 1','Eingang 2'],[vReal,vReal],[],CalcIV2,['Ergebnis'],[oReal]);
+    RegisterVis('Modulu','!Modulu ',@TrigMod,['Eingang 1','Eingang 2'],[vReal,vReal],[],CalcIV2,['Ergebnis'],[oReal]);
+    RegisterVis('Change Caller','!ChangeC',nil,['Eingang'],[vReal],[@ChangeCallChange],ChangeCallIV,['Anschluss'],[oCall],SizeOf(TChangeCallWS),@InitChangeCall);
+    RegisterVis('Color to RGB','!Clr2RGB',@ChangeColorToRGB,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Farbe'],[vColor],[@ChangeColorToRGB],ColorToRGBIV,['Rot','Grün','Blau','Deckkraft'],[oInteger,oInteger,oInteger,oInteger]);
+    RegisterVis('RGB to Color','!RGB2Clr',@ChangeRGBToColor,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Rot','Grün','Blau','Deckkraft'],[vInteger,vInteger,vInteger,vInteger],[@ChangeRGBToColor],RGBToColorIV,['Farbe'],[oColor]);
+    RegisterVis('Color to HSV','!Clr2HSV',@ChangeColorToHSV,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Farbe'],[vColor],[@ChangeColorToHSV],ColorToHSVIV,['Farbton','Sättigung','Helligkeit','Deckkraft'],[oReal,oInteger,oInteger,oInteger]);
+    RegisterVis('HSV to Color','!HSV2Clr',@ChangeHSVToColor,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Farbton','Sättigung','Helligkeit','Deckkraft'],[vReal,vInteger,vInteger,vInteger],[@ChangeHSVToColor],HSVToColorIV,['Farbe'],[oColor]);
+
+    RegisterVis('Call Storage','!Cll4Mem',@SetCallStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vCall],[],EMPTYOUTPUT,['Output'],[oCall]);
+    RegisterVis('Integer Storage','!Int4Mem',@SetIntegerStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vInteger],[],IntegerParamIV,['Output'],[oInteger]);
+    RegisterVis('Real Storage','!Ral4Mem',@SetRealStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vReal],[],RealParamIV,['Output'],[oReal]);
+    RegisterVis('String Storage','!Str4Mem',@SetStringStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vString],[],StringParamIV,['Output'],[oString]);
+    RegisterVis('Color Storage','!Clr4Mem',@SetColorStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vColor],[],ColorParamIV,['Output'],[oColor]);
+    RegisterVis('Boolean Storage','!Bol4Mem',@SetBooleanStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vBoolean],[],BooleanParamIV,['Output'],[oBoolean]);
+    RegisterVis('Buffer Storage','!Buf4Mem',@SetRealBufferStorage,['<Unbenutzt>','<Unbenutzt>','<Unbenutzt>','Input'],[vBuffer],[],VPEMPTYBUFFER,['Output'],[oBuffer]);
+  end;
+end;
+
+procedure Plugin_Done;
+begin
+  //Das Plugin hier wieder freigeben
+end;
+
+end.
+

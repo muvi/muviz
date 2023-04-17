@@ -1,0 +1,27 @@
+object Form1: TForm1
+  Left = 52
+  Height = 499
+  Top = 72
+  Width = 515
+  Caption = 'Form1'
+  ClientHeight = 499
+  ClientWidth = 515
+  LCLVersion = '1.0.1.3'
+  object Image: TImage
+    Left = 8
+    Height = 451
+    Top = 8
+    Width = 501
+    Anchors = [akTop, akLeft, akRight, akBottom]
+  end
+  object DrawBtn: TButton
+    Left = 434
+    Height = 25
+    Top = 467
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'DrawBtn'
+    OnClick = DrawBtnClick
+    TabOrder = 0
+  end
+end

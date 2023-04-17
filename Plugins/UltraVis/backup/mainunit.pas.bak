@@ -1,0 +1,32 @@
+unit MainUnit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PluginType, ClientNetType, MPluginType, AuthNetType, DllStr,
+  MainType, UVisGobo, VisType;
+
+procedure Init_Plugin;
+procedure Plugin_Done;
+
+implementation
+
+procedure Init_Plugin;
+begin
+  //Das Plugin hier initialisieren
+  with PluginSystem do begin
+    RegisterVis('SpreadGobo','SPREADGO', @procVisGobo, ['1. Gobofarbe Innen','2. Gobofarbe Innen','1. Gobofarbe Außen','2. Gobofarbe Außen','Größe','Anzahl','Grenzwert','Streckfaktor','Maximalradius (in %)','Absinkfaktor'], [VColor,VInteger,VInteger,vReal,vReal,vReal,vReal],[],SpreadGoboIV,[],[],sizeof(TSpreadGoboWSRec),@InitGobo,@FreeGobo);
+    RegisterVis('Vox','VOXVIS__', @DrawVox, ['Streckfaktor'], [vReal],[],VoxIV,[],[]);
+    RegisterVis('Wave Circle','WAVECIRC', @DrawWaveCircle, ['Linienfarbe Innen','Linienfarbe Außen','Radius (in %)','Ausprägung'], [vReal,vReal],[],WaveCircleIV,[],[]);
+  end;
+end;
+
+procedure Plugin_Done;
+begin
+  //Das Plugin hier wieder freigeben
+end;
+
+end.
+

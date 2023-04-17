@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="48">
+      <Unit0>
+        <Filename Value="tvsp.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="33" Y="22"/>
+        <UsageCount Value="201"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\csl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="27"/>
+        <CursorPos X="16" Y="47"/>
+        <UsageCount Value="201"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\..\Komponenten\AdvGui\advfunc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvFunc"/>
+        <UsageCount Value="201"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\SDK3\shared\utilities\guidop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GUIDop"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="201"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\SDK3\shared\interfaces\vistype2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VisType2"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="53" Y="12"/>
+        <UsageCount Value="200"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\hashmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HashMap"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="44"/>
+        <CursorPos Y="150"/>
+        <UsageCount Value="200"/>
+        <Bookmarks Count="1">
+          <Item0 X="50" Y="110" ID="1"/>
+        </Bookmarks>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\abstractnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AbstractNet"/>
+        <TopLine Value="12"/>
+        <CursorPos X="15" Y="25"/>
+        <UsageCount Value="200"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="tcpserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPServer"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3"/>
+        <CursorPos Y="31"/>
+        <FoldState Value=" TJU1ma"/>
+        <UsageCount Value="204"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\tvspconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPConst"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="6"/>
+        <CursorPos X="53" Y="23"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\tvsptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPType"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="3" Y="12"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\enumerators.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Enumerators"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="202"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\tvspmsg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPMsg"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="92"/>
+        <CursorPos X="24" Y="108"/>
+        <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="30"/>
+        <CursorPos Y="52"/>
+        <UsageCount Value="201"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="tvspgroups.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPGroups"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="84"/>
+        <CursorPos X="35" Y="97"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="tvspserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServer"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="49"/>
+        <CursorPos X="4" Y="83"/>
+        <UsageCount Value="203"/>
+        <Loaded Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\tcpnet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPNet"/>
+        <TopLine Value="57"/>
+        <CursorPos X="7" Y="62"/>
+        <UsageCount Value="208"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\objectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClassBasic"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos Y="81"/>
+        <FoldState Value=" TJi41W1x"/>
+        <UsageCount Value="207"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\objectclasses.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ObjectClasses"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="72"/>
+        <CursorPos Y="149"/>
+        <FoldState Value=" TJjC1n2 pj2kB181a"/>
+        <UsageCount Value="207"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="tvspserverattachment.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerAttachment"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="39" Y="13"/>
+        <FoldState Value=" TJV1wo"/>
+        <UsageCount Value="205"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\SDK3\shared\interfaces\tvspsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPSources"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="3" Y="11"/>
+        <UsageCount Value="209"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\tvspbasicsources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPBasicSources"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos X="3" Y="30"/>
+        <FoldState Value=" TJiQ1e18"/>
+        <UsageCount Value="205"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="tvspservergroups.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerGroups"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="35" Y="43"/>
+        <UsageCount Value="200"/>
+        <Bookmarks Count="1">
+          <Item0 Y="87" ID="2"/>
+        </Bookmarks>
+      </Unit21>
+      <Unit22>
+        <Filename Value="tvspvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPValues"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="222"/>
+        <CursorPos X="53" Y="243"/>
+        <UsageCount Value="200"/>
+        <Bookmarks Count="1">
+          <Item0 X="5" Y="156" ID="3"/>
+        </Bookmarks>
+      </Unit22>
+      <Unit23>
+        <Filename Value="tvspabstractservervalue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPAbstractServerValue"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="25" Y="20"/>
+        <UsageCount Value="200"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="tvspservererror.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerError"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="53" Y="13"/>
+        <UsageCount Value="212"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="tvspserversources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerSources"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="166"/>
+        <CursorPos X="32" Y="196"/>
+        <UsageCount Value="210"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\..\util\incrementalset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalSet"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="14" Y="26"/>
+        <UsageCount Value="205"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\..\util\incrementalhashset.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IncrementalHashSet"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="92"/>
+        <CursorPos X="67" Y="171"/>
+        <UsageCount Value="204"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="..\tcpsendqueue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPSendQueue"/>
+        <TopLine Value="19"/>
+        <CursorPos Y="40"/>
+        <FoldState Value=" TJd1L11"/>
+        <UsageCount Value="208"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\tcpreceivebuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPReceiveBuffer"/>
+        <TopLine Value="27"/>
+        <CursorPos Y="89"/>
+        <UsageCount Value="208"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\tcpsocketproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPSocketProperties"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="8"/>
+        <CursorPos X="67" Y="20"/>
+        <UsageCount Value="208"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="..\tcptype.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TCPType"/>
+        <CursorPos Y="12"/>
+        <UsageCount Value="207"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="tvsppermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPPermissions"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="214"/>
+        <CursorPos X="38" Y="341"/>
+        <FoldState Value=" TJjG1I221{"/>
+        <UsageCount Value="214"/>
+        <Loaded Value="True"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\orderedobjectlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OrderedObjectList"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="13" Y="39"/>
+        <UsageCount Value="210"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="tvspserverpermissions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPServerPermissions"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2"/>
+        <CursorPos X="60" Y="49"/>
+        <UsageCount Value="222"/>
+        <Loaded Value="True"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="tvspparamgroupmap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TVSPParamGroupMap"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <CursorPos X="59" Y="147"/>
+        <UsageCount Value="217"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="lockedobjects.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LockedObjects"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="95"/>
+        <CursorPos X="20" Y="119"/>
+        <UsageCount Value="213"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="diagnoseunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DiagnoseForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DiagnoseUnit"/>
+        <TopLine Value="120"/>
+        <CursorPos X="3" Y="136"/>
+        <UsageCount Value="116"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="136" ID="5"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="..\..\advancedobjectclassbasic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AdvancedObjectClassBasic"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos Y="62"/>
+        <UsageCount Value="58"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="..\..\..\Komponenten\lnet\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <TopLine Value="1471"/>
+        <CursorPos Y="1484"/>
+        <UsageCount Value="1"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="P:\lazarus\fpc\2.6.4\source\rtl\inc\systemh.inc"/>
+        <TopLine Value="1040"/>
+        <CursorPos X="36" Y="1049"/>
+        <UsageCount Value="1"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="..\..\linkedlist.pas"/>
+        <UnitName Value="LinkedList"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="88"/>
+        <CursorPos X="3" Y="114"/>
+        <FoldState Value=" TJiG1E011m"/>
+        <UsageCount Value="2"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="P:\lazarus\fpc\3.0.2\source\rtl\objpas\sysutils\intfh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="10" Y="34"/>
+        <UsageCount Value="2"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="..\..\mapkeys.pas"/>
+        <UnitName Value="MapKeys"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="11"/>
+        <UsageCount Value="6"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="P:\lazarus\fpc\3.0.2\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="96"/>
+        <CursorPos X="3" Y="122"/>
+        <UsageCount Value="6"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="P:\lazarus\fpc\3.0.2\source\rtl\inc\objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="272"/>
+        <CursorPos X="35" Y="293"/>
+        <UsageCount Value="7"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="P:\lazarus\fpc\3.0.2\source\rtl\inc\objpas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="978"/>
+        <CursorPos X="10" Y="981"/>
+        <UsageCount Value="7"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="diagnoseunit.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="49"/>
+        <CursorPos Y="73"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit47>
+    </Units>
+    <JumpHistory Count="23" HistoryIndex="22">
+      <Position1>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="69" Column="74" TopLine="63"/>
+      </Position1>
+      <Position2>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="140" Column="62" TopLine="120"/>
+      </Position2>
+      <Position3>
+        <Filename Value="tvspserverpermissions.pas"/>
+        <Caret Line="67" Column="21" TopLine="65"/>
+      </Position3>
+      <Position4>
+        <Filename Value="tvspserverpermissions.pas"/>
+        <Caret Line="14" Column="26"/>
+      </Position4>
+      <Position5>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="285" Column="21" TopLine="272"/>
+      </Position5>
+      <Position6>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="222" Column="3" TopLine="69"/>
+      </Position6>
+      <Position7>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="373" Column="29" TopLine="370"/>
+      </Position7>
+      <Position8>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="390" Column="24" TopLine="369"/>
+      </Position8>
+      <Position9>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="113" Column="41" TopLine="44"/>
+      </Position9>
+      <Position10>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="115" Column="41" TopLine="84"/>
+      </Position10>
+      <Position11>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="10" Column="47"/>
+      </Position11>
+      <Position12>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="40" Column="22" TopLine="29"/>
+      </Position12>
+      <Position13>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="344" Column="31" TopLine="330"/>
+      </Position13>
+      <Position14>
+        <Filename Value="tvspserverpermissions.pas"/>
+        <Caret Line="48" Column="39" TopLine="36"/>
+      </Position14>
+      <Position15>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="344" Column="30" TopLine="344"/>
+      </Position15>
+      <Position16>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="89" TopLine="74"/>
+      </Position16>
+      <Position17>
+        <Filename Value="diagnoseunit.pas"/>
+        <Caret Line="142" Column="49" TopLine="117"/>
+      </Position17>
+      <Position18>
+        <Filename Value="tvspserver.pas"/>
+        <Caret Line="236" Column="31" TopLine="236"/>
+      </Position18>
+      <Position19>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="396" Column="30" TopLine="394"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\tvspmsg.pas"/>
+        <Caret Line="112" Column="33" TopLine="104"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\tvspmsg.pas"/>
+        <Caret Line="108" Column="24" TopLine="92"/>
+      </Position21>
+      <Position22>
+        <Filename Value="tvsppermissions.pas"/>
+        <Caret Line="420" Column="12" TopLine="396"/>
+      </Position22>
+      <Position23>
+        <Filename Value="tvspgroups.pas"/>
+        <Caret Line="97" Column="35" TopLine="84"/>
+      </Position23>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="3">
+      <Item1>
+        <Expression Value="FCount"/>
+      </Item1>
+      <Item2>
+        <Expression Value="FEnumerates"/>
+      </Item2>
+      <Item3>
+        <Expression Value="FEnumerates.FCount"/>
+      </Item3>
+    </Watches>
+  </Debugging>
+</CONFIG>

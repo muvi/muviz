@@ -1,0 +1,166 @@
+unit PresetUtilImpl;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, PresetType, VisType2, DebugTools, PresetTypeUnit,
+  VisTypeUnit2, TagUnit, ParamType2, StdParamTypes, MStrings, VisTypeImpl,
+  TagType, TagTypeImpl, ThreadImpl, DefaultThread, StdTagGroups;
+
+type
+  TITaggedPresets      = class (TITaggedObjects, IITaggedPresets)
+  protected
+    function Get(Index: LongInt): IPVisualisation; cdecl;
+  end;
+
+  TPPresetUtil         = class (TInterfacedObject, IPPresetUtil)
+  private
+    FVisTypes           : TPTypes;
+    FPresets            : TPPresets;
+    //main thread
+    FMainThreadPrototype: IPThreadPrototype;
+    FMainThread         : IPThread;
+    FMainEnvironment    : IPVisualisationEnvironment;
+  public
+    constructor Create;
+    //call before using this util
+    destructor Destroy; override;
+    procedure RegisterVis(AID: TPVisID; AConstructor: TPVisConstructor); cdecl;
+    //function CreatePreset(AID: TPPresetID; AEnvironment: IPVisualisationEnvironment = nil): IPVisualisation; stdcall;
+    function GetPreset(AID: TPPresetID): IPVisualisation; cdecl;
+    function GetPreset(AName: IString): IPVisualisation; cdecl;
+    function GetPresetTags: ITags; cdecl;
+    function GetPresetsWithTag(ATag: IString): IITaggedPresets; cdecl;
+    function NewThread: IPThread; cdecl;
+    function NewThreadPrototype: IPThreadPrototype; cdecl;
+    function GetCurrentThread: IPThread; cdecl;
+    function GetMainThread: IPThread; cdecl;
+    function GetMainEnvironment: IPVisualisationEnvironment; cdecl;
+    procedure ExecuteMainThread;
+
+    property CurrentThread: IPThread read GetCurrentThread;
+    property MainThread: IPThread read GetMainThread;
+    property MainEnvironment: IPVisualisationEnvironment read GetMainEnvironment;
+    property Presets: TPPresets read FPresets;
+  end;
+
+var
+  InternalPresetUtil   : TPPresetUtil = nil;
+  CreateMainEnvironment: function (AThread: IPThread): IPVisualisationEnvironment;
+
+implementation
+
+{%REGION TPPresetUtil}
+
+constructor TPPresetUtil.Create;
+begin
+  Assert(InternalPresetUtil = nil);
+  inherited Create;
+  FMainThreadPrototype:=NewThreadPrototype;
+  FMainThread:=FMainThreadPrototype.Thread;
+  FMainEnvironment:=CreateMainEnvironment(FMainThread);
+
+  InternalPresetUtil:=Self;
+  PresetUtil:=Self;
+  VisualisationUtil:=PresetUtil;
+
+  FVisTypes:=TPTypes.Create;
+  FPresets:=TPPresets.Create(FVisTypes);
+end;
+
+destructor TPPresetUtil.Destroy;
+begin
+  FPresets.Destroy;
+  FVisTypes.Destroy;
+
+  FMainThreadPrototype:=nil;
+  FMainThread:=nil;
+  inherited Destroy;
+end;
+
+procedure TPPresetUtil.RegisterVis(AID: TPVisID; AConstructor: TPVisConstructor); cdecl;
+begin
+  FVisTypes.Register(TPDefaultType.Create(AID, AConstructor));
+end;
+
+{
+function TPPresetUtil.CreatePreset(AID: TPPresetID; AEnvironment: IPVisualisationEnvironment = nil): IPVisualisation; stdcall;
+begin
+  if AEnvironment = nil
+    then AEnvironment:=VisualisationUtil.MainEnvironment;
+  Result:=FPresets.Add(AID, AEnvironment);
+end;
+}
+
+function TPPresetUtil.GetPreset(AID: TPPresetID): IPVisualisation; cdecl;
+begin
+  Result:=FPresets[AID];
+end;
+
+function TPPresetUtil.GetPreset(AName: IString): IPVisualisation; cdecl;
+begin
+  Result:=FPresets.ItemsByName[AName];
+end;
+
+function TPPresetUtil.GetPresetTags: ITags; cdecl;
+begin
+  Result:=ITags(TITags.Create(FPresets.AllPresetTags.toArray, PresetTags));
+end;
+
+function TPPresetUtil.GetPresetsWithTag(ATag: IString): IITaggedPresets; cdecl;
+begin
+  Result:=TITaggedPresets.Create(FPresets.AllPresetTags.toArray(PresetTags[ATag]));
+end;
+
+function TPPresetUtil.NewThread: IPThread; cdecl;
+var
+  APrototype: IPThreadPrototype;
+begin
+  APrototype:=NewThreadPrototype;
+  TDefaultThread.Create(APrototype);
+  Result:=APrototype.Thread;
+end;
+
+function TPPresetUtil.NewThreadPrototype: IPThreadPrototype; cdecl;
+begin
+  Result:=TPThread.Create;
+end;
+
+function TPPresetUtil.GetCurrentThread: IPThread; cdecl;
+begin
+  Result:=GetCurrentIPThread;
+end;
+
+function TPPresetUtil.GetMainThread: IPThread; cdecl;
+begin
+  Result:=FMainThread;
+  Assert(Result<>nil);
+end;
+
+function TPPresetUtil.GetMainEnvironment: IPVisualisationEnvironment; cdecl;
+begin
+  Result:=FMainEnvironment;
+  Assert(Result<>nil);
+end;
+
+procedure TPPresetUtil.ExecuteMainThread;
+begin
+  FMainThreadPrototype.Started;
+  FMainThreadPrototype.Execute;
+  FMainThreadPrototype.Stopped;
+end;
+
+{%ENDREGION}
+{%REGION TITaggedPresets}
+
+function TITaggedPresets.Get(Index: LongInt): IPVisualisation; cdecl;
+begin
+  Result:=TVisualisation(GetObject(Index));
+end;
+
+{%ENDREGION}
+
+end.
+
